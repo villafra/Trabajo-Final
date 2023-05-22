@@ -41,7 +41,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BE_Bebida.cs" />
+    <Compile Include="BE_Bebida_Alcoholica.cs" />
+    <Compile Include="BE_Bebida_Preparada.cs" />
+    <Compile Include="BE_ChefPrincipal.cs" />
+    <Compile Include="BE_Cliente.cs" />
+    <Compile Include="BE_Compra.cs" />
+    <Compile Include="BE_Empleado.cs" />
+    <Compile Include="BE_GerenteSucursal.cs" />
+    <Compile Include="BE_Ingrediente.cs" />
+    <Compile Include="BE_Mesa.cs" />
+    <Compile Include="BE_Mozo.cs" />
+    <Compile Include="BE_Orden.cs" />
+    <Compile Include="BE_Pago.cs" />
+    <Compile Include="BE_Pedido.cs" />
+    <Compile Include="BE_Plato.cs" />
+    <Compile Include="BE_Reserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">
+      <Project>{1cb14128-098c-400f-aa4d-6c474e7b7266}</Project>
+      <Name>Abstraction Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

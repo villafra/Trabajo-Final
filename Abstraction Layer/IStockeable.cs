@@ -8,8 +8,12 @@ namespace Abstraction_Layer
 {
     public interface IStockeable
     {
-        int Stock { get; set; }
+        decimal Stock { get; set; }
         decimal CostoUnitario { get; set; }
+        string UnidadMedida { get; set; }
+        int VidaUtil { get; set; }
         void AgregarStock(int Cantidad);
+        void ActualizarStatus();
+        DateTime DevolverFechaVencimiento();
     }
 }

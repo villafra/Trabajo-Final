@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Data_Access_Layer
 {
     public class Xml_Database
     {
-        XmlDocument doc = new XmlDocument();
+        XDocument doc = new XDocument();
 
         private void AbrirConexion()
         {
-            doc.Load("Restaurant.xml");
+            doc = XDocument.Load("Restaurant.xml");
         }
 
         private void CerrarConexion()
@@ -22,23 +23,22 @@ namespace Data_Access_Layer
             doc = null;
             GC.Collect();
         }
-        public bool Escribir(string nombreNodo, XmlElement nuevoNodo = null, List<XmlElement> listaNodos = null)
+        public bool Escribir(string nombreNodo, XElement nuevoNodo = null, List<XElement> listaNodos = null)
         {
             AbrirConexion();
             try
             {
-                XmlElement nodoRaiz = doc.DocumentElement;
-                XmlElement buscarNodo = nodoRaiz.SelectSingleNode(nombreNodo) as XmlElement;
-                if (listaNodos.Count > 0)
+                XElement nodoPadre = doc.Root.Element(nombreNodo);
+                if (listaNodos != null)
                 {
-                    foreach (XmlElement nodo in listaNodos)
+                    foreach (XElement nodo in listaNodos)
                     {
-                        buscarNodo.AppendChild(nodo);
+                        nodoPadre.Add(nodo);
                     }
                 }
                 else
                 {
-                    buscarNodo.AppendChild(nuevoNodo);
+                    nodoPadre.Add(nuevoNodo);
                 }
 
                 return true;
@@ -53,6 +53,90 @@ namespace Data_Access_Layer
                 CerrarConexion();
             }
             
+        }
+
+        public bool Borrar(string nombreNodo, string nombreObjeto, XElement borrarNodo = null, List<XElement> listaNodos = null)
+        {
+
+            AbrirConexion();
+            try
+            {
+                IEnumerable<XElement> borrarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto);
+
+                if (listaNodos != null)
+                {
+                    foreach (XElement nodo in listaNodos)
+                    {
+                        borrarObjeto
+                            .Where(n => n.Element("ID") == borrarNodo.Element("ID"))
+                            .Remove();
+                    }
+                }
+                else
+                {
+                    borrarObjeto
+                       .Where(n => n.Element("ID") == borrarNodo.Element("ID"))
+                       .Remove();
+                }
+
+                return true;
+            }   
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+
+        }
+
+        public bool Modificar(string nombreNodo, string nombreObjeto, XElement modificarNodo = null, List<XElement> listaNodos = null)
+        {
+            AbrirConexion();
+
+            try
+            {
+                if (listaNodos != null)
+                {
+                    foreach (XElement nodo in listaNodos)
+                    {
+                        XElement modificarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto)
+                                            .Where(n => n.Element("ID").Value == nodo.Element("ID").Value)
+                                            .FirstOrDefault();
+
+                        foreach (XElement dato in modificarObjeto.Elements())
+                        {
+                            dato.Value = nodo.Element(dato.Name).Value;
+                        }
+                    }
+                }
+                else
+                {
+                    XElement modificarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto)
+                    .Where(n => n.Element("ID").Value == modificarNodo.Element("ID").Value)
+                    .FirstOrDefault();
+
+                    foreach (XElement dato in modificarObjeto.Elements())
+                    {
+                        dato.Value = modificarNodo.Element(dato.Name).Value;
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            finally
+            {
+                CerrarConexion();
+            }
+
         }
     }
 }

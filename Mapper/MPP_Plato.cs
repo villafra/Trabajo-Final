@@ -12,12 +12,12 @@ namespace Mapper
     public class MPP_Plato : IGestionable<BE_Plato>
     {
         Xml_Database Acceso;
-        public bool Baja(BE_Plato Objeto)
+        public bool Baja(BE_Plato plato)
         {
             throw new NotImplementedException();
         }
 
-        public bool Guardar(BE_Plato Objeto)
+        public bool Guardar(BE_Plato plato)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +27,7 @@ namespace Mapper
             throw new NotImplementedException();
         }
 
-        public BE_Plato ListarObjeto(BE_Plato Objeto)
+        public BE_Plato ListarObjeto(BE_Plato plato)
         {
             throw new NotImplementedException();
         }

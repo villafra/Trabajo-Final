@@ -5,29 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Reserva : IGestionable<BE_Reserva>
     {
-        public bool Baja(BE_Reserva Objeto)
+        MPP_Reserva oMPP_Reserva;
+
+        public BLL_Reserva()
         {
-            throw new NotImplementedException();
+            oMPP_Reserva = new MPP_Reserva();
         }
 
-        public bool Guardar(BE_Reserva Objeto)
+        public bool Baja(BE_Reserva reserva)
         {
-            throw new NotImplementedException();
+            return oMPP_Reserva.Baja(reserva);
+        }
+
+        public bool Guardar(BE_Reserva reserva)
+        {
+            return oMPP_Reserva.Guardar(reserva);
         }
 
         public List<BE_Reserva> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Reserva.Listar();
         }
 
-        public BE_Reserva ListarObjeto(BE_Reserva Objeto)
+        public BE_Reserva ListarObjeto(BE_Reserva reserva)
         {
-            throw new NotImplementedException();
+            return oMPP_Reserva.ListarObjeto(reserva);
         }
 
         public bool modificarReserva()

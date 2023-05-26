@@ -5,11 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Bebida : IGestionable<BE_Bebida>, IMovimentable
     {
+        MPP_Bebida oMPP_Bebida;
+        public BLL_Bebida()
+        {
+            oMPP_Bebida = new MPP_Bebida();
+        }
+
         public void ActualizarStatus()
         {
             throw new NotImplementedException();
@@ -20,9 +27,9 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public bool Baja(BE_Bebida Objeto)
+        public bool Baja(BE_Bebida bebida)
         {
-            throw new NotImplementedException();
+            return oMPP_Bebida.Baja(bebida);
         }
 
         public DateTime DevolverFechaVencimiento()
@@ -35,19 +42,19 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public bool Guardar(BE_Bebida Objeto)
+        public bool Guardar(BE_Bebida bebida)
         {
-            throw new NotImplementedException();
+            return oMPP_Bebida.Guardar(bebida);
         }
 
         public List<BE_Bebida> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Bebida.Listar();
         }
 
-        public BE_Bebida ListarObjeto(BE_Bebida Objeto)
+        public BE_Bebida ListarObjeto(BE_Bebida bebida)
         {
-            throw new NotImplementedException();
+            return oMPP_Bebida.ListarObjeto(bebida);
         }
 
         public void VerificarStatus()

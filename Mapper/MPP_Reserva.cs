@@ -13,12 +13,12 @@ namespace Mapper
     {
         Xml_Database Acceso;
 
-        public bool Baja(BE_Reserva Objeto)
+        public bool Baja(BE_Reserva reserva)
         {
             throw new NotImplementedException();
         }
 
-        public bool Guardar(BE_Reserva Objeto)
+        public bool Guardar(BE_Reserva reserva)
         {
             throw new NotImplementedException();
         }
@@ -28,7 +28,7 @@ namespace Mapper
             throw new NotImplementedException();
         }
 
-        public BE_Reserva ListarObjeto(BE_Reserva Objeto)
+        public BE_Reserva ListarObjeto(BE_Reserva reserva)
         {
             throw new NotImplementedException();
         }

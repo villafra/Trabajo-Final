@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Mesa : IGestionable<BE_Mesa>, IMovimentable
     {
+        MPP_Mesa oMPP_Mesa;
+
+        public BLL_Mesa()
+        {
+            oMPP_Mesa = new MPP_Mesa();
+        }
+
         public void ActualizarStatus()
         {
             throw new NotImplementedException();
@@ -20,9 +28,9 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public bool Baja(BE_Mesa Objeto)
+        public bool Baja(BE_Mesa mesa)
         {
-            throw new NotImplementedException();
+            return oMPP_Mesa.Baja(mesa);
         }
 
         public DateTime DevolverFechaVencimiento()
@@ -35,19 +43,19 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public bool Guardar(BE_Mesa Objeto)
+        public bool Guardar(BE_Mesa mesa)
         {
-            throw new NotImplementedException();
+            return oMPP_Mesa.Guardar(mesa);
         }
 
         public List<BE_Mesa> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Mesa.Listar();
         }
 
-        public BE_Mesa ListarObjeto(BE_Mesa Objeto)
+        public BE_Mesa ListarObjeto(BE_Mesa mesa)
         {
-            throw new NotImplementedException();
+            return oMPP_Mesa.ListarObjeto(mesa);
         }
 
         public void VerificarStatus()

@@ -5,19 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public abstract class BLL_Empleado : IGestionable<BE_Empleado>
     {
-        public bool Baja(BE_Empleado Objeto)
+        MPP_Empleado oMPP_Empleado;
+
+        public BLL_Empleado()
         {
-            throw new NotImplementedException();
+            oMPP_Empleado = new MPP_Empleado();
         }
 
-        public bool Guardar(BE_Empleado Objeto)
+        public bool Baja(BE_Empleado empleado)
         {
-            throw new NotImplementedException();
+            return oMPP_Empleado.Baja(empleado);
+        }
+
+        public bool Guardar(BE_Empleado empleado)
+        {
+            return oMPP_Empleado.Guardar(empleado);
         }
 
         public List<BE_Ingrediente> listadosCiegos()
@@ -27,12 +35,12 @@ namespace Business_Logic_Layer
 
         public List<BE_Empleado> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Empleado.Listar();
         }
 
-        public BE_Empleado ListarObjeto(BE_Empleado Objeto)
+        public BE_Empleado ListarObjeto(BE_Empleado empleado)
         {
-            throw new NotImplementedException();
+            return oMPP_Empleado.ListarObjeto(empleado);
         }
 
         public void verificarStock()

@@ -5,29 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Cliente : IGestionable<BE_Cliente>
     {
-        public bool Baja(BE_Cliente Objeto)
+        MPP_Cliente oMPP_Cliente;
+
+        public BLL_Cliente()
         {
-            throw new NotImplementedException();
+            oMPP_Cliente = new MPP_Cliente();
         }
 
-        public bool Guardar(BE_Cliente Objeto)
+        public bool Baja(BE_Cliente cliente)
         {
-            throw new NotImplementedException();
+            return oMPP_Cliente.Baja(cliente);
+        }
+
+        public bool Guardar(BE_Cliente cliente)
+        {
+            return oMPP_Cliente.Guardar(cliente);
         }
 
         public List<BE_Cliente> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Cliente.Listar();
         }
 
-        public BE_Cliente ListarObjeto(BE_Cliente Objeto)
+        public BE_Cliente ListarObjeto(BE_Cliente cliente)
         {
-            throw new NotImplementedException();
+            return oMPP_Cliente.ListarObjeto(cliente);
         }
 
         public void modificarCliente()

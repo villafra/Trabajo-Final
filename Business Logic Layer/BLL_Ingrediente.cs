@@ -5,29 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Ingrediente : IGestionable<BE_Ingrediente>
     {
-        public bool Baja(BE_Ingrediente Objeto)
+        MPP_Ingrediente oMPP_Ingrediente;
+
+        public BLL_Ingrediente()
         {
-            throw new NotImplementedException();
+            oMPP_Ingrediente = new MPP_Ingrediente();
         }
 
-        public bool Guardar(BE_Ingrediente Objeto)
+        public bool Baja(BE_Ingrediente ingrediente)
         {
-            throw new NotImplementedException();
+            return oMPP_Ingrediente.Baja(ingrediente);
+        }
+
+        public bool Guardar(BE_Ingrediente ingrediente)
+        {
+            return oMPP_Ingrediente.Guardar(ingrediente);
         }
 
         public List<BE_Ingrediente> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Ingrediente.Listar();
         }
 
-        public BE_Ingrediente ListarObjeto(BE_Ingrediente Objeto)
+        public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
         {
-            throw new NotImplementedException();
+            return oMPP_Ingrediente.ListarObjeto(ingrediente);
         }
 
         public DateTime devolverFechaVencimiento()

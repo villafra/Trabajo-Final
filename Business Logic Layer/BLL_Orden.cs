@@ -5,29 +5,37 @@ using System.Text;
 using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Orden : IGestionable<BE_Orden>
     {
-        public bool Baja(BE_Orden Objeto)
+        MPP_Orden oMPP_Orden;
+
+        public BLL_Orden()
         {
-            throw new NotImplementedException();
+            oMPP_Orden = new MPP_Orden();
         }
 
-        public bool Guardar(BE_Orden Objeto)
+        public bool Baja(BE_Orden orden)
         {
-            throw new NotImplementedException();
+            return oMPP_Orden.Baja(orden);
+        }
+
+        public bool Guardar(BE_Orden orden)
+        {
+            return oMPP_Orden.Guardar(orden);
         }
 
         public List<BE_Orden> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Orden.Listar();
         }
 
-        public BE_Orden ListarObjeto(BE_Orden Objeto)
+        public BE_Orden ListarObjeto(BE_Orden orden)
         {
-            throw new NotImplementedException();
+            return oMPP_Orden.ListarObjeto(orden);
         }
 
         public void dividirPasos()

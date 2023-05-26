@@ -10,7 +10,6 @@ namespace Business_Logic_Layer
 {
     public class BLL_Chef_Principal : BLL_Empleado
     {
-        
         public List<BE_Orden> verificarOrdenesLiberadas()
         {
             throw new NotImplementedException();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -136,7 +137,13 @@ namespace Data_Access_Layer
             {
                 CerrarConexion();
             }
+        }
 
+        public DataSet Listar()
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml("Restaurant.xml");
+            return ds;
         }
     }
 }

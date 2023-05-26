@@ -49,5 +49,11 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public void VerificarStatus()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

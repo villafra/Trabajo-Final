@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automate Layer", "Automate 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstraction Layer", "Abstraction Layer\Abstraction Layer.csproj", "{1CB14128-098C-400F-AA4D-6C474E7B7266}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapper", "Mapper\Mapper.csproj", "{D250F45F-45B2-4597-A37E-25D9ACF1F0FE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{1CB14128-098C-400F-AA4D-6C474E7B7266}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CB14128-098C-400F-AA4D-6C474E7B7266}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CB14128-098C-400F-AA4D-6C474E7B7266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D250F45F-45B2-4597-A37E-25D9ACF1F0FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D250F45F-45B2-4597-A37E-25D9ACF1F0FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D250F45F-45B2-4597-A37E-25D9ACF1F0FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D250F45F-45B2-4597-A37E-25D9ACF1F0FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

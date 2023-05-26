@@ -21,19 +21,5 @@ namespace Business_Entities
         public string Status { get; set; }
         public decimal CostoUnitario { get; set; }
 
-        public void AgregarStock(int Cantidad)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ActualizarStatus()
-        {
-            throw new NotImplementedException();
-        }
-
-        public DateTime DevolverFechaVencimiento()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

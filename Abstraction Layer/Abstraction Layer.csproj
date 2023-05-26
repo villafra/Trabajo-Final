@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IEntidable.cs" />
     <Compile Include="IGestionable.cs" />
+    <Compile Include="IMovimentable.cs" />
     <Compile Include="IStockeable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

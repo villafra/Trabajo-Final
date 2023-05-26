@@ -41,7 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL_Bebida.cs" />
+    <Compile Include="BLL_Bebida_Preparada.cs" />
+    <Compile Include="BLL_Chef_Principal.cs" />
+    <Compile Include="BLL_Cliente.cs" />
+    <Compile Include="BLL_Compra.cs" />
+    <Compile Include="BLL_Empleado.cs" />
+    <Compile Include="BLL_Gerente_Sucursal.cs" />
+    <Compile Include="BLL_Ingrediente.cs" />
+    <Compile Include="BLL_Mesa.cs" />
+    <Compile Include="BLL_Mozo.cs" />
+    <Compile Include="BLL_Orden.cs" />
+    <Compile Include="BLL_Pedido.cs" />
+    <Compile Include="BLL_Plato.cs" />
+    <Compile Include="BLL_Reserva.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">
+      <Project>{1cb14128-098c-400f-aa4d-6c474e7b7266}</Project>
+      <Name>Abstraction Layer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Business Entities\Business Entities.csproj">
+      <Project>{368d015f-1e2d-450a-a15c-42bdb8371e6f}</Project>
+      <Name>Business Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data Access Layer\Data Access Layer.csproj">
+      <Project>{f330077d-486e-47d3-9fa3-3dba3e05b813}</Project>
+      <Name>Data Access Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

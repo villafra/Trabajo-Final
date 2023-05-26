@@ -12,8 +12,6 @@ namespace Abstraction_Layer
         decimal CostoUnitario { get; set; }
         string UnidadMedida { get; set; }
         int VidaUtil { get; set; }
-        void AgregarStock(int Cantidad);
-        void ActualizarStatus();
-        DateTime DevolverFechaVencimiento();
+
     }
 }

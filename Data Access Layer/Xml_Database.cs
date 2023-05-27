@@ -69,7 +69,7 @@ namespace Data_Access_Layer
                     foreach (XElement nodo in listaNodos)
                     {
                         borrarObjeto
-                            .Where(n => n.Element("ID") == borrarNodo.Element("ID"))
+                            .Where(n => n.Element("ID") == nodo.Element("ID"))
                             .Remove();
                     }
                 }

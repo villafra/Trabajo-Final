@@ -9,5 +9,6 @@ namespace Business_Entities
     public class BE_ChefPrincipal: BE_Empleado
     {
         public List <BE_Orden> OrdenesPendientes { get; set; }
+
     }
 }

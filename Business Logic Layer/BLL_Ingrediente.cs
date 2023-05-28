@@ -7,6 +7,7 @@ using Abstraction_Layer;
 using Business_Entities;
 using Mapper;
 
+
 namespace Business_Logic_Layer
 {
     public class BLL_Ingrediente : IGestionable<BE_Ingrediente>

@@ -32,5 +32,10 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Bebida bebida)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -15,5 +15,11 @@ namespace Business_Entities
         public int OcupaciónActual { get; set; }
         public string Status { get; set; }
         public BE_Empleado ID_Empleado { get; set; }
+
+        public string DevolverNombre()
+        {
+            string clase = typeof(BE_Mesa).Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+        }
     }
 }

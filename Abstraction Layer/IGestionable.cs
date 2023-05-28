@@ -10,6 +10,7 @@ namespace Abstraction_Layer
     {
         bool Guardar(T Objeto);
         bool Baja(T Objeto);
+        bool Modificar(T Objeto);
         List<T> Listar();
         T ListarObjeto(T Objeto);
     }

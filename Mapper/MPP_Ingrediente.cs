@@ -52,10 +52,15 @@ namespace Mapper
             return listaIngredientes;
             
         }
-
         public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Modificar(BE_Ingrediente ingrediente)
+        {
+            Acceso = new Xml_Database();
+            return Acceso.Modificar("Ingredientes", "Ingrediente", CrearIngredienteXML(ingrediente));
         }
 
         private XElement CrearIngredienteXML(BE_Ingrediente ingrediente)

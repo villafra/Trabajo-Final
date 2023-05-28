@@ -47,5 +47,11 @@
     <Compile Include="Cálculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">
+      <Project>{1cb14128-098c-400f-aa4d-6c474e7b7266}</Project>
+      <Name>Abstraction Layer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

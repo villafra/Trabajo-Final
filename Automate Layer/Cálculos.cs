@@ -1,11 +1,16 @@
 ﻿using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Abstraction_Layer;
 
 namespace Automate_Layer
 {
     public static class Cálculos
     {
-
+        public static string DevolverNombre<T>(T objeto) where T:IEntidable
+        {
+            string clase = typeof(T).Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+        }
         public static void ValidarNumeros(KeyPressEventArgs e)
         {
             string s = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;

@@ -9,5 +9,6 @@ namespace Business_Entities
     public class BE_Mozo:BE_Empleado
     {
         public List<BE_Pedido> PedidosTomados{ get; set; }
-}
+
+    }
 }

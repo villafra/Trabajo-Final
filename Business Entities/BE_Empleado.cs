@@ -36,6 +36,7 @@ namespace Business_Entities
         {
             return this.Nombre + " " + this.Apellido;
         }
+        
     }
 
 }

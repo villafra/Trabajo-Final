@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
 using Data_Access_Layer;
+using System.Xml.Linq;
+using System.Data;
 
 namespace Mapper
 {
@@ -15,22 +17,74 @@ namespace Mapper
 
         public bool Baja(BE_Compra compra)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            return Acceso.Borrar("Compras", "Compra", CrearCompraXML(compra));
         }
 
         public bool Guardar(BE_Compra compra)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            return Acceso.Escribir("Compras", CrearCompraXML(compra));
         }
 
         public List<BE_Compra> Listar()
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Compra> listadeCompras = (from comp in ds.Tables["Compra"].AsEnumerable()
+                                              select new BE_Compra
+                                              {
+                                                  Codigo = Convert.ToInt32(comp[0]),
+                                                  ID_Ingrediente = (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                    where Convert.ToInt32(ing[0]) == Convert.ToInt32(comp[1])
+                                                                    select new BE_Ingrediente
+                                                                    {
+                                                                        Codigo = Convert.ToInt32(ing[0]),
+                                                                        Nombre = Convert.ToString(ing[1]),
+                                                                        Tipo = Convert.ToString(ing[2]),
+                                                                        Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                        Stock = Convert.ToDecimal(ing[4]),
+                                                                        UnidadMedida = Convert.ToString(ing[5]),
+                                                                        Lote = Convert.ToString(ing[6]),
+                                                                        Activo = Convert.ToBoolean(ing[7]),
+                                                                        VidaUtil = Convert.ToInt32(ing[8]),
+                                                                        Status = Convert.ToString(ing[9]),
+                                                                        CostoUnitario = Convert.ToDecimal(ing[10])
+                                                                    }).FirstOrDefault(),
+                                                  Cantidad = Convert.ToDecimal(comp[2]),
+                                                  FechaCompra = Convert.ToDateTime(comp[3]),
+                                                  FechaEntrega = Convert.ToDateTime(comp[4]),
+                                                  CantidadRecibida = Convert.ToDecimal(comp[5]),
+                                                  Costo = Convert.ToDecimal(comp[6])
+                                              }).ToList();
+            return listadeCompras;
         }
 
         public BE_Compra ListarObjeto(BE_Compra compra)
         {
             throw new NotImplementedException();
+        }
+
+        public bool Modificar(BE_Compra compra)
+        {
+            Acceso = new Xml_Database();
+            return Acceso.Modificar("Compras", "Compra", CrearCompraXML(compra));
+        }
+
+        private XElement CrearCompraXML(BE_Compra compra)
+        {
+            XElement nuevaCompra = new XElement("Compra",
+                new XElement("ID", compra.Codigo.ToString()),
+                new XElement("ID Ingrediente", compra.ID_Ingrediente.Codigo.ToString()),
+                new XElement("Cantidad", compra.Cantidad.ToString()),
+                new XElement("Fecha Compra", compra.FechaCompra.ToString("dd/MM/yyyy")),
+                new XElement("Fecha Entrega", compra.FechaEntrega.ToString("dd/MM/yyyy")),
+                new XElement("Cantidad Recibida", compra.Cantidad.ToString()),
+                new XElement("Costo", compra.Costo.ToString())
+                );
+            return nuevaCompra;
         }
     }
 }

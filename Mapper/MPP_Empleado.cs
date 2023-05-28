@@ -32,5 +32,10 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Empleado Objeto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

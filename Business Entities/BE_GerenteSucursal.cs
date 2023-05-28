@@ -9,5 +9,6 @@ namespace Business_Entities
     public class BE_GerenteSucursal: BE_Empleado
     {
         public string Contacto { get; set; }
+
     }
 }

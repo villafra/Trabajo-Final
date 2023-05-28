@@ -20,5 +20,11 @@ namespace Business_Entities
         public List<BE_Bebida> ListadeBebidas { get; set; }
         public List<BE_Reserva> ListaReservas { get; set; }
 
+        public string DevolverNombre()
+        {
+            string clase = typeof(BE_Cliente).Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+        }
+
     }
 }

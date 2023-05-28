@@ -15,8 +15,8 @@ namespace Business_Entities
         public string Aclaraciones { get; set; }
         public string Status { get; set; }
         public decimal Monto_Total { get; set; }
-        public BE_Plato ID_Plato { get; set; }
-        public BE_Bebida ID_Bebida { get; set; }
+        public List<BE_Plato> ListadePlatos { get; set; }
+        public List<BE_Bebida> ListadeBebida { get; set; }
         public BE_Pago ID_Pago { get; set; }
         
     }

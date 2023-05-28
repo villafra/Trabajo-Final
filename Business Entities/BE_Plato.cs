@@ -17,5 +17,6 @@ namespace Business_Entities
         public decimal CostoUnitario { get; set; }
         public bool Activo { get; set; }
         public List<BE_Ingrediente> ListaIngredientes { get; set; }
+        
     }
 }

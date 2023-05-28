@@ -21,5 +21,10 @@ namespace Business_Entities
         public string Status { get; set; }
         public decimal CostoUnitario { get; set; }
 
+        public string DevolverNombre()
+        {
+            string clase = typeof(BE_Ingrediente).Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+        }
     }
 }

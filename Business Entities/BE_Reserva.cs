@@ -18,5 +18,8 @@ namespace Business_Entities
         public string TipoRecurrencia { get; set; }
         public BE_Cliente ID_Cliente { get; set; }
         public BE_Pedido ID_Pedido { get; set; }
+
     }
+
+    
 }

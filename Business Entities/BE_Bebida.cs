@@ -21,7 +21,7 @@ namespace Business_Entities
 
         public string DevolverNombre()
         {
-            string clase = typeof(BE_Bebida).Name;
+            string clase = this.GetType().Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
 

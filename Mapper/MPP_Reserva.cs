@@ -14,23 +14,25 @@ namespace Mapper
     public class MPP_Reserva:IGestionable<BE_Reserva>
     {
         Xml_Database Acceso;
-        Dictionary<string, string> DicReserva = new Dictionary<string, string>();
+        List<BE_TuplaXML> ListadoXML;
 
         public MPP_Reserva()
         {
-            DicReserva.Add("Reservas","Reserva");
+            ListadoXML = new List<BE_TuplaXML>();
         }
 
         public bool Baja(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar(DicReserva, CrearReservaXML(reserva));
+            ListadoXML.Add(CrearReservaXML(reserva));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir(DicReserva, CrearReservaXML(reserva));
+            ListadoXML.Add(CrearReservaXML(reserva));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Reserva> Listar()
@@ -183,13 +185,15 @@ namespace Mapper
         public bool Modificar(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar(DicReserva, CrearReservaXML(reserva));
+            ListadoXML.Add(CrearReservaXML(reserva));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private HashSet<XElement> CrearReservaXML(BE_Reserva reserva)
+        private BE_TuplaXML CrearReservaXML(BE_Reserva reserva)
         {
-            HashSet<XElement> ListaReserva = new HashSet<XElement>();
-
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Reservas";
+            nuevaTupla.NodoLeaf = "Reserva";
             XElement nuevaReserva = new XElement("Reserva",
                 new XElement("ID", reserva.Codigo.ToString()),
                 new XElement("Fecha Inicio", reserva.FechaInicio.ToString("dd/MM/yyyy")),
@@ -201,8 +205,8 @@ namespace Mapper
                 new XElement("ID Cliente",reserva.ID_Cliente.Codigo.ToString()),
                 new XElement("ID Pedido", reserva.ID_Pedido.Codigo.ToString())
                 );
-            ListaReserva.Add(nuevaReserva);
-            return ListaReserva;
+            nuevaTupla.Xelement = nuevaReserva;
+            return nuevaTupla;
         }
     }
 }

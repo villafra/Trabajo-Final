@@ -12,6 +12,12 @@ namespace Mapper
     public class MPP_Bebida:IGestionable<BE_Bebida>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Bebida()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Bebida bebida)
         {

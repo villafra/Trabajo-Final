@@ -24,5 +24,6 @@ namespace Business_Entities
             string clase = typeof(BE_Bebida).Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
+
     }
 }

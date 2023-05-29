@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Ingrediente:IGestionable<BE_Ingrediente>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Ingrediente()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Ingredientes", "Ingrediente", CrearIngredienteXML(ingrediente));
+            ListadoXML.Add(CrearIngredienteXML(ingrediente));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Ingredientes", CrearIngredienteXML(ingrediente));
+            ListadoXML.Add(CrearIngredienteXML(ingrediente));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Ingrediente> Listar()
@@ -60,11 +68,15 @@ namespace Mapper
         public bool Modificar(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Ingredientes", "Ingrediente", CrearIngredienteXML(ingrediente));
+            ListadoXML.Add(CrearIngredienteXML(ingrediente));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private XElement CrearIngredienteXML(BE_Ingrediente ingrediente)
+        private BE_TuplaXML CrearIngredienteXML(BE_Ingrediente ingrediente)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Ingredientes";
+            nuevaTupla.NodoLeaf = "Ingrediente";
             XElement nuevoIngrediente = new XElement("Ingrediente",
                 new XElement("ID", ingrediente.Codigo.ToString()),
                 new XElement("Nombre",ingrediente.Nombre),
@@ -78,7 +90,8 @@ namespace Mapper
                 new XElement("Status", ingrediente.Status),
                 new XElement("Costo Unitario",ingrediente.CostoUnitario.ToString())
                 );
-            return nuevoIngrediente;
+            nuevaTupla.Xelement = nuevoIngrediente;
+            return nuevaTupla;
         }
     }
 }

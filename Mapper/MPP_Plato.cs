@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Plato : IGestionable<BE_Plato>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Plato()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
+
         public bool Baja(BE_Plato plato)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Platos", "Plato", CrearPlatoXML(plato));
+            ListadoXML.Add(CrearPlatoXML(plato));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Plato plato)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Platos", CrearPlatoXML(plato)) & 
-                Acceso.Escribir("Ingredientes-Platos", listaNodos: CrearIngredientePlatoXML(plato));
+            ListadoXML.Add(CrearPlatoXML(plato));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Plato> Listar()
@@ -72,8 +80,11 @@ namespace Mapper
             throw new NotImplementedException();
         }
 
-        private XElement CrearPlatoXML(BE_Plato plato)
+        private BE_TuplaXML CrearPlatoXML(BE_Plato plato)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Platos";
+            nuevaTupla.NodoLeaf = "Plato";
             XElement nuevoPlato = new XElement("Plato",
                 new XElement("ID", plato.Codigo.ToString()),
                 new XElement("Nombre", plato.Nombre.ToString()),
@@ -83,19 +94,23 @@ namespace Mapper
                 new XElement("Costo Unitario", plato.CostoUnitario.ToString()),
                 new XElement("Activo",plato.Activo.ToString())
                 );
-            return nuevoPlato;
+            nuevaTupla.Xelement = nuevoPlato;
+            return nuevaTupla;
         }
-        private List<XElement> CrearIngredientePlatoXML(BE_Plato plato)
+        private List<BE_TuplaXML> CrearIngredientePlatoXML(BE_Plato plato)
         {
-            List<XElement> ListadeIngredientes = new List<XElement>();
+            List<BE_TuplaXML> ListadeIngredientes = new List<BE_TuplaXML>();
             foreach(BE_Ingrediente ing in plato.ListaIngredientes)
             {
+                BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+                nuevaTupla.NodoRoot = "Ingredientes-Platos";
+                nuevaTupla.NodoLeaf = "Ingrediente-Plato";
                 XElement nuevoIngPlato = new XElement("Ingrediente-Plato",
                 new XElement("ID Plato", plato.Codigo.ToString()),
                 new XElement("ID Ingrediente", ing.Codigo.ToString())
                 );
-
-                ListadeIngredientes.Add(nuevoIngPlato);
+                nuevaTupla.Xelement = nuevoIngPlato;
+                ListadeIngredientes.Add(nuevaTupla);
             }
             return ListadeIngredientes;
         }
@@ -103,7 +118,8 @@ namespace Mapper
         public bool Modificar(BE_Plato plato)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Platos", "Plato", CrearPlatoXML(plato));
+            ListadoXML.Add(CrearPlatoXML(plato));
+            return Acceso.Modificar(ListadoXML);
         }
     }
 }

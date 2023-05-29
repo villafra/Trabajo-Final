@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Pago:IGestionable<BE_Pago>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Pago()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Pago pago)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Pagos", "Pago", CrearPagoXML(pago));
+            ListadoXML.Add(CrearPagoXML(pago));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Pago pago)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Pago", CrearPagoXML(pago));
+            ListadoXML.Add(CrearPagoXML(pago));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Pago> Listar()
@@ -51,16 +59,21 @@ namespace Mapper
         public bool Modificar(BE_Pago pago)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Pagos", "Pago", CrearPagoXML(pago));
+            ListadoXML.Add(CrearPagoXML(pago));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private XElement CrearPagoXML (BE_Pago pago)
+        private BE_TuplaXML CrearPagoXML (BE_Pago pago)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Pagos";
+            nuevaTupla.NodoLeaf = "Pago";
             XElement nuevoPago = new XElement("Pago",
                 new XElement("ID", pago.Codigo.ToString()),
                 new XElement("Tipo", pago.Tipo)
                 );
-            return nuevoPago;
+            nuevaTupla.Xelement = nuevoPago;
+            return nuevaTupla;
         }
     }
 }

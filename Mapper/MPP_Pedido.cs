@@ -14,19 +14,25 @@ namespace Mapper
     public class MPP_Pedido:IGestionable<BE_Pedido>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Pedido()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Pedidos", "Pedido", CrearPedidoXML(pedido));
+            ListadoXML.Add(CrearPedidoXML(pedido));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Pedidos", CrearPedidoXML(pedido)) &
-                Acceso.Escribir("Platos-Pedidos", listaNodos: CrearPlatoPedido(pedido)) &
-                Acceso.Escribir("Bebidas-Pedidos", listaNodos: CrearBebidaPedido(pedido));
+            ListadoXML.Add(CrearPedidoXML(pedido));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Pedido> Listar()
@@ -101,8 +107,11 @@ namespace Mapper
             throw new NotImplementedException();
         }
 
-        private XElement CrearPedidoXML(BE_Pedido pedido)
+        private BE_TuplaXML CrearPedidoXML(BE_Pedido pedido)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Pedidos";
+            nuevaTupla.NodoLeaf = "Pedido";
             XElement nuevoPedido = new XElement("Pedido",
                 new XElement("ID", pedido.Codigo.ToString()),
                 new XElement("Fecha de Inicio", pedido.FechaInicio.ToString()),
@@ -112,33 +121,42 @@ namespace Mapper
                 new XElement("Monto Total", pedido.Monto_Total.ToString()),
                 new XElement("ID_Pago", pedido.ID_Pago.Codigo.ToString())
                 );
-            return nuevoPedido;
+            nuevaTupla.Xelement = nuevoPedido;
+            return nuevaTupla;
         }
 
-        private List<XElement> CrearPlatoPedido(BE_Pedido pedido)
+        private List<BE_TuplaXML> CrearPlatoPedido(BE_Pedido pedido)
         {
-            List<XElement> listadePlatos = new List<XElement>();
+            List<BE_TuplaXML> listadePlatos = new List<BE_TuplaXML>();
             foreach(BE_Plato plato in pedido.ListadePlatos)
             {
+                BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+                nuevaTupla.NodoRoot = "Platos-Pedidos";
+                nuevaTupla.NodoLeaf = "Plato-Pedido";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
                     new XElement("ID Pedido", pedido.Codigo.ToString()),
                     new XElement("ID Plato", plato.Codigo.ToString())
                     );
-                listadePlatos.Add(nuevoPlatoPedido);
+                nuevaTupla.Xelement= nuevoPlatoPedido;
+                listadePlatos.Add(nuevaTupla);
             }
             return listadePlatos;
         }
 
-        private List<XElement> CrearBebidaPedido(BE_Pedido pedido)
+        private List<BE_TuplaXML> CrearBebidaPedido(BE_Pedido pedido)
         {
-            List<XElement> listadeBebidas = new List<XElement>();
+            List<BE_TuplaXML> listadeBebidas = new List<BE_TuplaXML>();
             foreach (BE_Bebida bebida in pedido.ListadeBebida)
             {
+                BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+                nuevaTupla.NodoRoot = "Bebidas-Pedidos";
+                nuevaTupla.NodoLeaf = "Bebida-Pedido";
                 XElement nuevaBebidaPedido = new XElement("Bebida-Pedido",
                    new XElement("ID Pedido", bebida.Codigo.ToString()),
                    new XElement("ID Bebida", bebida.Codigo.ToString())
-                    );
-                listadeBebidas.Add(nuevaBebidaPedido);
+                    ); 
+                nuevaTupla.Xelement = nuevaBebidaPedido;
+                listadeBebidas.Add(nuevaTupla);
             }
             return listadeBebidas;
         }
@@ -146,7 +164,8 @@ namespace Mapper
         public bool Modificar(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Pedidos", "Pedido", CrearPedidoXML(pedido));
+            ListadoXML.Add(CrearPedidoXML(pedido));
+            return Acceso.Modificar(ListadoXML);
         }
     }
 }

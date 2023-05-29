@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Mesa:IGestionable<BE_Mesa>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Mesa()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Mesa mesa)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Mesas", "Mesa", CrearMesaXML(mesa));
+            ListadoXML.Add(CrearMesaXML(mesa));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Mesa mesa)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Mesa", CrearMesaXML(mesa));
+            ListadoXML.Add(CrearMesaXML(mesa));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Mesa> Listar()
@@ -131,11 +139,15 @@ namespace Mapper
         public bool Modificar(BE_Mesa mesa)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Mesas", "Mesa", CrearMesaXML(mesa));
+            ListadoXML.Add(CrearMesaXML(mesa));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private XElement CrearMesaXML(BE_Mesa mesa)
+        private BE_TuplaXML CrearMesaXML(BE_Mesa mesa)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Mesas";
+            nuevaTupla.NodoLeaf = "Mesa";
             XElement nuevaMesa = new XElement("Mesa",
                 new XElement("ID", mesa.Codigo.ToString()),
                 new XElement("Capacidad", mesa.Capacidad.ToString()),
@@ -144,7 +156,8 @@ namespace Mapper
                 new XElement("Status", mesa.Status.ToString()),
                 new XElement("ID_Mozo", mesa.ID_Empleado.Codigo.ToString())
                 );
-            return nuevaMesa;
+            nuevaTupla.Xelement = nuevaMesa;
+            return nuevaTupla;
         }
     }
 }

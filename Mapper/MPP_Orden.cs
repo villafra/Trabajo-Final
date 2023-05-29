@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Orden:IGestionable<BE_Orden>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Orden()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Orden orden)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Ordenes", "Orden", CrearOrdenXML(orden));
+            ListadoXML.Add(CrearOrdenXML(orden));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Orden orden)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Orden", CrearOrdenXML(orden));
+            ListadoXML.Add(CrearOrdenXML(orden));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Orden> Listar()
@@ -207,11 +215,15 @@ namespace Mapper
         public bool Modificar(BE_Orden orden)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Ordenes", "Orden", CrearOrdenXML(orden));
+            ListadoXML.Add(CrearOrdenXML(orden));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private XElement CrearOrdenXML (BE_Orden orden)
+        private BE_TuplaXML CrearOrdenXML (BE_Orden orden)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Ordenes";
+            nuevaTupla.NodoLeaf = "Orden";
             XElement nuevaOrden = new XElement("Orden",
                 new XElement("ID", orden.Codigo.ToString()),
                 new XElement("Pasos Orden", orden.Pasos_Orden.ToString()),
@@ -220,7 +232,8 @@ namespace Mapper
                 new XElement("ID Mesa", orden.ID_Mesa.ToString()),
                 new XElement("ID Empleado", orden.ID_Empleado.ToString())
                 );
-            return nuevaOrden;
+            nuevaTupla.Xelement = nuevaOrden;
+            return nuevaTupla;
         }
     }
 }

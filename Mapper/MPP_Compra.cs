@@ -14,17 +14,25 @@ namespace Mapper
     public class MPP_Compra:IGestionable<BE_Compra>
     {
         Xml_Database Acceso;
+        List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Compra()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public bool Baja(BE_Compra compra)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Compras", "Compra", CrearCompraXML(compra));
+            ListadoXML.Add(CrearCompraXML(compra));
+            return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Compra compra)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Compras", CrearCompraXML(compra));
+            ListadoXML.Add(CrearCompraXML(compra));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Compra> Listar()
@@ -70,11 +78,15 @@ namespace Mapper
         public bool Modificar(BE_Compra compra)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Compras", "Compra", CrearCompraXML(compra));
+            ListadoXML.Add(CrearCompraXML(compra));
+            return Acceso.Modificar(ListadoXML);
         }
 
-        private XElement CrearCompraXML(BE_Compra compra)
+        private BE_TuplaXML CrearCompraXML(BE_Compra compra)
         {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Compras";
+            nuevaTupla.NodoLeaf = "Compra";
             XElement nuevaCompra = new XElement("Compra",
                 new XElement("ID", compra.Codigo.ToString()),
                 new XElement("ID Ingrediente", compra.ID_Ingrediente.Codigo.ToString()),
@@ -84,7 +96,8 @@ namespace Mapper
                 new XElement("Cantidad Recibida", compra.Cantidad.ToString()),
                 new XElement("Costo", compra.Costo.ToString())
                 );
-            return nuevaCompra;
+            nuevaTupla.Xelement = nuevaCompra;
+            return nuevaTupla;
         }
     }
 }

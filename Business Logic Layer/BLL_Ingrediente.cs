@@ -53,5 +53,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Ingrediente ingrediente)
+        {
+            return oMPP_Ingrediente.Modificar(ingrediente);
+        }
     }
 }

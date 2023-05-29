@@ -43,6 +43,11 @@ namespace Business_Logic_Layer
             return oMPP_Empleado.ListarObjeto(empleado);
         }
 
+        public bool Modificar(BE_Empleado empleado)
+        {
+            return oMPP_Empleado.Modificar(empleado);
+        }
+
         public void verificarStock()
         {
             throw new NotImplementedException();

@@ -62,5 +62,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Reserva reserva)
+        {
+            return oMPP_Reserva.Modificar(reserva);
+        }
     }
 }

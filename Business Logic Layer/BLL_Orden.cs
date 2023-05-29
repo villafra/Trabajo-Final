@@ -62,5 +62,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Orden orden)
+        {
+            return oMPP_Orden.Modificar(orden);
+        }
     }
 }

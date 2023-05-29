@@ -58,6 +58,11 @@ namespace Business_Logic_Layer
             return oMPP_Mesa.ListarObjeto(mesa);
         }
 
+        public bool Modificar(BE_Mesa mesa)
+        {
+            return oMPP_Mesa.Modificar(mesa);
+        }
+
         public void VerificarStatus()
         {
             throw new NotImplementedException();

@@ -57,6 +57,7 @@
     <Compile Include="BE_Pedido.cs" />
     <Compile Include="BE_Plato.cs" />
     <Compile Include="BE_Reserva.cs" />
+    <Compile Include="BE_TuplaXML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

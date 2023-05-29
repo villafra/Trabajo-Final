@@ -14,17 +14,23 @@ namespace Mapper
     public class MPP_Reserva:IGestionable<BE_Reserva>
     {
         Xml_Database Acceso;
+        Dictionary<string, string> DicReserva = new Dictionary<string, string>();
+
+        public MPP_Reserva()
+        {
+            DicReserva.Add("Reservas","Reserva");
+        }
 
         public bool Baja(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Borrar("Reservas", "Reserva", CrearReservaXML(reserva));
+            return Acceso.Borrar(DicReserva, CrearReservaXML(reserva));
         }
 
         public bool Guardar(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Escribir("Reserva", CrearReservaXML(reserva));
+            return Acceso.Escribir(DicReserva, CrearReservaXML(reserva));
         }
 
         public List<BE_Reserva> Listar()
@@ -177,11 +183,13 @@ namespace Mapper
         public bool Modificar(BE_Reserva reserva)
         {
             Acceso = new Xml_Database();
-            return Acceso.Modificar("Reservas", "Reserva", CrearReservaXML(reserva));
+            return Acceso.Modificar(DicReserva, CrearReservaXML(reserva));
         }
 
-        private XElement CrearReservaXML(BE_Reserva reserva)
+        private HashSet<XElement> CrearReservaXML(BE_Reserva reserva)
         {
+            HashSet<XElement> ListaReserva = new HashSet<XElement>();
+
             XElement nuevaReserva = new XElement("Reserva",
                 new XElement("ID", reserva.Codigo.ToString()),
                 new XElement("Fecha Inicio", reserva.FechaInicio.ToString("dd/MM/yyyy")),
@@ -193,7 +201,8 @@ namespace Mapper
                 new XElement("ID Cliente",reserva.ID_Cliente.Codigo.ToString()),
                 new XElement("ID Pedido", reserva.ID_Pedido.Codigo.ToString())
                 );
-            return nuevaReserva;
+            ListaReserva.Add(nuevaReserva);
+            return ListaReserva;
         }
     }
 }

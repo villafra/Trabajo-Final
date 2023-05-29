@@ -57,6 +57,11 @@ namespace Business_Logic_Layer
             return oMPP_Plato.ListarObjeto(plato);
         }
 
+        public bool Modificar(BE_Plato plato)
+        {
+            return oMPP_Plato.Modificar(plato);
+        }
+
         public void VerificarStatus()
         {
             throw new NotImplementedException();

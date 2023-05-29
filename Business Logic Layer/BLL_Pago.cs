@@ -37,5 +37,10 @@ namespace Business_Logic_Layer
         {
             return oMPP_Pago.ListarObjeto(pago);
         }
+
+        public bool Modificar(BE_Pago pago)
+        {
+            return oMPP_Pago.Modificar(pago);
+        }
     }
 }

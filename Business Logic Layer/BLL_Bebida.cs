@@ -57,6 +57,11 @@ namespace Business_Logic_Layer
             return oMPP_Bebida.ListarObjeto(bebida);
         }
 
+        public bool Modificar(BE_Bebida bebida)
+        {
+            return oMPP_Bebida.Modificar(bebida);
+        }
+
         public void VerificarStatus()
         {
             throw new NotImplementedException();

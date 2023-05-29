@@ -62,5 +62,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Cliente cliente)
+        {
+            return oMPP_Cliente.Modificar(cliente);
+        }
     }
 }

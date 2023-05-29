@@ -47,5 +47,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Modificar(BE_Compra compra)
+        {
+            return oMPP_Compra.Modificar(compra);
+        }
     }
 }

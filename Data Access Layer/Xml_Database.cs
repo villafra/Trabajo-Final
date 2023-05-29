@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using Business_Entities;
 
 namespace Data_Access_Layer
 {
@@ -24,118 +26,78 @@ namespace Data_Access_Layer
             doc = null;
             GC.Collect();
         }
-        public bool Escribir(string nombreNodo, XElement nuevoNodo = null, List<XElement> listaNodos = null)
+        private void CancelarConexion()
+        {
+            doc = null;
+            GC.Collect();
+        }
+        public bool Escribir(List<BE_TuplaXML> datos)
         {
             AbrirConexion();
             try
             {
-                XElement nodoPadre = doc.Root.Element(nombreNodo);
-                if (listaNodos != null)
+                foreach (BE_TuplaXML tupla in datos)
                 {
-                    foreach (XElement nodo in listaNodos)
-                    {
-                        nodoPadre.Add(nodo);
-                    }
+                    XElement nodoPadre = doc.Root.Element(tupla.NodoLeaf);
+                    nodoPadre.Add(tupla.Xelement);
                 }
-                else
-                {
-                    nodoPadre.Add(nuevoNodo);
-                }
-
+                CerrarConexion();
                 return true;
             }
             catch (Exception ex)
             {
+                CancelarConexion();
                 return false;
                 throw ex;
             }
-            finally
-            {
-                CerrarConexion();
-            }
-            
         }
 
-        public bool Borrar(string nombreNodo, string nombreObjeto, XElement borrarNodo = null, List<XElement> listaNodos = null)
+        public bool Borrar(List<BE_TuplaXML> datos)
         {
-
             AbrirConexion();
             try
             {
-                IEnumerable<XElement> borrarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto);
-
-                if (listaNodos != null)
+                foreach (BE_TuplaXML tupla in datos)
                 {
-                    foreach (XElement nodo in listaNodos)
-                    {
-                        borrarObjeto
-                            .Where(n => n.Element("ID") == nodo.Element("ID"))
-                            .Remove();
-                    }
-                }
-                else
-                {
+                    IEnumerable<XElement> borrarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf);
                     borrarObjeto
-                       .Where(n => n.Element("ID") == borrarNodo.Element("ID"))
-                       .Remove();
+                            .Where(n => n.Element("ID") == tupla.Xelement.Element("ID"))
+                            .Remove();
                 }
-
+                CerrarConexion();
                 return true;
             }   
             catch (Exception ex)
             {
+                CancelarConexion();
                 return false;
                 throw ex;
             }
-            finally
-            {
-                CerrarConexion();
-            }
-
         }
 
-        public bool Modificar(string nombreNodo, string nombreObjeto, XElement modificarNodo = null, List<XElement> listaNodos = null)
+        public bool Modificar(List<BE_TuplaXML> datos)
         {
             AbrirConexion();
-
             try
             {
-                if (listaNodos != null)
+                foreach (BE_TuplaXML tupla in datos)
                 {
-                    foreach (XElement nodo in listaNodos)
-                    {
-                        XElement modificarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto)
-                                            .Where(n => n.Element("ID").Value == nodo.Element("ID").Value)
-                                            .FirstOrDefault();
-
-                        foreach (XElement dato in modificarObjeto.Elements())
-                        {
-                            dato.Value = nodo.Element(dato.Name).Value;
-                        }
-                    }
-                }
-                else
-                {
-                    XElement modificarObjeto = doc.Root.Element(nombreNodo).Descendants(nombreObjeto)
-                    .Where(n => n.Element("ID").Value == modificarNodo.Element("ID").Value)
-                    .FirstOrDefault();
-
+                    XElement modificarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                        .Where(n => n.Element("ID").Value == tupla.Xelement.Element("ID").Value)
+                                        .FirstOrDefault();
                     foreach (XElement dato in modificarObjeto.Elements())
                     {
-                        dato.Value = modificarNodo.Element(dato.Name).Value;
+                        dato.Value = tupla.Xelement.Element(dato.Name).Value;
                     }
                 }
-
+                CerrarConexion();
                 return true;
             }
             catch (Exception ex)
             {
+                CancelarConexion();
                 return false;
                 throw ex;
-            }
-            finally
-            {
-                CerrarConexion();
             }
         }
 

@@ -36,7 +36,12 @@ namespace Business_Entities
         {
             return this.Nombre + " " + this.Apellido;
         }
-        
+        public string DevolverNombre()
+        {
+            string clase = this.GetType().Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+        }
+
     }
 
 }

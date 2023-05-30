@@ -7,6 +7,7 @@ using Business_Entities;
 using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
+using System.Data;
 
 namespace Mapper
 {
@@ -23,20 +24,121 @@ namespace Mapper
         public bool Baja(BE_Bebida bebida)
         {
             Acceso = new Xml_Database();
-
+            if (bebida.DevolverNombre() != "Bebida")
+            {
+                if (bebida.DevolverNombre() == "Bebida_Preparada")
+                {
+                    ListadoXML.Add(CrearBebidaHerenciaXML((BE_Bebida_Preparada)bebida));
+                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
+                    {
+                        ListadoXML.Add(ing);
+                    }
+                }
+                else
+                {
+                    ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
+                }
+            }
+            else
+            {
+                ListadoXML.Add(CrearBebidaXML(bebida));
+            }
             return Acceso.Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Bebida bebida)
         {
             Acceso = new Xml_Database();
-
+            if (bebida.DevolverNombre() != "Bebida")
+            {
+                if (bebida.DevolverNombre() == "Bebida_Preparada")
+                {
+                    ListadoXML.Add(CrearBebidaHerenciaXML((BE_Bebida_Preparada)bebida));
+                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
+                    {
+                        ListadoXML.Add(ing);
+                    }
+                }
+                else
+                {
+                    ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
+                }
+            }
+            else
+            {
+                ListadoXML.Add(CrearBebidaXML(bebida));
+            }
             return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Bebida> Listar()
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Bebida> listaBebidas = (from beb in ds.Tables["Bebida"].AsEnumerable()
+                                            select new BE_Bebida
+                                            {
+                                                Codigo = Convert.ToInt32(beb[0]),
+                                                Nombre = Convert.ToString(beb[1]),
+                                                Tipo = Convert.ToString(beb[2]),
+                                                Presentacion = Convert.ToDecimal(beb[3]),
+                                                Stock = Convert.ToInt32(beb[4]),
+                                                CostoUnitario = Convert.ToDecimal(beb[5]),
+                                                UnidadMedida = Convert.ToString(beb[6]),
+                                                VidaUtil = Convert.ToInt32(beb[7])
+                                            }).ToList();
+
+            List<BE_Bebida_Alcoholica> listaBebidasAlcoholica = (from beb in ds.Tables["Bebida Alcoholica"].AsEnumerable()
+                                                                 select new BE_Bebida_Alcoholica
+                                                                 {
+                                                                     Codigo = Convert.ToInt32(beb[0]),
+                                                                     Nombre = Convert.ToString(beb[1]),
+                                                                     Tipo = Convert.ToString(beb[2]),
+                                                                     Presentacion = Convert.ToDecimal(beb[3]),
+                                                                     Stock = Convert.ToInt32(beb[4]),
+                                                                     CostoUnitario = Convert.ToDecimal(beb[5]),
+                                                                     UnidadMedida = Convert.ToString(beb[6]),
+                                                                     VidaUtil = Convert.ToInt32(beb[7]),
+                                                                     ABV = Convert.ToDecimal(beb[8])
+                                                                 }).ToList();
+
+            List<BE_Bebida_Preparada> listaBebidasPreparadas = (from beb in ds.Tables["Bebida Preparada"].AsEnumerable()
+                                                                select new BE_Bebida_Preparada
+                                                                {
+                                                                    Codigo = Convert.ToInt32(beb[0]),
+                                                                    Nombre = Convert.ToString(beb[1]),
+                                                                    Tipo = Convert.ToString(beb[2]),
+                                                                    Presentacion = Convert.ToDecimal(beb[3]),
+                                                                    Stock = Convert.ToInt32(beb[4]),
+                                                                    CostoUnitario = Convert.ToDecimal(beb[5]),
+                                                                    UnidadMedida = Convert.ToString(beb[6]),
+                                                                    VidaUtil = Convert.ToInt32(beb[7]),
+                                                                    ABV = Convert.ToDecimal(beb[8]),
+                                                                    ListaIngredientes = (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
+                                                                                         join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                         on Convert.ToInt32(obj[1]) equals Convert.ToInt32(beb[0])
+                                                                                         select new BE_Ingrediente
+                                                                                         {
+                                                                                             Codigo = Convert.ToInt32(ing[0]),
+                                                                                             Nombre = Convert.ToString(ing[1]),
+                                                                                             Tipo = Convert.ToString(ing[2]),
+                                                                                             Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                             Stock = Convert.ToDecimal(ing[4]),
+                                                                                             UnidadMedida = Convert.ToString(ing[5]),
+                                                                                             Lote = Convert.ToString(ing[6]),
+                                                                                             Activo = Convert.ToBoolean(ing[7]),
+                                                                                             VidaUtil = Convert.ToInt32(ing[8]),
+                                                                                             Status = Convert.ToString(ing[9]),
+                                                                                             CostoUnitario = Convert.ToDecimal(ing[10])
+
+                                                                                         }).ToList(),
+                                                                }).ToList();
+
+            List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
+            ListaCompleta = listaBebidas.Concat(listaBebidasAlcoholica).ToList().Concat(listaBebidasPreparadas).ToList();
+            return ListaCompleta;
         }
 
         public BE_Bebida ListarObjeto(BE_Bebida bebida)
@@ -47,7 +149,25 @@ namespace Mapper
         public bool Modificar(BE_Bebida bebida)
         {
             Acceso = new Xml_Database();
-
+            if (bebida.DevolverNombre() != "Bebida")
+            {
+                if (bebida.DevolverNombre() == "Bebida_Preparada")
+                {
+                    ListadoXML.Add(CrearBebidaHerenciaXML((BE_Bebida_Preparada)bebida));
+                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
+                    {
+                        ListadoXML.Add(ing);
+                    }
+                }
+                else
+                {
+                    ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
+                }
+            }
+            else
+            {
+                ListadoXML.Add(CrearBebidaXML(bebida));
+            }
             return Acceso.Modificar(ListadoXML);
         }
 
@@ -69,7 +189,7 @@ namespace Mapper
             nuevaTupla.Xelement = nuevaBebida;
             return nuevaTupla;
         }
-        public BE_TuplaXML CrearBebidaXML(BE_Bebida_Alcoholica bebida)
+        public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Alcoholica bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             nuevaTupla.NodoRoot = "Bebidas";
@@ -88,7 +208,7 @@ namespace Mapper
             nuevaTupla.Xelement = nuevaBebida;
             return nuevaTupla;
         }
-        public BE_TuplaXML CrearBebidaXML(BE_Bebida_Preparada bebida)
+        public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Preparada bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             nuevaTupla.NodoRoot = "Bebidas";

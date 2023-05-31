@@ -51,6 +51,7 @@
     <Compile Include="BLL_Empleado.cs" />
     <Compile Include="BLL_Gerente_Sucursal.cs" />
     <Compile Include="BLL_Ingrediente.cs" />
+    <Compile Include="BLL_Login.cs" />
     <Compile Include="BLL_Mesa.cs" />
     <Compile Include="BLL_Mozo.cs" />
     <Compile Include="BLL_Orden.cs" />
@@ -72,6 +73,10 @@
     <ProjectReference Include="..\Mapper\Mapper.csproj">
       <Project>{d250f45f-45b2-4597-a37e-25d9acf1f0fe}</Project>
       <Name>Mapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Service Layer\Service Layer.csproj">
+      <Project>{46872ab5-3dfd-49d2-9cd8-aa5212348e6c}</Project>
+      <Name>Service Layer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

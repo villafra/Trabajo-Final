@@ -51,10 +51,6 @@
       <Project>{368d015f-1e2d-450a-a15c-42bdb8371e6f}</Project>
       <Name>Business Entities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Business Logic Layer\Business Logic Layer.csproj">
-      <Project>{fde94ec5-3bd9-44b6-bf12-8d43f2b590c9}</Project>
-      <Name>Business Logic Layer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

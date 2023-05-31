@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Business_Entities;
-using Business_Logic_Layer;
 
 namespace Service_Layer
 {
     public class BackUp
     {
-        public static void CrearBackUp(BE_Login usuario)
+        public static bool CrearBackUp(BE_Login usuario)
         {
             DateTime fecha = DateTime.Now;
             string path = @"restaurant";
@@ -20,8 +21,7 @@ namespace Service_Layer
             BE_BackUp oBE_BackUp = new BE_BackUp();
             oBE_BackUp.NombreArchivo = pathzip.Substring(10);
             oBE_BackUp.NombreUsuario = usuario.ToString();
-            BLL_BackUp oBLL_Backup = new BLL_BackUp();
-            oBLL_Backup.Guardar(oBE_BackUp);
+            return  Guardar(oBE_BackUp);
         }
 
         public static void Restore(string nombreArchivo)
@@ -35,6 +35,35 @@ namespace Service_Layer
                 file.Delete();
             }
             ZipFile.ExtractToDirectory(pathzip, path);
+            Restaurar(nombreArchivo);
+        }
+        private static bool Guardar(BE_BackUp bkp)
+        {
+            try
+            {
+                XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
+                using (StreamWriter writer = new StreamWriter(@".backups/" + bkp.NombreArchivo))
+                {
+                    serial.Serialize(writer, bkp);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+
+        }
+        private static  BE_BackUp Restaurar(string nombreArchivo)
+        {
+            BE_BackUp Usuario = new BE_BackUp();
+            XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
+            using (StreamReader reader = new StreamReader(@".backups/" + nombreArchivo))
+            {
+                Usuario = (BE_BackUp)serial.Deserialize(reader);
+            }
+            return Usuario;
         }
     }
 }

@@ -109,11 +109,7 @@ namespace Business_Logic_Layer
         }
         public bool Intentos(BE_Login oBE_Login)
         {
-            if (oBE_Login.CantidadIntentos >= 5)
-            {
-                return false;
-            }
-            else { return true; }
+            return oBE_Login.CantidadIntentos < 5;
         }
         private void IntentoFallido(BE_Login oBE_Login)
         {
@@ -129,8 +125,7 @@ namespace Business_Logic_Layer
         }
         public bool CheckPass(BE_Login oBE_Login, string pass)
         {
-            string password = DesencriptarPass(oBE_Login.Password);
-            if (password == pass)
+            if (oBE_Login.Password == EncriptarPass(pass))
             {
                 return true;
             }

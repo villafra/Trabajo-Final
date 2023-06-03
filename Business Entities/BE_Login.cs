@@ -16,5 +16,7 @@ namespace Business_Entities
         public int CantidadIntentos { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime HoraIngreso { get; set; }
+        public DateTime FechaEgreso { get; set; }
+        public DateTime HoraEgreso { get; set; }
     }
 }

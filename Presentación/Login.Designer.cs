@@ -94,6 +94,7 @@ namespace Trabajo_Final
             this.btnExit.Size = new System.Drawing.Size(90, 70);
             this.btnExit.TabIndex = 9;
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnCambiarPass
             // 

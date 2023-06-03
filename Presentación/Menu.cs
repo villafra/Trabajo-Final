@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Service_Layer;
 using Business_Entities;
+using Automate_Layer;
 
 namespace Trabajo_Final
 {
@@ -32,8 +33,10 @@ namespace Trabajo_Final
             if (this.UsuarioActivo is null)
             {
                 Login frm = new Login();
+                frm.Owner = this;
                 frm.ShowDialog();
             }
+            Cálculos.MsgBox(UsuarioActivo.Usuario);
         }
     }
 }

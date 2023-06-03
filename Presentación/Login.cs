@@ -20,12 +20,13 @@ namespace Trabajo_Final
         public Login()
         {
             InitializeComponent();
+
  
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            txtUsuario.Focus();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -38,15 +39,26 @@ namespace Trabajo_Final
                 {
                     if (oBLL_Login.Intentos(oBE_Login))
                     {
-                        frmMenu frm = new frmMenu();
-                        frm.UsuarioActivo = oBE_Login;
-                        frm.Show();
+                        
+                        if (this.Owner is frmMenu menu)
+                        {
+                            menu.UsuarioActivo = oBE_Login;
+                        }
                         Cálculos.BorrarCampos(grpLogin);
                         this.Close();
                         
                     }
                 }
             }
+            else
+            {
+                Cálculos.MsgBox("No se encuentra el usuario en la base de datos.");
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

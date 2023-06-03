@@ -119,5 +119,8 @@
   <ItemGroup>
     <None Include="Resources\restablecer-la-contrasena.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Custom\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

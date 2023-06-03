@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace Data_Access_Layer
     {
         XDocument doc = new XDocument();
 
+        private bool ExisteBD()
+        {
+            return File.Exists(ReferenciasBD.BaseDatosRestaurant);
+        }
         private void AbrirConexion()
         {
             doc = XDocument.Load("Restaurant.xml");
@@ -103,8 +108,12 @@ namespace Data_Access_Layer
 
         public DataSet Listar()
         {
+            if (!ExisteBD())
+            {
+                throw new FileNotFoundException("La base de datos es inexsitente");
+            }
             DataSet ds = new DataSet();
-            ds.ReadXml("Restaurant.xml");
+            ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.Auto);
             return ds;
         }
 

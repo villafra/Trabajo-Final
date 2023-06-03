@@ -29,49 +29,38 @@ namespace Trabajo_Final
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtNombre = new System.Windows.Forms.TextBox();
-            this.btnEncriptar = new System.Windows.Forms.Button();
+            this.pnlMenu = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // txtNombre
+            // pnlMenu
             // 
-            this.txtNombre.Location = new System.Drawing.Point(187, 54);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(345, 22);
-            this.txtNombre.TabIndex = 0;
-            // 
-            // btnEncriptar
-            // 
-            this.btnEncriptar.Location = new System.Drawing.Point(311, 111);
-            this.btnEncriptar.Name = "btnEncriptar";
-            this.btnEncriptar.Size = new System.Drawing.Size(75, 23);
-            this.btnEncriptar.TabIndex = 1;
-            this.btnEncriptar.Text = "button1";
-            this.btnEncriptar.UseVisualStyleBackColor = true;
-            this.btnEncriptar.Click += new System.EventHandler(this.btnEncriptar_Click);
+            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
+            this.pnlMenu.Name = "pnlMenu";
+            this.pnlMenu.Size = new System.Drawing.Size(212, 1033);
+            this.pnlMenu.TabIndex = 0;
             // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1902, 1033);
-            this.Controls.Add(this.btnEncriptar);
-            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.pnlMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximumSize = new System.Drawing.Size(3840, 2160);
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "frmMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmMenu_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseDown);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Button btnEncriptar;
+        private System.Windows.Forms.Panel pnlMenu;
     }
 }
 

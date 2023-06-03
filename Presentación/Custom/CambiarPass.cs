@@ -7,10 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Calculo;
-using BLL;
-using BE;
-using Estética;
+using Business_Logic_Layer;
+using Business_Entities;
+using Automate_Layer;
 
 namespace Presentación
 {
@@ -98,27 +97,22 @@ namespace Presentación
             Parent.Hide();
         }
 
-        private void btnSeePass1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         public void CambiarNuevaPass()
         {
             if (ValidarPass())
             {
                 login = oBLL_Login.Login(user);
                 login.Password = oBLL_Login.EncriptarPass(txtpass1.Text);
-                if (oBLL_Login.Guardar(login))
+                if (oBLL_Login.Modificar(login))
                 {
-                    Calculos.MsgBox("La contraseña ha sido restaurada con exito");
+                    Cálculos.MsgBox("La contraseña ha sido restaurada con exito");
                     Parent.Hide();
                 }
 
             }
             else
             {
-                Calculos.MsgBox("La Contraseña no coincide");
+                Cálculos.MsgBox("La Contraseña no coincide");
             }
         }
     }

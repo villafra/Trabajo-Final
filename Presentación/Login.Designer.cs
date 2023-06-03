@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class Login
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -107,6 +107,7 @@ namespace Trabajo_Final
             this.btnCambiarPass.Size = new System.Drawing.Size(90, 70);
             this.btnCambiarPass.TabIndex = 11;
             this.btnCambiarPass.UseVisualStyleBackColor = true;
+            this.btnCambiarPass.Click += new System.EventHandler(this.btnCambiarPass_Click);
             // 
             // picLogin
             // 
@@ -118,7 +119,7 @@ namespace Trabajo_Final
             this.picLogin.TabIndex = 7;
             this.picLogin.TabStop = false;
             // 
-            // Login
+            // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -131,9 +132,11 @@ namespace Trabajo_Final
             this.Controls.Add(this.picLogin);
             this.Controls.Add(this.grpLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Login";
+            this.Name = "frmLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
             this.Load += new System.EventHandler(this.Login_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmLogin_MouseDown);
             this.grpLogin.ResumeLayout(false);
             this.grpLogin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogin)).EndInit();

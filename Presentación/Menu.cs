@@ -22,21 +22,29 @@ namespace Trabajo_Final
             InitializeComponent();
         }
 
-        private void btnEncriptar_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show( Encriptacion.EncriptarPass(txtNombre.Text));
-
-        }
-
         private void frmMenu_Load(object sender, EventArgs e)
         {
-            if (this.UsuarioActivo is null)
+            try
             {
-                Login frm = new Login();
-                frm.Owner = this;
-                frm.ShowDialog();
+                if (this.UsuarioActivo is null)
+                {
+                    frmLogin frm = new frmLogin();
+                    frm.Owner = this;
+                    frm.ShowDialog();
+                    Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Left);
+                }
+                this.Text = UsuarioActivo.Usuario;
             }
-            Cálculos.MsgBox(UsuarioActivo.Usuario);
+            catch
+            {
+                Application.Exit();
+            }
+        }
+
+        private void frmMenu_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.CopiarDibujo();
+            Aspecto.ReplicarDibujo(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

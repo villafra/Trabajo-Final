@@ -10,14 +10,16 @@ using System.Windows.Forms;
 using Business_Entities;
 using Business_Logic_Layer;
 using Automate_Layer;
+using Service_Layer.Excepciones;
+using System.Runtime.InteropServices;
 
 namespace Trabajo_Final
 {
-    public partial class Login : Form
+    public partial class frmLogin : Form
     {
         BE_Login oBE_Login = new BE_Login();
         BLL_Login oBLL_Login = new BLL_Login();
-        public Login()
+        public frmLogin()
         {
             InitializeComponent();
 
@@ -49,16 +51,44 @@ namespace Trabajo_Final
                         
                     }
                 }
+                else throw new RestaurantException("La contraseña es incorrecta");
             }
-            else
-            {
-                Cálculos.MsgBox("No se encuentra el usuario en la base de datos.");
-            }
+            else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnCambiarPass_Click(object sender, EventArgs e)
+        {
+            oBE_Login = oBLL_Login.Login(txtUsuario.Text);
+            if (oBE_Login != null)
+            {
+                if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                {
+                    if (oBLL_Login.Intentos(oBE_Login))
+                    {
+                        frmCambioPass frm = new frmCambioPass();
+                        frm.Usuario(txtUsuario.Text);
+                        frm.Show();
+                    }
+                    else
+                    {
+                        Cálculos.MsgBox("El usuario está bloqueado. Comuniquese con el Administrador");
+                    }
+
+                }
+                else throw new RestaurantException("La contraseña es incorrecta");
+            }
+            else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
+        }
+
+        private void frmLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.CopiarDibujo();
+            Aspecto.ReplicarDibujo(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

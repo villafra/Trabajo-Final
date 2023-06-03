@@ -131,7 +131,7 @@ namespace Business_Logic_Layer
             }
             else
             {
-                if (oBE_Login.CantidadIntentos < 5) { IntentoFallido(oBE_Login); }
+                //if (oBE_Login.CantidadIntentos < 5) { IntentoFallido(oBE_Login); }
                 return false;
             }
 

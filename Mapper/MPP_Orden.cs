@@ -78,8 +78,8 @@ namespace Mapper
                                                                                    {
                                                                                        Codigo = Convert.ToInt32(platos[0]),
                                                                                        Nombre = Convert.ToString(platos[1]),
-                                                                                       Tipo = Convert.ToString(platos[2]),
-                                                                                       Clase = Convert.ToString(platos[3]),
+                                                                                       Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                                                                                       Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
                                                                                        Status = Convert.ToString(platos[4]),
                                                                                        CostoUnitario = Convert.ToDecimal(platos[5]),
                                                                                        Activo = Convert.ToBoolean(platos[6]),
@@ -94,11 +94,12 @@ namespace Mapper
                                                                                                                 Refrigeracion = Convert.ToBoolean(ing[3]),
                                                                                                                 Stock = Convert.ToDecimal(ing[4]),
                                                                                                                 UnidadMedida = Convert.ToString(ing[5]),
-                                                                                                                Lote = Convert.ToString(ing[6]),
-                                                                                                                Activo = Convert.ToBoolean(ing[7]),
-                                                                                                                VidaUtil = Convert.ToInt32(ing[8]),
-                                                                                                                Status = Convert.ToString(ing[9]),
-                                                                                                                CostoUnitario = Convert.ToDecimal(ing[10])
+                                                                                                                FechaCreacion = Convert.ToDateTime(ing[6]),
+                                                                                                                Lote = Convert.ToString(ing[7]),
+                                                                                                                Activo = Convert.ToBoolean(ing[8]),
+                                                                                                                VidaUtil = Convert.ToInt32(ing[9]),
+                                                                                                                Status = Convert.ToString(ing[10]),
+                                                                                                                CostoUnitario = Convert.ToDecimal(ing[11])
 
                                                                                                             }).ToList()
 
@@ -128,7 +129,7 @@ namespace Mapper
                                                                                    Edad = Convert.ToInt32(emp[5]),
                                                                                    FechaIngreso = Convert.ToDateTime(emp[6]),
                                                                                    Antiguedad = Convert.ToInt32(emp[7]),
-                                                                                   Categoria = Convert.ToString(emp[8]),
+                                                                                   Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category),emp[8].ToString()),
                                                                                    PedidosTomados = (from pedemp in ds.Tables["Pedido-Mozo"].AsEnumerable()
                                                                                                      join ped in ds.Tables["Pedido"].AsEnumerable()
                                                                                                      on Convert.ToInt32(pedemp[1]) equals Convert.ToInt32(ped[0])
@@ -161,8 +162,8 @@ namespace Mapper
                                                                                                                           {
                                                                                                                               Codigo = Convert.ToInt32(platos[0]),
                                                                                                                               Nombre = Convert.ToString(platos[1]),
-                                                                                                                              Tipo = Convert.ToString(platos[2]),
-                                                                                                                              Clase = Convert.ToString(platos[3]),
+                                                                                                                              Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                                                                                                                              Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
                                                                                                                               Status = Convert.ToString(platos[4]),
                                                                                                                               CostoUnitario = Convert.ToDecimal(platos[5]),
                                                                                                                               Activo = Convert.ToBoolean(platos[6]),
@@ -177,11 +178,12 @@ namespace Mapper
                                                                                                                                                        Refrigeracion = Convert.ToBoolean(ing[3]),
                                                                                                                                                        Stock = Convert.ToDecimal(ing[4]),
                                                                                                                                                        UnidadMedida = Convert.ToString(ing[5]),
-                                                                                                                                                       Lote = Convert.ToString(ing[6]),
-                                                                                                                                                       Activo = Convert.ToBoolean(ing[7]),
-                                                                                                                                                       VidaUtil = Convert.ToInt32(ing[8]),
-                                                                                                                                                       Status = Convert.ToString(ing[9]),
-                                                                                                                                                       CostoUnitario = Convert.ToDecimal(ing[10])
+                                                                                                                                                       FechaCreacion = Convert.ToDateTime(ing[6]),
+                                                                                                                                                       Lote = Convert.ToString(ing[7]),
+                                                                                                                                                       Activo = Convert.ToBoolean(ing[8]),
+                                                                                                                                                       VidaUtil = Convert.ToInt32(ing[9]),
+                                                                                                                                                       Status = Convert.ToString(ing[10]),
+                                                                                                                                                       CostoUnitario = Convert.ToDecimal(ing[11])
 
                                                                                                                                                    }).ToList()
 

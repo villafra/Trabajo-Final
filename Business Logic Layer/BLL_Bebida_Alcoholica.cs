@@ -9,9 +9,9 @@ namespace Business_Logic_Layer
 {
     public class BLL_Bebida_Alcoholica:BLL_Bebida
     {
-        public decimal devolverABV()
+        public decimal devolverABV(BE_Bebida_Alcoholica bebida)
         {
-            throw new NotImplementedException();
+            return bebida.ABV;
         }
     }
 }

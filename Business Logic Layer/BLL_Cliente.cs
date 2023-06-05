@@ -38,29 +38,29 @@ namespace Business_Logic_Layer
             return oMPP_Cliente.ListarObjeto(cliente);
         }
 
-        public void modificarCliente()
+        public bool modificarCliente(BE_Cliente cliente)
+        {
+            return oMPP_Cliente.Modificar(cliente);
+        }
+
+        public bool borrarCliente(BE_Cliente cliente)
         {
             throw new NotImplementedException();
         }
 
-        public void borrarCliente()
+        public List<BE_Reserva> listarReservas(BE_Cliente cliente)
         {
-            throw new NotImplementedException();
+            return cliente.ListaReservas;
         }
 
-        public List<BE_Reserva> listarReservas()
+        public List<BE_Plato> listarPlatos(BE_Cliente cliente)
         {
-            throw new NotImplementedException();
+            return cliente.ListadePlatos;
         }
 
-        public List<BE_Plato> listarPlatos()
+        public List<BE_Bebida> listarBebidas(BE_Cliente cliente)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<BE_Bebida> listarBebidas()
-        {
-            throw new NotImplementedException();
+            return cliente.ListadeBebidas;
         }
 
         public bool Modificar(BE_Cliente cliente)

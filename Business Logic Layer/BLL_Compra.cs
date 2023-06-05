@@ -38,7 +38,7 @@ namespace Business_Logic_Layer
             return oMPP_Compra.ListarObjeto(compra);
         }
 
-        public bool recepcionarCompra()
+        public bool recepcionarCompra(long nroCompra)
         {
             throw new NotImplementedException();
         }

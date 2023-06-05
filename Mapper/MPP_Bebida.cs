@@ -82,7 +82,7 @@ namespace Mapper
                                             {
                                                 Codigo = Convert.ToInt32(beb[0]),
                                                 Nombre = Convert.ToString(beb[1]),
-                                                Tipo = Convert.ToString(beb[2]),
+                                                Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida),Convert.ToString(beb[2])),
                                                 Presentacion = Convert.ToDecimal(beb[3]),
                                                 Stock = Convert.ToInt32(beb[4]),
                                                 CostoUnitario = Convert.ToDecimal(beb[5]),
@@ -95,7 +95,7 @@ namespace Mapper
                                                                  {
                                                                      Codigo = Convert.ToInt32(beb[0]),
                                                                      Nombre = Convert.ToString(beb[1]),
-                                                                     Tipo = Convert.ToString(beb[2]),
+                                                                     Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
                                                                      Presentacion = Convert.ToDecimal(beb[3]),
                                                                      Stock = Convert.ToInt32(beb[4]),
                                                                      CostoUnitario = Convert.ToDecimal(beb[5]),
@@ -109,7 +109,7 @@ namespace Mapper
                                                                 {
                                                                     Codigo = Convert.ToInt32(beb[0]),
                                                                     Nombre = Convert.ToString(beb[1]),
-                                                                    Tipo = Convert.ToString(beb[2]),
+                                                                    Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
                                                                     Presentacion = Convert.ToDecimal(beb[3]),
                                                                     Stock = Convert.ToInt32(beb[4]),
                                                                     CostoUnitario = Convert.ToDecimal(beb[5]),
@@ -127,11 +127,12 @@ namespace Mapper
                                                                                              Refrigeracion = Convert.ToBoolean(ing[3]),
                                                                                              Stock = Convert.ToDecimal(ing[4]),
                                                                                              UnidadMedida = Convert.ToString(ing[5]),
-                                                                                             Lote = Convert.ToString(ing[6]),
-                                                                                             Activo = Convert.ToBoolean(ing[7]),
-                                                                                             VidaUtil = Convert.ToInt32(ing[8]),
-                                                                                             Status = Convert.ToString(ing[9]),
-                                                                                             CostoUnitario = Convert.ToDecimal(ing[10])
+                                                                                             FechaCreacion = Convert.ToDateTime(ing[6]),
+                                                                                             Lote = Convert.ToString(ing[7]),
+                                                                                             Activo = Convert.ToBoolean(ing[8]),
+                                                                                             VidaUtil = Convert.ToInt32(ing[9]),
+                                                                                             Status = Convert.ToString(ing[10]),
+                                                                                             CostoUnitario = Convert.ToDecimal(ing[11])
 
                                                                                          }).ToList(),
                                                                 }).ToList();

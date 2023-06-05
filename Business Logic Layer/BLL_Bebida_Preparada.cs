@@ -10,14 +10,14 @@ namespace Business_Logic_Layer
 {
     public class BLL_Bebida_Preparada: BLL_Bebida
     {
-        public decimal devolverABV()
+        public decimal devolverABV(BE_Bebida_Preparada bebida)
         {
-            throw new NotImplementedException();
+            return bebida.ABV;
         }
 
-        public List<BE_Ingrediente> devolverIngredientes()
+        public List<BE_Ingrediente> devolverIngredientes(BE_Bebida_Preparada bebida)
         {
-            throw new NotImplementedException();
+            return bebida.ListaIngredientes;
         }
     }
 }

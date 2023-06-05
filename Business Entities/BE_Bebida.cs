@@ -12,7 +12,7 @@ namespace Business_Entities
 
         public int Codigo { get; set; }
         public string Nombre { get; set; }
-        public string Tipo { get; set; }
+        public Tipo_Bebida Tipo { get; set; }
         public decimal Presentacion { get; set; }
         public decimal Stock { get; set; }
         public decimal CostoUnitario { get; set; }

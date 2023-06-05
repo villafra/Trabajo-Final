@@ -17,9 +17,10 @@ namespace Business_Logic_Layer
             oMPP_Bebida = new MPP_Bebida();
         }
 
-        public void ActualizarStatus(BE_Bebida bebida)
+        public void ActualizarStatus(BE_Bebida bebida, BE_Bebida.Tipo_Bebida tipo)
         {
-            throw new NotImplementedException();
+            bebida.Tipo = tipo;
+            Modificar(bebida);
         }
 
         public void AgregarStock(BE_Bebida bebida,  int Cantidad)
@@ -38,9 +39,9 @@ namespace Business_Logic_Layer
             return bebida.FechaCreacion.AddDays(bebida.VidaUtil);
         }
 
-        public int DevolverStock(BE_Bebida bebida)
+        public decimal DevolverStock(BE_Bebida bebida)
         {
-            throw new NotImplementedException();
+            return bebida.Stock;
         }
 
         public bool Guardar(BE_Bebida bebida)
@@ -63,9 +64,9 @@ namespace Business_Logic_Layer
             return oMPP_Bebida.Modificar(bebida);
         }
 
-        public void VerificarStatus(BE_Bebida bebida)
+        public BE_Bebida.Tipo_Bebida VerificarStatus(BE_Bebida bebida)
         {
-            
+            return bebida.Tipo;
         }
 
     }

@@ -12,5 +12,6 @@ namespace Business_Entities
         public string NodoRoot { get; set; }
         public string NodoLeaf { get; set; }
         public XElement Xelement { get; set; }
+      
     }
 }

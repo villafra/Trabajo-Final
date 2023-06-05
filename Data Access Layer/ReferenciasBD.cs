@@ -15,6 +15,7 @@ namespace Data_Access_Layer
         private static string BaseDatosLog = "Logs.xml";
         private static string BaseDatosBackup = "Backups.xml";
 
+
         public static string BaseDatosRestaurant
         {
             get

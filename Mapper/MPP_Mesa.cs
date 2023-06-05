@@ -27,11 +27,30 @@ namespace Mapper
             ListadoXML.Add(CrearMesaXML(mesa));
             return Acceso.Borrar(ListadoXML);
         }
+        public bool Baja (List<BE_Mesa> mesas)
+        {
+            Acceso = new Xml_Database();
+            foreach(BE_Mesa mesa in mesas)
+            {
+                ListadoXML.Add(CrearMesaXML(mesa));
+            }
+            return Acceso.Borrar(ListadoXML);
+        }
 
         public bool Guardar(BE_Mesa mesa)
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearMesaXML(mesa));
+            return Acceso.Escribir(ListadoXML);
+        }
+
+        public bool Guardar(List<BE_Mesa> mesas)
+        {
+            Acceso = new Xml_Database();
+            foreach (BE_Mesa mesa in mesas)
+            {
+                ListadoXML.Add(CrearMesaXML(mesa));
+            }
             return Acceso.Escribir(ListadoXML);
         }
 
@@ -61,7 +80,7 @@ namespace Mapper
                                                                  Edad = Convert.ToInt32(emp[5]),
                                                                  FechaIngreso = Convert.ToDateTime(emp[6]),
                                                                  Antiguedad = Convert.ToInt32(emp[7]),
-                                                                 Categoria = Convert.ToString(emp[8]),
+                                                                 Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category),Convert.ToString(emp[8])),
                                                                  PedidosTomados = (from pedemp in ds.Tables["Pedido-Mozo"].AsEnumerable()
                                                                                    join ped in ds.Tables["Pedido"].AsEnumerable()
                                                                                    on Convert.ToInt32(pedemp[1]) equals Convert.ToInt32(ped[0])
@@ -140,6 +159,16 @@ namespace Mapper
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearMesaXML(mesa));
+            return Acceso.Modificar(ListadoXML);
+        }
+
+        public bool Modificar(List<BE_Mesa> mesas)
+        {
+            Acceso = new Xml_Database();
+            foreach (BE_Mesa mesa in mesas)
+            {
+                ListadoXML.Add(CrearMesaXML(mesa));
+            }
             return Acceso.Modificar(ListadoXML);
         }
 

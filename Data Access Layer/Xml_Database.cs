@@ -14,7 +14,7 @@ namespace Data_Access_Layer
 {
     public class Xml_Database
     {
-        XDocument doc = new XDocument();
+        private XDocument doc = new XDocument();
 
         private bool ExisteBD()
         {
@@ -113,7 +113,7 @@ namespace Data_Access_Layer
                 throw new FileNotFoundException("La base de datos es inexsitente");
             }
             DataSet ds = new DataSet();
-            ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.Auto);
+            ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.ReadSchema);
             return ds;
         }
 

@@ -17,7 +17,7 @@ namespace Business_Entities
         public int Edad { get; set; }
         public DateTime FechaIngreso { get; set; }
         public int Antiguedad { get; set; }
-        public string Categoria { get; set; }
+        public Category Categoria { get; set; }
 
         public int CalcularAños(DateTime fecha)
         {
@@ -42,6 +42,18 @@ namespace Business_Entities
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
 
+        public enum Category
+        {
+            Gerente_Sucursal = 1,
+            Chef_Ejecutivo = 2,
+            Sous_Chef = 3,
+            Cocinero = 4,
+            Bachero = 5,
+            Mozo = 6,
+            Busboy = 7,
+            Bartender = 8
+
+        }
     }
 
 }

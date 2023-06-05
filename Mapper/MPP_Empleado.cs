@@ -52,7 +52,7 @@ namespace Mapper
                                               Edad = Convert.ToInt32(mo[5]),
                                               FechaIngreso = Convert.ToDateTime(mo[6]),
                                               Antiguedad = Convert.ToInt32(mo[7]),
-                                              Categoria = Convert.ToString(mo[8]),
+                                              Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(mo[8])),
                                               PedidosTomados = (from obj in ds.Tables["Mozo-Pedido"].AsEnumerable()
                                                                 join ped in ds.Tables["Ingrediente"].AsEnumerable()
                                                                 on Convert.ToInt32(obj[1]) equals Convert.ToInt32(mo[0])
@@ -130,7 +130,7 @@ namespace Mapper
                                                       Edad = Convert.ToInt32(che[5]),
                                                       FechaIngreso = Convert.ToDateTime(che[6]),
                                                       Antiguedad = Convert.ToInt32(che[7]),
-                                                      Categoria = Convert.ToString(che[8]),
+                                                      Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(che[8])),
                                                       OrdenesPendientes = (from obj in ds.Tables["Orden Pendiente"].AsEnumerable()
                                                                            join ord in ds.Tables["Orden"].AsEnumerable()
                                                                            on Convert.ToInt32(obj[1]) equals Convert.ToInt32(che[0])
@@ -220,7 +220,7 @@ namespace Mapper
                                                                                                                  Edad = Convert.ToInt32(emp[5]),
                                                                                                                  FechaIngreso = Convert.ToDateTime(emp[6]),
                                                                                                                  Antiguedad = Convert.ToInt32(emp[7]),
-                                                                                                                 Categoria = Convert.ToString(emp[8]),
+                                                                                                                 Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(emp[8])),
                                                                                                                  PedidosTomados = (from pedemp in ds.Tables["Pedido-Mozo"].AsEnumerable()
                                                                                                                                    join ped in ds.Tables["Pedido"].AsEnumerable()
                                                                                                                                    on Convert.ToInt32(pedemp[1]) equals Convert.ToInt32(ped[0])
@@ -308,7 +308,7 @@ namespace Mapper
                                                             Edad = Convert.ToInt32(ger[5]),
                                                             FechaIngreso = Convert.ToDateTime(ger[6]),
                                                             Antiguedad = Convert.ToInt32(ger[7]),
-                                                            Categoria = Convert.ToString(ger[8]),
+                                                            Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(ger[8])),
                                                             Contacto = Convert.ToString(ger[9])
 
                                                         }).ToList();
@@ -339,7 +339,7 @@ namespace Mapper
                                               Edad = Convert.ToInt32(mo[5]),
                                               FechaIngreso = Convert.ToDateTime(mo[6]),
                                               Antiguedad = Convert.ToInt32(mo[7]),
-                                              Categoria = Convert.ToString(mo[8]),
+                                              Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(mo[8])),
                                               PedidosTomados = (from obj in ds.Tables["Mozo-Pedido"].AsEnumerable()
                                                                 join ped in ds.Tables["Ingrediente"].AsEnumerable()
                                                                 on Convert.ToInt32(obj[1]) equals Convert.ToInt32(mo[0])
@@ -424,7 +424,7 @@ namespace Mapper
                                                             Edad = Convert.ToInt32(ger[5]),
                                                             FechaIngreso = Convert.ToDateTime(ger[6]),
                                                             Antiguedad = Convert.ToInt32(ger[7]),
-                                                            Categoria = Convert.ToString(ger[8]),
+                                                            Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(ger[8])),
                                                             Contacto = Convert.ToString(ger[9])
 
                                                         }).ToList();
@@ -448,7 +448,7 @@ namespace Mapper
                                                       Edad = Convert.ToInt32(che[5]),
                                                       FechaIngreso = Convert.ToDateTime(che[6]),
                                                       Antiguedad = Convert.ToInt32(che[7]),
-                                                      Categoria = Convert.ToString(che[8]),
+                                                      Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(che[8])),
                                                       OrdenesPendientes = (from obj in ds.Tables["Orden Pendiente"].AsEnumerable()
                                                                            join ord in ds.Tables["Orden"].AsEnumerable()
                                                                            on Convert.ToInt32(obj[1]) equals Convert.ToInt32(che[0])
@@ -538,7 +538,7 @@ namespace Mapper
                                                                                                                  Edad = Convert.ToInt32(emp[5]),
                                                                                                                  FechaIngreso = Convert.ToDateTime(emp[6]),
                                                                                                                  Antiguedad = Convert.ToInt32(emp[7]),
-                                                                                                                 Categoria = Convert.ToString(emp[8]),
+                                                                                                                 Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(emp[8])),
                                                                                                                  PedidosTomados = (from pedemp in ds.Tables["Pedido-Mozo"].AsEnumerable()
                                                                                                                                    join ped in ds.Tables["Pedido"].AsEnumerable()
                                                                                                                                    on Convert.ToInt32(pedemp[1]) equals Convert.ToInt32(ped[0])

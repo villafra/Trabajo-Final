@@ -10,14 +10,14 @@ namespace Automate_Layer
         #region Formatear Formulario
 
 
-        [DllImport("user32.DLL", EntryPoint = "CopiarDibujo")]
-        public extern static void CopiarDibujo();
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        public extern static void ReleaseCapture();
 
-        [DllImport("user32.DLL", EntryPoint = "ReplicarDibujo")]
-        public extern static void ReplicarDibujo(IntPtr puntero, int dibujo, int widht, int left);
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        public extern static void SendMessage(IntPtr puntero, int dibujo, int width, int left);
 
-        [DllImport("Gdi32.dll", EntryPoint = "RedondearForm")]
-        private static extern IntPtr RedondearForm
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
       (
             int nLeftRect,
             int nTopRect,
@@ -31,12 +31,12 @@ namespace Automate_Layer
         {
             formulario.FormBorderStyle = new FormBorderStyle();
             formulario.BackColor = Color.FromArgb(46, 51, 73);
-            formulario.Region = Region.FromHrgn(RedondearForm(0, 0, Width, Height, 30, 30));
+            formulario.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
             formulario.AutoScroll = true;
             formulario.IsMdiContainer = true;
             panel.BackColor = Color.FromArgb(24, 30, 54);
             panel.Dock = DockStyle.Left;
-            FormatearBotonEnPanel(panel);
+            FormatearPanel(panel);
             FormatearMenuStrip(formulario);
         };
 
@@ -44,7 +44,7 @@ namespace Automate_Layer
         {
             formulario.FormBorderStyle = new FormBorderStyle();
             formulario.BackColor = Color.FromArgb(46, 51, 73);
-            formulario.Region = Region.FromHrgn(RedondearForm(0, 0, Width, Height, 30, 30));
+            formulario.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
             formulario.AutoScroll = true;
             FormatearGRP(grp);
         };
@@ -52,7 +52,7 @@ namespace Automate_Layer
         {
             formulario.FormBorderStyle = new FormBorderStyle();
             formulario.BackColor = Color.FromArgb(46, 51, 73);
-            formulario.Region = Region.FromHrgn(RedondearForm(0, 0, Width, Height, 30, 30));
+            formulario.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
             formulario.AutoScroll = true;
 
         };
@@ -73,11 +73,12 @@ namespace Automate_Layer
             FormHijo.Show();
         };
 
-        public static Action<Panel> FormatearBotonEnPanel = (panel) =>
+        public static Action<Panel> FormatearPanel = (panel) =>
         {
             foreach (Control control in panel.Controls)
             {
                 if (control is Button) FormatearBoton(control as Button);
+                if (control is TextBox) FormatearControlInterno(control as TextBox);
             }
         };
 
@@ -86,7 +87,7 @@ namespace Automate_Layer
             boton.BackColor = Color.FromArgb(24, 30, 54);
             boton.ForeColor = Color.FromArgb(0, 126, 249);
             boton.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
-            boton.Region = Region.FromHrgn(RedondearForm(0, 0, boton.Width, boton.Height, 30, 30));
+            boton.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, boton.Width, boton.Height, 30, 30));
             boton.FlatAppearance.BorderSize = 0;
             boton.FlatStyle = FlatStyle.Flat;
             boton.TextAlign = ContentAlignment.MiddleRight;
@@ -98,7 +99,7 @@ namespace Automate_Layer
             boton.BackColor = Color.FromArgb(46, 51, 73);
             boton.ForeColor = Color.FromArgb(0, 126, 249);
             boton.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
-            boton.Region = Region.FromHrgn(RedondearForm(0, 0, boton.Width, boton.Height, 30, 30));
+            boton.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, boton.Width, boton.Height, 30, 30));
             boton.FlatAppearance.BorderSize = 0;
             boton.FlatStyle = FlatStyle.Flat;
             boton.TextAlign = ContentAlignment.MiddleRight;

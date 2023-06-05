@@ -17,6 +17,7 @@ namespace Business_Entities
         public decimal Stock { get; set; }
         public decimal CostoUnitario { get; set; }
         public string UnidadMedida { get; set; }
+        public DateTime FechaCreacion { get; set; }
         public int VidaUtil { get; set; }
 
         public string DevolverNombre()
@@ -25,5 +26,15 @@ namespace Business_Entities
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
 
+        public enum Tipo_Bebida
+        {
+            Agua,
+            Jugo,
+            Gaseosa,
+            Cerveza,
+            Vino,
+            Trago,
+            Aperitivo,
+        }
     }
 }

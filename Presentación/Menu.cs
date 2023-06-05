@@ -20,6 +20,7 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
+            Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Left);
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -28,23 +29,44 @@ namespace Trabajo_Final
             {
                 if (this.UsuarioActivo is null)
                 {
-                    frmLogin frm = new frmLogin();
-                    frm.Owner = this;
-                    frm.ShowDialog();
-                    Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Left);
+                    frmLogin frmlog = new frmLogin();
+                    frmlog.Owner = this;
+                    frmlog.ShowDialog();
                 }
-                this.Text = UsuarioActivo.Usuario;
+                txtUsuarioActivo.Text = UsuarioActivo.Usuario;
             }
             catch
             {
                 Application.Exit();
             }
+            Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Height);
+            frmBienvenida frm = new frmBienvenida();
+            frm.Owner = this;
+            Aspecto.AbrirNuevoForm(this, frm);
         }
 
         private void frmMenu_MouseDown(object sender, MouseEventArgs e)
         {
-            Aspecto.CopiarDibujo();
-            Aspecto.ReplicarDibujo(this.Handle, 0x112, 0xf012, 0);
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void menuStrip_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void pnlMenu_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void picboxPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

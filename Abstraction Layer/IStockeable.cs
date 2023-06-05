@@ -11,6 +11,7 @@ namespace Abstraction_Layer
         decimal Stock { get; set; }
         decimal CostoUnitario { get; set; }
         string UnidadMedida { get; set; }
+        DateTime FechaCreacion { get; set; }
         int VidaUtil { get; set; }
 
     }

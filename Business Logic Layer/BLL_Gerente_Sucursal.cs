@@ -5,20 +5,56 @@ using System.Text;
 using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
+using Mapper;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Gerente_Sucursal : BLL_Empleado
     {
        
-        public bool combinarMesa()
+        public bool combinarMesa(BE_Mesa mesabase, BE_Mesa submesa)
         {
-            throw new NotImplementedException();
+            BE_Mesa Mesacombinada = new BE_Mesa();
+            Mesacombinada.Codigo = mesabase.Codigo;
+            Mesacombinada.Capacidad = mesabase.Capacidad + submesa.Capacidad;
+            Mesacombinada.Ubicación = mesabase.Ubicación;
+            Mesacombinada.OcupaciónActual = mesabase.OcupaciónActual;
+            Mesacombinada.Status = mesabase.Status;
+            Mesacombinada.ID_Empleado = mesabase.ID_Empleado;
+
+            MPP_Mesa oMPP_Mesa = new MPP_Mesa();
+            List<BE_Mesa> listadeMesas = new List<BE_Mesa>();
+            listadeMesas.Add(mesabase);
+            listadeMesas.Add(submesa);
+
+            try
+            {
+                return oMPP_Mesa.Modificar(listadeMesas) & oMPP_Mesa.Guardar(Mesacombinada);
+            }
+            catch(Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            
+
+            
         }
 
-        public bool relevarCategoria(BE_Empleado empleado)
+        public bool relevarCategoria(BE_Empleado empleado, BE_Empleado.Category categoria)
         {
-            throw new NotImplementedException();
+            MPP_Empleado oMPP_Empleado = new MPP_Empleado();
+
+            empleado.Categoria = categoria;
+            try
+            {
+                return oMPP_Empleado.Modificar(empleado);
+            }
+            catch(Exception ex)
+            {
+                return false;
+                throw ex;
+            }
         }
 
         public void cargarAsistencia()

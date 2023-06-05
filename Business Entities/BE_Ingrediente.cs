@@ -15,6 +15,7 @@ namespace Business_Entities
         public bool Refrigeracion { get; set; }
         public decimal Stock { get; set; }
         public string UnidadMedida { get; set; }
+        public DateTime FechaCreacion { get; set; }
         public string Lote { get; set; }
         public bool Activo { get; set; }
         public int VidaUtil { get; set; }

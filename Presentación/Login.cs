@@ -87,8 +87,14 @@ namespace Trabajo_Final
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)
         {
-            Aspecto.CopiarDibujo();
-            Aspecto.ReplicarDibujo(this.Handle, 0x112, 0xf012, 0);
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void picLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            Aspecto.ReleaseCapture();
+            Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
     }
 }

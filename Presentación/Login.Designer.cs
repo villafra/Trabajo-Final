@@ -118,6 +118,7 @@ namespace Trabajo_Final
             this.picLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLogin.TabIndex = 7;
             this.picLogin.TabStop = false;
+            this.picLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picLogin_MouseDown);
             // 
             // frmLogin
             // 

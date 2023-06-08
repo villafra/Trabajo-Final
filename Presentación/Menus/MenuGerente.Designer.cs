@@ -270,6 +270,7 @@ namespace Trabajo_Final
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMenuGerente";
             this.Text = "MenuGerente";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenuGerente_MouseDown);
             this.grpEmpleados.ResumeLayout(false);
             this.grpEmpleados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();

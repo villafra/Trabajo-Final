@@ -84,5 +84,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
     }
 }

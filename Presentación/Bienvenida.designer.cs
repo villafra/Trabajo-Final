@@ -42,6 +42,7 @@
             this.picboxPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picboxPrincipal.TabIndex = 11;
             this.picboxPrincipal.TabStop = false;
+            this.picboxPrincipal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picboxPrincipal_MouseDown);
             // 
             // frmBienvenida
             // 
@@ -57,6 +58,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Bienvenida";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmBienvenida_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.picboxPrincipal)).EndInit();
             this.ResumeLayout(false);
 

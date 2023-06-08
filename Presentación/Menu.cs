@@ -20,7 +20,6 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
-            Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Left);
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -33,7 +32,7 @@ namespace Trabajo_Final
                     frmlog.Owner = this;
                     frmlog.ShowDialog();
                 }
-                txtUsuarioActivo.Text = UsuarioActivo.Usuario;
+                txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
             }
             catch
             {
@@ -43,6 +42,7 @@ namespace Trabajo_Final
             frmBienvenida frm = new frmBienvenida();
             frm.Owner = this;
             Aspecto.AbrirNuevoForm(this, frm);
+            
         }
 
         private void frmMenu_MouseDown(object sender, MouseEventArgs e)
@@ -67,6 +67,22 @@ namespace Trabajo_Final
         {
             Aspecto.ReleaseCapture();
             Aspecto.SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void menuPrincipalToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMenuGerente);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMenuGerente();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
         }
     }
 }

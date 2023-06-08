@@ -71,7 +71,7 @@ namespace Trabajo_Final
         private void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMozos, oBLL_Mozo.Listar());
-            Aspecto.DGVMozos(dgvMozos);
+            //Aspecto.DGVMozos(dgvMozos);
         }
         private void btnNuevaMozo_Click(object sender, EventArgs e)
         {
@@ -80,8 +80,8 @@ namespace Trabajo_Final
                 Nuevo();
                 if (Cálculos.LargoDNI(oBE_Mozo.DNI.ToString()) && Cálculos.ValidarNombrePersonal(oBE_Mozo.Nombre)&&Cálculos.ValidarApellido(oBE_Mozo.Apellido))
                 {
-                   if (!oBLL_Mozo.Existe(oBE_Mozo))
-                    {
+                   //if (!oBLL_Mozo.Existe(oBE_Mozo))
+                   // {
                         if (oBLL_Mozo.Guardar(oBE_Mozo))
                         {
                             ActualizarListado();
@@ -93,11 +93,11 @@ namespace Trabajo_Final
                             Cálculos.MsgBoxNoAlta(oBE_Mozo.ToString());
                         }
                         
-                    }
-                    else
-                    {
-                        Cálculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
-                    }
+                    //}
+                    //else
+                    //{
+                    //    Cálculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
+                    //}
                 }
                 else
                 {
@@ -117,8 +117,8 @@ namespace Trabajo_Final
             try
             {
                 Viejo();
-                if (!oBLL_Mozo.Existe(oBE_Mozo))
-                {
+                //if (!oBLL_Mozo.Existe(oBE_Mozo))
+                //{
                     if (oBLL_Mozo.Guardar(oBE_Mozo))
                     {
                         ActualizarListado();
@@ -130,11 +130,11 @@ namespace Trabajo_Final
                         Cálculos.MsgBoxNoMod(oBE_Mozo.ToString());
                     }
                     
-                }
-                else
-                {
-                    Cálculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
-                }
+                //}
+                //else
+                //{
+                //    Cálculos.MsgBoxSiExisteDNI(oBE_Mozo.ToString());
+                //}
             }
             catch (Exception ex)
             {
@@ -163,8 +163,8 @@ namespace Trabajo_Final
             Viejo();
             if (Cálculos.EstaSeguro("Eliminar", oBE_Mozo.Codigo, oBE_Mozo.ToString()))
             {
-                if (!oBLL_Mozo.ExisteActivo(oBE_Mozo))
-                {
+                //if (!oBLL_Mozo.ExisteActivo(oBE_Mozo))
+                //{
                     if (oBLL_Mozo.Baja(oBE_Mozo))
                     {
                         ActualizarListado();
@@ -176,11 +176,11 @@ namespace Trabajo_Final
                         Cálculos.MsgBoxNoBaja(oBE_Mozo.ToString());
                     }
                     
-                }
-                else
-                {
-                    Cálculos.MsgBoxBajaNegativa(oBE_Mozo.ToString());
-                }
+                //}
+                //else
+                //{
+                //    Cálculos.MsgBoxBajaNegativa(oBE_Mozo.ToString());
+                //}
             }
         }
 

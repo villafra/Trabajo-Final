@@ -253,7 +253,7 @@
             this.btnEliminarMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminarMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnEliminarMozo.Location = new System.Drawing.Point(738, 900);
+            this.btnEliminarMozo.Location = new System.Drawing.Point(738, 504);
             this.btnEliminarMozo.Name = "btnEliminarMozo";
             this.btnEliminarMozo.Size = new System.Drawing.Size(100, 93);
             this.btnEliminarMozo.TabIndex = 4;
@@ -268,7 +268,7 @@
             this.btnModificarMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificarMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificarMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnModificarMozo.Location = new System.Drawing.Point(373, 900);
+            this.btnModificarMozo.Location = new System.Drawing.Point(373, 504);
             this.btnModificarMozo.Name = "btnModificarMozo";
             this.btnModificarMozo.Size = new System.Drawing.Size(100, 93);
             this.btnModificarMozo.TabIndex = 3;
@@ -283,7 +283,7 @@
             this.btnNuevaMozo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNuevaMozo.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNuevaMozo.ForeColor = System.Drawing.Color.Gold;
-            this.btnNuevaMozo.Location = new System.Drawing.Point(12, 900);
+            this.btnNuevaMozo.Location = new System.Drawing.Point(12, 504);
             this.btnNuevaMozo.Name = "btnNuevaMozo";
             this.btnNuevaMozo.Size = new System.Drawing.Size(100, 93);
             this.btnNuevaMozo.TabIndex = 2;

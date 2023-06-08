@@ -91,6 +91,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\MenuGerente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\MenuGerente.Designer.cs">
+      <DependentUpon>MenuGerente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Mozos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\MenuGerente.resx">
+      <DependentUpon>MenuGerente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Mozos.resx">
       <DependentUpon>Mozos.cs</DependentUpon>

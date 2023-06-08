@@ -9,7 +9,7 @@ using Mapper;
 
 namespace Business_Logic_Layer
 {
-    public class BLL_Plato : IGestionable<BE_Plato>,IMovimentable
+    public class BLL_Plato : IGestionable<BE_Plato>,IMovimentable<BE_Plato>
     {
         MPP_Plato oMPP_Plato;
         public BLL_Plato()
@@ -22,7 +22,7 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public void AgregarStock(int Cantidad)
+        public void AgregarStock(BE_Plato plato, int Cantidad)
         {
             throw new NotImplementedException();
         }
@@ -32,12 +32,12 @@ namespace Business_Logic_Layer
             return oMPP_Plato.Baja(plato);
         }
 
-        public DateTime DevolverFechaVencimiento()
+        public DateTime DevolverFechaVencimiento(BE_Plato plato)
         {
             throw new NotImplementedException();
         }
 
-        public int DevolverStock()
+        public decimal DevolverStock(BE_Plato plato)
         {
             throw new NotImplementedException();
         }

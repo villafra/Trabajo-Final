@@ -19,7 +19,7 @@ namespace Automate_Layer
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
       (
-            int nLeftRect,
+           int nLeftRect,
             int nTopRect,
             int nRightRect,
             int nBottomRect,
@@ -36,6 +36,17 @@ namespace Automate_Layer
             formulario.IsMdiContainer = true;
             panel.BackColor = Color.FromArgb(24, 30, 54);
             panel.Dock = DockStyle.Left;
+            foreach (Control c in formulario.Controls)
+            {
+                if (c.Name == "txtUsuarioActivo")
+                {
+                    c.BackColor = Color.FromArgb(24, 30, 54);
+                    c.Font = new Font("Nirmala UI", 8, FontStyle.Bold);
+                    c.ForeColor = Color.FromArgb(0, 126, 249);
+                    (c as TextBox).BorderStyle = BorderStyle.None;
+                    
+                }
+            }
             FormatearPanel(panel);
             FormatearMenuStrip(formulario);
         };
@@ -78,7 +89,6 @@ namespace Automate_Layer
             foreach (Control control in panel.Controls)
             {
                 if (control is Button) FormatearBoton(control as Button);
-                if (control is TextBox) FormatearControlInterno(control as TextBox);
             }
         };
 

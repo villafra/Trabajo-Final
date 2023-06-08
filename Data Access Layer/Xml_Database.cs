@@ -113,7 +113,7 @@ namespace Data_Access_Layer
                 throw new FileNotFoundException("La base de datos es inexsitente");
             }
             DataSet ds = new DataSet();
-            ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.ReadSchema);
+            ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.Auto);
             return ds;
         }
 

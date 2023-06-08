@@ -35,7 +35,7 @@
             // picboxPrincipal
             // 
             this.picboxPrincipal.Image = global::Trabajo_Final.Properties.Resources.Picture3;
-            this.picboxPrincipal.Location = new System.Drawing.Point(572, 252);
+            this.picboxPrincipal.Location = new System.Drawing.Point(421, 232);
             this.picboxPrincipal.Margin = new System.Windows.Forms.Padding(4);
             this.picboxPrincipal.Name = "picboxPrincipal";
             this.picboxPrincipal.Size = new System.Drawing.Size(500, 500);
@@ -48,7 +48,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1644, 1005);
+            this.ClientSize = new System.Drawing.Size(1342, 965);
             this.Controls.Add(this.picboxPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmBienvenida";

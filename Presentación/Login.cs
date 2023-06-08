@@ -22,8 +22,7 @@ namespace Trabajo_Final
         public frmLogin()
         {
             InitializeComponent();
-
- 
+            Aspecto.FormatearLogin(this, this.grpLogin, this.Width, this.Height);
         }
 
         private void Login_Load(object sender, EventArgs e)

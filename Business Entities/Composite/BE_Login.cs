@@ -18,5 +18,6 @@ namespace Business_Entities
         public DateTime HoraIngreso { get; set; }
         public DateTime FechaEgreso { get; set; }
         public DateTime HoraEgreso { get; set; }
+        public BE_Permiso Permiso { get; set; }
     }
 }

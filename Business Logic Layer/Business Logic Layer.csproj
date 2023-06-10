@@ -51,7 +51,7 @@
     <Compile Include="BLL_Empleado.cs" />
     <Compile Include="BLL_Gerente_Sucursal.cs" />
     <Compile Include="BLL_Ingrediente.cs" />
-    <Compile Include="BLL_Login.cs" />
+    <Compile Include="Composite\BLL_Login.cs" />
     <Compile Include="BLL_Mesa.cs" />
     <Compile Include="BLL_Mozo.cs" />
     <Compile Include="BLL_Orden.cs" />
@@ -59,6 +59,7 @@
     <Compile Include="BLL_Pedido.cs" />
     <Compile Include="BLL_Plato.cs" />
     <Compile Include="BLL_Reserva.cs" />
+    <Compile Include="Composite\BLL_Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

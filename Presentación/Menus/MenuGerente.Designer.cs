@@ -79,7 +79,7 @@ namespace Trabajo_Final
             this.grpEmpleados.Size = new System.Drawing.Size(973, 256);
             this.grpEmpleados.TabIndex = 6;
             this.grpEmpleados.TabStop = false;
-            this.grpEmpleados.Text = "Mozos";
+            this.grpEmpleados.Text = "Empleados";
             // 
             // txtAntiguedad
             // 

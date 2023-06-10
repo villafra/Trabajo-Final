@@ -82,8 +82,31 @@ namespace Trabajo_Final
             {
                 frm = new frmMenuGerente();
                 Aspecto.AbrirNuevoForm(this, frm);
+               
             }
         }
 
+        private void loguearseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmLogin);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmLogin();
+                frm.Owner = this;
+                frm.ShowDialog();
+                txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+            }
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

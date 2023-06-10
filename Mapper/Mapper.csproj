@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Composite\MPP_Permiso.cs" />
     <Compile Include="MPP_Bebida.cs" />
     <Compile Include="MPP_Compra.cs" />
     <Compile Include="MPP_Cliente.cs" />
     <Compile Include="MPP_Empleado.cs" />
     <Compile Include="MPP_Ingrediente.cs" />
-    <Compile Include="MPP_Login.cs" />
+    <Compile Include="Composite\MPP_Login.cs" />
     <Compile Include="MPP_Mesa.cs" />
     <Compile Include="MPP_Orden.cs" />
     <Compile Include="MPP_Pago.cs" />

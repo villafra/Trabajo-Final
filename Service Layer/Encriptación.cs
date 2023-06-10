@@ -9,11 +9,12 @@ namespace Service_Layer
 {
     public static class Encriptacion
     {
+        private static string key = "littlementalyoga";
+
         public static string EncriptarPass(string pass)
         {
             try
             {
-                string key = "littlementalyoga";
                 byte[] keyArray;
                 byte[] Arreglo_a_Cifrar = UTF8Encoding.UTF8.GetBytes(pass);
 
@@ -42,7 +43,6 @@ namespace Service_Layer
         {
             try
             {
-                string key = "littlementalyoga";
                 byte[] keyArray;
                 byte[] Array_a_Descifrar = Convert.FromBase64String(pass);
 

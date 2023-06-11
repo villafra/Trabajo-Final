@@ -174,6 +174,7 @@ namespace Mapper
 
 
                                                                }).FirstOrDefault(),
+                                                  
                                               }).ToList();
 
             return listaReservas;
@@ -210,5 +211,7 @@ namespace Mapper
             nuevaTupla.Xelement = nuevaReserva;
             return nuevaTupla;
         }
+
+       
     }
 }

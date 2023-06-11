@@ -18,16 +18,23 @@ namespace Data_Access_Layer
 
         private bool ExisteBD()
         {
-            return File.Exists(ReferenciasBD.BaseDatosRestaurant);
+            if (File.Exists(ReferenciasBD.BaseDatosRestaurant))
+            {
+                return true;
+            }
+            else
+            {
+               return CrearArchivo();
+                
+            }
         }
         private void AbrirConexion()
         {
-            doc = XDocument.Load("Restaurant.xml");
+            doc = XDocument.Load(ReferenciasBD.BaseDatosRestaurant);
         }
-
         private void CerrarConexion()
         {
-            doc.Save("Restaurant.xml");
+            doc.Save(ReferenciasBD.BaseDatosRestaurant);
             doc = null;
             GC.Collect();
         }
@@ -117,5 +124,65 @@ namespace Data_Access_Layer
             return ds;
         }
 
+        public bool CrearCalendario(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement nodoPadre = doc.Root.Element(tupla.NodoLeaf);
+                    nodoPadre.Add(tupla.Xelement);
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+
+        public bool CrearArchivo()
+        {
+            try
+            {
+                XDocument Restaurant = new XDocument();
+                XElement Root = new XElement("Restaurant");
+                XElement Leaf = new XElement("Logins");
+                Leaf.Add(CrearAdmin());
+                Root.Add(Leaf);
+                foreach(string hoja in ReferenciasBD.ArmaBD)
+                {
+                    Leaf = new XElement(hoja);
+                    Root.Add(Leaf);
+                }
+                Restaurant.Add(Root);
+                Restaurant.Save(ReferenciasBD.BaseDatosRestaurant);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+            
+        }
+
+        public XElement CrearAdmin()
+        {
+            XElement Admin = new XElement("Login",
+                new XElement("ID", "001"),
+                new XElement("ID_Empleado", ""),
+                new XElement("Usuario", "admin"),
+                new XElement("Password", "ys/ihoA4NkE="),
+                new XElement("Cantidad_Intentos", 0),
+                new XElement("FechaIngreso", ""),
+                new XElement("HoraIngreso", "")
+                );
+            return Admin;
+        }
     }
 }

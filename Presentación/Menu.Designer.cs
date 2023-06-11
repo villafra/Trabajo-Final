@@ -73,9 +73,9 @@ namespace Trabajo_Final
             this.salónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combinarMesaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarNovedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comprasToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresarPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.devolverPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generarComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -268,7 +268,7 @@ namespace Trabajo_Final
             // materialesToolStripMenuItem1
             // 
             this.materialesToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.comprasToolStripMenuItem2,
+            this.generarComprasToolStripMenuItem,
             this.recetasToolStripMenuItem1,
             this.costosToolStripMenuItem1,
             this.inventarioToolStripMenuItem1});
@@ -424,12 +424,6 @@ namespace Trabajo_Final
             this.cargarNovedadesToolStripMenuItem.Size = new System.Drawing.Size(231, 26);
             this.cargarNovedadesToolStripMenuItem.Text = "Cargar Novedades";
             // 
-            // comprasToolStripMenuItem2
-            // 
-            this.comprasToolStripMenuItem2.Name = "comprasToolStripMenuItem2";
-            this.comprasToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
-            this.comprasToolStripMenuItem2.Text = "Compras";
-            // 
             // ingresarPedidoToolStripMenuItem
             // 
             this.ingresarPedidoToolStripMenuItem.Name = "ingresarPedidoToolStripMenuItem";
@@ -441,6 +435,12 @@ namespace Trabajo_Final
             this.devolverPedidoToolStripMenuItem.Name = "devolverPedidoToolStripMenuItem";
             this.devolverPedidoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.devolverPedidoToolStripMenuItem.Text = "Devolver Pedido";
+            // 
+            // generarComprasToolStripMenuItem
+            // 
+            this.generarComprasToolStripMenuItem.Name = "generarComprasToolStripMenuItem";
+            this.generarComprasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.generarComprasToolStripMenuItem.Text = "Generar Compras";
             // 
             // frmMenu
             // 
@@ -487,7 +487,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem cargarNovedadesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem materialesToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem recetasToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem costosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem1;
@@ -514,6 +513,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem ingresarPedidoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem devolverPedidoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mesasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generarComprasToolStripMenuItem;
     }
 }
 

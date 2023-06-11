@@ -46,6 +46,7 @@
     <Compile Include="MPP_Compra.cs" />
     <Compile Include="MPP_Cliente.cs" />
     <Compile Include="MPP_Empleado.cs" />
+    <Compile Include="MPP_Horario.cs" />
     <Compile Include="MPP_Ingrediente.cs" />
     <Compile Include="Composite\MPP_Login.cs" />
     <Compile Include="MPP_Mesa.cs" />

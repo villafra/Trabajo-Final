@@ -41,7 +41,7 @@ namespace Business_Logic_Layer
 
         public DateTime devolverFechaVencimiento(BE_Ingrediente ingrediente)
         {
-            return ingrediente.FechaCreacion.AddDays(ingrediente.VidaUtil);
+            return ingrediente.FechaCreacion.Value.AddDays(ingrediente.VidaUtil);
         }
 
         public bool actualizarStatus()

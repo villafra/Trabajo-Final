@@ -85,7 +85,7 @@ namespace Mapper
                 new XElement("Refrigeración",ingrediente.Refrigeracion.ToString()),
                 new XElement("Stock",ingrediente.Stock.ToString()),
                 new XElement("Unidad de Medida", ingrediente.UnidadMedida),
-                new XElement("Fecha de creación", ingrediente.FechaCreacion.ToString("dd/MM/yyyy")),
+                new XElement("Fecha de creación", ingrediente.FechaCreacion.Value.ToString("dd/MM/yyyy")),
                 new XElement("Lote", ingrediente.Lote),
                 new XElement("Activo", ingrediente.Activo.ToString()),
                 new XElement("Vida Util", ingrediente.VidaUtil.ToString()),

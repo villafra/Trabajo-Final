@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Service_Layer;
 using Business_Entities;
 using Automate_Layer;
+using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
@@ -20,6 +21,7 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
+            
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -42,7 +44,9 @@ namespace Trabajo_Final
             frmBienvenida frm = new frmBienvenida();
             frm.Owner = this;
             Aspecto.AbrirNuevoForm(this, frm);
-            
+            BLL_Horario horario = new BLL_Horario();
+            horario.CrearAgenda();
+
         }
 
         private void frmMenu_MouseDown(object sender, MouseEventArgs e)
@@ -106,7 +110,7 @@ namespace Trabajo_Final
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Cálculos.Salir();
         }
     }
 }

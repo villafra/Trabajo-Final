@@ -17,11 +17,13 @@ namespace Trabajo_Final
     {
         BE_GerenteSucursal oBE_Gerente;
         BLL_Gerente_Sucursal oBLL_Gerente;
+        BLL_Horario oBLL_Horario;
         public frmMenuGerente()
         {
             InitializeComponent();
             oBE_Gerente = new BE_GerenteSucursal();
             oBLL_Gerente = new BLL_Gerente_Sucursal();
+            oBLL_Horario = new BLL_Horario();
             CargarDGV();
         }
 
@@ -33,7 +35,7 @@ namespace Trabajo_Final
 
         private void CargarDGV()
         {
-            Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Gerente.Listar());
+            Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Horario.Listar());
         }
     }
 }

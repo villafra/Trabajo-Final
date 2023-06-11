@@ -50,6 +50,7 @@
     <Compile Include="BLL_Compra.cs" />
     <Compile Include="BLL_Empleado.cs" />
     <Compile Include="BLL_Gerente_Sucursal.cs" />
+    <Compile Include="BLL_Horario.cs" />
     <Compile Include="BLL_Ingrediente.cs" />
     <Compile Include="Composite\BLL_Login.cs" />
     <Compile Include="BLL_Mesa.cs" />

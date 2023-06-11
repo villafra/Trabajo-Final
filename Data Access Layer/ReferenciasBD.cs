@@ -14,7 +14,31 @@ namespace Data_Access_Layer
         private static string BasedeDatos = "Restaurant.xml";
         private static string BaseDatosLog = "Logs.xml";
         private static string BaseDatosBackup = "Backups.xml";
-
+        private static string Agenda = "Agenda.xml";
+        private static List<string> Leafs = new List<string>
+        {
+            "Bebidas",
+            "Clientes",
+            "Compras",
+            "Empleados",
+            "Ingredientes",
+            "Mesas",
+            "Ordenes",
+            "Pagos",
+            "Pedidos",
+            "Platos",
+            "Reservas",
+            "Bebidas-Ingredientes",
+            "Bebidas-Clientes",
+            "Platos-Clientes",
+            "Reservas-Clientes",
+            "Mozo-Pedidos",
+            "Ordenes-Pendientes",
+            "Platos-Pedidos",
+            "Bebidas-Pedidos",
+            "Ingredientes-Platos",
+            "Calendarios"
+        };
 
         public static string BaseDatosRestaurant
         {
@@ -63,5 +87,24 @@ namespace Data_Access_Layer
                 else return BaseDatosLog;
             }
         }
+
+        public static string Calendario
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(Agenda))
+                {
+                    if (!Directory.Exists(CarpetaBD)) Directory.CreateDirectory(CarpetaBD);
+                    return Path.Combine(CarpetaBD, Agenda);
+                }
+                else return Agenda;
+            }
+        }
+
+        public static List<string> ArmaBD
+        {
+            get { return Leafs; }
+        }
+
     }
 }

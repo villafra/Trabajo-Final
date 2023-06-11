@@ -57,10 +57,10 @@ namespace Data_Access_Layer
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(CarpetaBD))
+                if (!string.IsNullOrWhiteSpace(CarpetaBackUps))
                 {
-                    if (!Directory.Exists(CarpetaBD)) Directory.CreateDirectory(CarpetaBD);
-                    return Path.Combine(CarpetaBD, BaseDatosBackup);
+                    if (!Directory.Exists(CarpetaBackUps)) Directory.CreateDirectory(CarpetaBackUps);
+                    return Path.Combine(CarpetaBackUps, BaseDatosBackup);
                 }
                 else return BasedeDatos;
             }
@@ -72,6 +72,14 @@ namespace Data_Access_Layer
             {
                 if (!Directory.Exists(CarpetaBackUp)) Directory.CreateDirectory(CarpetaBackUp);
                 return CarpetaBackUp;
+            }
+        }
+        public static string DirectorioBD
+        {
+            get
+            {
+                if (!Directory.Exists(CarpetaBD)) Directory.CreateDirectory(CarpetaBD);
+                return CarpetaBD;
             }
         }
 

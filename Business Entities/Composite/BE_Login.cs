@@ -19,5 +19,12 @@ namespace Business_Entities
         public DateTime FechaEgreso { get; set; }
         public DateTime HoraEgreso { get; set; }
         public BE_Permiso Permiso { get; set; }
+
+        public override string ToString()
+        {
+            if (Empleado != null) return Empleado.Nombre + " " + Empleado.Apellido;
+            else return "admin";
+
+        }
     }
 }

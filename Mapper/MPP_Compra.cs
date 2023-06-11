@@ -41,11 +41,11 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Compra> listadeCompras = (from comp in ds.Tables["Compra"].AsEnumerable()
+            List<BE_Compra> listadeCompras = ds.Tables.Contains("Compra") != false ? (from comp in ds.Tables["Compra"].AsEnumerable()
                                               select new BE_Compra
                                               {
                                                   Codigo = Convert.ToInt32(comp[0]),
-                                                  ID_Ingrediente = (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                  ID_Ingrediente = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                     where Convert.ToInt32(ing[0]) == Convert.ToInt32(comp[1])
                                                                     select new BE_Ingrediente
                                                                     {
@@ -61,13 +61,13 @@ namespace Mapper
                                                                         VidaUtil = Convert.ToInt32(ing[9]),
                                                                         Status = Convert.ToString(ing[10]),
                                                                         CostoUnitario = Convert.ToDecimal(ing[11])
-                                                                    }).FirstOrDefault(),
+                                                                    }).FirstOrDefault():null,
                                                   Cantidad = Convert.ToDecimal(comp[2]),
                                                   FechaCompra = Convert.ToDateTime(comp[3]),
                                                   FechaEntrega = Convert.ToDateTime(comp[4]),
                                                   CantidadRecibida = Convert.ToDecimal(comp[5]),
                                                   Costo = Convert.ToDecimal(comp[6])
-                                              }).ToList();
+                                              }).ToList(): null;
             return listadeCompras;
         }
 

@@ -41,12 +41,12 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Pago> listadePagos = (from pag in ds.Tables["Pago"].AsEnumerable()
+            List<BE_Pago> listadePagos = ds.Tables.Contains("Pago") != false ? (from pag in ds.Tables["Pago"].AsEnumerable()
                                           select new BE_Pago
                                           {
                                               Codigo = Convert.ToInt32(pag[0]),
                                               Tipo = Convert.ToString(pag[1])
-                                          }).ToList();
+                                          }).ToList():null;
             return listadePagos;
 
         }

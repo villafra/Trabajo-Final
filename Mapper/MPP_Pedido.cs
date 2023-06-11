@@ -50,53 +50,53 @@ namespace Mapper
                                                   Aclaraciones = Convert.ToString(ped[3]),
                                                   Status = Convert.ToString(ped[4]),
                                                   Monto_Total = Convert.ToDecimal(ped[5]),
-                                                  ID_Pago = (from pago in ds.Tables["Pago"].AsEnumerable()
-                                                             where Convert.ToInt32(ped[6]) == Convert.ToInt32(pago[0])
-                                                             select new BE_Pago
-                                                             {
-                                                                 Codigo = Convert.ToInt32(pago[0]),
-                                                                 Tipo = Convert.ToString(pago[1])
-                                                             }).FirstOrDefault(),
-                                                  ListadeBebida = (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
-                                                                   join beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                   on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
-                                                                   select new BE_Bebida
-                                                                   {
+                                                  ID_Pago = ds.Tables.Contains("Pago") != false ? (from pago in ds.Tables["Pago"].AsEnumerable()
+                                                                                                   where Convert.ToInt32(ped[6]) == Convert.ToInt32(pago[0])
+                                                                                                   select new BE_Pago
+                                                                                                   {
+                                                                                                       Codigo = Convert.ToInt32(pago[0]),
+                                                                                                       Tipo = Convert.ToString(pago[1])
+                                                                                                   }).FirstOrDefault() : null,
+                                                  ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
+                                                                                                                                                 join beb in ds.Tables["Bebida"].AsEnumerable()
+                                                                                                                                                 on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
+                                                                                                                                                 select new BE_Bebida
+                                                                                                                                                 {
 
-                                                                   }).ToList(),
-                                                  ListadePlatos = (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
-                                                                   join platos in ds.Tables["Plato"].AsEnumerable()
-                                                                   on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
-                                                                   select new BE_Plato
-                                                                   {
-                                                                       Codigo = Convert.ToInt32(platos[0]),
-                                                                       Nombre = Convert.ToString(platos[1]),
-                                                                       Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                       Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                       Status = Convert.ToString(platos[4]),
-                                                                       CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                       Activo = Convert.ToBoolean(platos[6]),
-                                                                       ListaIngredientes = (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                            join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                            on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
-                                                                                            select new BE_Ingrediente
-                                                                                            {
-                                                                                                Codigo = Convert.ToInt32(ing[0]),
-                                                                                                Nombre = Convert.ToString(ing[1]),
-                                                                                                Tipo = Convert.ToString(ing[2]),
-                                                                                                Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                Stock = Convert.ToDecimal(ing[4]),
-                                                                                                UnidadMedida = Convert.ToString(ing[5]),
-                                                                                                FechaCreacion = Convert.ToDateTime(ing[6]),
-                                                                                                Lote = Convert.ToString(ing[7]),
-                                                                                                Activo = Convert.ToBoolean(ing[8]),
-                                                                                                VidaUtil = Convert.ToInt32(ing[9]),
-                                                                                                Status = Convert.ToString(ing[10]),
-                                                                                                CostoUnitario = Convert.ToDecimal(ing[11])
+                                                                                                                                                 }).ToList() : null,
+                                                  ListadePlatos = ds.Tables.Contains("Plato-Pedido") & ds.Tables.Contains("Plato") != false ? (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
+                                                                                                                                               join platos in ds.Tables["Plato"].AsEnumerable()
+                                                                                                                                               on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
+                                                                                                                                               select new BE_Plato
+                                                                                                                                               {
+                                                                                                                                                   Codigo = Convert.ToInt32(platos[0]),
+                                                                                                                                                   Nombre = Convert.ToString(platos[1]),
+                                                                                                                                                   Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                                                                                                                                                   Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
+                                                                                                                                                   Status = Convert.ToString(platos[4]),
+                                                                                                                                                   CostoUnitario = Convert.ToDecimal(platos[5]),
+                                                                                                                                                   Activo = Convert.ToBoolean(platos[6]),
+                                                                                                                                                   ListaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
+                                                                                                                                                                                                                     join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                                                                                     on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
+                                                                                                                                                                                                                     select new BE_Ingrediente
+                                                                                                                                                                                                                     {
+                                                                                                                                                                                                                         Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                                                                         Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                                                                         Tipo = Convert.ToString(ing[2]),
+                                                                                                                                                                                                                         Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                                                                         Stock = Convert.ToDecimal(ing[4]),
+                                                                                                                                                                                                                         UnidadMedida = Convert.ToString(ing[5]),
+                                                                                                                                                                                                                         FechaCreacion = Convert.ToDateTime(ing[6]),
+                                                                                                                                                                                                                         Lote = Convert.ToString(ing[7]),
+                                                                                                                                                                                                                         Activo = Convert.ToBoolean(ing[8]),
+                                                                                                                                                                                                                         VidaUtil = Convert.ToInt32(ing[9]),
+                                                                                                                                                                                                                         Status = Convert.ToString(ing[10]),
+                                                                                                                                                                                                                         CostoUnitario = Convert.ToDecimal(ing[11])
 
-                                                                                            }).ToList()
+                                                                                                                                                                                                                     }).ToList() : null
 
-                                                                   }).ToList(),
+                                                                                                                                               }).ToList() : null,
                                               }).ToList();
 
             return ListadePedidos;

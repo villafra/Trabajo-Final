@@ -35,6 +35,10 @@ namespace Trabajo_Final
 
         private void CargarDGV()
         {
+            if (oBLL_Horario.Listar() == null)
+            {
+                oBLL_Horario.CrearAgenda();
+            }
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Horario.Listar());
         }
     }

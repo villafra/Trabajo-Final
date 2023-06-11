@@ -41,7 +41,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Reserva> listaReservas = (from res in ds.Tables["Reserva"].AsEnumerable()
+            List<BE_Reserva> listaReservas = ds.Tables.Contains("Reserva") != false ? (from res in ds.Tables["Reserva"].AsEnumerable()
                                               select new BE_Reserva
                                               {
                                                   Codigo = Convert.ToInt32(res[0]),
@@ -51,69 +51,7 @@ namespace Mapper
                                                   Recurrencia = Convert.ToBoolean(res[4]),
                                                   FechaFin = Convert.ToDateTime(res[5]),
                                                   TipoRecurrencia = Convert.ToString(res[6]),
-                                                  ID_Cliente = (from cli in ds.Tables["Cliente"].AsEnumerable()
-                                                                where Convert.ToInt32(cli[0]) == Convert.ToInt32(res[7])
-                                                                select new BE_Cliente
-                                                                {
-                                                                    Codigo = Convert.ToInt32(cli[0]),
-                                                                    DNI = Convert.ToInt64(cli[1]),
-                                                                    Nombre = Convert.ToString(cli[2]),
-                                                                    Apellido = Convert.ToString(cli[3]),
-                                                                    FechaNacimiento = Convert.ToDateTime(cli[4]),
-                                                                    Telefono = Convert.ToString(cli[5]),
-                                                                    Mail = Convert.ToString(cli[6]),
-                                                                    ListadeBebidas = (from obj in ds.Tables["Bebida-Cliente"].AsEnumerable()
-                                                                                      join beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                                      on Convert.ToInt32(obj[1]) equals Convert.ToInt32(cli[0])
-                                                                                      select new BE_Bebida
-                                                                                      {
-
-                                                                                      }).ToList(),
-                                                                    ListadePlatos = (from obj in ds.Tables["Plato-Cliente"].AsEnumerable()
-                                                                                     join platos in ds.Tables["Plato"].AsEnumerable()
-                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(cli[0])
-                                                                                     select new BE_Plato
-                                                                                     {
-                                                                                         Codigo = Convert.ToInt32(platos[0]),
-                                                                                         Nombre = Convert.ToString(platos[1]),
-                                                                                         Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                                         Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                                         Status = Convert.ToString(platos[4]),
-                                                                                         CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                                         Activo = Convert.ToBoolean(platos[6]),
-                                                                                         ListaIngredientes = (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                                              join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                              on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
-                                                                                                              select new BE_Ingrediente
-                                                                                                              {
-                                                                                                                  Codigo = Convert.ToInt32(ing[0]),
-                                                                                                                  Nombre = Convert.ToString(ing[1]),
-                                                                                                                  Tipo = Convert.ToString(ing[2]),
-                                                                                                                  Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                                  Stock = Convert.ToDecimal(ing[4]),
-                                                                                                                  UnidadMedida = Convert.ToString(ing[5]),
-                                                                                                                  FechaCreacion = Convert.ToDateTime(ing[6]),
-                                                                                                                  Lote = Convert.ToString(ing[7]),
-                                                                                                                  Activo = Convert.ToBoolean(ing[8]),
-                                                                                                                  VidaUtil = Convert.ToInt32(ing[9]),
-                                                                                                                  Status = Convert.ToString(ing[10]),
-                                                                                                                  CostoUnitario = Convert.ToDecimal(ing[11])
-
-                                                                                                              }).ToList()
-
-                                                                                     }).ToList(),
-                                                                    ListaReservas = (from obj in ds.Tables["Plato-Cliente"].AsEnumerable()
-                                                                                     join res1 in ds.Tables["Reserva"].AsEnumerable()
-                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(res1[0])
-                                                                                     select new BE_Reserva
-                                                                                     {
-
-
-
-                                                                                     }).ToList()
-
-                                                                }).FirstOrDefault(),
-                                                  ID_Pedido = (from ped in ds.Tables["Pedido"].AsEnumerable()
+                                                  ID_Pedido = ds.Tables.Contains("Pedido") != false ? (from ped in ds.Tables["Pedido"].AsEnumerable()
                                                                where Convert.ToInt32(res[8]) == Convert.ToInt32(ped[0])
                                                                select new BE_Pedido
                                                                {
@@ -123,21 +61,21 @@ namespace Mapper
                                                                    Aclaraciones = Convert.ToString(ped[3]),
                                                                    Status = Convert.ToString(ped[4]),
                                                                    Monto_Total = Convert.ToDecimal(ped[5]),
-                                                                   ID_Pago = (from pago in ds.Tables["Pago"].AsEnumerable()
+                                                                   ID_Pago = ds.Tables.Contains("Pago") != false ? (from pago in ds.Tables["Pago"].AsEnumerable()
                                                                               where Convert.ToInt32(ped[6]) == Convert.ToInt32(pago[0])
                                                                               select new BE_Pago
                                                                               {
                                                                                   Codigo = Convert.ToInt32(pago[0]),
                                                                                   Tipo = Convert.ToString(pago[1])
-                                                                              }).FirstOrDefault(),
-                                                                   ListadeBebida = (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
+                                                                              }).FirstOrDefault():null,
+                                                                   ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
                                                                                     join beb in ds.Tables["Bebida"].AsEnumerable()
                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
                                                                                     select new BE_Bebida
                                                                                     {
 
-                                                                                    }).ToList(),
-                                                                   ListadePlatos = (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
+                                                                                    }).ToList():null,
+                                                                   ListadePlatos = ds.Tables.Contains("Plato-Pedido") & ds.Tables.Contains("Plato") != false ? (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
                                                                                     join platos in ds.Tables["Plato"].AsEnumerable()
                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
                                                                                     select new BE_Plato
@@ -149,7 +87,7 @@ namespace Mapper
                                                                                         Status = Convert.ToString(platos[4]),
                                                                                         CostoUnitario = Convert.ToDecimal(platos[5]),
                                                                                         Activo = Convert.ToBoolean(platos[6]),
-                                                                                        ListaIngredientes = (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
+                                                                                        ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") & ds.Tables.Contains("Ingrediente") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
                                                                                                              join ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                                              on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
                                                                                                              select new BE_Ingrediente
@@ -167,16 +105,10 @@ namespace Mapper
                                                                                                                  Status = Convert.ToString(ing[10]),
                                                                                                                  CostoUnitario = Convert.ToDecimal(ing[11])
 
-                                                                                                             }).ToList()
-
-                                                                                    }).ToList(),
-
-
-
-                                                               }).FirstOrDefault(),
-                                                  
-                                              }).ToList();
-
+                                                                                                             }).ToList():null
+                                                                                    }).ToList():null,
+                                                               }).FirstOrDefault():null,
+                                              }).ToList():null;
             return listaReservas;
         }
 
@@ -205,7 +137,6 @@ namespace Mapper
                 new XElement("Recurrencia", reserva.Recurrencia.ToString()),
                 new XElement("Fecha Fin", reserva.FechaFin.ToString("dd/MM/yyyy")),
                 new XElement("Tipo Recurrencia",reserva.TipoRecurrencia),
-                new XElement("ID Cliente",reserva.ID_Cliente.Codigo.ToString()),
                 new XElement("ID Pedido", reserva.ID_Pedido.Codigo.ToString())
                 );
             nuevaTupla.Xelement = nuevaReserva;

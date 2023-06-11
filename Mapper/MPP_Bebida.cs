@@ -77,7 +77,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Bebida> listaBebidas = (from beb in ds.Tables["Bebida"].AsEnumerable()
+            List<BE_Bebida> listaBebidas = ds.Tables.Contains("Bebida") != false ? (from beb in ds.Tables["Bebida"].AsEnumerable()
                                             select new BE_Bebida
                                             {
                                                 Codigo = Convert.ToInt32(beb[0]),
@@ -88,9 +88,9 @@ namespace Mapper
                                                 CostoUnitario = Convert.ToDecimal(beb[5]),
                                                 UnidadMedida = Convert.ToString(beb[6]),
                                                 VidaUtil = Convert.ToInt32(beb[7])
-                                            }).ToList();
+                                            }).ToList():null;
 
-            List<BE_Bebida_Alcoholica> listaBebidasAlcoholica = (from beb in ds.Tables["Bebida Alcoholica"].AsEnumerable()
+            List<BE_Bebida_Alcoholica> listaBebidasAlcoholica = ds.Tables.Contains("Bebida_Acoholica") != false ? (from beb in ds.Tables["Bebida Alcoholica"].AsEnumerable()
                                                                  select new BE_Bebida_Alcoholica
                                                                  {
                                                                      Codigo = Convert.ToInt32(beb[0]),
@@ -102,9 +102,9 @@ namespace Mapper
                                                                      UnidadMedida = Convert.ToString(beb[6]),
                                                                      VidaUtil = Convert.ToInt32(beb[7]),
                                                                      ABV = Convert.ToDecimal(beb[8])
-                                                                 }).ToList();
+                                                                 }).ToList():null;
 
-            List<BE_Bebida_Preparada> listaBebidasPreparadas = (from beb in ds.Tables["Bebida Preparada"].AsEnumerable()
+            List<BE_Bebida_Preparada> listaBebidasPreparadas = ds.Tables.Contains("Bebida_Preparada") != false ?(from beb in ds.Tables["Bebida Preparada"].AsEnumerable()
                                                                 select new BE_Bebida_Preparada
                                                                 {
                                                                     Codigo = Convert.ToInt32(beb[0]),
@@ -116,7 +116,7 @@ namespace Mapper
                                                                     UnidadMedida = Convert.ToString(beb[6]),
                                                                     VidaUtil = Convert.ToInt32(beb[7]),
                                                                     ABV = Convert.ToDecimal(beb[8]),
-                                                                    ListaIngredientes = (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
+                                                                    ListaIngredientes = ds.Tables.Contains("Bebida-Ingrediente") & ds.Tables.Contains("Ingrediente") != false ? (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
                                                                                          join ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                          on Convert.ToInt32(obj[1]) equals Convert.ToInt32(beb[0])
                                                                                          select new BE_Ingrediente
@@ -134,8 +134,8 @@ namespace Mapper
                                                                                              Status = Convert.ToString(ing[10]),
                                                                                              CostoUnitario = Convert.ToDecimal(ing[11])
 
-                                                                                         }).ToList(),
-                                                                }).ToList();
+                                                                                         }).ToList():null,
+                                                                }).ToList():null;
 
             List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
             ListaCompleta = listaBebidas.Concat(listaBebidasAlcoholica).ToList().Concat(listaBebidasPreparadas).ToList();

@@ -41,7 +41,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Ingrediente> listaIngredientes = (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+            List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                       select new BE_Ingrediente
                                                       {
                                                           Codigo = Convert.ToInt32(ing[0]),
@@ -57,7 +57,7 @@ namespace Mapper
                                                           Status = Convert.ToString(ing[10]),
                                                           CostoUnitario = Convert.ToDecimal(ing[11])
 
-                                                      }).ToList();
+                                                      }).ToList():null;
             return listaIngredientes;
             
         }

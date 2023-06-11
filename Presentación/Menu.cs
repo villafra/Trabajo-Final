@@ -44,8 +44,6 @@ namespace Trabajo_Final
             frmBienvenida frm = new frmBienvenida();
             frm.Owner = this;
             Aspecto.AbrirNuevoForm(this, frm);
-            BLL_Horario horario = new BLL_Horario();
-            horario.CrearAgenda();
 
         }
 

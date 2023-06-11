@@ -15,7 +15,6 @@ namespace Mapper
     {
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
-
         public MPP_Horario()
         {
             ListadoXML = new List<BE_TuplaXML>();
@@ -44,7 +43,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Horario> calendario = (from dia in ds.Tables["Calendario"].AsEnumerable()
+            List<BE_Horario> calendario = ds.Tables.Contains("Calendario") != false ? (from dia in ds.Tables["Calendario"].AsEnumerable()
                                            select new BE_Horario
                                            {
                                                Codigo = Convert.ToInt32(dia[0]),
@@ -62,68 +61,6 @@ namespace Mapper
                                                                  Recurrencia = Convert.ToBoolean(res[4]),
                                                                  FechaFin = Convert.ToDateTime(res[5]),
                                                                  TipoRecurrencia = Convert.ToString(res[6]),
-                                                                 ID_Cliente = ds.Tables.Contains("Cliente") != false ? (from cli in ds.Tables["Cliente"].AsEnumerable()
-                                                                               where Convert.ToInt32(cli[0]) == Convert.ToInt32(res[7])
-                                                                               select new BE_Cliente
-                                                                               {
-                                                                                   Codigo = Convert.ToInt32(cli[0]),
-                                                                                   DNI = Convert.ToInt64(cli[1]),
-                                                                                   Nombre = Convert.ToString(cli[2]),
-                                                                                   Apellido = Convert.ToString(cli[3]),
-                                                                                   FechaNacimiento = Convert.ToDateTime(cli[4]),
-                                                                                   Telefono = Convert.ToString(cli[5]),
-                                                                                   Mail = Convert.ToString(cli[6]),
-                                                                                   ListadeBebidas = ds.Tables.Contains("Bebida") && ds.Tables.Contains("Bebida-Cliente") != false ? (from obj in ds.Tables["Bebida-Cliente"].AsEnumerable()
-                                                                                                     join beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(cli[0])
-                                                                                                     select new BE_Bebida
-                                                                                                     {
-
-                                                                                                     }).ToList() : null,
-                                                                                   ListadePlatos = ds.Tables.Contains("Plato") && ds.Tables.Contains("Plato-Cliente") != false ? (from obj in ds.Tables["Plato-Cliente"].AsEnumerable()
-                                                                                                    join platos in ds.Tables["Plato"].AsEnumerable()
-                                                                                                    on Convert.ToInt32(obj[1]) equals Convert.ToInt32(cli[0])
-                                                                                                    select new BE_Plato
-                                                                                                    {
-                                                                                                        Codigo = Convert.ToInt32(platos[0]),
-                                                                                                        Nombre = Convert.ToString(platos[1]),
-                                                                                                        Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                                                        Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                                                        Status = Convert.ToString(platos[4]),
-                                                                                                        CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                                                        Activo = Convert.ToBoolean(platos[6]),
-                                                                                                        ListaIngredientes = ds.Tables.Contains("Ingrediente") & ds.Tables.Contains("Ingrediente-Plato") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                                                             join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                                             on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
-                                                                                                                             select new BE_Ingrediente
-                                                                                                                             {
-                                                                                                                                 Codigo = Convert.ToInt32(ing[0]),
-                                                                                                                                 Nombre = Convert.ToString(ing[1]),
-                                                                                                                                 Tipo = Convert.ToString(ing[2]),
-                                                                                                                                 Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                                                 Stock = Convert.ToDecimal(ing[4]),
-                                                                                                                                 UnidadMedida = Convert.ToString(ing[5]),
-                                                                                                                                 FechaCreacion = Convert.ToDateTime(ing[6]),
-                                                                                                                                 Lote = Convert.ToString(ing[7]),
-                                                                                                                                 Activo = Convert.ToBoolean(ing[8]),
-                                                                                                                                 VidaUtil = Convert.ToInt32(ing[9]),
-                                                                                                                                 Status = Convert.ToString(ing[10]),
-                                                                                                                                 CostoUnitario = Convert.ToDecimal(ing[11])
-
-                                                                                                                             } ?? null).ToList() : null
-
-                                                                                                    }).ToList() : null,
-                                                                                   ListaReservas = (from obj in ds.Tables["Plato-Cliente"].AsEnumerable()
-                                                                                                    join res1 in ds.Tables["Reserva"].AsEnumerable()
-                                                                                                    on Convert.ToInt32(obj[1]) equals Convert.ToInt32(res1[0])
-                                                                                                    select new BE_Reserva
-                                                                                                    {
-
-
-
-                                                                                                    }).ToList() ?? null
-
-                                                                               }).FirstOrDefault() : null,
                                                                  ID_Pedido = ds.Tables.Contains("Pedido") != false ? (from ped in ds.Tables["Pedido"].AsEnumerable()
                                                                               where Convert.ToInt32(res[8]) == Convert.ToInt32(ped[0])
                                                                               select new BE_Pedido
@@ -185,7 +122,7 @@ namespace Mapper
                                                                               }).FirstOrDefault() : null,
 
                                                              }).FirstOrDefault(): null,
-                                           }).ToList();
+                                           }).ToList() : null;
 
             return calendario;
 
@@ -218,6 +155,11 @@ namespace Mapper
                 nuevaTupla.Xelement = nuevaHora;
                 ListadoXML.Add(nuevaTupla);
             }
+        }
+        public void ActualizarAgenda(List<BE_Horario> agenda)
+        {
+            DateTime limite = DateTime.Now.AddDays(-1);
+            agenda.RemoveAll(x => x.Día < limite);
         }
 
         private BE_TuplaXML CrearAppointmentXML(BE_Horario horario)

@@ -40,9 +40,8 @@ namespace Mapper
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
-            List<BE_Ingrediente> listadeIngredientes;
 
-            List<BE_Plato> listaPlatos = (from platos in ds.Tables["Plato"].AsEnumerable()
+            List<BE_Plato> listaPlatos = ds.Tables.Contains("Plato") != false ? (from platos in ds.Tables["Plato"].AsEnumerable()
                                           select new BE_Plato
                                           {
                                               Codigo = Convert.ToInt32(platos[0]),
@@ -52,7 +51,7 @@ namespace Mapper
                                               Status = Convert.ToString(platos[4]),
                                               CostoUnitario = Convert.ToDecimal(platos[5]),
                                               Activo = Convert.ToBoolean(platos[6]),
-                                              ListaIngredientes = listadeIngredientes = (from obj in ds.Tables["Ingrediente-Plato"].AsEnumerable()
+                                              ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") & ds.Tables.Contains("Plato") != false ? (from obj in ds.Tables["Ingrediente-Plato"].AsEnumerable()
                                                                                        join ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                        on Convert.ToInt32(obj[1]) equals Convert.ToInt32(platos[0])
                                                                                        select new BE_Ingrediente
@@ -70,9 +69,9 @@ namespace Mapper
                                                                                            Status = Convert.ToString(ing[10]),
                                                                                            CostoUnitario = Convert.ToDecimal(ing[11])
 
-                                                                                       }).ToList()
+                                                                                       }).ToList():null
 
-                                          }).ToList();
+                                          }).ToList():null;
             return listaPlatos;
         }
 

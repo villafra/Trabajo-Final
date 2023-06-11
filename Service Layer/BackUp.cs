@@ -30,7 +30,6 @@ namespace Service_Layer
 
         public static void Restore(string nombreArchivo)
         {
-            DateTime fecha = DateTime.Now;
             string path = ReferenciasBD.DirectorioBD;
             string pathzip = Path.Combine(ReferenciasBD.CarpetaBackUps, nombreArchivo);
             System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
@@ -45,10 +44,23 @@ namespace Service_Layer
         {
             try
             {
-                XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
-                using (StreamWriter writer = new StreamWriter(ReferenciasBD.BaseDatosBackups))
+                if (!File.Exists(ReferenciasBD.BaseDatosBackups))
                 {
-                    serial.Serialize(writer, bkp);
+                    XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
+                    using (StreamWriter writer = new StreamWriter(ReferenciasBD.BaseDatosBackups))
+                    {
+                        serial.Serialize(writer, bkp);
+                    }
+                }
+                else
+                {
+                    XDocument logs = XDocument.Load(ReferenciasBD.BaseDatosBackups);
+                    logs.Root.Add(new XElement("BE_BackUp"),
+                        new XElement("Codigo", bkp.Codigo.ToString()),
+                        new XElement("NombreArchivo", bkp.NombreArchivo),
+                        new XElement("NombreUsuario", bkp.NombreUsuario)
+                        );
+                    logs.Save(ReferenciasBD.BaseDatosBackups);
                 }
                 return true;
             }

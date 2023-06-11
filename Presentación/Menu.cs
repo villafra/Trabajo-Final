@@ -118,7 +118,7 @@ namespace Trabajo_Final
 
         private void restoreBackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackUp.Restore("11-06-2023 20-08-27.zip");
+            BackUp.Restore("11-06-2023 20-28-21.zip");
         }
     }
 }

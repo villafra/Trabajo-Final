@@ -12,6 +12,8 @@ namespace Business_Entities
         public int Codigo { get; set; }
         public string NombreArchivo { get; set; }
         public string NombreUsuario { get; set; }
+        public string Accion { get; set; }
+        public DateTime FechaHora { get; set; }
        
     }
 }

@@ -25,20 +25,46 @@ namespace Service_Layer
             BE_BackUp oBE_BackUp = new BE_BackUp();
             oBE_BackUp.NombreArchivo = pathzip.Substring(7);
             oBE_BackUp.NombreUsuario = usuario.ToString();
+            oBE_BackUp.Accion = "BackUp";
+            oBE_BackUp.FechaHora = fecha;
             return  Guardar(oBE_BackUp);
         }
 
-        public static void Restore(string nombreArchivo)
+        public static void Restore(BE_Login usuario, string nombreArchivo)
         {
             string path = ReferenciasBD.DirectorioBD;
             string pathzip = Path.Combine(ReferenciasBD.CarpetaBackUps, nombreArchivo);
             System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
             foreach(System.IO.FileInfo file in directory.GetFiles())
             {
+                file.CopyTo(ReferenciasBD.ArchivoRollBack,true);
                 file.Delete();
             }
             ZipFile.ExtractToDirectory(pathzip, path);
+            BE_BackUp oBE_BackUp = new BE_BackUp();
+            oBE_BackUp.NombreArchivo = pathzip.Substring(7);
+            oBE_BackUp.NombreUsuario = usuario.ToString();
+            oBE_BackUp.Accion = "Restore";
+            oBE_BackUp.FechaHora = DateTime.Now;
+            Guardar(oBE_BackUp);
             Restaurar(nombreArchivo);
+        }
+
+        public static void RollBack(BE_Login usuario)
+        {
+            string path = ReferenciasBD.DirectorioRollBack;
+            System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
+            foreach (System.IO.FileInfo file in directory.GetFiles("RollBack.xml"))
+            {
+                file.CopyTo(ReferenciasBD.BaseDatosRestaurant,true);
+                file.Delete();
+            }
+            BE_BackUp oBE_BackUp = new BE_BackUp();
+            oBE_BackUp.NombreArchivo = "RollBack.xml";
+            oBE_BackUp.NombreUsuario = usuario.ToString();
+            oBE_BackUp.Accion = "RollBack";
+            oBE_BackUp.FechaHora = DateTime.Now;
+            Guardar(oBE_BackUp);
         }
         private static bool Guardar(BE_BackUp bkp)
         {
@@ -58,7 +84,9 @@ namespace Service_Layer
                     logs.Root.Add(new XElement("BE_BackUp"),
                         new XElement("Codigo", bkp.Codigo.ToString()),
                         new XElement("NombreArchivo", bkp.NombreArchivo),
-                        new XElement("NombreUsuario", bkp.NombreUsuario)
+                        new XElement("NombreUsuario", bkp.NombreUsuario),
+                        new XElement("Accion",bkp.Accion),
+                        new XElement("FechaHora", bkp.FechaHora.ToString("dd/MM/yyyy HH:mm:ss"))
                         );
                     logs.Save(ReferenciasBD.BaseDatosBackups);
                 }

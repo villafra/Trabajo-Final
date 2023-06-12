@@ -48,9 +48,9 @@ namespace Mapper
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
-                                              FechaIngreso = DateTime.Now,
-                                              HoraIngreso = DateTime.Now
-
+                                              //Permiso = 
+                                              Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]): true,
+                                              Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : true
                                           }).ToList();
             return ListaLogins;
         }
@@ -83,10 +83,9 @@ namespace Mapper
                 new XElement("Usuario", user.Usuario),
                 new XElement("Password",user.Password),
                 new XElement("Cantidad_Intentos",user.CantidadIntentos.ToString()),
-                new XElement("FechaIngreso",user.FechaIngreso.ToString("dd/MM/yyy")),
-                new XElement("HoraIngreso",user.HoraIngreso.ToString("HH:mm:ss")),
-                new XElement("FechaEgreso", DateTime.Now.ToString("dd/MM/yyyy")),
-                new XElement("HoraEgreso", DateTime.Now.ToString("HH:mm"))
+                new XElement("Permiso", user.Permiso.Codigo.ToString()),
+                new XElement("Activo", user.Activo.ToString()),
+                new XElement("Bloqueado", user.Bloqueado.ToString())
                 );
             nuevaTupla.Xelement = nuevoLogin;
             return nuevaTupla;

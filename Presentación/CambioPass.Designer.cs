@@ -32,10 +32,10 @@ namespace Trabajo_Final
             this.cambiarPass = new Presentación.CambiarPass();
             this.SuspendLayout();
             // 
-            // cambiarPass1
+            // cambiarPass
             // 
             this.cambiarPass.Location = new System.Drawing.Point(15, 18);
-            this.cambiarPass.Name = "cambiarPass1";
+            this.cambiarPass.Name = "cambiarPass";
             this.cambiarPass.Size = new System.Drawing.Size(349, 266);
             this.cambiarPass.TabIndex = 0;
             // 
@@ -47,6 +47,7 @@ namespace Trabajo_Final
             this.Controls.Add(this.cambiarPass);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmCambioPass";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCambioPass";
             this.ResumeLayout(false);
 

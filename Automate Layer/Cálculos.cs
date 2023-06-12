@@ -184,6 +184,10 @@ namespace Automate_Layer
         {
             MessageBox.Show("No se puede dar de baja un objeto activo (" + nombre + ").", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
+        public static void Minimizar(Form formulario)
+        {
+            formulario.WindowState = FormWindowState.Minimized;
+        }
         public static void Salir()
         {
             System.Windows.Forms.Application.Exit();

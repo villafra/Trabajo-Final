@@ -19,29 +19,29 @@ namespace Business_Logic_Layer
             oMPP_Login = new MPP_Login();
         }
 
-        public bool Baja(BE_Login Objeto)
+        public bool Baja(BE_Login usuario)
         {
-            throw new NotImplementedException();
+            return oMPP_Login.Baja(usuario);
         }
 
-        public bool Guardar(BE_Login Objeto)
+        public bool Guardar(BE_Login usuario)
         {
-            throw new NotImplementedException();
+            return oMPP_Login.Guardar(usuario);
         }
 
         public List<BE_Login> Listar()
         {
-            throw new NotImplementedException();
+            return oMPP_Login.Listar();
         }
 
-        public BE_Login ListarObjeto(BE_Login Objeto)
+        public BE_Login ListarObjeto(BE_Login usuario)
         {
-            throw new NotImplementedException();
+            return oMPP_Login.ListarObjeto(usuario);
         }
 
-        public bool Modificar(BE_Login Objeto)
+        public bool Modificar(BE_Login usuario)
         {
-            throw new NotImplementedException();
+            return oMPP_Login.Modificar(usuario);
         }
 
 

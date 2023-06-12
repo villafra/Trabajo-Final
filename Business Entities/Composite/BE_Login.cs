@@ -14,11 +14,9 @@ namespace Business_Entities
         public string Usuario { get; set; }
         public string Password { get; set; }
         public int CantidadIntentos { get; set; }
-        public DateTime FechaIngreso { get; set; }
-        public DateTime HoraIngreso { get; set; }
-        public DateTime FechaEgreso { get; set; }
-        public DateTime HoraEgreso { get; set; }
         public BE_Permiso Permiso { get; set; }
+        public bool Activo { get; set; }
+        public bool Bloqueado { get; set; }
 
         public override string ToString()
         {

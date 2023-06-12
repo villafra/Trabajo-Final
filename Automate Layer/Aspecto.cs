@@ -46,6 +46,7 @@ namespace Automate_Layer
                     (c as TextBox).BorderStyle = BorderStyle.None;
                     
                 }
+                if (c is Button) FormatearBoton(c as Button);
             }
             FormatearPanel(panel);
             FormatearMenuStrip(formulario);
@@ -156,6 +157,14 @@ namespace Automate_Layer
                 else if (c is ProgressBar) FormatearControlInterno(c as ProgressBar);
             }
         };
+        public static Action<GroupBox> FormatearGRPAccion = (grp) =>
+        {
+            FormatearControlExterno(grp);
+            foreach (Button btn in grp.Controls)
+            {
+                FormatearBoton(btn);
+            }
+        };
         public static Action<Control> FormatearControlExterno = (obj) =>
         {
             obj.BackColor = Color.FromArgb(46, 51, 73);
@@ -196,7 +205,7 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
 
         };

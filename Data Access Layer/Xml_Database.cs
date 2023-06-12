@@ -178,8 +178,7 @@ namespace Data_Access_Layer
                 new XElement("Usuario", "admin"),
                 new XElement("Password", "ys/ihoA4NkE="),
                 new XElement("Cantidad_Intentos", 0),
-                new XElement("FechaIngreso", ""),
-                new XElement("HoraIngreso", "")
+                new XElement("Permiso", "")
                 );
             return Admin;
         }

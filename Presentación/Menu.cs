@@ -118,8 +118,47 @@ namespace Trabajo_Final
 
         private void restoreBackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackUp.Restore(UsuarioActivo, "11-06-2023 22-35-21.zip");
-            BackUp.RollBack(UsuarioActivo);
+            
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Cálculos.Salir();
+        }
+
+        private void btnMinimizar_Click(object sender, EventArgs e)
+        {
+            Cálculos.Minimizar(this);
+        }
+
+        private void passwordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCambioPass frm = new frmCambioPass();
+            Cálculos.Minimizar(this);
+            frm.ShowDialog();
+            frm.Activate();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void empleadosToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmUsuarios);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmUsuarios();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
         }
     }
 }

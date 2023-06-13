@@ -111,8 +111,8 @@ namespace Mapper
         private BE_TuplaXML CrearPedidoXML(BE_Pedido pedido)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Pedidos";
-            nuevaTupla.NodoLeaf = "Pedido";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Pedidos";
             XElement nuevoPedido = new XElement("Pedido",
                 new XElement("ID", pedido.Codigo.ToString()),
                 new XElement("Fecha de Inicio", pedido.FechaInicio.ToString()),
@@ -132,8 +132,8 @@ namespace Mapper
             foreach(BE_Plato plato in pedido.ListadePlatos)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Platos-Pedidos";
-                nuevaTupla.NodoLeaf = "Plato-Pedido";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Platos-Pedidos";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
                     new XElement("ID Pedido", pedido.Codigo.ToString()),
                     new XElement("ID Plato", plato.Codigo.ToString())
@@ -150,8 +150,8 @@ namespace Mapper
             foreach (BE_Bebida bebida in pedido.ListadeBebida)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Bebidas-Pedidos";
-                nuevaTupla.NodoLeaf = "Bebida-Pedido";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Bebidas-Pedidos";
                 XElement nuevaBebidaPedido = new XElement("Bebida-Pedido",
                    new XElement("ID Pedido", bebida.Codigo.ToString()),
                    new XElement("ID Bebida", bebida.Codigo.ToString())

@@ -66,8 +66,8 @@ namespace Mapper
         private BE_TuplaXML CrearPagoXML (BE_Pago pago)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Pagos";
-            nuevaTupla.NodoLeaf = "Pago";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Pagos";
             XElement nuevoPago = new XElement("Pago",
                 new XElement("ID", pago.Codigo.ToString()),
                 new XElement("Tipo", pago.Tipo)

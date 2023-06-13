@@ -83,8 +83,8 @@ namespace Mapper
         private BE_TuplaXML CrearPlatoXML(BE_Plato plato)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Platos";
-            nuevaTupla.NodoLeaf = "Plato";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Platos";
             XElement nuevoPlato = new XElement("Plato",
                 new XElement("ID", plato.Codigo.ToString()),
                 new XElement("Nombre", plato.Nombre.ToString()),
@@ -103,8 +103,8 @@ namespace Mapper
             foreach(BE_Ingrediente ing in plato.ListaIngredientes)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Ingredientes-Platos";
-                nuevaTupla.NodoLeaf = "Ingrediente-Plato";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Ingredientes-Platos";
                 XElement nuevoIngPlato = new XElement("Ingrediente-Plato",
                 new XElement("ID Plato", plato.Codigo.ToString()),
                 new XElement("ID Ingrediente", ing.Codigo.ToString())

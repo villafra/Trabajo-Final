@@ -175,8 +175,8 @@ namespace Mapper
         public BE_TuplaXML CrearBebidaXML(BE_Bebida bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Bebidas";
-            nuevaTupla.NodoLeaf = "Bebida";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Bebidas";
             XElement nuevaBebida = new XElement("Bebida",
                 new XElement("ID", bebida.Codigo.ToString()),
                 new XElement("Nombre", bebida.Nombre),
@@ -193,8 +193,8 @@ namespace Mapper
         public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Alcoholica bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Bebidas";
-            nuevaTupla.NodoLeaf = "Bebida Alcoholica";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Bebidas Alcoholicas";
             XElement nuevaBebida = new XElement("Bebida Alcoholica",
                 new XElement("ID", bebida.Codigo.ToString()),
                 new XElement("Nombre", bebida.Nombre),
@@ -212,8 +212,8 @@ namespace Mapper
         public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Preparada bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Bebidas";
-            nuevaTupla.NodoLeaf = "Bebida Preparada";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Bebidas Preparadas";
             XElement nuevaBebida = new XElement("Bebida Preparada",
                 new XElement("ID", bebida.Codigo.ToString()),
                 new XElement("Nombre", bebida.Nombre),
@@ -235,8 +235,8 @@ namespace Mapper
             foreach (BE_Ingrediente ingrediente in bebida.ListaIngredientes)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Bebidas-Ingredientes";
-                nuevaTupla.NodoLeaf = "Bebida-Ingrediente";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Bebidas-Ingredientes";
                 XElement nuevaBebidaIngrediente = new XElement("Bebida-Ingrediente",
                     new XElement("ID Bebida",bebida.Codigo.ToString()),
                     new XElement("ID Ingrediente", ingrediente.Codigo.ToString())

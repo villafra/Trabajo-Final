@@ -76,8 +76,8 @@ namespace Mapper
         private BE_TuplaXML CrearIngredienteXML(BE_Ingrediente ingrediente)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Ingredientes";
-            nuevaTupla.NodoLeaf = "Ingrediente";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Ingredientes";
             XElement nuevoIngrediente = new XElement("Ingrediente",
                 new XElement("ID", ingrediente.Codigo.ToString()),
                 new XElement("Nombre",ingrediente.Nombre),

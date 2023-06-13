@@ -15,8 +15,8 @@ namespace Business_Entities
         public string Password { get; set; }
         public int CantidadIntentos { get; set; }
         public BE_Permiso Permiso { get; set; }
-        public bool Activo { get; set; }
-        public bool Bloqueado { get; set; }
+        public bool Activo { get; set; } = true;
+        public bool Bloqueado { get; set; } = false;
 
         public override string ToString()
         {

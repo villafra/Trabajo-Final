@@ -27,6 +27,9 @@ namespace Automate_Layer
             int nHeightEllipse
 
       );
+        [DllImport("Gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(IntPtr hObject);
+
         public static Action<Form, Panel, int, int> FormatearForm = (formulario, panel, Width, Height) =>
         {
             formulario.FormBorderStyle = new FormBorderStyle();
@@ -59,6 +62,14 @@ namespace Automate_Layer
             formulario.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 30, 30));
             formulario.AutoScroll = true;
             FormatearGRP(grp);
+        };
+
+        public static Action<Form, GroupBox, int, int> FormatearSubMenu = (formulario, grp, Width, Height) =>
+        {
+            formulario.FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            formulario.AutoScroll = true;
+            FormatearGRPSubMenu(grp);
+
         };
         public static Action<Form, int, int> FormatearCambioPass = (formulario, Width, Height) =>
         {
@@ -155,6 +166,16 @@ namespace Automate_Layer
                 else if (c is RadioButton) FormatearControlInterno(c as RadioButton);
                 else if (c is CheckBox) FormatearControlInterno(c as CheckBox);
                 else if (c is ProgressBar) FormatearControlInterno(c as ProgressBar);
+            }
+        };
+        public static Action<GroupBox> FormatearGRPSubMenu = (grp) =>
+        {
+            grp.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            grp.ForeColor = Color.Black;
+
+            foreach (Control c in grp.Controls)
+            {
+                c.ForeColor = Color.Black;
             }
         };
         public static Action<GroupBox> FormatearGRPAccion = (grp) =>

@@ -208,8 +208,8 @@ namespace Mapper
         private BE_TuplaXML CrearOrdenXML (BE_Orden orden)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Ordenes";
-            nuevaTupla.NodoLeaf = "Orden";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Ordenes";
             XElement nuevaOrden = new XElement("Orden",
                 new XElement("ID", orden.Codigo.ToString()),
                 new XElement("Pasos Orden", orden.Pasos_Orden.ToString()),

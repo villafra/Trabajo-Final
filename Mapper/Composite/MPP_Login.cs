@@ -28,7 +28,9 @@ namespace Mapper
 
         public bool Guardar(BE_Login user)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearLoginXML(user));
+            return Acceso.Escribir(ListadoXML);
         }
 
         public List<BE_Login> Listar()
@@ -43,14 +45,14 @@ namespace Mapper
             List<BE_Login> ListaLogins = (from log in ds.Tables["Login"].AsEnumerable()
                                           select new BE_Login
                                           {
-                                              Codigo = Convert.ToInt32(log[0]),
+                                              //Codigo = Convert.ToInt32(log[0]),
                                               //Empleado = listaEmplados.Find(x=> x.Codigo == Convert.ToInt32(log[1])),
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
                                               //Permiso = 
-                                              Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]): true,
-                                              Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : true
+                                              //Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[4]): true,
+                                              //Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[5]) : true
                                           }).ToList();
             return ListaLogins;
         }
@@ -79,11 +81,11 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Login";
             XElement nuevoLogin = new XElement("Login",
                 new XElement("ID",user.Codigo.ToString()),
-                new XElement("ID_Empleado",user.Empleado.Codigo.ToString()),
+                //new XElement("ID_Empleado", user.Empleado.Codigo.ToString()),
                 new XElement("Usuario", user.Usuario),
                 new XElement("Password",user.Password),
                 new XElement("Cantidad_Intentos",user.CantidadIntentos.ToString()),
-                new XElement("Permiso", user.Permiso.Codigo.ToString()),
+                //new XElement("Permiso", user.Permiso.Codigo.ToString()),
                 new XElement("Activo", user.Activo.ToString()),
                 new XElement("Bloqueado", user.Bloqueado.ToString())
                 );

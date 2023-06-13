@@ -49,8 +49,18 @@ namespace Data_Access_Layer
             {
                 foreach (BE_TuplaXML tupla in datos)
                 {
-                    XElement nodoPadre = doc.Root.Element(tupla.NodoLeaf);
+                    XElement nodoPadre = doc.Root.Element(tupla.NodoRoot);
+                    if (nodoPadre == null)
+                    {
+                        doc.Root.Add(tupla.NodoRoot);
+                        nodoPadre = doc.Root.Element(tupla.NodoRoot);
+                    }
+                    if (Convert.ToInt32(tupla.Xelement.Element("ID").Value) == 0)
+                    {
+                        AutogenerarID(tupla);
+                    }
                     nodoPadre.Add(tupla.Xelement);
+
                 }
                 CerrarConexion();
                 return true;
@@ -149,7 +159,7 @@ namespace Data_Access_Layer
             try
             {
                 XDocument Restaurant = new XDocument();
-                XElement Root = new XElement("Restaurant");
+                XElement Root = new XElement(ReferenciasBD.Root);
                 XElement Leaf = new XElement("Logins");
                 Leaf.Add(CrearAdmin());
                 Root.Add(Leaf);
@@ -181,6 +191,18 @@ namespace Data_Access_Layer
                 new XElement("Permiso", "")
                 );
             return Admin;
+        }
+
+        private void AutogenerarID(BE_TuplaXML tupla)
+        {
+
+            int ID = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                     .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0"))
+                     .Max();
+
+            ID += 1;
+            tupla.Xelement.Element("ID").Value = ID.ToString().PadLeft(3, '0');
+                
         }
 
     }

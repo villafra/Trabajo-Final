@@ -86,8 +86,8 @@ namespace Mapper
         private BE_TuplaXML CrearCompraXML(BE_Compra compra)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Compras";
-            nuevaTupla.NodoLeaf = "Compra";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Compras";
             XElement nuevaCompra = new XElement("Compra",
                 new XElement("ID", compra.Codigo.ToString()),
                 new XElement("ID Ingrediente", compra.ID_Ingrediente.Codigo.ToString()),

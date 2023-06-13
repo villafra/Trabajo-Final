@@ -91,6 +91,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\NuevoLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoLogin.Designer.cs">
+      <DependentUpon>NuevoLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Mozos.resx">
       <DependentUpon>Mozos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoLogin.resx">
+      <DependentUpon>NuevoLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
@@ -232,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\buscar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\aprobado.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

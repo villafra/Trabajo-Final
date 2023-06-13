@@ -464,10 +464,10 @@ namespace Mapper
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             XElement nuevoEmpleado;
 
-            nuevaTupla.NodoRoot = "Empleados";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
             if (empleado.DevolverNombre() == "Mozo")
             {
-                nuevaTupla.NodoLeaf = "Mozo";
+                nuevaTupla.NodoLeaf = "Mozos";
                 nuevoEmpleado = new XElement("Mozo",
                     new XElement("ID", empleado.Codigo.ToString()),
                     new XElement("DNI", empleado.DNI.ToString()),
@@ -483,7 +483,7 @@ namespace Mapper
             }
             else if (empleado.DevolverNombre() == "ChefPrincipal")
             {
-                nuevaTupla.NodoLeaf = "Chef Principal";
+                nuevaTupla.NodoLeaf = "Chef_Principales";
                 nuevoEmpleado = new XElement("Chef Principal",
                    new XElement("ID", empleado.Codigo.ToString()),
                    new XElement("DNI", empleado.DNI.ToString()),
@@ -499,7 +499,7 @@ namespace Mapper
             }
             else
             {
-                nuevaTupla.NodoLeaf = "Gerente Sucursal";
+                nuevaTupla.NodoLeaf = "Gerentes_Sucursal";
                 nuevoEmpleado = new XElement("Gerente Sucursal",
                    new XElement("ID", empleado.Codigo.ToString()),
                    new XElement("DNI", empleado.DNI.ToString()),
@@ -523,8 +523,8 @@ namespace Mapper
             foreach(BE_Pedido pedido in mozo.PedidosTomados)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Mozos-Pedidos";
-                nuevaTupla.NodoLeaf = "Mozo-Pedido";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Mozo-Pedidos";
                 XElement nuevoMozoPedido = new XElement("Mozo-Pedido",
                     new XElement("ID Pedido", pedido.Codigo.ToString()),
                     new XElement("ID Mozo", mozo.Codigo.ToString())
@@ -541,8 +541,8 @@ namespace Mapper
             foreach(BE_Orden orden in chef.OrdenesPendientes)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Ordenes_Pendientes";
-                nuevaTupla.NodoLeaf = "Orden_Pendiente";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Ordenes_Pendientes";
                 XElement nuevaOrdenPendiente = new XElement("Orden_Pendiente",
                     new XElement("ID Orden",orden.Codigo.ToString()),
                     new XElement("ID Chef", chef.Codigo.ToString())

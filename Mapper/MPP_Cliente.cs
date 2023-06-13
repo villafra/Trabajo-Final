@@ -133,8 +133,8 @@ namespace Mapper
         private BE_TuplaXML CrearClienteXML(BE_Cliente cliente)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Clientes";
-            nuevaTupla.NodoLeaf = "Cliente";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Clientes";
             XElement nuevoCliente = new XElement("Cliente",
                 new XElement("ID", cliente.Codigo.ToString()),
                 new XElement("DNI",cliente.DNI.ToString()),
@@ -155,8 +155,8 @@ namespace Mapper
             foreach (BE_Bebida bebidas in cliente.ListadeBebidas)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Bebidas-Clientes";
-                nuevaTupla.NodoLeaf = "Bebida-Cliente";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Bebidas-Clientes";
                 XElement nuevaBebidaCliente = new XElement("Bebida-Cliente",
                     new XElement("ID Bebida", bebidas.Codigo.ToString()),
                     new XElement("ID Cliente", cliente.Codigo.ToString())
@@ -174,8 +174,8 @@ namespace Mapper
             foreach (BE_Plato platos in cliente.ListadePlatos)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Platos-Clientes";
-                nuevaTupla.NodoLeaf = "Plato-Cliente";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Platos-Clientes";
                 XElement nuevoPlatoCliente = new XElement("Plato-Cliente",
                     new XElement("ID Plato", platos.Codigo.ToString()),
                     new XElement("ID Cliente", cliente.Codigo.ToString())
@@ -193,8 +193,8 @@ namespace Mapper
             foreach(BE_Reserva reservas in cliente.ListaReservas)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Reservas-Clientes";
-                nuevaTupla.NodoLeaf = "Reserva-Cliente";
+                nuevaTupla.NodoRoot = ReferenciasBD.Root;
+                nuevaTupla.NodoLeaf = "Reservas-Clientes";
                 XElement nuevaReserva = new XElement("Reserva-Cliente",
                     new XElement("ID Reserva", reservas.Codigo.ToString()),
                     new XElement("ID Cliente", cliente.Codigo.ToString())

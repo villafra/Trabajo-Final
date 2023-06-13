@@ -165,8 +165,8 @@ namespace Mapper
         private BE_TuplaXML CrearAppointmentXML(BE_Horario horario)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Calendarios";
-            nuevaTupla.NodoLeaf = "Calendario";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Calendarios";
 
             XElement nuevaHora = new XElement("Calendario",
                new XElement("ID_Horario", horario.Codigo.ToString()),

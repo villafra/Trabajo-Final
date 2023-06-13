@@ -127,8 +127,8 @@ namespace Mapper
         private BE_TuplaXML CrearReservaXML(BE_Reserva reserva)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Reservas";
-            nuevaTupla.NodoLeaf = "Reserva";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Reservas";
             XElement nuevaReserva = new XElement("Reserva",
                 new XElement("ID", reserva.Codigo.ToString()),
                 new XElement("Fecha Inicio", reserva.FechaInicio.ToString("dd/MM/yyyy")),

@@ -17,6 +17,8 @@ namespace Data_Access_Layer
         private static string Agenda = "Agenda.xml";
         private static string CarpetaRollBack = $"C:\\Users\\Public\\Documents";
         private static string RollBack = "Rollback.xml";
+        private static string NodoRoot = "Restaurant";
+        
         private static List<string> Leafs = new List<string>
         {
             "Bebidas",
@@ -111,25 +113,9 @@ namespace Data_Access_Layer
             }
         }
 
-        public static List<string> ArmaBD
-        {
-            get { return Leafs; }
-        }
-
-        public static string ArchivoRollBack
-        {
-            get
-            {
-                return Path.Combine(CarpetaRollBack, RollBack);
-            }
-        }
-
-        public static string DirectorioRollBack
-        {
-            get
-            {
-                return CarpetaRollBack;
-            }
-        }
+        public static List<string> ArmaBD { get { return Leafs; } }
+        public static string ArchivoRollBack { get { return Path.Combine(CarpetaRollBack, RollBack); } }
+        public static string DirectorioRollBack { get { return CarpetaRollBack; } }
+        public static string Root { get { return NodoRoot; } }
     }
 }

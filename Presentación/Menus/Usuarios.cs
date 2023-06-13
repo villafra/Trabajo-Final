@@ -32,5 +32,11 @@ namespace Trabajo_Final
             Cálculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            frmNuevoLogin frm = new frmNuevoLogin();
+            frm.ShowDialog();
+        }
     }
 }

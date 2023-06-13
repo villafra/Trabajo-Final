@@ -169,8 +169,8 @@ namespace Mapper
         private BE_TuplaXML CrearMesaXML(BE_Mesa mesa)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Mesas";
-            nuevaTupla.NodoLeaf = "Mesa";
+            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoLeaf = "Mesas";
             XElement nuevaMesa = new XElement("Mesa",
                 new XElement("ID", mesa.Codigo.ToString()),
                 new XElement("Capacidad", mesa.Capacidad.ToString()),

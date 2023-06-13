@@ -16,7 +16,7 @@ namespace Trabajo_Final
 {
     public partial class frmNuevoLogin : Form
     {
-        BE_Login oBE_Login;
+        public BE_Login oBE_Login;
         BLL_Login oBLL_Login;
         public frmNuevoLogin()
         {
@@ -38,6 +38,19 @@ namespace Trabajo_Final
             oBE_Login.Usuario = txtUsuario.Text;
             oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
             //oBE_Login.Permiso = (BE_Permiso)comboEmpleado.SelectedItem;
+        }
+        private void ImportarLogin()
+        {
+            if (oBE_Login != null)
+            {
+                txtUsuario.Text = oBE_Login.Usuario;
+                txtPass.Text = oBE_Login.Password;
+            }
+        }
+
+        private void frmNuevoLogin_Load(object sender, EventArgs e)
+        {
+            ImportarLogin();
         }
     }
 }

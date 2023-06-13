@@ -183,12 +183,14 @@ namespace Data_Access_Layer
         public XElement CrearAdmin()
         {
             XElement Admin = new XElement("Login",
-                new XElement("ID", "001"),
+                new XElement("ID", "0001"),
                 new XElement("ID_Empleado", ""),
                 new XElement("Usuario", "admin"),
                 new XElement("Password", "ys/ihoA4NkE="),
                 new XElement("Cantidad_Intentos", 0),
-                new XElement("Permiso", "")
+                new XElement("Permiso", ""),
+                new XElement("Activo",true.ToString()),
+                new XElement("Bloqueado", false.ToString())
                 );
             return Admin;
         }
@@ -197,13 +199,15 @@ namespace Data_Access_Layer
         {
 
             int ID = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                     .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0"))
+                     .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0001"))
                      .Max();
 
             ID += 1;
-            tupla.Xelement.Element("ID").Value = ID.ToString().PadLeft(3, '0');
+            tupla.Xelement.Element("ID").Value = ID.ToString().PadLeft(4, '0');
                 
         }
+
+
 
     }
 }

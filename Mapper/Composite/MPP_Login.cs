@@ -45,14 +45,14 @@ namespace Mapper
             List<BE_Login> ListaLogins = (from log in ds.Tables["Login"].AsEnumerable()
                                           select new BE_Login
                                           {
-                                              //Codigo = Convert.ToInt32(log[0]),
+                                              Codigo = Convert.ToInt32(log[0]),
                                               //Empleado = listaEmplados.Find(x=> x.Codigo == Convert.ToInt32(log[1])),
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
                                               //Permiso = 
-                                              //Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[4]): true,
-                                              //Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[5]) : true
+                                              Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
+                                              Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
                                           }).ToList();
             return ListaLogins;
         }

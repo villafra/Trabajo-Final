@@ -37,6 +37,29 @@ namespace Trabajo_Final
         {
             frmNuevoLogin frm = new frmNuevoLogin();
             frm.ShowDialog();
+            ActualizarListado();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            frmNuevoLogin frm = new frmNuevoLogin();
+            frm.oBE_Login = oBE_Login;
+            frm.ShowDialog();
+        }
+
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
+        }
+
+        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
+            }
+            catch { }
+
         }
     }
 }

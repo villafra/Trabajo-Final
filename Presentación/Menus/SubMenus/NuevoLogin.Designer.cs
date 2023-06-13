@@ -32,14 +32,14 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoLogin));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.comboPermiso = new System.Windows.Forms.ComboBox();
+            this.lblPermiso = new System.Windows.Forms.Label();
             this.comboEmpleado = new System.Windows.Forms.ComboBox();
             this.lblPass = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblEmpleado = new System.Windows.Forms.Label();
             this.txtPass = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.comboPermiso = new System.Windows.Forms.ComboBox();
-            this.lblPermiso = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
@@ -62,6 +62,23 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // comboPermiso
+            // 
+            this.comboPermiso.FormattingEnabled = true;
+            this.comboPermiso.Location = new System.Drawing.Point(147, 194);
+            this.comboPermiso.Name = "comboPermiso";
+            this.comboPermiso.Size = new System.Drawing.Size(257, 24);
+            this.comboPermiso.TabIndex = 8;
+            // 
+            // lblPermiso
+            // 
+            this.lblPermiso.AutoSize = true;
+            this.lblPermiso.Location = new System.Drawing.Point(20, 199);
+            this.lblPermiso.Name = "lblPermiso";
+            this.lblPermiso.Size = new System.Drawing.Size(59, 17);
+            this.lblPermiso.TabIndex = 7;
+            this.lblPermiso.Text = "Permiso";
             // 
             // comboEmpleado
             // 
@@ -111,23 +128,6 @@ namespace Trabajo_Final
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(257, 22);
             this.txtUsuario.TabIndex = 1;
-            // 
-            // comboPermiso
-            // 
-            this.comboPermiso.FormattingEnabled = true;
-            this.comboPermiso.Location = new System.Drawing.Point(147, 194);
-            this.comboPermiso.Name = "comboPermiso";
-            this.comboPermiso.Size = new System.Drawing.Size(257, 24);
-            this.comboPermiso.TabIndex = 8;
-            // 
-            // lblPermiso
-            // 
-            this.lblPermiso.AutoSize = true;
-            this.lblPermiso.Location = new System.Drawing.Point(20, 199);
-            this.lblPermiso.Name = "lblPermiso";
-            this.lblPermiso.Size = new System.Drawing.Size(59, 17);
-            this.lblPermiso.TabIndex = 7;
-            this.lblPermiso.Text = "Permiso";
             // 
             // btnCancelar
             // 
@@ -184,6 +184,7 @@ namespace Trabajo_Final
             this.Name = "frmNuevoLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmNuevoLogin";
+            this.Load += new System.EventHandler(this.frmNuevoLogin_Load);
             this.grpNuevoLogin.ResumeLayout(false);
             this.grpNuevoLogin.PerformLayout();
             this.ResumeLayout(false);

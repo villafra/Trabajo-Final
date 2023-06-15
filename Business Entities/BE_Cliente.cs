@@ -19,7 +19,7 @@ namespace Business_Entities
         public List<BE_Plato> ListadePlatos { get; set; }
         public List<BE_Bebida> ListadeBebidas { get; set; }
         public List<BE_Reserva> ListaReservas { get; set; }
-
+        public bool Activo { get; set; } = true;
         public string DevolverNombre()
         {
             string clase = typeof(BE_Cliente).Name;

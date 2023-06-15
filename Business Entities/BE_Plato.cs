@@ -15,7 +15,7 @@ namespace Business_Entities
         public Clasificación Clase { get; set; }
         public string Status { get; set; }
         public decimal CostoUnitario { get; set; }
-        public bool Activo { get; set; }
+        public bool Activo { get; set; } = true;
         public List<BE_Ingrediente> ListaIngredientes { get; set; }
 
         public enum Tipo_Plato

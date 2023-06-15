@@ -24,7 +24,9 @@ namespace Mapper
 
         public bool Baja(BE_Login user)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearLoginXML(user));
+            return Acceso.Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Login user)

@@ -18,7 +18,7 @@ namespace Business_Entities
         public DateTime FechaIngreso { get; set; }
         public int Antiguedad { get; set; }
         public Category Categoria { get; set; }
-
+        public bool Activo { get; set; } = true;
         public int CalcularAños(DateTime fecha)
         {
             int Año = DateTime.Now.Year - fecha.Year;

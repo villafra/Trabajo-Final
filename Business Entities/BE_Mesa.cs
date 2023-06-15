@@ -15,6 +15,6 @@ namespace Business_Entities
         public int OcupaciónActual { get; set; }
         public string Status { get; set; }
         public BE_Empleado ID_Empleado { get; set; }
-
+        public bool Activo { get; set; } = true;
     }
 }

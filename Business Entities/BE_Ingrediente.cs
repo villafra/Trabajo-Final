@@ -17,7 +17,7 @@ namespace Business_Entities
         public string UnidadMedida { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public string Lote { get; set; }
-        public bool Activo { get; set; }
+        public bool Activo { get; set; } = true;
         public int VidaUtil { get; set; }
         public string Status { get; set; }
         public decimal CostoUnitario { get; set; }

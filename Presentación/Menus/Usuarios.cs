@@ -61,5 +61,10 @@ namespace Trabajo_Final
             catch { }
 
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            oBLL_Login.Baja(oBE_Login);
+        }
     }
 }

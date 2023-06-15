@@ -74,6 +74,30 @@ namespace Data_Access_Layer
             }
         }
 
+        public bool Baja (List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement modificarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                        .Where(n => n.Element("ID").Value == tupla.Xelement.Element("ID").Value)
+                                        .FirstOrDefault();
+                    modificarObjeto.Element("Activo").Value = false.ToString();
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+    
+
         public bool Borrar(List<BE_TuplaXML> datos)
         {
             AbrirConexion();

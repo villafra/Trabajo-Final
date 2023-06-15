@@ -17,7 +17,7 @@ namespace Business_Entities
         public DateTime FechaFin { get; set; }
         public string TipoRecurrencia { get; set; }
         public BE_Pedido ID_Pedido { get; set; }
-
+        public bool Activo { get; set; } = true;
     }
 
     

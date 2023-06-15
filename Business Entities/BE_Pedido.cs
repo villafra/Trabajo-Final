@@ -19,6 +19,6 @@ namespace Business_Entities
         public List<BE_Bebida> ListadeBebida { get; set; }
         public BE_Pago ID_Pago { get; set; }
         public BE_Mozo ID_Mozo { get; set; }
-        
+        public bool Activo { get; set; } = true;
     }
 }

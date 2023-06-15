@@ -11,6 +11,6 @@ namespace Business_Entities
     {
         public int Codigo { get; set; }
         public string Tipo { get; set; }
-       
+        public bool Activo { get; set; } = true;
     }
 }

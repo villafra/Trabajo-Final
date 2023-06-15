@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -66,10 +67,10 @@ namespace Mapper
         private BE_TuplaXML CrearPagoXML (BE_Pago pago)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Pagos";
+            nuevaTupla.NodoRoot = "Pagos";
+            nuevaTupla.NodoLeaf = "Pago";
             XElement nuevoPago = new XElement("Pago",
-                new XElement("ID", pago.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(pago.Codigo)),
                 new XElement("Tipo", pago.Tipo)
                 );
             nuevaTupla.Xelement = nuevoPago;

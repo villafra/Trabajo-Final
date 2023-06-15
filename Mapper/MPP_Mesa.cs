@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -169,10 +170,10 @@ namespace Mapper
         private BE_TuplaXML CrearMesaXML(BE_Mesa mesa)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Mesas";
+            nuevaTupla.NodoRoot = "Mesas";
+            nuevaTupla.NodoLeaf = "Mesa";
             XElement nuevaMesa = new XElement("Mesa",
-                new XElement("ID", mesa.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(mesa.Codigo)),
                 new XElement("Capacidad", mesa.Capacidad.ToString()),
                 new XElement("Ubicación", mesa.Ubicación),
                 new XElement("Ocupación Actual", mesa.OcupaciónActual.ToString()),

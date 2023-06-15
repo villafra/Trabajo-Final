@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -86,10 +87,10 @@ namespace Mapper
         private BE_TuplaXML CrearCompraXML(BE_Compra compra)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Compras";
+            nuevaTupla.NodoRoot = "Compras";
+            nuevaTupla.NodoLeaf = "Compra";
             XElement nuevaCompra = new XElement("Compra",
-                new XElement("ID", compra.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(compra.Codigo)),
                 new XElement("ID Ingrediente", compra.ID_Ingrediente.Codigo.ToString()),
                 new XElement("Cantidad", compra.Cantidad.ToString()),
                 new XElement("Fecha Compra", compra.FechaCompra.ToString("dd/MM/yyyy")),

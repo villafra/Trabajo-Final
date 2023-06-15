@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -143,10 +144,10 @@ namespace Mapper
             foreach(BE_Horario hora in Calendario)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = ReferenciasBD.BaseDatosRestaurant;
-                nuevaTupla.NodoLeaf = "Calendarios";
+                nuevaTupla.NodoRoot = "Calendarios";
+                nuevaTupla.NodoLeaf = "Calendario";
                 XElement nuevaHora = new XElement("Calendario",
-                    new XElement("ID", hora.Codigo.ToString()),
+                    new XElement("ID", Cálculos.IDPadleft(hora.Codigo)),
                     new XElement("Dia", hora.Día.ToString("dd/MM/yyy HH:mm:ss")),
                     new XElement("Hora", hora.Hora.ToString()),
                     new XElement("Disponible", hora.Disponible.ToString()),
@@ -169,7 +170,7 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Calendarios";
 
             XElement nuevaHora = new XElement("Calendario",
-               new XElement("ID_Horario", horario.Codigo.ToString()),
+               new XElement("ID_Horario", Cálculos.IDPadleft(horario.Codigo)),
                new XElement("Día", horario.Día.ToString("dd/MM/yyyy HH:mm:ss")),
                new XElement("Hora", horario.Hora.ToString()),
                new XElement("Disponible", horario.Disponible.ToString()),

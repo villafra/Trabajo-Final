@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -111,10 +112,10 @@ namespace Mapper
         private BE_TuplaXML CrearPedidoXML(BE_Pedido pedido)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Pedidos";
+            nuevaTupla.NodoRoot = "Pedidos";
+            nuevaTupla.NodoLeaf = "Pedido";
             XElement nuevoPedido = new XElement("Pedido",
-                new XElement("ID", pedido.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(pedido.Codigo)),
                 new XElement("Fecha de Inicio", pedido.FechaInicio.ToString()),
                 new XElement("Customizado", pedido.Customizado.ToString()),
                 new XElement("Aclaraciones", pedido.Aclaraciones),
@@ -132,11 +133,11 @@ namespace Mapper
             foreach(BE_Plato plato in pedido.ListadePlatos)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = ReferenciasBD.Root;
-                nuevaTupla.NodoLeaf = "Platos-Pedidos";
+                nuevaTupla.NodoRoot = "Platos-Pedidos";
+                nuevaTupla.NodoLeaf = "Plato-Pedido";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
-                    new XElement("ID Pedido", pedido.Codigo.ToString()),
-                    new XElement("ID Plato", plato.Codigo.ToString())
+                    new XElement("ID Pedido", Cálculos.IDPadleft(pedido.Codigo)),
+                    new XElement("ID Plato", Cálculos.IDPadleft(plato.Codigo))
                     );
                 nuevaTupla.Xelement= nuevoPlatoPedido;
                 listadePlatos.Add(nuevaTupla);
@@ -150,11 +151,11 @@ namespace Mapper
             foreach (BE_Bebida bebida in pedido.ListadeBebida)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = ReferenciasBD.Root;
-                nuevaTupla.NodoLeaf = "Bebidas-Pedidos";
+                nuevaTupla.NodoRoot = "Bebidas-Pedidos";
+                nuevaTupla.NodoLeaf = "Bebida-Pedido";
                 XElement nuevaBebidaPedido = new XElement("Bebida-Pedido",
-                   new XElement("ID Pedido", bebida.Codigo.ToString()),
-                   new XElement("ID Bebida", bebida.Codigo.ToString())
+                   new XElement("ID Pedido", Cálculos.IDPadleft(bebida.Codigo)),
+                   new XElement("ID Bebida", Cálculos.IDPadleft(bebida.Codigo))
                     ); 
                 nuevaTupla.Xelement = nuevaBebidaPedido;
                 listadeBebidas.Add(nuevaTupla);

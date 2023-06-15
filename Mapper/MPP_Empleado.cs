@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -469,7 +470,7 @@ namespace Mapper
             {
                 nuevaTupla.NodoLeaf = "Mozos";
                 nuevoEmpleado = new XElement("Mozo",
-                    new XElement("ID", empleado.Codigo.ToString()),
+                    new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                     new XElement("DNI", empleado.DNI.ToString()),
                     new XElement("Nombre", empleado.Nombre),
                     new XElement("Apellido", empleado.Apellido),
@@ -485,7 +486,7 @@ namespace Mapper
             {
                 nuevaTupla.NodoLeaf = "Chef_Principales";
                 nuevoEmpleado = new XElement("Chef Principal",
-                   new XElement("ID", empleado.Codigo.ToString()),
+                   new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                    new XElement("DNI", empleado.DNI.ToString()),
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
@@ -501,7 +502,7 @@ namespace Mapper
             {
                 nuevaTupla.NodoLeaf = "Gerentes_Sucursal";
                 nuevoEmpleado = new XElement("Gerente Sucursal",
-                   new XElement("ID", empleado.Codigo.ToString()),
+                   new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                    new XElement("DNI", empleado.DNI.ToString()),
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
@@ -526,8 +527,8 @@ namespace Mapper
                 nuevaTupla.NodoRoot = ReferenciasBD.Root;
                 nuevaTupla.NodoLeaf = "Mozo-Pedidos";
                 XElement nuevoMozoPedido = new XElement("Mozo-Pedido",
-                    new XElement("ID Pedido", pedido.Codigo.ToString()),
-                    new XElement("ID Mozo", mozo.Codigo.ToString())
+                    new XElement("ID Pedido", Cálculos.IDPadleft(pedido.Codigo)),
+                    new XElement("ID Mozo", Cálculos.IDPadleft(mozo.Codigo))
                     );
                 nuevaTupla.Xelement = nuevoMozoPedido;
                 listadePedidos.Add(nuevaTupla);
@@ -544,8 +545,8 @@ namespace Mapper
                 nuevaTupla.NodoRoot = ReferenciasBD.Root;
                 nuevaTupla.NodoLeaf = "Ordenes_Pendientes";
                 XElement nuevaOrdenPendiente = new XElement("Orden_Pendiente",
-                    new XElement("ID Orden",orden.Codigo.ToString()),
-                    new XElement("ID Chef", chef.Codigo.ToString())
+                    new XElement("ID Orden",Cálculos.IDPadleft(orden.Codigo)),
+                    new XElement("ID Chef", Cálculos.IDPadleft(chef.Codigo))
                     );
                 nuevaTupla.Xelement = nuevaOrdenPendiente;
                 listadeOrdenes.Add(nuevaTupla);

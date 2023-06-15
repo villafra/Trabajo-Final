@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -64,7 +65,9 @@ namespace Mapper
 
         public bool Modificar(BE_Login user)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearLoginXML(user));
+            return Acceso.Modificar(ListadoXML);
         }
 
         public BE_Login Login (string user)
@@ -80,11 +83,11 @@ namespace Mapper
             nuevaTupla.NodoRoot = "Logins";
             nuevaTupla.NodoLeaf = "Login";
             XElement nuevoLogin = new XElement("Login",
-                new XElement("ID",user.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(user.Codigo)),
                 //new XElement("ID_Empleado", user.Empleado.Codigo.ToString()),
                 new XElement("Usuario", user.Usuario),
-                new XElement("Password",user.Password),
-                new XElement("Cantidad_Intentos",user.CantidadIntentos.ToString()),
+                new XElement("Password", user.Password),
+                new XElement("Cantidad_Intentos", user.CantidadIntentos.ToString()),
                 //new XElement("Permiso", user.Permiso.Codigo.ToString()),
                 new XElement("Activo", user.Activo.ToString()),
                 new XElement("Bloqueado", user.Bloqueado.ToString())

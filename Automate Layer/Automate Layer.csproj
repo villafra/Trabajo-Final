@@ -46,6 +46,7 @@
     <Compile Include="Aspecto.cs" />
     <Compile Include="Cálculos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLceador.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">

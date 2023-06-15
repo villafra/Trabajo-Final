@@ -50,6 +50,10 @@
       <Project>{1cb14128-098c-400f-aa4d-6c474e7b7266}</Project>
       <Name>Abstraction Layer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Automate Layer\Automate Layer.csproj">
+      <Project>{AD854A9C-9B6D-4930-99E3-7DA378EAA858}</Project>
+      <Name>Automate Layer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Business Entities\Business Entities.csproj">
       <Project>{368d015f-1e2d-450a-a15c-42bdb8371e6f}</Project>
       <Name>Business Entities</Name>

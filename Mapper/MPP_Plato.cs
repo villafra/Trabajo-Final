@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Data;
 using System.Xml.Linq;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -83,10 +84,10 @@ namespace Mapper
         private BE_TuplaXML CrearPlatoXML(BE_Plato plato)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoRoot = "Plato";
             nuevaTupla.NodoLeaf = "Platos";
             XElement nuevoPlato = new XElement("Plato",
-                new XElement("ID", plato.Codigo.ToString()),
+                new XElement("ID",  Cálculos.IDPadleft(plato.Codigo)),
                 new XElement("Nombre", plato.Nombre.ToString()),
                 new XElement("Tipo", plato.Tipo.ToString()),
                 new XElement("Clase", plato.Clase.ToString()),
@@ -103,11 +104,11 @@ namespace Mapper
             foreach(BE_Ingrediente ing in plato.ListaIngredientes)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = ReferenciasBD.Root;
-                nuevaTupla.NodoLeaf = "Ingredientes-Platos";
+                nuevaTupla.NodoRoot = "Ingredientes-Platos";
+                nuevaTupla.NodoLeaf = "Ingrediente-Plato";
                 XElement nuevoIngPlato = new XElement("Ingrediente-Plato",
-                new XElement("ID Plato", plato.Codigo.ToString()),
-                new XElement("ID Ingrediente", ing.Codigo.ToString())
+                new XElement("ID Plato", Cálculos.IDPadleft(plato.Codigo)),
+                new XElement("ID Ingrediente", Cálculos.IDPadleft(ing.Codigo))
                 );
                 nuevaTupla.Xelement = nuevoIngPlato;
                 ListadeIngredientes.Add(nuevaTupla);

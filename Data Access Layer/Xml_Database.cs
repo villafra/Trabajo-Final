@@ -10,6 +10,7 @@ using System.Xml;
 using System.Xml.Linq;
 using Business_Entities;
 using Abstraction_Layer;
+using Automate_Layer;
 
 namespace Data_Access_Layer
 {
@@ -203,7 +204,7 @@ namespace Data_Access_Layer
                      .Max();
 
             ID += 1;
-            tupla.Xelement.Element("ID").Value = ID.ToString().PadLeft(4, '0');
+            tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(ID);
                 
         }
 

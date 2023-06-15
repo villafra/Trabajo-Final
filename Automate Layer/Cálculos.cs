@@ -6,10 +6,9 @@ namespace Automate_Layer
 {
     public static class Cálculos
     {
-        public static string DevolverNombre<T>(T objeto) where T:IEntidable
+       public static string IDPadleft(int codigo)
         {
-            string clase = typeof(T).Name;
-            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
+            return codigo.ToString().PadLeft(4, '0');
         }
         public static void ValidarNumeros(KeyPressEventArgs e)
         {
@@ -144,6 +143,7 @@ namespace Automate_Layer
             combo.Refresh();
 
         }
+
         public static void MsgBoxSiExiste(string nombre)
         {
             MessageBox.Show(nombre + " ya existe en la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

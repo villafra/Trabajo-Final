@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -208,10 +209,10 @@ namespace Mapper
         private BE_TuplaXML CrearOrdenXML (BE_Orden orden)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Ordenes";
+            nuevaTupla.NodoRoot = "Ordenes";
+            nuevaTupla.NodoLeaf = "Ordene";
             XElement nuevaOrden = new XElement("Orden",
-                new XElement("ID", orden.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(orden.Codigo)),
                 new XElement("Pasos Orden", orden.Pasos_Orden.ToString()),
                 new XElement("Status", orden.Status),
                 new XElement("ID Pedido", orden.ID_Pedido.ToString()),

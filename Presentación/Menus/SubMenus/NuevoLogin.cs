@@ -27,17 +27,32 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            Nuevo();
-            oBLL_Login.Guardar(oBE_Login);
+            if (_ = oBE_Login != null ? Viejo() : Nuevo())
+            {
+                Cálculos.MsgBoxAlta("Los datos se han guardado correctamente");
+            }
+            else
+            {
+                Cálculos.MsgBoxNoAlta("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
+            }
+
         }
 
-        private void Nuevo()
+        private bool Viejo()
+        {
+            oBE_Login.Usuario = txtUsuario.Text;
+            oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
+            return oBLL_Login.Modificar(oBE_Login);
+        }
+
+        private bool Nuevo()
         {
             oBE_Login = new BE_Login();
             //oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
             oBE_Login.Usuario = txtUsuario.Text;
             oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
             //oBE_Login.Permiso = (BE_Permiso)comboEmpleado.SelectedItem;
+            return oBLL_Login.Guardar(oBE_Login);
         }
         private void ImportarLogin()
         {

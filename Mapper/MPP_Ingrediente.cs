@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -76,10 +77,10 @@ namespace Mapper
         private BE_TuplaXML CrearIngredienteXML(BE_Ingrediente ingrediente)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Ingredientes";
+            nuevaTupla.NodoRoot = "Ingredientes";
+            nuevaTupla.NodoLeaf = "Ingrediente";
             XElement nuevoIngrediente = new XElement("Ingrediente",
-                new XElement("ID", ingrediente.Codigo.ToString()),
+                new XElement("ID",Cálculos.IDPadleft(ingrediente.Codigo)),
                 new XElement("Nombre",ingrediente.Nombre),
                 new XElement("Tipo",ingrediente.Tipo),
                 new XElement("Refrigeración",ingrediente.Refrigeracion.ToString()),

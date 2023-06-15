@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -127,10 +128,10 @@ namespace Mapper
         private BE_TuplaXML CrearReservaXML(BE_Reserva reserva)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Reservas";
+            nuevaTupla.NodoRoot = "Reservas";
+            nuevaTupla.NodoLeaf = "Reserva";
             XElement nuevaReserva = new XElement("Reserva",
-                new XElement("ID", reserva.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(reserva.Codigo)),
                 new XElement("Fecha Inicio", reserva.FechaInicio.ToString("dd/MM/yyyy")),
                 new XElement("Hora Inicio",reserva.HoraInicio.ToString("HH:mm")),
                 new XElement("Hora Fin",reserva.HoraFin.ToString("HH:mm")),

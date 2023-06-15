@@ -8,6 +8,7 @@ using Abstraction_Layer;
 using Data_Access_Layer;
 using System.Xml.Linq;
 using System.Data;
+using Automate_Layer;
 
 namespace Mapper
 {
@@ -160,23 +161,18 @@ namespace Mapper
                         ListadoXML.Add(ing);
                     }
                 }
-                else
-                {
-                    ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
-                }
+                else ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));   
             }
-            else
-            {
-                ListadoXML.Add(CrearBebidaXML(bebida));
-            }
+            else ListadoXML.Add(CrearBebidaXML(bebida));
+
             return Acceso.Modificar(ListadoXML);
         }
 
         public BE_TuplaXML CrearBebidaXML(BE_Bebida bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Bebidas";
+            nuevaTupla.NodoRoot = "Bebidas";
+            nuevaTupla.NodoLeaf = "Bebida";
             XElement nuevaBebida = new XElement("Bebida",
                 new XElement("ID", bebida.Codigo.ToString()),
                 new XElement("Nombre", bebida.Nombre),
@@ -193,10 +189,10 @@ namespace Mapper
         public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Alcoholica bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Bebidas Alcoholicas";
+            nuevaTupla.NodoRoot = "Bebidas_Alcoholicas";
+            nuevaTupla.NodoLeaf = "Bebida_Alcoholica";
             XElement nuevaBebida = new XElement("Bebida Alcoholica",
-                new XElement("ID", bebida.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(bebida.Codigo)),
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo", bebida.Tipo),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
@@ -212,10 +208,10 @@ namespace Mapper
         public BE_TuplaXML CrearBebidaHerenciaXML(BE_Bebida_Preparada bebida)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
-            nuevaTupla.NodoLeaf = "Bebidas Preparadas";
+            nuevaTupla.NodoRoot = "Bebidas_Preparadas";
+            nuevaTupla.NodoLeaf = "Bebida_Preparada";
             XElement nuevaBebida = new XElement("Bebida Preparada",
-                new XElement("ID", bebida.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(bebida.Codigo)),
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo", bebida.Tipo),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
@@ -235,11 +231,11 @@ namespace Mapper
             foreach (BE_Ingrediente ingrediente in bebida.ListaIngredientes)
             {
                 BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = ReferenciasBD.Root;
-                nuevaTupla.NodoLeaf = "Bebidas-Ingredientes";
+                nuevaTupla.NodoRoot = "Bebidas-Ingredientes";
+                nuevaTupla.NodoLeaf = "Bebida-Ingrediente";
                 XElement nuevaBebidaIngrediente = new XElement("Bebida-Ingrediente",
-                    new XElement("ID Bebida",bebida.Codigo.ToString()),
-                    new XElement("ID Ingrediente", ingrediente.Codigo.ToString())
+                    new XElement("ID Bebida", Cálculos.IDPadleft(bebida.Codigo)),
+                    new XElement("ID Ingrediente", Cálculos.IDPadleft(ingrediente.Codigo))
                     );
                 nuevaTupla.Xelement = nuevaBebidaIngrediente;
                 listadeIngredientes.Add(nuevaTupla);

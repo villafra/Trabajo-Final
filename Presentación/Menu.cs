@@ -160,5 +160,21 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void listadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmEmpleados);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmEmpleados();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

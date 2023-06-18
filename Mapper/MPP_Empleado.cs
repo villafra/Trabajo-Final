@@ -225,12 +225,27 @@ namespace Mapper
                                                                 Contacto = Convert.ToString(ger[9])
 
                                                             }).ToList():null;
-                
-                ListaTotal = listadeMozos.Cast<BE_Empleado>().Concat(listadeChef.Cast<BE_Empleado>()).ToList().Concat(listadeGerentes.Cast<BE_Empleado>()).ToList();
 
-                //ListaTotal.AddRange(listadeMozos.Cast<BE_Empleado>());
-                //ListaTotal.AddRange(listadeChef.Cast<BE_Empleado>());
-                //ListaTotal.AddRange(listadeGerentes.Cast<BE_Empleado>());
+
+                if (listadeMozos != null && listadeGerentes != null && listadeChef != null)
+                {
+                    ListaTotal = listadeMozos.Cast<BE_Empleado>().Concat(listadeChef.Cast<BE_Empleado>()).ToList().Concat(listadeGerentes.Cast<BE_Empleado>()).ToList();
+                }
+                else
+                {
+                    if (listadeMozos!= null)
+                    {
+                        ListaTotal.AddRange(listadeMozos.Cast<BE_Empleado>());
+                    }
+                    if (listadeGerentes!= null)
+                    {
+                        ListaTotal.AddRange(listadeGerentes.Cast<BE_Empleado>());
+                    }
+                    if (listadeChef != null)
+                    {
+                        ListaTotal.AddRange(listadeChef.Cast<BE_Empleado>());
+                    }
+                }
                 return ListaTotal;
             }
             catch(Exception ex)
@@ -464,19 +479,18 @@ namespace Mapper
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             XElement nuevoEmpleado;
-
-            nuevaTupla.NodoRoot = ReferenciasBD.Root;
+            nuevaTupla.NodoRoot = "Empleados";
             if (empleado.DevolverNombre() == "Mozo")
             {
-                nuevaTupla.NodoLeaf = "Mozos";
+                nuevaTupla.NodoLeaf = "Mozo";
                 nuevoEmpleado = new XElement("Mozo",
                     new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                     new XElement("DNI", empleado.DNI.ToString()),
                     new XElement("Nombre", empleado.Nombre),
                     new XElement("Apellido", empleado.Apellido),
-                    new XElement("Fecha de Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
+                    new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
                     new XElement("Edad", empleado.Edad.ToString()),
-                    new XElement("Fecha de Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
+                    new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
                     new XElement("Antiguedad", empleado.Antiguedad.ToString()),
                     new XElement("Categoria", empleado.Categoria)
                     );
@@ -484,33 +498,34 @@ namespace Mapper
             }
             else if (empleado.DevolverNombre() == "ChefPrincipal")
             {
-                nuevaTupla.NodoLeaf = "Chef_Principales";
-                nuevoEmpleado = new XElement("Chef Principal",
+                
+                nuevaTupla.NodoLeaf = "Chef_Principal";
+                nuevoEmpleado = new XElement("Chef_Principal",
                    new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                    new XElement("DNI", empleado.DNI.ToString()),
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
-                   new XElement("Fecha de Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
+                   new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
                    new XElement("Edad", empleado.Edad.ToString()),
-                   new XElement("Fecha de Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
+                   new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
                    new XElement("Antiguedad", empleado.Antiguedad.ToString()),
-                   new XElement("Categoria", empleado.Categoria)
+                   new XElement("Categoria", empleado.Categoria.ToString())
                    );
                 nuevaTupla.Xelement = nuevoEmpleado;
             }
             else
             {
-                nuevaTupla.NodoLeaf = "Gerentes_Sucursal";
-                nuevoEmpleado = new XElement("Gerente Sucursal",
+                nuevaTupla.NodoLeaf = "Gerente_Sucursal";
+                nuevoEmpleado = new XElement("Gerente_Sucursal",
                    new XElement("ID", Cálculos.IDPadleft(empleado.Codigo)),
                    new XElement("DNI", empleado.DNI.ToString()),
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
-                   new XElement("Fecha de Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
+                   new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
                    new XElement("Edad", empleado.Edad.ToString()),
-                   new XElement("Fecha de Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
+                   new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
                    new XElement("Antiguedad", empleado.Antiguedad.ToString()),
-                   new XElement("Categoria", empleado.Categoria),
+                   new XElement("Categoria", empleado.Categoria.ToString()),
                    new XElement("Contacto", ((BE_GerenteSucursal)empleado).Contacto)
                    );
                 nuevaTupla.Xelement = nuevoEmpleado;

@@ -7,11 +7,11 @@ using Abstraction_Layer;
 
 namespace Business_Entities
 {
-    public class BE_Ingrediente: IEntidable,IStockeable
+    public class BE_Ingrediente : IEntidable, IStockeable
     {
         public int Codigo { get; set; }
         public string Nombre { get; set; }
-        public string Tipo { get; set; }
+        public TipoIng Tipo { get; set; }
         public bool Refrigeracion { get; set; }
         public decimal Stock { get; set; }
         public string UnidadMedida { get; set; }
@@ -19,7 +19,7 @@ namespace Business_Entities
         public string Lote { get; set; }
         public bool Activo { get; set; } = true;
         public int VidaUtil { get; set; }
-        public string Status { get; set; }
+        public StatusIng Status { get; set; } = StatusIng.En_Espera;
         public decimal CostoUnitario { get; set; }
 
         public string DevolverNombre()
@@ -27,5 +27,32 @@ namespace Business_Entities
             string clase = typeof(BE_Ingrediente).Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
+        public enum TipoIng
+        {
+            Vegetal,
+            Carne,
+            Rio_Mar,
+            Lácteo,
+            Fruta,
+            Grano_Cereal,
+            Especia_Condimento,
+            Hierba,
+            Fruto_Seco,
+            Aceite,
+            Salsa,
+            Aderezo,
+            Dulce_Azucar,
+            Líquido
+        }
+        public enum StatusIng
+        {
+            Disponible,
+            Agotado,
+            Caducado,
+            Reservado,
+            Bloqueado,
+            En_Espera
+        }
+        
     }
 }

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Abstraction_Layer
 {
-    public interface IStockeable
+    public interface IStockeable<T> where T:IEntidable
     {
         decimal Stock { get; set; }
-        decimal CostoUnitario { get; set; }
-        string UnidadMedida { get; set; }
+        T Material { get; set; }
         DateTime? FechaCreacion { get; set; }
-        int VidaUtil { get; set; }
-
+        string Lote { get; set; }
+        bool GestionLote { get; set; }
     }
 }

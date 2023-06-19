@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmNuevoIngrediente
+    partial class frmNuevoRelevo
     {
         /// <summary>
         /// Required designer variable.

@@ -55,6 +55,7 @@ namespace Mapper
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
+            MPP_Ingrediente oMPP_Ingrediente = new MPP_Ingrediente();
 
             List<BE_Cliente> listaClientes = ds.Tables.Contains("Cliente")!= false ? (from cli in ds.Tables["Cliente"].AsEnumerable()
                                             select new BE_Cliente
@@ -85,25 +86,22 @@ namespace Mapper
                                                                      Status = Convert.ToString(platos[4]),
                                                                      CostoUnitario = Convert.ToDecimal(platos[5]),
                                                                      Activo = Convert.ToBoolean(platos[6]),
-                                                                     ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") & ds.Tables.Contains("Ingrediente") != false ?(from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                          join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                          on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
-                                                                                          select new BE_Ingrediente
-                                                                                          {
-                                                                                              Codigo = Convert.ToInt32(ing[0]),
-                                                                                              Nombre = Convert.ToString(ing[1]),
-                                                                                              Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
-                                                                                              Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                              Stock = Convert.ToDecimal(ing[4]),
-                                                                                              UnidadMedida = Convert.ToString(ing[5]),
-                                                                                              FechaCreacion = Convert.ToDateTime(ing[6]),
-                                                                                              Lote = Convert.ToString(ing[7]),
-                                                                                              Activo = Convert.ToBoolean(ing[8]),
-                                                                                              VidaUtil = Convert.ToInt32(ing[9]),
-                                                                                              Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[10])),
-                                                                                              CostoUnitario = Convert.ToDecimal(ing[11])
+                                                                     ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") & ds.Tables.Contains("Ingrediente") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
+                                                                                                                                                                                 join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                                                 on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
+                                                                                                                                                                                 select new BE_Ingrediente
+                                                                                                                                                                                 {
+                                                                                                                                                                                     Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                                     Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                                     Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
+                                                                                                                                                                                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                                     UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
+                                                                                                                                                                                     Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                                                                                     VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                                                                                     Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[8])),
+                                                                                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[7])
 
-                                                                                          }).ToList():null
+                                                                                                                                                                                 }).ToList() : null
 
                                                                  }).ToList():null,
                                                 ListaReservas = ds.Tables.Contains("Reserva-Cliente") != false ? (from obj in ds.Tables["Reserva-Cliente"].AsEnumerable()

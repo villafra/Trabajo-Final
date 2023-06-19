@@ -78,8 +78,8 @@ namespace Trabajo_Final
             this.dgvIngredientes.RowTemplate.Height = 24;
             this.dgvIngredientes.Size = new System.Drawing.Size(1120, 254);
             this.dgvIngredientes.TabIndex = 3;
-            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
-            this.dgvIngredientes.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
+            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
+            this.dgvIngredientes.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
             // grpIngredientes
             // 

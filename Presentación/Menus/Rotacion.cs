@@ -13,12 +13,12 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmEmpleados : Form
+    public partial class frmRotacion : Form
     {
         BE_Empleado oBE_Empleado;
         BLL_Empleado oBLL_Empleado;
 
-        public frmEmpleados()
+        public frmRotacion()
         {
             InitializeComponent();
             Aspecto.FormatearGRP(grpEmpleados);
@@ -49,12 +49,12 @@ namespace Trabajo_Final
             ActualizarListado();
         }
 
-        private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
         }
 
-        private void dgvEmpleados_SelectionChanged(object sender, EventArgs e)
+        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             try
             {

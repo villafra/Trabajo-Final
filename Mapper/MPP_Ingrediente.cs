@@ -49,14 +49,11 @@ namespace Mapper
                                                           Nombre = Convert.ToString(ing[1]),
                                                           Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
                                                           Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                          Stock = Convert.ToDecimal(ing[4]),
-                                                          UnidadMedida = Convert.ToString(ing[5]),
-                                                          FechaCreacion = !string.IsNullOrEmpty(ing[6]?.ToString()) ? Convert.ToDateTime(ing[6]) : (DateTime?)null,
-                                                          Lote = Convert.ToString(ing[7]),
-                                                          Activo = Convert.ToBoolean(ing[8]),
-                                                          VidaUtil = Convert.ToInt32(ing[9]),
-                                                          Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[10])),
-                                                          CostoUnitario = Convert.ToDecimal(ing[11])
+                                                          UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
+                                                          Activo = Convert.ToBoolean(ing[5]),
+                                                          VidaUtil = Convert.ToInt32(ing[6]),
+                                                          Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[7])),
+                                                          CostoUnitario = Convert.ToDecimal(ing[8])
 
                                                       }).ToList():null;
             return listaIngredientes;
@@ -84,10 +81,7 @@ namespace Mapper
                 new XElement("Nombre",ingrediente.Nombre),
                 new XElement("Tipo",ingrediente.Tipo),
                 new XElement("Refrigeración",ingrediente.Refrigeracion.ToString()),
-                new XElement("Stock",ingrediente.Stock.ToString()),
                 new XElement("Unidad_Medida", ingrediente.UnidadMedida),
-                new XElement("Fecha_Creación", ingrediente.FechaCreacion != null ? ingrediente.FechaCreacion.Value.ToString("dd/MM/yyyy"):""),
-                new XElement("Lote", ingrediente.Lote),
                 new XElement("Activo", ingrediente.Activo.ToString()),
                 new XElement("Vida_Util", ingrediente.VidaUtil.ToString()),
                 new XElement("Status", ingrediente.Status),

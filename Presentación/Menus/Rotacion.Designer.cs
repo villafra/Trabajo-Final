@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmEmpleados
+    partial class frmRotacion
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmpleados));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRotacion));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
@@ -78,8 +78,8 @@ namespace Trabajo_Final
             this.dgvEmpleados.RowTemplate.Height = 24;
             this.dgvEmpleados.Size = new System.Drawing.Size(1120, 254);
             this.dgvEmpleados.TabIndex = 3;
-            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
-            this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged);
+            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
+            this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
             // 
             // grpEmpleados
             // 
@@ -148,11 +148,11 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(161, 34);
+            this.btnModificar.Location = new System.Drawing.Point(243, 34);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(149, 50);
+            this.btnModificar.Size = new System.Drawing.Size(211, 50);
             this.btnModificar.TabIndex = 6;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Modificar Relevo";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
@@ -183,9 +183,9 @@ namespace Trabajo_Final
             this.btnAgregar.ImageList = this.Listado;
             this.btnAgregar.Location = new System.Drawing.Point(6, 34);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(149, 50);
+            this.btnAgregar.Size = new System.Drawing.Size(211, 50);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Cargar Relevo";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -214,11 +214,11 @@ namespace Trabajo_Final
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.ImageIndex = 4;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(316, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(480, 34);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(149, 50);
+            this.btnEliminar.Size = new System.Drawing.Size(211, 50);
             this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Eliminar Relevo";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -255,7 +255,7 @@ namespace Trabajo_Final
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
             // 
-            // frmEmpleados
+            // frmRotacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,7 +264,7 @@ namespace Trabajo_Final
             this.Controls.Add(this.grpEmpleados);
             this.Controls.Add(this.dgvEmpleados);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmEmpleados";
+            this.Name = "frmRotacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();

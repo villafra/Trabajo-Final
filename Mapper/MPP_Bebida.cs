@@ -77,18 +77,18 @@ namespace Mapper
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
+            List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
 
             List<BE_Bebida> listaBebidas = ds.Tables.Contains("Bebida") != false ? (from beb in ds.Tables["Bebida"].AsEnumerable()
                                             select new BE_Bebida
                                             {
                                                 Codigo = Convert.ToInt32(beb[0]),
                                                 Nombre = Convert.ToString(beb[1]),
-                                                Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida),Convert.ToString(beb[2])),
+                                                Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
                                                 Presentacion = Convert.ToDecimal(beb[3]),
-                                                Stock = Convert.ToInt32(beb[4]),
-                                                CostoUnitario = Convert.ToDecimal(beb[5]),
-                                                UnidadMedida = Convert.ToString(beb[6]),
-                                                VidaUtil = Convert.ToInt32(beb[7])
+                                                CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                UnidadMedida = Convert.ToString(beb[5]),
+                                                VidaUtil = Convert.ToInt32(beb[6]),
                                             }).ToList():null;
 
             List<BE_Bebida_Alcoholica> listaBebidasAlcoholica = ds.Tables.Contains("Bebida_Acoholica") != false ? (from beb in ds.Tables["Bebida Alcoholica"].AsEnumerable()
@@ -98,10 +98,9 @@ namespace Mapper
                                                                      Nombre = Convert.ToString(beb[1]),
                                                                      Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
                                                                      Presentacion = Convert.ToDecimal(beb[3]),
-                                                                     Stock = Convert.ToInt32(beb[4]),
-                                                                     CostoUnitario = Convert.ToDecimal(beb[5]),
-                                                                     UnidadMedida = Convert.ToString(beb[6]),
-                                                                     VidaUtil = Convert.ToInt32(beb[7]),
+                                                                     CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                                     UnidadMedida = Convert.ToString(beb[5]),
+                                                                     VidaUtil = Convert.ToInt32(beb[6]),
                                                                      ABV = Convert.ToDecimal(beb[8])
                                                                  }).ToList():null;
 
@@ -112,11 +111,10 @@ namespace Mapper
                                                                     Nombre = Convert.ToString(beb[1]),
                                                                     Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
                                                                     Presentacion = Convert.ToDecimal(beb[3]),
-                                                                    Stock = Convert.ToInt32(beb[4]),
-                                                                    CostoUnitario = Convert.ToDecimal(beb[5]),
-                                                                    UnidadMedida = Convert.ToString(beb[6]),
-                                                                    VidaUtil = Convert.ToInt32(beb[7]),
-                                                                    ABV = Convert.ToDecimal(beb[8]),
+                                                                    CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                                    UnidadMedida = Convert.ToString(beb[5]),
+                                                                    VidaUtil = Convert.ToInt32(beb[6]),
+                                                                    ABV = Convert.ToDecimal(beb[7]),
                                                                     ListaIngredientes = ds.Tables.Contains("Bebida-Ingrediente") & ds.Tables.Contains("Ingrediente") != false ? (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
                                                                                          join ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                          on Convert.ToInt32(obj[1]) equals Convert.ToInt32(beb[0])
@@ -126,20 +124,35 @@ namespace Mapper
                                                                                              Nombre = Convert.ToString(ing[1]),
                                                                                              Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
                                                                                              Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                             Stock = Convert.ToDecimal(ing[4]),
-                                                                                             UnidadMedida = Convert.ToString(ing[5]),
-                                                                                             FechaCreacion = Convert.ToDateTime(ing[6]),
-                                                                                             Lote = Convert.ToString(ing[7]),
-                                                                                             Activo = Convert.ToBoolean(ing[8]),
-                                                                                             VidaUtil = Convert.ToInt32(ing[9]),
-                                                                                             Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[10])),
-                                                                                             CostoUnitario = Convert.ToDecimal(ing[11])
+                                                                                             UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
+                                                                                             Activo = Convert.ToBoolean(ing[5]),
+                                                                                             VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                             Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[8])),
+                                                                                             CostoUnitario = Convert.ToDecimal(ing[7])
 
                                                                                          }).ToList():null,
                                                                 }).ToList():null;
 
-            List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
-            ListaCompleta = listaBebidas.Concat(listaBebidasAlcoholica).ToList().Concat(listaBebidasPreparadas).ToList();
+            if (listaBebidas != null && listaBebidasAlcoholica != null && listaBebidasPreparadas != null)
+            {
+                ListaCompleta = listaBebidas.Concat(listaBebidasAlcoholica).ToList().Concat(listaBebidasPreparadas).ToList();
+            }
+            else
+            {
+                if(listaBebidas != null)
+                {
+                    ListaCompleta.AddRange(listaBebidas);
+                }
+                if (listaBebidasAlcoholica != null)
+                {
+                    ListaCompleta.AddRange(listaBebidasAlcoholica);
+                }
+                if (listaBebidasPreparadas != null)
+                {
+                    ListaCompleta.AddRange(listaBebidasPreparadas);
+                }
+            }
+          
             return ListaCompleta;
         }
 
@@ -178,7 +191,6 @@ namespace Mapper
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo", bebida.Tipo),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
-                new XElement("Stock", bebida.Stock.ToString()),
                 new XElement("Costo Unitario", bebida.CostoUnitario.ToString()),
                 new XElement("Unidad de Medida", bebida.UnidadMedida),
                 new XElement("Vida Util", bebida.VidaUtil.ToString())
@@ -196,7 +208,6 @@ namespace Mapper
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo", bebida.Tipo),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
-                new XElement("Stock", bebida.Stock.ToString()),
                 new XElement("Costo Unitario", bebida.CostoUnitario.ToString()),
                 new XElement("Unidad de Medida", bebida.UnidadMedida),
                 new XElement("Vida Util", bebida.VidaUtil.ToString()),
@@ -215,7 +226,6 @@ namespace Mapper
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo", bebida.Tipo),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
-                new XElement("Stock", bebida.Stock.ToString()),
                 new XElement("Costo Unitario", bebida.CostoUnitario.ToString()),
                 new XElement("Unidad de Medida", bebida.UnidadMedida),
                 new XElement("Vida Util", bebida.VidaUtil.ToString()),

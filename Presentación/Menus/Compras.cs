@@ -13,51 +13,51 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmIngredientes : Form
+    public partial class frmCompras : Form
     {
-        BLL_Ingrediente oBLL_Ingrediente;
-        BE_Ingrediente oBE_Ingrediente;
-        public frmIngredientes()
+        BLL_Compra oBLL_Compra;
+        BE_Compra oBE_Compra;
+        public frmCompras()
         {
             InitializeComponent();
-            oBLL_Ingrediente = new BLL_Ingrediente();
-            oBE_Ingrediente = new BE_Ingrediente();
-            Aspecto.FormatearGRP(grpIngredientes);
+            oBLL_Compra = new BLL_Compra();
+            oBE_Compra = new BE_Compra();
+            Aspecto.FormatearGRP(grpCompras);
             Aspecto.FormatearGRPAccion(grpAcciones);
-            Aspecto.FormatearDGV(dgvIngredientes);
+            Aspecto.FormatearDGV(dgvCompras);
             ActualizarListado();
         }
         private void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Ingrediente.Listar());
-            dgvIngredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar());
+            dgvCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngrediente frm = new frmNuevoIngrediente();
+            frmNuevaCompra frm = new frmNuevaCompra();
             frm.ShowDialog();
             ActualizarListado();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngrediente frm = new frmNuevoIngrediente();
-            frm.oBE_Ingrediente = oBE_Ingrediente;
+            frmNuevaCompra frm = new frmNuevaCompra();
+            frm.oBE_Compra = oBE_Compra;
             frm.ShowDialog();
             ActualizarListado();
         }
 
-        private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
         }
 
-        private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
+        private void dgvCompras_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                oBE_Ingrediente = (BE_Ingrediente)dgvIngredientes.SelectedRows[0].DataBoundItem;
+                oBE_Compra = (BE_Compra)dgvCompras.SelectedRows[0].DataBoundItem;
             }
             catch { }
 
@@ -65,7 +65,7 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Ingrediente.Baja(oBE_Ingrediente);
+            oBLL_Compra.Baja(oBE_Compra);
         }
     }
 }

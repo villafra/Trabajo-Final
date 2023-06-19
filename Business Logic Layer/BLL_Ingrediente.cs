@@ -39,9 +39,9 @@ namespace Business_Logic_Layer
             return oMPP_Ingrediente.ListarObjeto(ingrediente);
         }
 
-        public DateTime devolverFechaVencimiento(BE_Ingrediente ingrediente)
+        public DateTime devolverFechaVencimiento(BE_Material_Stock material)
         {
-            return ingrediente.FechaCreacion.Value.AddDays(ingrediente.VidaUtil);
+            return material.FechaCreacion.Value.AddDays(material.Material.VidaUtil);
         }
 
         public bool actualizarStatus()

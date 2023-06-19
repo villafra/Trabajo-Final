@@ -7,19 +7,16 @@ using Abstraction_Layer;
 
 namespace Business_Entities
 {
-    public class BE_Ingrediente : IEntidable, IStockeable
+    public class BE_Ingrediente : IEntidable
     {
         public int Codigo { get; set; }
         public string Nombre { get; set; }
         public TipoIng Tipo { get; set; }
         public bool Refrigeracion { get; set; }
-        public decimal Stock { get; set; }
-        public string UnidadMedida { get; set; }
-        public DateTime? FechaCreacion { get; set; }
-        public string Lote { get; set; }
+        public UM UnidadMedida { get; set; }
         public bool Activo { get; set; } = true;
         public int VidaUtil { get; set; }
-        public StatusIng Status { get; set; } = StatusIng.En_Espera;
+        public StatusIng Status { get; set; } = StatusIng.Reservado;
         public decimal CostoUnitario { get; set; }
 
         public string DevolverNombre()
@@ -53,6 +50,12 @@ namespace Business_Entities
             Bloqueado,
             En_Espera
         }
-        
+        public enum UM
+        {
+            KG,
+            L,
+            UN,
+
+        }
     }
 }

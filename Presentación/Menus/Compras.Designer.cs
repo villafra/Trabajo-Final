@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmEmpleados
+    partial class frmCompras
     {
         /// <summary>
         /// Required designer variable.
@@ -30,24 +30,24 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmpleados));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCompras));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.dgvEmpleados = new System.Windows.Forms.DataGridView();
-            this.grpEmpleados = new System.Windows.Forms.GroupBox();
+            this.dgvCompras = new System.Windows.Forms.DataGridView();
+            this.grpCompras = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
+            this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btBuscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
-            this.grpEmpleados.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
+            this.grpCompras.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,35 +66,35 @@ namespace Trabajo_Final
             this.comboBox1.Size = new System.Drawing.Size(233, 24);
             this.comboBox1.TabIndex = 1;
             // 
-            // dgvEmpleados
+            // dgvCompras
             // 
-            this.dgvEmpleados.AllowUserToAddRows = false;
-            this.dgvEmpleados.AllowUserToDeleteRows = false;
-            this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpleados.Location = new System.Drawing.Point(102, 249);
-            this.dgvEmpleados.Name = "dgvEmpleados";
-            this.dgvEmpleados.ReadOnly = true;
-            this.dgvEmpleados.RowHeadersWidth = 51;
-            this.dgvEmpleados.RowTemplate.Height = 24;
-            this.dgvEmpleados.Size = new System.Drawing.Size(1120, 254);
-            this.dgvEmpleados.TabIndex = 3;
-            this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
-            this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged);
+            this.dgvCompras.AllowUserToAddRows = false;
+            this.dgvCompras.AllowUserToDeleteRows = false;
+            this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCompras.Location = new System.Drawing.Point(102, 249);
+            this.dgvCompras.Name = "dgvCompras";
+            this.dgvCompras.ReadOnly = true;
+            this.dgvCompras.RowHeadersWidth = 51;
+            this.dgvCompras.RowTemplate.Height = 24;
+            this.dgvCompras.Size = new System.Drawing.Size(1120, 254);
+            this.dgvCompras.TabIndex = 3;
+            this.dgvCompras.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompras_CellContentClick);
+            this.dgvCompras.SelectionChanged += new System.EventHandler(this.dgvCompras_SelectionChanged);
             // 
-            // grpEmpleados
+            // grpCompras
             // 
-            this.grpEmpleados.Controls.Add(this.lbl2);
-            this.grpEmpleados.Controls.Add(this.lbl1);
-            this.grpEmpleados.Controls.Add(this.btnReset);
-            this.grpEmpleados.Controls.Add(this.textBox1);
-            this.grpEmpleados.Controls.Add(this.comboBox1);
-            this.grpEmpleados.Controls.Add(this.btBuscar);
-            this.grpEmpleados.Location = new System.Drawing.Point(102, 57);
-            this.grpEmpleados.Name = "grpEmpleados";
-            this.grpEmpleados.Size = new System.Drawing.Size(1120, 168);
-            this.grpEmpleados.TabIndex = 4;
-            this.grpEmpleados.TabStop = false;
-            this.grpEmpleados.Text = "Listado de Empleados";
+            this.grpCompras.Controls.Add(this.lbl2);
+            this.grpCompras.Controls.Add(this.lbl1);
+            this.grpCompras.Controls.Add(this.btnReset);
+            this.grpCompras.Controls.Add(this.textBox1);
+            this.grpCompras.Controls.Add(this.comboBox1);
+            this.grpCompras.Controls.Add(this.btBuscar);
+            this.grpCompras.Location = new System.Drawing.Point(102, 57);
+            this.grpCompras.Name = "grpCompras";
+            this.grpCompras.Size = new System.Drawing.Size(1120, 168);
+            this.grpCompras.TabIndex = 4;
+            this.grpCompras.TabStop = false;
+            this.grpCompras.Text = "Listado de Compras";
             // 
             // lbl2
             // 
@@ -114,6 +114,22 @@ namespace Trabajo_Final
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Buscar Por";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.ImageIndex = 1;
+            this.btnReset.ImageList = this.Listado;
+            this.btnReset.Location = new System.Drawing.Point(965, 82);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(149, 36);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Restablecer";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = true;
+            // 
             // Listado
             // 
             this.Listado.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Listado.ImageStream")));
@@ -125,6 +141,22 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            // 
+            // btBuscar
+            // 
+            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btBuscar.FlatAppearance.BorderSize = 0;
+            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBuscar.ImageIndex = 0;
+            this.btBuscar.ImageList = this.Listado;
+            this.btBuscar.Location = new System.Drawing.Point(810, 82);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(149, 36);
+            this.btBuscar.TabIndex = 2;
+            this.btBuscar.Text = "Buscar";
+            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBuscar.UseVisualStyleBackColor = true;
             // 
             // grpAcciones
             // 
@@ -223,53 +255,21 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.ImageIndex = 1;
-            this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Restablecer";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btBuscar
-            // 
-            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btBuscar.FlatAppearance.BorderSize = 0;
-            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBuscar.ImageIndex = 0;
-            this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBuscar.UseVisualStyleBackColor = true;
-            // 
-            // frmEmpleados
+            // frmCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 918);
             this.Controls.Add(this.grpAcciones);
-            this.Controls.Add(this.grpEmpleados);
-            this.Controls.Add(this.dgvEmpleados);
+            this.Controls.Add(this.grpCompras);
+            this.Controls.Add(this.dgvCompras);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmEmpleados";
+            this.Name = "frmCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
-            this.grpEmpleados.ResumeLayout(false);
-            this.grpEmpleados.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
+            this.grpCompras.ResumeLayout(false);
+            this.grpCompras.PerformLayout();
             this.grpAcciones.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -280,8 +280,8 @@ namespace Trabajo_Final
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button btBuscar;
-        private System.Windows.Forms.DataGridView dgvEmpleados;
-        private System.Windows.Forms.GroupBox grpEmpleados;
+        private System.Windows.Forms.DataGridView dgvCompras;
+        private System.Windows.Forms.GroupBox grpCompras;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lbl2;

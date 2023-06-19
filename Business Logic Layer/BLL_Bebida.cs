@@ -9,7 +9,7 @@ using Mapper;
 
 namespace Business_Logic_Layer
 {
-    public class BLL_Bebida : IGestionable<BE_Bebida>, IMovimentable<BE_Bebida>
+    public class BLL_Bebida : IGestionable<BE_Bebida>/*, IMovimentable<BE_Bebida>*/
     {
         MPP_Bebida oMPP_Bebida;
         public BLL_Bebida()
@@ -23,10 +23,10 @@ namespace Business_Logic_Layer
             Modificar(bebida);
         }
 
-        public void AgregarStock(BE_Bebida bebida,  int Cantidad)
+        public void AgregarStock(BE_Material_Stock bebida,  int Cantidad)
         {
             bebida.Stock += Cantidad;
-            Modificar(bebida);
+            //Modificar(bebida);
         }
 
         public bool Baja(BE_Bebida bebida)
@@ -34,12 +34,12 @@ namespace Business_Logic_Layer
             return oMPP_Bebida.Baja(bebida);
         }
 
-        public DateTime DevolverFechaVencimiento(BE_Bebida bebida)
+        public DateTime DevolverFechaVencimiento(BE_Material_Stock bebida)
         {
-            return bebida.FechaCreacion.AddDays(bebida.VidaUtil);
+            return bebida.FechaCreacion.Value.AddDays(bebida.Material.VidaUtil);
         }
 
-        public decimal DevolverStock(BE_Bebida bebida)
+        public decimal DevolverStock(BE_Material_Stock bebida)
         {
             return bebida.Stock;
         }

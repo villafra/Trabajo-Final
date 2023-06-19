@@ -14,10 +14,8 @@ namespace Business_Entities
         public string Nombre { get; set; }
         public Tipo_Bebida Tipo { get; set; }
         public decimal Presentacion { get; set; }
-        public decimal Stock { get; set; }
         public decimal CostoUnitario { get; set; }
         public string UnidadMedida { get; set; }
-        public DateTime FechaCreacion { get; set; }
         public int VidaUtil { get; set; }
         public bool Activo { get; set; } = true;
 

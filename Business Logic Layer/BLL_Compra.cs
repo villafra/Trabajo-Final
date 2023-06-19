@@ -52,5 +52,13 @@ namespace Business_Logic_Layer
         {
             return oMPP_Compra.Modificar(compra);
         }
+        public decimal CalcularCostoNeto(BE_Compra compra)
+        {
+            return compra.CantidadRecibida * compra.ID_Ingrediente.CostoUnitario;
+        }
+        public decimal CalcularCostoTeorico(BE_Compra compra)
+        {
+            return compra.Cantidad * compra.ID_Ingrediente.CostoUnitario;
+        }
     }
 }

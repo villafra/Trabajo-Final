@@ -121,6 +121,7 @@ namespace Data_Access_Layer
             }
         }
 
+       
         public bool Modificar(List<BE_TuplaXML> datos)
         {
             AbrirConexion();
@@ -222,14 +223,33 @@ namespace Data_Access_Layer
 
         private void AutogenerarID(BE_TuplaXML tupla)
         {
-
-            int ID = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                     .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0001"))
-                     .Max();
-
-            ID += 1;
-            tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(ID);
+            int ID;
+            try
+            {
+                if (tupla.NodoRoot != "Empleados")
+                {
+                    ID = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                             .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0001"))
+                                             .Max();
+                }
+                else
+                {
+                    ID = doc.Root.Element(tupla.NodoRoot)
+                                            .Descendants()
+                                            .Where(x => x.Name.LocalName == "ID")
+                                            .Select(x => Convert.ToInt32(x.Value))
+                                            .DefaultIfEmpty(0)
+                                            .Max();
+                }
                 
+
+                ID += 1;
+                tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(ID);
+            }
+            catch
+            {
+                tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(1);
+            }
         }
 
 

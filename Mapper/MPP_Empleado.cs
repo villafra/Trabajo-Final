@@ -26,7 +26,7 @@ namespace Mapper
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearEmpleadoXML(empleado));
-            return Acceso.Borrar(ListadoXML);
+            return Acceso.Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Empleado empleado)
@@ -52,10 +52,9 @@ namespace Mapper
                                                                                         Nombre = Convert.ToString(mo[2]),
                                                                                         Apellido = Convert.ToString(mo[3]),
                                                                                         FechaNacimiento = Convert.ToDateTime(mo[4]),
-                                                                                        Edad = Convert.ToInt32(mo[5]),
-                                                                                        FechaIngreso = Convert.ToDateTime(mo[6]),
-                                                                                        Antiguedad = Convert.ToInt32(mo[7]), 
-                                                                                        Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(mo[8])),
+                                                                                        FechaIngreso = Convert.ToDateTime(mo[5]),
+                                                                                        Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(mo[6])),
+                                                                                        Activo = Convert.ToBoolean(mo[7]),
                                                                                         PedidosTomados = ds.Tables.Contains("Mozo-Pedido") & ds.Tables.Contains("Pedido") != false ? (from obj in ds.Tables["Mozo-Pedido"].AsEnumerable()
                                                                                                           join ped in ds.Tables["Pedido"].AsEnumerable()
                                                                                                           on Convert.ToInt32(obj[1]) equals Convert.ToInt32(mo[0])
@@ -123,10 +122,9 @@ namespace Mapper
                                                           Nombre = Convert.ToString(che[2]),
                                                           Apellido = Convert.ToString(che[3]),
                                                           FechaNacimiento = Convert.ToDateTime(che[4]),
-                                                          Edad = Convert.ToInt32(che[5]),
-                                                          FechaIngreso = Convert.ToDateTime(che[6]),
-                                                          Antiguedad = Convert.ToInt32(che[7]),
-                                                          Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(che[8])),
+                                                          FechaIngreso = Convert.ToDateTime(che[5]),
+                                                          Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(che[6])),
+                                                          Activo = Convert.ToBoolean(che[7]),
                                                           OrdenesPendientes = ds.Tables.Contains("Orden_Pendiente") & ds.Tables.Contains("Orden") != false ? (from obj in ds.Tables["Orden_Pendiente"].AsEnumerable()
                                                                                join ord in ds.Tables["Orden"].AsEnumerable()
                                                                                on Convert.ToInt32(obj[1]) equals Convert.ToInt32(che[0])
@@ -218,18 +216,20 @@ namespace Mapper
                                                                 Nombre = Convert.ToString(ger[2]),
                                                                 Apellido = Convert.ToString(ger[3]),
                                                                 FechaNacimiento = Convert.ToDateTime(ger[4]),
-                                                                Edad = Convert.ToInt32(ger[5]),
-                                                                FechaIngreso = Convert.ToDateTime(ger[6]),
-                                                                Antiguedad = Convert.ToInt32(ger[7]),
-                                                                Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(ger[8])),
-                                                                Contacto = Convert.ToString(ger[9])
+                                                                FechaIngreso = Convert.ToDateTime(ger[5]),
+                                                                Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(ger[6])),
+                                                                Activo = Convert.ToBoolean(ger[7]),
+                                                                Contacto = Convert.ToString(ger[8])
 
                                                             }).ToList():null;
 
 
                 if (listadeMozos != null && listadeGerentes != null && listadeChef != null)
                 {
-                    ListaTotal = listadeMozos.Cast<BE_Empleado>().Concat(listadeChef.Cast<BE_Empleado>()).ToList().Concat(listadeGerentes.Cast<BE_Empleado>()).ToList();
+                    ListaTotal = listadeMozos.Cast<BE_Empleado>()
+                        .Concat(listadeChef.Cast<BE_Empleado>())
+                        .Concat(listadeGerentes.Cast<BE_Empleado>())
+                        .ToList();
                 }
                 else
                 {
@@ -246,7 +246,7 @@ namespace Mapper
                         ListaTotal.AddRange(listadeChef.Cast<BE_Empleado>());
                     }
                 }
-                return ListaTotal;
+                return ListaTotal.OrderBy(x => x.Codigo).ToList();
             }
             catch(Exception ex)
             {
@@ -275,6 +275,7 @@ namespace Mapper
                                                                                     FechaIngreso = Convert.ToDateTime(mo[6]),
                                                                                     Antiguedad = Convert.ToInt32(mo[7]),
                                                                                     Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(mo[8])),
+                                                                                    Activo = Convert.ToBoolean(mo[9]),
                                                                                     PedidosTomados = ds.Tables.Contains("Mozo-Pedido") & ds.Tables.Contains("Ingrediente") != false ? (from obj in ds.Tables["Mozo-Pedido"].AsEnumerable()
                                                                                                                                                                                        join ped in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                                                                                                                        on Convert.ToInt32(obj[1]) equals Convert.ToInt32(mo[0])
@@ -354,7 +355,8 @@ namespace Mapper
                                                                                                               FechaIngreso = Convert.ToDateTime(ger[6]),
                                                                                                               Antiguedad = Convert.ToInt32(ger[7]),
                                                                                                               Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(ger[8])),
-                                                                                                              Contacto = Convert.ToString(ger[9])
+                                                                                                              Activo = Convert.ToBoolean(ger[9]),
+                                                                                                              Contacto = Convert.ToString(ger[10])
 
                                                                                                           }).ToList() : null;
 
@@ -379,6 +381,7 @@ namespace Mapper
                                                                                                       FechaIngreso = Convert.ToDateTime(che[6]),
                                                                                                       Antiguedad = Convert.ToInt32(che[7]),
                                                                                                       Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), Convert.ToString(che[8])),
+                                                                                                      Activo = Convert.ToBoolean(che[9]),
                                                                                                       OrdenesPendientes = ds.Tables.Contains("Orden_Pendiente") & ds.Tables.Contains("Orden") != false ? (from obj in ds.Tables["Orden_Pendiente"].AsEnumerable()
                                                                                                                                                                                                           join ord in ds.Tables["Orden"].AsEnumerable()
                                                                                                                                                                                                           on Convert.ToInt32(obj[1]) equals Convert.ToInt32(che[0])
@@ -489,10 +492,9 @@ namespace Mapper
                     new XElement("Nombre", empleado.Nombre),
                     new XElement("Apellido", empleado.Apellido),
                     new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
-                    new XElement("Edad", empleado.Edad.ToString()),
                     new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
-                    new XElement("Antiguedad", empleado.Antiguedad.ToString()),
-                    new XElement("Categoria", empleado.Categoria)
+                    new XElement("Categoria", empleado.Categoria),
+                    new XElement("Activo", empleado.Activo.ToString())
                     );
                 nuevaTupla.Xelement = nuevoEmpleado;
             }
@@ -506,10 +508,9 @@ namespace Mapper
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
                    new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
-                   new XElement("Edad", empleado.Edad.ToString()),
                    new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
-                   new XElement("Antiguedad", empleado.Antiguedad.ToString()),
-                   new XElement("Categoria", empleado.Categoria.ToString())
+                   new XElement("Categoria", empleado.Categoria.ToString()),
+                   new XElement("Activo", empleado.Activo.ToString())
                    );
                 nuevaTupla.Xelement = nuevoEmpleado;
             }
@@ -522,10 +523,9 @@ namespace Mapper
                    new XElement("Nombre", empleado.Nombre),
                    new XElement("Apellido", empleado.Apellido),
                    new XElement("Fecha_Nacimiento", empleado.FechaNacimiento.ToString("dd/MM/yyyy")),
-                   new XElement("Edad", empleado.Edad.ToString()),
                    new XElement("Fecha_Ingreso", empleado.FechaIngreso.ToString("dd/MM/yyyy")),
-                   new XElement("Antiguedad", empleado.Antiguedad.ToString()),
                    new XElement("Categoria", empleado.Categoria.ToString()),
+                   new XElement("Activo", empleado.Activo.ToString()),
                    new XElement("Contacto", ((BE_GerenteSucursal)empleado).Contacto)
                    );
                 nuevaTupla.Xelement = nuevoEmpleado;

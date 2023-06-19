@@ -15,23 +15,12 @@ namespace Trabajo_Final
 {
     public partial class frmEmpleados : Form
     {
-        BLL_Chef_Principal oBLL_Chef;
-        BLL_Gerente_Sucursal OBLL_Gerente;
-        BLL_Mozo oBLL_Mozo;
-      
-        BE_ChefPrincipal oBE_Chef;
-        BE_GerenteSucursal OBE_Gerente;
-        BE_Mozo oBE_Mozo;
-
         BE_Empleado oBE_Empleado;
+        BLL_Empleado oBLL_Empleado;
 
         public frmEmpleados()
         {
             InitializeComponent();
-            oBLL_Chef = new BLL_Chef_Principal();
-            OBLL_Gerente = new BLL_Gerente_Sucursal();
-            oBLL_Mozo = new BLL_Mozo();
-
             Aspecto.FormatearGRP(grpEmpleados);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvEmpleados);
@@ -39,7 +28,8 @@ namespace Trabajo_Final
         }
         private void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Mozo.Listar());
+            oBLL_Empleado = new BLL_Gerente_Sucursal();
+            Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
             dgvEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             
         }
@@ -88,7 +78,23 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-           
+            BE_Empleado.Category categoria = oBE_Empleado.Categoria;
+            if ((int)categoria == 1)
+            {
+                oBLL_Empleado = new BLL_Gerente_Sucursal();
+                oBLL_Empleado.Baja(oBE_Empleado);
+            }
+            else if ((int)categoria > 1 && (int)categoria < 6)
+            {
+                oBLL_Empleado = new BLL_Chef_Principal();
+                oBLL_Empleado.Baja(oBE_Empleado);
+            }
+            else
+            {
+                oBLL_Empleado = new BLL_Mozo();
+                oBLL_Empleado.Baja(oBE_Empleado);
+            }
+            ActualizarListado();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Trabajo_Final
 
         public BE_Empleado oBE_Empleado;
         BLL_Empleado oBLL_Empleado;
+        private bool status;
         public frmNuevoEmpleado()
         {
             InitializeComponent();
@@ -65,6 +66,7 @@ namespace Trabajo_Final
             oBE_Empleado.FechaNacimiento = dtpFechaNac.Value;
             oBE_Empleado.FechaIngreso = dtpFechaIng.Value;
             oBE_Empleado.Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), comboCategoria.SelectedItem.ToString());
+            oBE_Empleado.Activo = status;
             return oBLL_Empleado.Modificar(oBE_Empleado);
         }
 
@@ -112,6 +114,7 @@ namespace Trabajo_Final
                 {
                     txtContacto.Text = ((BE_GerenteSucursal)oBE_Empleado).Contacto.ToString();
                 }
+                status = oBE_Empleado.Activo;
             }
         }
 

@@ -18,11 +18,14 @@ namespace Trabajo_Final
     {
         public BE_Login oBE_Login;
         BLL_Login oBLL_Login;
+        BLL_Gerente_Sucursal oBLL_Gerente;
         public frmNuevoLogin()
         {
             InitializeComponent();
             oBLL_Login = new BLL_Login();
+            oBLL_Gerente = new BLL_Gerente_Sucursal();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
+            Cálculos.DataSourceCombo(comboEmpleado, oBLL_Gerente.Listar(), "Empleados");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -35,11 +38,11 @@ namespace Trabajo_Final
             {
                 Cálculos.MsgBoxNoAlta("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
             }
-
         }
 
         private bool Viejo()
         {
+            oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
             oBE_Login.Usuario = txtUsuario.Text;
             oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
             return oBLL_Login.Modificar(oBE_Login);
@@ -48,7 +51,7 @@ namespace Trabajo_Final
         private bool Nuevo()
         {
             oBE_Login = new BE_Login();
-            //oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
+            oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
             oBE_Login.Usuario = txtUsuario.Text;
             oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
             //oBE_Login.Permiso = (BE_Permiso)comboEmpleado.SelectedItem;
@@ -58,6 +61,7 @@ namespace Trabajo_Final
         {
             if (oBE_Login != null)
             {
+                comboEmpleado.Text = oBE_Login.ToString();
                 txtUsuario.Text = oBE_Login.Usuario;
                 txtPass.Text = oBE_Login.Password;
             }

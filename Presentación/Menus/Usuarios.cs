@@ -45,6 +45,7 @@ namespace Trabajo_Final
             frmNuevoLogin frm = new frmNuevoLogin();
             frm.oBE_Login = oBE_Login;
             frm.ShowDialog();
+            ActualizarListado();
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

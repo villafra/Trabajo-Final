@@ -41,15 +41,13 @@ namespace Mapper
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
-            //MPP_Empleado oMPP_Emplado = new MPP_Empleado();
-            //List<BE_Empleado> listaEmplados = new List<BE_Empleado>();
-            //listaEmplados = oMPP_Emplado.Listar();
+            MPP_Empleado oMPP_Emplado = new MPP_Empleado();
 
             List<BE_Login> ListaLogins = (from log in ds.Tables["Login"].AsEnumerable()
                                           select new BE_Login
                                           {
                                               Codigo = Convert.ToInt32(log[0]),
-                                              //Empleado = listaEmplados.Find(x=> x.Codigo == Convert.ToInt32(log[1])),
+                                              Empleado = Convert.ToString(log[2]) != "admin" ? oMPP_Emplado.Listar().Find(x=> x.Codigo == Convert.ToInt32(log[1])):null,
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
@@ -86,7 +84,7 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Login";
             XElement nuevoLogin = new XElement("Login",
                 new XElement("ID", Cálculos.IDPadleft(user.Codigo)),
-                //new XElement("ID_Empleado", user.Empleado.Codigo.ToString()),
+                new XElement("ID_Empleado", user.Empleado.Codigo.ToString()),
                 new XElement("Usuario", user.Usuario),
                 new XElement("Password", user.Password),
                 new XElement("Cantidad_Intentos", user.CantidadIntentos.ToString()),

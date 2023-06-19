@@ -122,12 +122,12 @@ namespace Mapper
                                                                                          {
                                                                                              Codigo = Convert.ToInt32(ing[0]),
                                                                                              Nombre = Convert.ToString(ing[1]),
-                                                                                             Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
+                                                                                             Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
                                                                                              Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                             UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
+                                                                                             UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
                                                                                              Activo = Convert.ToBoolean(ing[5]),
                                                                                              VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                             Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[8])),
+                                                                                             Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[8])),
                                                                                              CostoUnitario = Convert.ToDecimal(ing[7])
 
                                                                                          }).ToList():null,

@@ -91,17 +91,29 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\IngresarCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\IngresarCompra.Designer.cs">
+      <DependentUpon>IngresarCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Rotacion.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menus\Rotacion.Designer.cs">
       <DependentUpon>Rotacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\SubMenus\NuevoRelevo - Copia.cs">
+    <Compile Include="Menus\SubMenus\NuevoIngresoCompra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menus\SubMenus\NuevoRelevo - Copia.Designer.cs">
-      <DependentUpon>NuevoRelevo - Copia.cs</DependentUpon>
+    <Compile Include="Menus\SubMenus\NuevoIngresoCompra.Designer.cs">
+      <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoRelevo .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoRelevo .Designer.cs">
+      <DependentUpon>NuevoRelevo .cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevaCompra.cs">
       <SubType>Form</SubType>
@@ -174,14 +186,20 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\IngresarCompra.resx">
+      <DependentUpon>IngresarCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\Rotacion.resx">
       <DependentUpon>Rotacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MenuGerente.resx">
       <DependentUpon>MenuGerente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menus\SubMenus\NuevoRelevo - Copia.resx">
-      <DependentUpon>NuevoRelevo - Copia.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoIngresoCompra.resx">
+      <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoRelevo .resx">
+      <DependentUpon>NuevoRelevo .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaCompra.resx">
       <DependentUpon>NuevaCompra.cs</DependentUpon>

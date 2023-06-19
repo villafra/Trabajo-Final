@@ -148,6 +148,33 @@ namespace Data_Access_Layer
             }
         }
 
+        public bool ModificarMatLot(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement modificarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                        .Where(n => n.Element("Material").Value == tupla.Xelement.Element("Material").Value
+                                        && n.Element("Lote").Value == tupla.Xelement.Element("Lote").Value)
+                                        .FirstOrDefault();
+                    foreach (XElement dato in modificarObjeto.Elements())
+                    {
+                        dato.Value = tupla.Xelement.Element(dato.Name).Value;
+                    }
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+
         public DataSet Listar()
         {
             if (!ExisteBD())
@@ -220,7 +247,37 @@ namespace Data_Access_Layer
                 );
             return Admin;
         }
-
+        public bool Existe (BE_TuplaXML tupla, string element)
+        {
+            AbrirConexion();
+            bool existe;
+            try
+            {
+                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                .Any(x => x.Element(element).Value == tupla.Xelement.Element(element).Value);
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
+        public bool ExisteMatLot(BE_TuplaXML tupla)
+        {
+            AbrirConexion();
+            bool existe;
+            try
+            {
+                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                .Any(x => x.Element("Material").Value == tupla.Xelement.Element("Material").Value
+                                && x.Element("Lote").Value == tupla.Xelement.Element("Lote").Value);
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw ex;
+            }
+        }
         private void AutogenerarID(BE_TuplaXML tupla)
         {
             int ID;

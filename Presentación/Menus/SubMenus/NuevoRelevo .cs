@@ -25,8 +25,8 @@ namespace Trabajo_Final
             InitializeComponent();
             oBLL_Ingrediente = new BLL_Ingrediente();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
-            Cálculos.DataSourceCombo(comboTipo, Enum.GetNames(typeof(BE_Ingrediente.TipoIng)), "Tipo");
-            Cálculos.DataSourceCombo(comboUM, Enum.GetNames(typeof(BE_Ingrediente.UM)), "UM");
+            Cálculos.DataSourceCombo(comboTipo, Enum.GetNames(typeof(TipoIng)), "Tipo");
+            Cálculos.DataSourceCombo(comboUM, Enum.GetNames(typeof(UM)), "UM");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -46,8 +46,8 @@ namespace Trabajo_Final
         {
             oBE_Ingrediente.Codigo = Convert.ToInt32(txtCodigo.Text);
             oBE_Ingrediente.Nombre = txtNombre.Text;
-            oBE_Ingrediente.Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng),comboTipo.SelectedItem.ToString());
-            oBE_Ingrediente.UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), comboUM.SelectedItem.ToString());
+            oBE_Ingrediente.Tipo = (TipoIng)Enum.Parse(typeof(TipoIng),comboTipo.SelectedItem.ToString());
+            oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
             oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
             oBE_Ingrediente.Activo = status;
             return oBLL_Ingrediente.Modificar(oBE_Ingrediente);
@@ -57,8 +57,8 @@ namespace Trabajo_Final
         {
             oBE_Ingrediente = new BE_Ingrediente();
             oBE_Ingrediente.Nombre = txtNombre.Text;
-            oBE_Ingrediente.Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), comboTipo.SelectedItem.ToString());
-            oBE_Ingrediente.UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), comboUM.SelectedItem.ToString());
+            oBE_Ingrediente.Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), comboTipo.SelectedItem.ToString());
+            oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
             oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
             oBE_Ingrediente.Refrigeracion = chkRefri.Checked;
             return oBLL_Ingrediente.Guardar(oBE_Ingrediente);

@@ -14,14 +14,14 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmNuevaCompra : Form
+    public partial class frmNuevoIngresoCompra : Form
     {
 
         public BE_Compra oBE_Compra;
         BLL_Compra oBLL_Compra;
         BLL_Ingrediente oBLL_Ingrediente;
         private bool status;
-        public frmNuevaCompra()
+        public frmNuevoIngresoCompra()
         {
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();

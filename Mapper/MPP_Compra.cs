@@ -26,7 +26,7 @@ namespace Mapper
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearCompraXML(compra));
-            return Acceso.Borrar(ListadoXML);
+            return Acceso.Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Compra compra)
@@ -47,24 +47,28 @@ namespace Mapper
                                               {
                                                   Codigo = Convert.ToInt32(comp[0]),
                                                   ID_Ingrediente = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                    where Convert.ToInt32(ing[0]) == Convert.ToInt32(comp[1])
-                                                                    select new BE_Ingrediente
-                                                                    {
-                                                                        Codigo = Convert.ToInt32(ing[0]),
-                                                                        Nombre = Convert.ToString(ing[1]),
-                                                                        Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
-                                                                        Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                        UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
-                                                                        Activo = Convert.ToBoolean(ing[5]),
-                                                                        VidaUtil = Convert.ToInt32(ing[6]),
-                                                                        Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[8])),
-                                                                        CostoUnitario = Convert.ToDecimal(ing[7])
-                                                                    }).FirstOrDefault():null,
+                                                                                                                 where Convert.ToInt32(ing[0]) == Convert.ToInt32(comp[1])
+                                                                                                                 select new BE_Ingrediente
+                                                                                                                 {
+                                                                                                                     Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                     Nombre = Convert.ToString(ing[1]),
+                                                                                                                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                                     Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                     VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[8])
+
+                                                                                                                 }).FirstOrDefault() : null,
                                                   Cantidad = Convert.ToDecimal(comp[2]),
                                                   FechaCompra = Convert.ToDateTime(comp[3]),
                                                   FechaEntrega = Convert.ToDateTime(comp[4]),
-                                                  CantidadRecibida = Convert.ToDecimal(comp[5]),
-                                                  Costo = Convert.ToDecimal(comp[6])
+                                                  FechaIngreso = comp[8].ToString() != StausComp.En_Curso.ToString() ? Convert.ToDateTime(comp[5]) : (DateTime?)null,
+                                                  CantidadRecibida = Convert.ToDecimal(comp[6]),
+                                                  Costo = Convert.ToDecimal(comp[7]),
+                                                  Status = (StausComp)Enum.Parse(typeof(StausComp), comp[8].ToString()),
+                                                  Activo = Convert.ToBoolean(comp[9])
                                               }).ToList(): null;
             return listadeCompras;
         }
@@ -92,7 +96,7 @@ namespace Mapper
                 new XElement("Cantidad", compra.Cantidad.ToString()),
                 new XElement("Fecha_Compra", compra.FechaCompra.ToString("dd/MM/yyyy HH:mm:ss")),
                 new XElement("Fecha_Entrega", compra.FechaEntrega.ToString("dd/MM/yyyy HH:mm:ss")),
-                new XElement("Fecha_Ingreso", compra.Status != StausComp.En_Curso ? compra.FechaIngreso.ToString("dd/MM/yyyy HH:mm:ss"):""),
+                new XElement("Fecha_Ingreso", compra.Status != StausComp.En_Curso ? compra.FechaIngreso.Value.ToString("dd/MM/yyyy HH:mm:ss"):""),
                 new XElement("Cantidad_Recibida", compra.Cantidad.ToString()),
                 new XElement("Costo", compra.Costo.ToString()),
                 new XElement("Status", compra.Status.ToString()),

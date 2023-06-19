@@ -37,7 +37,7 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public decimal DevolverStock(BE_Plato plato)
+        public decimal DevolverStock(BE_Plato plato, bool conlote)
         {
             throw new NotImplementedException();
         }

@@ -24,6 +24,12 @@ namespace Business_Entities
             string clase = typeof(BE_Ingrediente).Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
+
+        public override string ToString()
+        {
+            return Nombre.ToString();
+        }
+    }
         public enum TipoIng
         {
             Vegetal,
@@ -57,5 +63,5 @@ namespace Business_Entities
             UN,
 
         }
-    }
+    
 }

@@ -208,5 +208,26 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void generarComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCompras);
+            if (frm != null)
+            {
+
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmCompras();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void ingresarPedidoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

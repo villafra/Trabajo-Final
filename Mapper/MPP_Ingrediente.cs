@@ -26,7 +26,7 @@ namespace Mapper
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
-            return Acceso.Borrar(ListadoXML);
+            return Acceso.Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Ingrediente ingrediente)
@@ -47,12 +47,12 @@ namespace Mapper
                                                       {
                                                           Codigo = Convert.ToInt32(ing[0]),
                                                           Nombre = Convert.ToString(ing[1]),
-                                                          Tipo = (BE_Ingrediente.TipoIng)Enum.Parse(typeof(BE_Ingrediente.TipoIng), Convert.ToString(ing[2])),
+                                                          Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
                                                           Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                          UnidadMedida = (BE_Ingrediente.UM)Enum.Parse(typeof(BE_Ingrediente.UM), Convert.ToString(ing[4])),
+                                                          UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
                                                           Activo = Convert.ToBoolean(ing[5]),
                                                           VidaUtil = Convert.ToInt32(ing[6]),
-                                                          Status = (BE_Ingrediente.StatusIng)Enum.Parse(typeof(BE_Ingrediente.StatusIng), Convert.ToString(ing[7])),
+                                                          Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                                                           CostoUnitario = Convert.ToDecimal(ing[8])
 
                                                       }).ToList():null;

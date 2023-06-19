@@ -38,7 +38,7 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public decimal DevolverStock(BE_Mesa mesa)
+        public decimal DevolverStock(BE_Mesa mesa, bool conlote)
         {
             throw new NotImplementedException();
         }

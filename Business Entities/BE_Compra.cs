@@ -14,7 +14,7 @@ namespace Business_Entities
         public decimal Cantidad { get; set; }
         public DateTime FechaCompra { get; set; }
         public DateTime FechaEntrega { get; set; }
-        public DateTime FechaIngreso { get; set; }
+        public DateTime? FechaIngreso { get; set; }
         public decimal CantidadRecibida { get; set; }
         public decimal Costo { get; set; }
         public StausComp Status { get; set; }

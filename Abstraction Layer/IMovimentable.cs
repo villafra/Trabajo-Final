@@ -8,7 +8,7 @@ namespace Abstraction_Layer
 {
     public interface IMovimentable<T> where T : IEntidable
     {
-        decimal DevolverStock(T Objeto);
+        decimal DevolverStock(T Objeto, bool thislote = true);
         void AgregarStock(T Objeto, int Cantidad);
         DateTime DevolverFechaVencimiento(T Objeto);
     }

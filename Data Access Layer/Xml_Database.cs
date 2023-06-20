@@ -189,7 +189,7 @@ namespace Data_Access_Layer
         {
             if (!ExisteBD())
             {
-                throw new FileNotFoundException("La base de datos es inexsitente");
+                throw new FileNotFoundException("La base de datos es inexistente");
             }
             DataSet ds = new DataSet();
             ds.ReadXml(ReferenciasBD.BaseDatosRestaurant, XmlReadMode.Auto);

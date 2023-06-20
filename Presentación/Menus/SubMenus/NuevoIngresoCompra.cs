@@ -69,5 +69,14 @@ namespace Trabajo_Final
             ImportarCompra();
             
         }
+
+        private void txtLote_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                dtpFechaLote.Value = oBLL_Material.ListarXCompra(oBE_Compra).FechaCreacion.Value;
+            }
+            catch { }
+        }
     }
 }

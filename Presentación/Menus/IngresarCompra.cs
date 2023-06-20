@@ -30,7 +30,7 @@ namespace Trabajo_Final
             Aspecto.FormatearDGV(dgvCompras);
             ActualizarListado();
         }
-        private void ActualizarListado()
+        public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar().FindAll(x => x.Status == StausComp.En_Curso));
             dgvCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

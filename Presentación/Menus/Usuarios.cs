@@ -27,7 +27,7 @@ namespace Trabajo_Final
             Aspecto.FormatearDGV(dgvUsuarios);
             ActualizarListado();
         }
-        private void ActualizarListado()
+        public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
             dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

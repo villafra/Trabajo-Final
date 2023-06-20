@@ -9,7 +9,7 @@ using Mapper;
 
 namespace Business_Logic_Layer
 {
-    public class BLL_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock>
+    public class BLL_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock,BE_Compra>
     {
         MPP_Material_Stock oMPP_Material_Stock;
 
@@ -18,11 +18,14 @@ namespace Business_Logic_Layer
             oMPP_Material_Stock = new MPP_Material_Stock();
         }
 
-        public void AgregarStock(BE_Material_Stock material, int Cantidad)
+        public bool AgregarStock(BE_Material_Stock material, BE_Compra compra)
         {
-            throw new NotImplementedException();
+            return oMPP_Material_Stock.AgregarStock(material, compra);
         }
-
+        public void RestarStock(BE_Material_Stock material)
+        {
+            material.Stock = material.Stock * -1;
+        }
         public bool Baja(BE_Material_Stock material)
         {
             return oMPP_Material_Stock.Baja(material);

@@ -14,6 +14,5 @@ namespace Business_Entities
         public decimal Stock { get; set; }
         public DateTime? FechaCreacion { get; set; }
         public string Lote { get; set; }
-        public bool GestionLote { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using Mapper;
 
 namespace Business_Logic_Layer
 {
-    public class BLL_Mesa : IGestionable<BE_Mesa>, IMovimentable<BE_Mesa>
+    public class BLL_Mesa : IGestionable<BE_Mesa>, IMovimentable<BE_Mesa,BE_Compra>
     {
         MPP_Mesa oMPP_Mesa;
 
@@ -23,7 +23,7 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public void AgregarStock(BE_Mesa mesa, int Cantidad)
+        public bool AgregarStock(BE_Mesa mesa, BE_Compra compra)
         {
             throw new NotImplementedException();
         }

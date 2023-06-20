@@ -14,14 +14,14 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmNuevoIngresoCompra : Form
+    public partial class frmNuevaDevolucionCompra : Form
     {
 
         public BE_Compra oBE_Compra;
         BLL_Compra oBLL_Compra;
         BE_Material_Stock oBE_Material;
         BLL_Material_Stock oBLL_Material;
-        public frmNuevoIngresoCompra()
+        public frmNuevaDevolucionCompra()
         {
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
@@ -40,12 +40,13 @@ namespace Trabajo_Final
             oBE_Material = new BE_Material_Stock();
             oBE_Material.Material = oBE_Compra.ID_Ingrediente;
             oBE_Material.Stock = numCantidad.Value;
+            oBLL_Material.RestarStock(oBE_Material);
             oBE_Material.FechaCreacion = dtpFechaLote.Value;
             oBE_Material.Lote = txtLote.Text;
             oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-            oBE_Compra.CantidadRecibida = numCantidad.Value;
+            oBE_Compra.CantidadRecibida = oBE_Material.Stock;
             oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
-            oBE_Compra.Status = StausComp.Entregada;
+            oBE_Compra.Status = StausComp.Devolucion;
             return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Material.AgregarStock(oBE_Material, oBE_Compra);
         }
         private void ImportarCompra()
@@ -57,10 +58,10 @@ namespace Trabajo_Final
                 numCantidad.Value = oBE_Compra.Cantidad;
                 dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                 numCantidad.Value = oBE_Compra.CantidadRecibida;
-                if (!oBE_Compra.ID_Ingrediente.GestionLote)
-                {
-                    txtLote.Enabled = false;
-                }
+                txtLote.Enabled = false;
+                dtpFechaArribo.Enabled = false;
+                dtpFechaLote.Enabled = false;
+                txtLote.Enabled = false;
             }
         }
 

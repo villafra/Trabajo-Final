@@ -12,6 +12,5 @@ namespace Abstraction_Layer
         T Material { get; set; }
         DateTime? FechaCreacion { get; set; }
         string Lote { get; set; }
-        bool GestionLote { get; set; }
     }
 }

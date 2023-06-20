@@ -51,15 +51,25 @@ namespace Data_Access_Layer
                 foreach (BE_TuplaXML tupla in datos)
                 {
                     XElement nodoPadre = doc.Root.Element(tupla.NodoRoot);
+                    string CodigoNuevo = null;
                     if (nodoPadre == null)
                     {
-                        doc.Root.Add(tupla.NodoRoot);
+                        doc.Root.Add( new XElement(tupla.NodoRoot));
+                        CerrarConexion();
+                        AbrirConexion();
                         nodoPadre = doc.Root.Element(tupla.NodoRoot);
+
                     }
-                    if (Convert.ToInt32(tupla.Xelement.Element("ID").Value) == 0)
+                    if (tupla.Xelement.Elements("ID").Any() != false ? Convert.ToInt32(tupla.Xelement.Element("ID").Value) == 0:false)
                     {
                         AutogenerarID(tupla);
+                        
                     }
+                    else
+                    {
+                        tupla.Xelement.Elements().FirstOrDefault(x => x.Value == "0").Value = CodigoNuevo;
+                    }
+                    CodigoNuevo = tupla.Xelement.Elements("ID").Any() != false ? tupla.Xelement.Element("ID").Value: "";
                     nodoPadre.Add(tupla.Xelement);
 
                 }
@@ -161,7 +171,7 @@ namespace Data_Access_Layer
                                         .FirstOrDefault();
                     foreach (XElement dato in modificarObjeto.Elements())
                     {
-                        dato.Value = tupla.Xelement.Element(dato.Name).Value;
+                        dato.Value = dato.Name != "Stock" ? tupla.Xelement.Element(dato.Name).Value: dato.Value + tupla.Xelement.Element(dato.Name).Value;
                     }
                 }
                 CerrarConexion();
@@ -268,14 +278,18 @@ namespace Data_Access_Layer
             bool existe;
             try
             {
-                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf) != null ? doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
                                 .Any(x => x.Element("Material").Value == tupla.Xelement.Element("Material").Value
-                                && x.Element("Lote").Value == tupla.Xelement.Element("Lote").Value);
+                                && x.Element("Lote").Value == tupla.Xelement.Element("Lote").Value):false;
             }
             catch (Exception ex)
             {
                 return false;
                 throw ex;
+            }
+            finally
+            {
+                CancelarConexion();
             }
         }
         private void AutogenerarID(BE_TuplaXML tupla)

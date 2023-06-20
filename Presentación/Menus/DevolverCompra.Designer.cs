@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmIngresarCompra
+    partial class frmDevolverCompra
     {
         /// <summary>
         /// Required designer variable.

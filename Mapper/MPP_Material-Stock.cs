@@ -12,7 +12,7 @@ using Automate_Layer;
 
 namespace Mapper
 {
-    public class MPP_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock>
+    public class MPP_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock, BE_Compra>
     {
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
@@ -22,19 +22,19 @@ namespace Mapper
             ListadoXML = new List<BE_TuplaXML>();
         }
 
-        public void AgregarStock(BE_Material_Stock material, int Cantidad)
+        public bool AgregarStock(BE_Material_Stock material, BE_Compra compra)
         {
             Acceso = new Xml_Database();
             if (Acceso.ExisteMatLot(CrearMaterial_StockXML(material)))
             {
-                ModificarMatLot(material);
+                return ModificarMatLot(material, compra);
             }
             else
             {
-                Guardar(material);
+                return Guardar(material,compra);
             }
         }
-
+        
         public bool Baja(BE_Material_Stock material)
         {
             Acceso = new Xml_Database();
@@ -65,6 +65,13 @@ namespace Mapper
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Acceso.Escribir(ListadoXML);
         }
+        public bool Guardar(BE_Material_Stock material, BE_Compra compra)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearMaterial_StockXML(material));
+            ListadoXML.Add(CrearMaterialCompraXML(material, compra));
+            return Acceso.Escribir(ListadoXML);
+        }
 
         public List<BE_Material_Stock> Listar()
         {
@@ -93,8 +100,7 @@ namespace Mapper
                                                                                                                                                                     }).FirstOrDefault() : null,
                                                                                                            Stock = Convert.ToDecimal(mat[3]),
                                                                                                            FechaCreacion = Convert.ToDateTime(mat[4]),
-                                                                                                           Lote = Convert.ToString(mat[5]),
-                                                                                                           GestionLote = Convert.ToBoolean(mat[6])
+                                                                                                           Lote = Convert.ToString(mat[5])
 
                                                                                                        }).ToList() : null;
 
@@ -130,7 +136,6 @@ namespace Mapper
                                                                                                         Stock = Convert.ToDecimal(mat[3]),
                                                                                                         FechaCreacion = Convert.ToDateTime(mat[4]),
                                                                                                         Lote = Convert.ToString(mat[5]),
-                                                                                                        GestionLote = Convert.ToBoolean(mat[6])
                                                                                                     }).FirstOrDefault() : null;
 
             return oBE_Material_Stock;
@@ -142,10 +147,11 @@ namespace Mapper
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Acceso.Modificar(ListadoXML);
         }
-        public bool ModificarMatLot(BE_Material_Stock material)
+        public bool ModificarMatLot(BE_Material_Stock material, BE_Compra compra)
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearMaterial_StockXML(material));
+            ListadoXML.Add(CrearMaterialCompraXML(material, compra));
             return Acceso.ModificarMatLot(ListadoXML);
         }
 
@@ -159,10 +165,22 @@ namespace Mapper
                 new XElement("ID_Ingrediente", material.Material.Codigo.ToString()),
                 new XElement("Stock", material.Stock.ToString()),
                 new XElement("Fecha_Creacion", material.FechaCreacion.Value.ToString("dd/MM/yyyy")),
-                new XElement("Lote", material.Lote),
-                new XElement("Gestion_Lote", material.GestionLote.ToString())
+                new XElement("Lote", material.Lote)
                 );
             nuevaTupla.Xelement = nuevoMaterial;
+            return nuevaTupla;
+        }
+
+        private BE_TuplaXML CrearMaterialCompraXML(BE_Material_Stock material, BE_Compra compra)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Materiales-Compras";
+            nuevaTupla.NodoLeaf = "Material-Compra";
+            XElement nuevoMaterialCompra = new XElement("Material-Compra",
+                new XElement("ID_Material-Stock", material.Codigo.ToString()),
+                new XElement("ID_Compra", compra.Codigo.ToString())
+                );
+            nuevaTupla.Xelement = nuevoMaterialCompra;
             return nuevaTupla;
         }
     }

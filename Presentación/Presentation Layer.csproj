@@ -91,6 +91,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\DevolverCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\DevolverCompra.Designer.cs">
+      <DependentUpon>DevolverCompra.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\IngresarCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +108,12 @@
     </Compile>
     <Compile Include="Menus\Rotacion.Designer.cs">
       <DependentUpon>Rotacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaDevolucionCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaDevolucionCompra.Designer.cs">
+      <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevoIngresoCompra.cs">
       <SubType>Form</SubType>
@@ -186,6 +198,9 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\DevolverCompra.resx">
+      <DependentUpon>DevolverCompra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\IngresarCompra.resx">
       <DependentUpon>IngresarCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -194,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MenuGerente.resx">
       <DependentUpon>MenuGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevaDevolucionCompra.resx">
+      <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoIngresoCompra.resx">
       <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>

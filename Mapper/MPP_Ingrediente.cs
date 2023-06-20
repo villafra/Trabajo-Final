@@ -53,7 +53,8 @@ namespace Mapper
                                                           Activo = Convert.ToBoolean(ing[5]),
                                                           VidaUtil = Convert.ToInt32(ing[6]),
                                                           Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                          CostoUnitario = Convert.ToDecimal(ing[8])
+                                                          CostoUnitario = Convert.ToDecimal(ing[8]),
+                                                          GestionLote = Convert.ToBoolean(ing[9])
 
                                                       }).ToList():null;
             return listaIngredientes;
@@ -85,7 +86,8 @@ namespace Mapper
                 new XElement("Activo", ingrediente.Activo.ToString()),
                 new XElement("Vida_Util", ingrediente.VidaUtil.ToString()),
                 new XElement("Status", ingrediente.Status),
-                new XElement("Costo_Unitario",ingrediente.CostoUnitario.ToString())
+                new XElement("Costo_Unitario",ingrediente.CostoUnitario.ToString()),
+                new XElement("Gestion_Lote", ingrediente.GestionLote.ToString())
                 );
             nuevaTupla.Xelement = nuevoIngrediente;
             return nuevaTupla;

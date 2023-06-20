@@ -41,6 +41,7 @@ namespace Data_Access_Layer
             "Platos-Pedidos",
             "Bebidas-Pedidos",
             "Ingredientes-Platos",
+            "Materiales-Stocks",
             "Calendarios"
         };
 

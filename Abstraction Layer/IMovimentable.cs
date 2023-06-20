@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Abstraction_Layer
 {
-    public interface IMovimentable<T> where T : IEntidable
+    public interface IMovimentable<T,M> where T : IEntidable where M : IEntidable
     {
         decimal DevolverStock(T Objeto, bool thislote = true);
-        void AgregarStock(T Objeto, int Cantidad);
+        bool AgregarStock(T Objeto, M compra);
         DateTime DevolverFechaVencimiento(T Objeto);
     }
 

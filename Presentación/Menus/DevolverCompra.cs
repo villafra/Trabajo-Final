@@ -13,14 +13,12 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmIngresarCompra : Form
+    public partial class frmDevolverCompra : Form
     {
         BLL_Compra oBLL_Compra;
         BE_Compra oBE_Compra;
-        BE_Material_Stock oBE_Material;
-        BLL_Material_Stock oBLL_Material;
 
-        public frmIngresarCompra()
+        public frmDevolverCompra()
         {
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
@@ -32,13 +30,13 @@ namespace Trabajo_Final
         }
         private void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar().FindAll(x => x.Status == StausComp.En_Curso));
+            Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar().FindAll(x => x.Status == StausComp.Entregada));
             dgvCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngresoCompra frm = new frmNuevoIngresoCompra();
+            frmNuevaDevolucionCompra frm = new frmNuevaDevolucionCompra();
             if (oBE_Compra.Codigo != 0) frm.oBE_Compra = oBE_Compra;
             frm.ShowDialog();
             ActualizarListado();
@@ -60,9 +58,5 @@ namespace Trabajo_Final
 
         }
 
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            oBLL_Compra.Baja(oBE_Compra);
-        }
     }
 }

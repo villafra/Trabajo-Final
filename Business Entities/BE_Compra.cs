@@ -25,6 +25,7 @@ namespace Business_Entities
     {
         En_Curso,
         Entregada,
+        Devolucion,
         Rechazada
     }
 }

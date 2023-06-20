@@ -58,8 +58,8 @@ namespace Mapper
                                                                                                                      Activo = Convert.ToBoolean(ing[5]),
                                                                                                                      VidaUtil = Convert.ToInt32(ing[6]),
                                                                                                                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[8])
-
+                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[8]),
+                                                                                                                     GestionLote = Convert.ToBoolean(ing[9])
                                                                                                                  }).FirstOrDefault() : null,
                                                   Cantidad = Convert.ToDecimal(comp[2]),
                                                   FechaCompra = Convert.ToDateTime(comp[3]),
@@ -97,7 +97,7 @@ namespace Mapper
                 new XElement("Fecha_Compra", compra.FechaCompra.ToString("dd/MM/yyyy HH:mm:ss")),
                 new XElement("Fecha_Entrega", compra.FechaEntrega.ToString("dd/MM/yyyy HH:mm:ss")),
                 new XElement("Fecha_Ingreso", compra.Status != StausComp.En_Curso ? compra.FechaIngreso.Value.ToString("dd/MM/yyyy HH:mm:ss"):""),
-                new XElement("Cantidad_Recibida", compra.Cantidad.ToString()),
+                new XElement("Cantidad_Recibida", compra.CantidadRecibida.ToString()),
                 new XElement("Costo", compra.Costo.ToString()),
                 new XElement("Status", compra.Status.ToString()),
                 new XElement("Activo",compra.Activo.ToString())

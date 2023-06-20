@@ -18,6 +18,7 @@ namespace Business_Entities
         public int VidaUtil { get; set; }
         public StatusIng Status { get; set; } = StatusIng.Reservado;
         public decimal CostoUnitario { get; set; }
+        public bool GestionLote { get; set; }
 
         public string DevolverNombre()
         {

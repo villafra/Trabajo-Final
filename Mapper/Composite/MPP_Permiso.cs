@@ -50,5 +50,32 @@ namespace Mapper
             
 
         }
+
+        public List<BE_Permiso> ArmarArbol(BE_PermisoPadre padre)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Permiso> Arbol = new List<BE_Permiso>();
+
+            Arbol = (from hj in ds.Tables["Padre-Hijo"].AsEnumerable()
+                     join per in ds.Tables["Permiso"].AsEnumerable()
+                     on hj[0].ToString() equals per[0].ToString()
+                     select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre 
+                     {      
+                         Codigo = per[0].ToString(),
+                         Descripción = per[2].ToString(),
+                         
+                     } : (BE_Permiso)new BE_PermisoHijo 
+                     {
+                         Codigo = per[0].ToString(),
+                         Descripción = per[2].ToString(),
+                         Otorgado = Convert.ToBoolean(hj[2])
+
+                     }).ToList();
+            return Arbol;
+                     
+        } 
     }
 }

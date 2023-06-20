@@ -44,6 +44,7 @@ namespace Trabajo_Final
                         if (this.Owner is frmMenu menu)
                         {
                             menu.UsuarioActivo = oBE_Login;
+
                         }
                         Cálculos.BorrarCampos(grpLogin);
                         this.Close();

@@ -176,7 +176,74 @@ namespace Mapper
                                                                                                 }).FirstOrDefault() : null;
             return Material_Stock;
         }
+        public List<BE_Material_Stock> ListarConStock()
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
 
+            List<BE_Material_Stock> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from mat in ds.Tables["Material-Stock"].AsEnumerable()
+                                                                                                   join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                   on Convert.ToInt32(mat[1]) equals Convert.ToInt32(ing[0])
+                                                                                                   where Convert.ToDecimal(mat[2]) > 0
+                                                                                                   select new BE_Material_Stock
+                                                                                                   {
+                                                                                                       Codigo = Convert.ToInt32(mat[0]),
+                                                                                                       Material = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                                where Convert.ToInt32(ing[0]) == Convert.ToInt32(mat[1])
+                                                                                                                                                                select new BE_Ingrediente
+                                                                                                                                                                {
+                                                                                                                                                                    Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                    Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                    Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                                                                                    Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                    UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                                                                                    Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                                                                    VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                                                                    Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                                                    CostoUnitario = Convert.ToDecimal(ing[8])
+
+                                                                                                                                                                }).FirstOrDefault() : null,
+                                                                                                       Stock = Convert.ToDecimal(mat[2]),
+                                                                                                       FechaCreacion = Convert.ToDateTime(mat[3]),
+                                                                                                       Lote = Convert.ToString(mat[4])
+
+                                                                                                   }).ToList() : null;
+            return listaIngredientes;
+        }
+        public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Material_Stock oBE_Material_Stock = ds.Tables.Contains("Material-Stock") != false ? (from mat in ds.Tables["Material-Stock"].AsEnumerable()
+                                                                                                    where Convert.ToInt32(mat[1]) == compra.ID_Ingrediente.Codigo && mat[4].ToString() == lote
+                                                                                                    select new BE_Material_Stock
+                                                                                                    {
+                                                                                                        Codigo = Convert.ToInt32(mat[0]),
+                                                                                                        Material = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                                 where Convert.ToInt32(ing[0]) == Convert.ToInt32(mat[1])
+                                                                                                                                                                 select new BE_Ingrediente
+                                                                                                                                                                 {
+                                                                                                                                                                     Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                     Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                                                                                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                                                                                     Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                                                                     VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                                                                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[8])
+
+                                                                                                                                                                 }).FirstOrDefault() : null,
+                                                                                                        Stock = Convert.ToDecimal(mat[2]),
+                                                                                                        FechaCreacion = Convert.ToDateTime(mat[3]),
+                                                                                                        Lote = Convert.ToString(mat[4]),
+                                                                                                    }).FirstOrDefault() : null;
+
+            return oBE_Material_Stock;
+        }
         public bool Modificar(BE_Material_Stock material)
         {
             Acceso = new Xml_Database();

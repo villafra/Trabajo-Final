@@ -59,8 +59,16 @@ namespace Business_Logic_Layer
         {
             return oMPP_Material_Stock.ListarXCompra(compra);
         }
-        public bool Modificar(BE_Material_Stock material)
+        public List<BE_Material_Stock> ListarConStock()
         {
+            return oMPP_Material_Stock.ListarConStock();
+        }
+        public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote)
+        {
+            return oMPP_Material_Stock.BuscarXLote(compra, lote);
+        }
+        public bool Modificar(BE_Material_Stock material)
+        { 
             return oMPP_Material_Stock.Modificar(material);
         }
     }

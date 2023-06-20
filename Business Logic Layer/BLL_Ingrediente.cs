@@ -33,8 +33,7 @@ namespace Business_Logic_Layer
         {
             return oMPP_Ingrediente.Listar();
         }
-
-        public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
+            public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
         {
             return oMPP_Ingrediente.ListarObjeto(ingrediente);
         }

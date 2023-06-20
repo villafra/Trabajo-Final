@@ -51,7 +51,15 @@ namespace Mapper
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
-                                              //Permiso = 
+                                              Permiso = (from per in ds.Tables["Permiso"].AsEnumerable()
+                                                        where log[5].ToString() == per[0].ToString()
+                                                        select new BE_PermisoPadre
+                                                        {
+                                                            Codigo = per[0].ToString(),
+                                                            Descripción = per[2].ToString(),
+                                                            
+
+                                                        }).FirstOrDefault(),
                                               Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
                                               Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
                                           }).ToList();

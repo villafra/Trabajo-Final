@@ -44,7 +44,7 @@ namespace Trabajo_Final
             oBE_Material.FechaCreacion = dtpFechaLote.Value;
             oBE_Material.Lote = txtLote.Text;
             oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-            oBE_Compra.CantidadRecibida = oBE_Material.Stock;
+            oBE_Compra.CantidadRecibida += oBE_Material.Stock;
             oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
             oBE_Compra.Status = StausComp.Devolucion;
             return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Material.AgregarStock(oBE_Material, oBE_Compra);
@@ -58,6 +58,7 @@ namespace Trabajo_Final
                 numCantidad.Value = oBE_Compra.Cantidad;
                 dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                 numCantidad.Value = oBE_Compra.CantidadRecibida;
+                txtLote.Text = oBLL_Material.ListarXCompra(oBE_Compra).Lote;
                 txtLote.Enabled = false;
                 dtpFechaArribo.Enabled = false;
                 dtpFechaLote.Enabled = false;

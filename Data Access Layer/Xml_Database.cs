@@ -48,10 +48,11 @@ namespace Data_Access_Layer
             AbrirConexion();
             try
             {
+                string CodigoNuevo = null;
                 foreach (BE_TuplaXML tupla in datos)
                 {
                     XElement nodoPadre = doc.Root.Element(tupla.NodoRoot);
-                    string CodigoNuevo = null;
+                    
                     if (nodoPadre == null)
                     {
                         doc.Root.Add( new XElement(tupla.NodoRoot));
@@ -165,12 +166,12 @@ namespace Data_Access_Layer
                 foreach (BE_TuplaXML tupla in datos)
                 {
                     XElement modificarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                                        .Where(n => n.Element("Material").Value == tupla.Xelement.Element("Material").Value
+                                        .Where(n => n.Element("ID_Ingrediente").Value == tupla.Xelement.Element("ID_Ingrediente").Value
                                         && n.Element("Lote").Value == tupla.Xelement.Element("Lote").Value)
                                         .FirstOrDefault();
                     foreach (XElement dato in modificarObjeto.Elements())
                     {
-                        dato.Value = dato.Name != "Stock" ? tupla.Xelement.Element(dato.Name).Value: dato.Value + tupla.Xelement.Element(dato.Name).Value;
+                        dato.Value = dato.Name != "Stock" ? tupla.Xelement.Element(dato.Name).Value: (Convert.ToDecimal(dato.Value) + Convert.ToDecimal(tupla.Xelement.Element(dato.Name).Value)).ToString();
                     }
                 }
                 CerrarConexion();
@@ -278,7 +279,7 @@ namespace Data_Access_Layer
             try
             {
                 return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf) != null ? doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                                .Any(x => x.Element("Material").Value == tupla.Xelement.Element("Material").Value
+                                .Any(x => x.Element("ID_Ingrediente").Value == tupla.Xelement.Element("ID_Ingrediente").Value
                                 && x.Element("Lote").Value == tupla.Xelement.Element("Lote").Value):false;
             }
             catch (Exception ex)

@@ -63,7 +63,6 @@ namespace Data_Access_Layer
                     if (tupla.Xelement.Elements("ID").Any() != false ? Convert.ToInt32(tupla.Xelement.Element("ID").Value) == 0:false)
                     {
                         AutogenerarID(tupla);
-                        
                     }
                     else
                     {

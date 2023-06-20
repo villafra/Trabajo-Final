@@ -53,9 +53,12 @@ namespace Business_Logic_Layer
 
         public BE_Material_Stock ListarObjeto(BE_Material_Stock material)
         {
-            throw new NotImplementedException();
+            return oMPP_Material_Stock.ListarObjeto(material);
         }
-
+        public BE_Material_Stock ListarXCompra(BE_Compra compra)
+        {
+            return oMPP_Material_Stock.ListarXCompra(compra);
+        }
         public bool Modificar(BE_Material_Stock material)
         {
             return oMPP_Material_Stock.Modificar(material);

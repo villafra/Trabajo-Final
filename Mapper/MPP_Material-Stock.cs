@@ -27,7 +27,7 @@ namespace Mapper
             Acceso = new Xml_Database();
             if (Acceso.ExisteMatLot(CrearMaterial_StockXML(material)))
             {
-                return ModificarMatLot(material, compra);
+                return ModificarMatLot(material);
             }
             else
             {
@@ -98,9 +98,9 @@ namespace Mapper
                                                                                                                                                                         CostoUnitario = Convert.ToDecimal(ing[8])
 
                                                                                                                                                                     }).FirstOrDefault() : null,
-                                                                                                           Stock = Convert.ToDecimal(mat[3]),
-                                                                                                           FechaCreacion = Convert.ToDateTime(mat[4]),
-                                                                                                           Lote = Convert.ToString(mat[5])
+                                                                                                           Stock = Convert.ToDecimal(mat[2]),
+                                                                                                           FechaCreacion = Convert.ToDateTime(mat[3]),
+                                                                                                           Lote = Convert.ToString(mat[4])
 
                                                                                                        }).ToList() : null;
 
@@ -133,12 +133,48 @@ namespace Mapper
                                                                                                                                                                      CostoUnitario = Convert.ToDecimal(ing[8])
 
                                                                                                                                                                  }).FirstOrDefault() : null,
-                                                                                                        Stock = Convert.ToDecimal(mat[3]),
-                                                                                                        FechaCreacion = Convert.ToDateTime(mat[4]),
-                                                                                                        Lote = Convert.ToString(mat[5]),
+                                                                                                        Stock = Convert.ToDecimal(mat[2]),
+                                                                                                        FechaCreacion = Convert.ToDateTime(mat[3]),
+                                                                                                        Lote = Convert.ToString(mat[4]),
                                                                                                     }).FirstOrDefault() : null;
 
             return oBE_Material_Stock;
+        }
+
+        public BE_Material_Stock ListarXCompra(BE_Compra compra)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Material_Stock Material_Stock = ds.Tables.Contains("Material-Stock") != false ? (from mat in ds.Tables["Material-Stock"].AsEnumerable()
+                                                                                                join ms in ds.Tables["Material-Compra"].AsEnumerable()
+                                                                                                on compra.Codigo equals Convert.ToInt32(ms[1])
+                                                                                                join com in ds.Tables["Compra"].AsEnumerable()
+                                                                                                on compra.Codigo equals Convert.ToInt32(com[0])
+                                                                                                select new BE_Material_Stock
+                                                                                                {
+                                                                                                    Codigo = Convert.ToInt32(mat[0]),
+                                                                                                    Material = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                             where Convert.ToInt32(ing[0]) == Convert.ToInt32(mat[1])
+                                                                                                                                                             select new BE_Ingrediente
+                                                                                                                                                             {
+                                                                                                                                                                 Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                 Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                 Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                                                                                 Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                 UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                                                                                 Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                                                                 VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                                                                 Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                                                 CostoUnitario = Convert.ToDecimal(ing[8])
+
+                                                                                                                                                             }).FirstOrDefault() : null,
+                                                                                                    Stock = Convert.ToDecimal(mat[2]),
+                                                                                                    FechaCreacion = Convert.ToDateTime(mat[3]),
+                                                                                                    Lote = Convert.ToString(mat[4])
+                                                                                                }).FirstOrDefault() : null;
+            return Material_Stock;
         }
 
         public bool Modificar(BE_Material_Stock material)
@@ -147,11 +183,10 @@ namespace Mapper
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Acceso.Modificar(ListadoXML);
         }
-        public bool ModificarMatLot(BE_Material_Stock material, BE_Compra compra)
+        public bool ModificarMatLot(BE_Material_Stock material)
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(CrearMaterial_StockXML(material));
-            ListadoXML.Add(CrearMaterialCompraXML(material, compra));
             return Acceso.ModificarMatLot(ListadoXML);
         }
 
@@ -178,7 +213,7 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Material-Compra";
             XElement nuevoMaterialCompra = new XElement("Material-Compra",
                 new XElement("ID_Material-Stock", material.Codigo.ToString()),
-                new XElement("ID_Compra", compra.Codigo.ToString())
+                new XElement("ID_Compra", Cálculos.IDPadleft(compra.Codigo))
                 );
             nuevaTupla.Xelement = nuevoMaterialCompra;
             return nuevaTupla;

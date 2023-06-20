@@ -61,6 +61,7 @@ namespace Trabajo_Final
             oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
             oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
             oBE_Ingrediente.Refrigeracion = chkRefri.Checked;
+            oBE_Ingrediente.GestionLote = chkLote.Checked;
             return oBLL_Ingrediente.Guardar(oBE_Ingrediente);
         }
         private void ImportarEmpleado()
@@ -73,6 +74,7 @@ namespace Trabajo_Final
                 comboUM.Text = oBE_Ingrediente.UnidadMedida.ToString();
                 numDias.Value = oBE_Ingrediente.VidaUtil;
                 chkRefri.Checked = oBE_Ingrediente.Refrigeracion;
+                chkLote.Checked = oBE_Ingrediente.GestionLote;
                 status = oBE_Ingrediente.Activo;
             }
         }

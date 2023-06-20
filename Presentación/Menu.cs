@@ -176,23 +176,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
-
-        private void ingredientesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngredientes);
-            if (frm != null)
-            {
-                ((frmIngredientes)frm).ActualizarListado();
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new frmIngredientes();
-                Aspecto.AbrirNuevoForm(this, frm);
-            }
-        }
-
         private void rotacionDePersonalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmRotacion);
@@ -260,6 +243,38 @@ namespace Trabajo_Final
         private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void gestionarIngredientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngredientes);
+            if (frm != null)
+            {
+                ((frmIngredientes)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmIngredientes();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void listadoToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoIngredientes);
+            if (frm != null)
+            {
+                ((frmListadoIngredientes)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoIngredientes();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
         }
     }
 }

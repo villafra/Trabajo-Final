@@ -8,7 +8,7 @@ namespace Business_Entities
 {
     public class BE_PermisoPadre : BE_Permiso
     {
-        List<BE_Permiso> _permisos;
+        public List<BE_Permiso> _permisos;
 
         public BE_PermisoPadre()
         {

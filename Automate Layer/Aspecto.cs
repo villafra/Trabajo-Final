@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -95,7 +96,6 @@ namespace Automate_Layer
             FormatearFormHijo(FormHijo);
             FormHijo.Show();
         };
-
         public static Action<Panel> FormatearPanel = (panel) =>
         {
             foreach (Control control in panel.Controls)

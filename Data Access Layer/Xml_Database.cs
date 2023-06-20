@@ -226,11 +226,18 @@ namespace Data_Access_Layer
                 XElement Leaf = new XElement("Logins");
                 Leaf.Add(CrearAdmin());
                 Root.Add(Leaf);
-                foreach(string hoja in ReferenciasBD.ArmaBD)
+                Leaf = new XElement("Permisos");
+                foreach (XElement perm in ReferenciasBD.ArmarPermisos)
                 {
-                    Leaf = new XElement(hoja);
-                    Root.Add(Leaf);
+                    Leaf.Add(perm);
                 }
+                Root.Add(Leaf);
+                Leaf = new XElement("Padres-Hijos");
+                foreach (XElement ph in ReferenciasBD.ArmaPadreHijo)
+                {
+                    Leaf.Add(ph);
+                }
+                Root.Add(Leaf);
                 Restaurant.Add(Root);
                 Restaurant.Save(ReferenciasBD.BaseDatosRestaurant);
                 return true;

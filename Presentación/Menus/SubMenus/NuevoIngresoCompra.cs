@@ -74,7 +74,17 @@ namespace Trabajo_Final
         {
             try
             {
-                dtpFechaLote.Value = oBLL_Material.ListarXCompra(oBE_Compra).FechaCreacion.Value;
+                BE_Material_Stock compra = oBLL_Material.BuscarXLote(oBE_Compra, txtLote.Text);
+                if (compra != null)
+                {
+                    dtpFechaLote.Value = compra.FechaCreacion.Value;
+                    dtpFechaLote.Enabled = false;
+                }
+                else
+                {
+                    dtpFechaLote.Value = DateTime.Now;
+                    dtpFechaLote.Enabled = true;
+                }
             }
             catch { }
         }

@@ -60,6 +60,8 @@ namespace Mapper
             return listaIngredientes;
             
         }
+
+
         public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
         {
             throw new NotImplementedException();

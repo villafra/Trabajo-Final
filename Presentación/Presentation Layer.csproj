@@ -73,6 +73,7 @@
     <Compile Include="CambioPass.Designer.cs">
       <DependentUpon>CambioPass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Composite\UIComposite.cs" />
     <Compile Include="Custom\CambiarPass.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,6 +97,12 @@
     </Compile>
     <Compile Include="Menus\DevolverCompra.Designer.cs">
       <DependentUpon>DevolverCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\ListadoIngredientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\ListadoIngredientes.Designer.cs">
+      <DependentUpon>ListadoIngredientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\IngresarCompra.cs">
       <SubType>Form</SubType>
@@ -200,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\DevolverCompra.resx">
       <DependentUpon>DevolverCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\ListadoIngredientes.resx">
+      <DependentUpon>ListadoIngredientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\IngresarCompra.resx">
       <DependentUpon>IngresarCompra.cs</DependentUpon>

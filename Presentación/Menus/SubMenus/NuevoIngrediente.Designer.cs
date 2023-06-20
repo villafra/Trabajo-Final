@@ -32,6 +32,7 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoIngrediente));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.comboUM = new System.Windows.Forms.ComboBox();
             this.chkRefri = new System.Windows.Forms.CheckBox();
             this.numDias = new System.Windows.Forms.NumericUpDown();
             this.lblTipo = new System.Windows.Forms.Label();
@@ -45,13 +46,14 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.comboUM = new System.Windows.Forms.ComboBox();
+            this.chkLote = new System.Windows.Forms.CheckBox();
             this.grpNuevoLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDias)).BeginInit();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
+            this.grpNuevoLogin.Controls.Add(this.chkLote);
             this.grpNuevoLogin.Controls.Add(this.comboUM);
             this.grpNuevoLogin.Controls.Add(this.chkRefri);
             this.grpNuevoLogin.Controls.Add(this.numDias);
@@ -70,10 +72,18 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
             // 
+            // comboUM
+            // 
+            this.comboUM.FormattingEnabled = true;
+            this.comboUM.Location = new System.Drawing.Point(174, 213);
+            this.comboUM.Name = "comboUM";
+            this.comboUM.Size = new System.Drawing.Size(257, 24);
+            this.comboUM.TabIndex = 23;
+            // 
             // chkRefri
             // 
             this.chkRefri.AutoSize = true;
-            this.chkRefri.Location = new System.Drawing.Point(227, 337);
+            this.chkRefri.Location = new System.Drawing.Point(226, 337);
             this.chkRefri.Name = "chkRefri";
             this.chkRefri.Size = new System.Drawing.Size(177, 21);
             this.chkRefri.TabIndex = 22;
@@ -203,13 +213,15 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // comboUM
+            // chkLote
             // 
-            this.comboUM.FormattingEnabled = true;
-            this.comboUM.Location = new System.Drawing.Point(174, 213);
-            this.comboUM.Name = "comboUM";
-            this.comboUM.Size = new System.Drawing.Size(257, 24);
-            this.comboUM.TabIndex = 23;
+            this.chkLote.AutoSize = true;
+            this.chkLote.Location = new System.Drawing.Point(23, 337);
+            this.chkLote.Name = "chkLote";
+            this.chkLote.Size = new System.Drawing.Size(135, 21);
+            this.chkLote.TabIndex = 24;
+            this.chkLote.Text = "Gestionado Lote";
+            this.chkLote.UseVisualStyleBackColor = true;
             // 
             // frmNuevoIngrediente
             // 
@@ -249,5 +261,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.NumericUpDown numDias;
         private System.Windows.Forms.CheckBox chkRefri;
         private System.Windows.Forms.ComboBox comboUM;
+        private System.Windows.Forms.CheckBox chkLote;
     }
 }

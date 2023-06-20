@@ -105,6 +105,7 @@ namespace Trabajo_Final
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(257, 22);
             this.txtLote.TabIndex = 34;
+            this.txtLote.Leave += new System.EventHandler(this.txtLote_Leave);
             // 
             // txtIngrediente
             // 

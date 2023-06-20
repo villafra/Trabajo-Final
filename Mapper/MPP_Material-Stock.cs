@@ -27,7 +27,7 @@ namespace Mapper
             Acceso = new Xml_Database();
             if (Acceso.ExisteMatLot(CrearMaterial_StockXML(material)))
             {
-                return ModificarMatLot(material);
+                return ModificarMatLot(material, compra);
             }
             else
             {
@@ -183,9 +183,15 @@ namespace Mapper
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Acceso.Modificar(ListadoXML);
         }
-        public bool ModificarMatLot(BE_Material_Stock material)
+        public bool ModificarMatLot(BE_Material_Stock material, BE_Compra compra)
         {
             Acceso = new Xml_Database();
+            if (compra.Status != StausComp.Devolucion)
+            {
+                ListadoXML.Add(CrearMaterialCompraXML(material, compra));
+                Acceso.Escribir(ListadoXML);
+                ListadoXML.Clear();
+            }
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Acceso.ModificarMatLot(ListadoXML);
         }

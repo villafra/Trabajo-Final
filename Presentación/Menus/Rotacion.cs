@@ -26,7 +26,7 @@ namespace Trabajo_Final
             Aspecto.FormatearDGV(dgvEmpleados);
             ActualizarListado();
         }
-        private void ActualizarListado()
+        public void ActualizarListado()
         {
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());

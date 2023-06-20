@@ -27,7 +27,7 @@ namespace Trabajo_Final
             Aspecto.FormatearDGV(dgvIngredientes);
             ActualizarListado();
         }
-        private void ActualizarListado()
+        public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Ingrediente.Listar());
             dgvIngredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

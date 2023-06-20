@@ -76,7 +76,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMenuGerente);
             if (frm != null)
             {
-
+                
                 frm.BringToFront();
                 return;
             }
@@ -93,7 +93,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmLogin);
             if (frm != null)
             {
-
+                
                 frm.BringToFront();
                 return;
             }
@@ -150,7 +150,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmUsuarios);
             if (frm != null)
             {
-
+                ((frmUsuarios)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -166,7 +166,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmEmpleados);
             if (frm != null)
             {
-
+                ((frmEmpleados)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -182,7 +182,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngredientes);
             if (frm != null)
             {
-
+                ((frmIngredientes)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -198,7 +198,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmRotacion);
             if (frm != null)
             {
-
+                ((frmRotacion)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -214,7 +214,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCompras);
             if (frm != null)
             {
-
+                ((frmCompras)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -230,7 +230,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmIngresarCompra);
             if (frm != null)
             {
-
+                ((frmIngresarCompra)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -246,7 +246,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDevolverCompra);
             if (frm != null)
             {
-
+                ((frmDevolverCompra)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -255,6 +255,11 @@ namespace Trabajo_Final
                 frm = new frmDevolverCompra();
                 Aspecto.AbrirNuevoForm(this, frm);
             }
+        }
+
+        private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

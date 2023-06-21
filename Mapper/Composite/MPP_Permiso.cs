@@ -15,68 +15,88 @@ namespace Mapper
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
 
-        public IList<BE_Permiso> ListarTodos()
+        public List<BE_Permiso> Listar()
         {
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
-            List<BE_Permiso> listaCompleta = new List<BE_Permiso>();
-            try
-            {
-                List<BE_PermisoPadre> ListaPadres = (from per in ds.Tables["PermisoPadre"].AsEnumerable()
-                                                       select new BE_PermisoPadre
-                                                       {
-                                                           Codigo = Convert.ToString(per[0]),
-                                                           Descripción = Convert.ToString(per[1])
-                                                       }).ToList();
-                List<BE_PermisoHijo> ListaHijos = (from per in ds.Tables["PermisoHijo"].AsEnumerable()
-                                                   select new BE_PermisoHijo
-                                                   {
-                                                       Codigo = Convert.ToString(per[0]),
-                                                       Descripción = Convert.ToString(per[1])
-                                                   }).ToList();
-
-                listaCompleta = ListaPadres.Cast<BE_Permiso>().ToList().Concat(ListaHijos.Cast<BE_Permiso>()).ToList();
-
-                return listaCompleta;
-            }
-            catch (Exception ex)
-            {
-                listaCompleta = null;
-                return listaCompleta;
-                throw ex;
-
-            }
-            
-
+            List<BE_Permiso> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
+                                        select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre
+                                        {
+                                            Codigo = per[0].ToString(),
+                                            Descripción = per[2].ToString(),
+                                        } : (BE_Permiso)new BE_PermisoHijo
+                                        {
+                                            Codigo = per[0].ToString(),
+                                            Descripción = per[2].ToString(),
+                                        }).ToList();
+            return listado;
+        }
+        public List<BE_Permiso> ListarPadre()
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+            List<BE_Permiso> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
+                                        where per[1].ToString() == "PermisoPadre" 
+                                        select new BE_PermisoPadre
+                                        {
+                                            Codigo = per[0].ToString(),
+                                            Descripción = per[2].ToString(),
+                                        } ).Cast<BE_Permiso>().ToList();
+            return listado;
         }
 
         public IList<BE_Permiso> ArmarArbol(BE_Permiso padre)
         {
             Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
-            List<BE_Permiso> Arbol = new List<BE_Permiso>();
-
-            Arbol = (from hj in ds.Tables["Padre-Hijo"].AsEnumerable()
-                     where padre.Codigo == hj[0].ToString()
-                     join per in ds.Tables["Permiso"].AsEnumerable()
-                     on hj[1].ToString() equals per[0].ToString()
-                     select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre 
-                     {      
-                         Codigo = per[0].ToString(),
-                         Descripción = per[2].ToString(),
-                         
-                     } : (BE_Permiso)new BE_PermisoHijo 
-                     {
-                         Codigo = per[0].ToString(),
-                         Descripción = per[2].ToString(),
-                         Otorgado = Convert.ToBoolean(hj[2])
-
-                     }).ToList();
+            DataSet ds = Acceso.Listar();
+            List<BE_Permiso> Arbol;
+            Arbol = ObtenerPermisos(ds, padre);
             return Arbol;
-                     
+         
         } 
+
+        public List<BE_Permiso> ObtenerPermisos (DataSet ds, BE_Permiso padre)
+        {
+            List<BE_Permiso> permisos = new List<BE_Permiso>();
+
+            var query = from hj in ds.Tables["Padre-Hijo"].AsEnumerable()
+                        where padre.Codigo == hj[0].ToString()
+                        join per in ds.Tables["Permiso"].AsEnumerable()
+                        on hj[1].ToString() equals per[0].ToString()
+                        select new
+                        {
+                            Codigo = per[0].ToString(),
+                            Tipo = per[1].ToString(),
+                            Descripción = per[2].ToString(),
+                            Otorgado = Convert.ToBoolean(hj[2])
+                        };
+            foreach (var item in query)
+            {
+                if (item.Tipo == "PermisoPadre")
+                {
+                    BE_PermisoPadre permisoPadre = new BE_PermisoPadre
+                    {
+                        Codigo = item.Codigo,
+                        Descripción = item.Descripción,
+                        _permisos = ObtenerPermisos(ds, new BE_PermisoPadre { Codigo = item.Codigo })
+                    };
+                    permisos.Add(permisoPadre);
+                }
+                else
+                {
+                    BE_PermisoHijo permisoHijo = new BE_PermisoHijo
+                    {
+                        Codigo = item.Codigo,
+                        Descripción = item.Descripción,
+                        Otorgado = item.Otorgado
+                    };
+                    permisos.Add(permisoHijo);
+                }
+            }
+            return permisos;
+        }
+        
     }
 }

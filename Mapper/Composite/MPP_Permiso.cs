@@ -51,7 +51,7 @@ namespace Mapper
 
         }
 
-        public List<BE_Permiso> ArmarArbol(BE_PermisoPadre padre)
+        public IList<BE_Permiso> ArmarArbol(BE_Permiso padre)
         {
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
@@ -60,8 +60,9 @@ namespace Mapper
             List<BE_Permiso> Arbol = new List<BE_Permiso>();
 
             Arbol = (from hj in ds.Tables["Padre-Hijo"].AsEnumerable()
+                     where padre.Codigo == hj[0].ToString()
                      join per in ds.Tables["Permiso"].AsEnumerable()
-                     on hj[0].ToString() equals per[0].ToString()
+                     on hj[1].ToString() equals per[0].ToString()
                      select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre 
                      {      
                          Codigo = per[0].ToString(),

@@ -33,6 +33,7 @@ namespace Trabajo_Final
                     frmLogin frmlog = new frmLogin();
                     frmlog.Owner = this;
                     frmlog.ShowDialog();
+                    UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
                 }
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
             }

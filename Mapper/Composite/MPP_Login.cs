@@ -58,7 +58,6 @@ namespace Mapper
                                                             Codigo = per[0].ToString(),
                                                             Descripción = per[2].ToString(),
                                                             
-
                                                         }).FirstOrDefault(),
                                               Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
                                               Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
@@ -82,6 +81,8 @@ namespace Mapper
         {
             BE_Login DevolverLogin = new BE_Login();
             DevolverLogin = Listar().Find(x => x.Usuario == user);
+            MPP_Permiso permiso = new MPP_Permiso();
+            ((BE_PermisoPadre)DevolverLogin.Permiso)._permisos = permiso.ArmarArbol(DevolverLogin.Permiso).ToList() ;
             return DevolverLogin;
         }
 
@@ -96,7 +97,7 @@ namespace Mapper
                 new XElement("Usuario", user.Usuario),
                 new XElement("Password", user.Password),
                 new XElement("Cantidad_Intentos", user.CantidadIntentos.ToString()),
-                //new XElement("Permiso", user.Permiso.Codigo.ToString()),
+                new XElement("Permiso", user.Permiso.Codigo.ToString()),
                 new XElement("Activo", user.Activo.ToString()),
                 new XElement("Bloqueado", user.Bloqueado.ToString())
                 );

@@ -19,6 +19,8 @@ namespace Trabajo_Final
     {
         BE_Login oBE_Login = new BE_Login();
         BLL_Login oBLL_Login = new BLL_Login();
+        BE_PermisoPadre oBE_Permiso = new BE_PermisoPadre();
+
         public frmLogin()
         {
             InitializeComponent();

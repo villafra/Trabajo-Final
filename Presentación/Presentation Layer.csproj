@@ -176,6 +176,12 @@
     <Compile Include="Menus\Compras.Designer.cs">
       <DependentUpon>Compras.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Permisos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Permisos.Designer.cs">
+      <DependentUpon>Permisos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Compras.resx">
       <DependentUpon>Compras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Permisos.resx">
+      <DependentUpon>Permisos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>

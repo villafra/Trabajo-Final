@@ -243,7 +243,18 @@ namespace Trabajo_Final
 
         private void permisosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmPermisos);
+            if (frm != null)
+            {
+                ((frmPermisos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmPermisos();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
         }
 
         private void gestionarIngredientesToolStripMenuItem_Click(object sender, EventArgs e)

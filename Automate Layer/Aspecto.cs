@@ -197,6 +197,12 @@ namespace Automate_Layer
             obj.BackColor = Color.FromArgb(46, 51, 73);
             obj.ForeColor = Color.White;
         };
+        public static Action<TreeView> FormatearTreeView = (tv) =>
+        {
+            tv.BackColor = Color.FromArgb(46, 51, 73);
+            tv.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
+            tv.ForeColor = Color.FromArgb(0, 126, 249);
+        };
         public static Action<DataGridView> FormatearDGV = (dgv) =>
         {
             dgv.BackgroundColor = Color.FromArgb(46, 51, 73); //(44, 68, 101);

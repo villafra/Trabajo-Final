@@ -32,29 +32,26 @@ namespace Mapper
                                         }).ToList();
             return listado;
         }
-        public List<BE_Permiso> ListarPadre()
+        public List<BE_PermisoPadre> ListarPadre()
         {
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
-            List<BE_Permiso> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
+            List<BE_PermisoPadre> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
                                         where per[1].ToString() == "PermisoPadre" 
                                         select new BE_PermisoPadre
                                         {
                                             Codigo = per[0].ToString(),
                                             Descripción = per[2].ToString(),
-                                        } ).Cast<BE_Permiso>().ToList();
+                                        } ).ToList();
             return listado;
         }
 
-        public IList<BE_Permiso> ArmarArbol(BE_Permiso padre)
+        public void ArmarArbol(BE_Permiso padre)
         {
             Acceso = new Xml_Database();
             DataSet ds = Acceso.Listar();
-            List<BE_Permiso> Arbol;
-            Arbol = ObtenerPermisos(ds, padre);
-            return Arbol;
-         
+            ((BE_PermisoPadre)padre)._permisos =  ObtenerPermisos(ds, padre);
         } 
 
         public List<BE_Permiso> ObtenerPermisos (DataSet ds, BE_Permiso padre)

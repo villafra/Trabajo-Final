@@ -82,7 +82,7 @@ namespace Mapper
             BE_Login DevolverLogin = new BE_Login();
             DevolverLogin = Listar().Find(x => x.Usuario == user);
             MPP_Permiso permiso = new MPP_Permiso();
-            ((BE_PermisoPadre)DevolverLogin.Permiso)._permisos = permiso.ArmarArbol(DevolverLogin.Permiso).ToList() ;
+            permiso.ArmarArbol(DevolverLogin.Permiso) ;
             return DevolverLogin;
         }
 

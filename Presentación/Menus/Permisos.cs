@@ -19,16 +19,16 @@ namespace Trabajo_Final
         public frmPermisos()
         {
             InitializeComponent();
-           
-            Aspecto.FormatearGRP(grpUsuarios);
-            Aspecto.FormatearGRPAccion(grpAcciones);
-            Aspecto.FormatearDGV(dgvUsuarios);
+            oBLL_Permiso = new BLL_Permiso();
+            //Aspecto.FormatearGRP(grpPermisos);
+            //Aspecto.FormatearGRPAccion(grpPerfiles);
+            Aspecto.FormatearTreeView(tvPermisos);
             ActualizarListado();
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
-            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ArmarTreeView(oBLL_Permiso.ListarPadre());
+           
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -40,16 +40,28 @@ namespace Trabajo_Final
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevoLogin frm = new frmNuevoLogin();
-            frm.oBE_Login = oBE_Login;
-            frm.ShowDialog();
-            ActualizarListado();
+           
         }
 
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Login.Baja(oBE_Login);
+           
+        }
+
+        private void ArmarTreeView(List<BE_PermisoPadre> perfiles)
+        {
+            tvPermisos.Nodes.Clear();
+            foreach(BE_PermisoPadre padre in perfiles)
+            {
+                TreeNode nodoPadre = tvPermisos.Nodes.Add(padre.Codigo, padre.ToString());
+                nodoPadre.Tag = padre;
+                foreach (BE_PermisoHijo hijo in padre._permisos)
+                {
+                    TreeNode nodoHijo = nodoPadre.Nodes.Add(hijo.Codigo, hijo.ToString());
+                    nodoHijo.Tag = hijo;
+                }
+            }
         }
     }
 }

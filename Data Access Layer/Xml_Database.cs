@@ -115,10 +115,10 @@ namespace Data_Access_Layer
             {
                 foreach (BE_TuplaXML tupla in datos)
                 {
-                    IEnumerable<XElement> borrarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf);
-                    borrarObjeto
-                            .Where(n => n.Element("ID") == tupla.Xelement.Element("ID"))
-                            .Remove();
+                    XElement borrarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                            .Where(n => n.Element("Codigo").Value == tupla.Xelement.Element("Codigo").Value)
+                                                            .FirstOrDefault();
+                    borrarObjeto.Remove();
                 }
                 CerrarConexion();
                 return true;
@@ -329,8 +329,51 @@ namespace Data_Access_Layer
                 tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(1);
             }
         }
-
-
+        public bool EscribirPermiso(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement nodoPadre = doc.Root.Element(tupla.NodoRoot);
+                    nodoPadre.Add(tupla.Xelement);
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+        public bool ModificarPermiso(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement modificarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                        .Where(n => n.Element("Codigo").Value == tupla.Xelement.Element("Codigo").Value)
+                                        .FirstOrDefault();
+                    foreach (XElement dato in modificarObjeto.Elements())
+                    {
+                        dato.Value = tupla.Xelement.Element(dato.Name).Value;
+                    }
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
 
     }
 }

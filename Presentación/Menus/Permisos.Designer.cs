@@ -33,20 +33,20 @@ namespace Trabajo_Final
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPermisos));
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.grpPerfiles = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblDescripcion = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtDescripción = new System.Windows.Forms.TextBox();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.tvPermisos = new System.Windows.Forms.TreeView();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.lblCodigo = new System.Windows.Forms.Label();
-            this.lblDescripcion = new System.Windows.Forms.Label();
             this.grpPermisos = new System.Windows.Forms.GroupBox();
-            this.lblDescPerm = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.chkActivo = new System.Windows.Forms.CheckBox();
             this.comboPermiso = new System.Windows.Forms.ComboBox();
+            this.chkActivo = new System.Windows.Forms.CheckBox();
+            this.lblDescPerm = new System.Windows.Forms.Label();
+            this.btnDesasignar = new System.Windows.Forms.Button();
+            this.btnAsignar = new System.Windows.Forms.Button();
             this.grpPerfiles.SuspendLayout();
             this.grpPermisos.SuspendLayout();
             this.SuspendLayout();
@@ -67,24 +67,49 @@ namespace Trabajo_Final
             // 
             this.grpPerfiles.Controls.Add(this.lblDescripcion);
             this.grpPerfiles.Controls.Add(this.lblCodigo);
-            this.grpPerfiles.Controls.Add(this.textBox2);
-            this.grpPerfiles.Controls.Add(this.textBox1);
+            this.grpPerfiles.Controls.Add(this.txtDescripción);
+            this.grpPerfiles.Controls.Add(this.txtCodigo);
             this.grpPerfiles.Controls.Add(this.btnModificar);
             this.grpPerfiles.Controls.Add(this.btnAgregar);
             this.grpPerfiles.Controls.Add(this.btnEliminar);
-            this.grpPerfiles.Location = new System.Drawing.Point(553, 12);
+            this.grpPerfiles.Location = new System.Drawing.Point(531, 12);
             this.grpPerfiles.Name = "grpPerfiles";
             this.grpPerfiles.Size = new System.Drawing.Size(759, 254);
             this.grpPerfiles.TabIndex = 10;
             this.grpPerfiles.TabStop = false;
             this.grpPerfiles.Text = "Perfiles";
             // 
-            // textBox1
+            // lblDescripcion
             // 
-            this.textBox1.Location = new System.Drawing.Point(30, 99);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(204, 22);
-            this.textBox1.TabIndex = 8;
+            this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Location = new System.Drawing.Point(295, 76);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(82, 17);
+            this.lblDescripcion.TabIndex = 11;
+            this.lblDescripcion.Text = "Descripción";
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(30, 76);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(52, 17);
+            this.lblCodigo.TabIndex = 10;
+            this.lblCodigo.Text = "Código";
+            // 
+            // txtDescripción
+            // 
+            this.txtDescripción.Location = new System.Drawing.Point(298, 99);
+            this.txtDescripción.Name = "txtDescripción";
+            this.txtDescripción.Size = new System.Drawing.Size(411, 22);
+            this.txtDescripción.TabIndex = 9;
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(30, 99);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(204, 22);
+            this.txtCodigo.TabIndex = 8;
             // 
             // btnModificar
             // 
@@ -142,88 +167,31 @@ namespace Trabajo_Final
             this.tvPermisos.Dock = System.Windows.Forms.DockStyle.Left;
             this.tvPermisos.Location = new System.Drawing.Point(0, 0);
             this.tvPermisos.Name = "tvPermisos";
-            this.tvPermisos.Size = new System.Drawing.Size(535, 918);
+            this.tvPermisos.Size = new System.Drawing.Size(478, 918);
             this.tvPermisos.TabIndex = 11;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(298, 99);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(411, 22);
-            this.textBox2.TabIndex = 9;
-            // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(30, 76);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 10;
-            this.lblCodigo.Text = "Código";
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(295, 76);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(82, 17);
-            this.lblDescripcion.TabIndex = 11;
-            this.lblDescripcion.Text = "Descripción";
+            this.tvPermisos.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvPermisos_AfterSelect);
             // 
             // grpPermisos
             // 
             this.grpPermisos.Controls.Add(this.comboPermiso);
             this.grpPermisos.Controls.Add(this.chkActivo);
             this.grpPermisos.Controls.Add(this.lblDescPerm);
-            this.grpPermisos.Controls.Add(this.button1);
-            this.grpPermisos.Controls.Add(this.button2);
-            this.grpPermisos.Location = new System.Drawing.Point(553, 293);
+            this.grpPermisos.Controls.Add(this.btnDesasignar);
+            this.grpPermisos.Controls.Add(this.btnAsignar);
+            this.grpPermisos.Location = new System.Drawing.Point(531, 373);
             this.grpPermisos.Name = "grpPermisos";
             this.grpPermisos.Size = new System.Drawing.Size(759, 254);
             this.grpPermisos.TabIndex = 12;
             this.grpPermisos.TabStop = false;
             this.grpPermisos.Text = "Permisos";
             // 
-            // lblDescPerm
+            // comboPermiso
             // 
-            this.lblDescPerm.AutoSize = true;
-            this.lblDescPerm.Location = new System.Drawing.Point(27, 72);
-            this.lblDescPerm.Name = "lblDescPerm";
-            this.lblDescPerm.Size = new System.Drawing.Size(82, 17);
-            this.lblDescPerm.TabIndex = 11;
-            this.lblDescPerm.Text = "Descripción";
-            // 
-            // button1
-            // 
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.ImageIndex = 3;
-            this.button1.ImageList = this.Listado;
-            this.button1.Location = new System.Drawing.Point(473, 187);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(210, 50);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Desasignar Permiso";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.ImageIndex = 2;
-            this.button2.ImageList = this.Listado;
-            this.button2.Location = new System.Drawing.Point(75, 187);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(210, 50);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Asignar Permiso";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
+            this.comboPermiso.FormattingEnabled = true;
+            this.comboPermiso.Location = new System.Drawing.Point(30, 95);
+            this.comboPermiso.Name = "comboPermiso";
+            this.comboPermiso.Size = new System.Drawing.Size(457, 24);
+            this.comboPermiso.TabIndex = 13;
             // 
             // chkActivo
             // 
@@ -235,13 +203,47 @@ namespace Trabajo_Final
             this.chkActivo.Text = "Permiso Activo";
             this.chkActivo.UseVisualStyleBackColor = true;
             // 
-            // comboPermiso
+            // lblDescPerm
             // 
-            this.comboPermiso.FormattingEnabled = true;
-            this.comboPermiso.Location = new System.Drawing.Point(30, 95);
-            this.comboPermiso.Name = "comboPermiso";
-            this.comboPermiso.Size = new System.Drawing.Size(457, 24);
-            this.comboPermiso.TabIndex = 13;
+            this.lblDescPerm.AutoSize = true;
+            this.lblDescPerm.Location = new System.Drawing.Point(27, 72);
+            this.lblDescPerm.Name = "lblDescPerm";
+            this.lblDescPerm.Size = new System.Drawing.Size(82, 17);
+            this.lblDescPerm.TabIndex = 11;
+            this.lblDescPerm.Text = "Descripción";
+            // 
+            // btnDesasignar
+            // 
+            this.btnDesasignar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDesasignar.FlatAppearance.BorderSize = 0;
+            this.btnDesasignar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesasignar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDesasignar.ImageIndex = 3;
+            this.btnDesasignar.ImageList = this.Listado;
+            this.btnDesasignar.Location = new System.Drawing.Point(473, 187);
+            this.btnDesasignar.Name = "btnDesasignar";
+            this.btnDesasignar.Size = new System.Drawing.Size(210, 50);
+            this.btnDesasignar.TabIndex = 6;
+            this.btnDesasignar.Text = "Desasignar Permiso";
+            this.btnDesasignar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDesasignar.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignar
+            // 
+            this.btnAsignar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAsignar.FlatAppearance.BorderSize = 0;
+            this.btnAsignar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAsignar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAsignar.ImageIndex = 2;
+            this.btnAsignar.ImageList = this.Listado;
+            this.btnAsignar.Location = new System.Drawing.Point(75, 187);
+            this.btnAsignar.Name = "btnAsignar";
+            this.btnAsignar.Size = new System.Drawing.Size(210, 50);
+            this.btnAsignar.TabIndex = 5;
+            this.btnAsignar.Text = "Asignar Permiso";
+            this.btnAsignar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAsignar.UseVisualStyleBackColor = true;
+            this.btnAsignar.Click += new System.EventHandler(this.btnAsignar_Click);
             // 
             // frmPermisos
             // 
@@ -269,16 +271,16 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.GroupBox grpPerfiles;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.TreeView tvPermisos;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label lblCodigo;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtDescripción;
         private System.Windows.Forms.GroupBox grpPermisos;
         private System.Windows.Forms.CheckBox chkActivo;
         private System.Windows.Forms.Label lblDescPerm;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDesasignar;
+        private System.Windows.Forms.Button btnAsignar;
         private System.Windows.Forms.ComboBox comboPermiso;
     }
 }

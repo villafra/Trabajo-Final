@@ -103,7 +103,7 @@ namespace Automate_Layer
                 if (control is Button) FormatearBoton(control as Button);
             }
         };
-
+       
         public static Action<Button> FormatearBoton = (boton) =>
         {
             boton.BackColor = Color.FromArgb(24, 30, 54);
@@ -184,6 +184,21 @@ namespace Automate_Layer
             foreach (Button btn in grp.Controls)
             {
                 FormatearBoton(btn);
+            }
+        };
+        public static Action<GroupBox> FormatearGRPPermisos = (grp) =>
+        {
+            FormatearControlExterno(grp);
+
+            foreach (Control c in grp.Controls)
+            {
+                if (c is TextBox) FormatearControlInterno(c as TextBox);
+                else if (c is NumericUpDown) FormatearControlInterno(c as NumericUpDown);
+                else if (c is ComboBox) FormatearControlInterno(c as ComboBox);
+                else if (c is RadioButton) FormatearControlInterno(c as RadioButton);
+                else if (c is CheckBox) FormatearControlInterno(c as CheckBox);
+                else if (c is ProgressBar) FormatearControlInterno(c as ProgressBar);
+                else if (c is Button) FormatearBoton(c as Button);
             }
         };
         public static Action<Control> FormatearControlExterno = (obj) =>

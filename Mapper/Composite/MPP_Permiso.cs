@@ -6,7 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Business_Entities;
 using Data_Access_Layer;
-
+using Abstraction_Layer;
+using System.Xml.Linq;
 
 namespace Mapper
 {
@@ -14,6 +15,11 @@ namespace Mapper
     {
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
+
+        public MPP_Permiso()
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+        }
 
         public List<BE_Permiso> Listar()
         {
@@ -94,6 +100,63 @@ namespace Mapper
             }
             return permisos;
         }
-        
+
+        public bool Guardar(BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearPermisoXML(permiso));
+            return Acceso.EscribirPermiso(ListadoXML);
+        }
+
+        public bool Baja(BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearPermisoXML(permiso));
+            return Acceso.Borrar(ListadoXML);
+        }
+
+        public bool Modificar(BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearPermisoXML(permiso));
+            return Acceso.ModificarPermiso(ListadoXML);
+        }
+        public bool AsignarPermiso(BE_PermisoPadre perfil, BE_PermisoHijo permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
+            return Acceso.EscribirPermiso(ListadoXML);
+
+        }
+        public BE_Permiso ListarObjeto(BE_Permiso permiso)
+        {
+            throw new NotImplementedException();
+        }
+        private BE_TuplaXML CrearPermisoXML(BE_Permiso permiso)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Permisos";
+            nuevaTupla.NodoLeaf = "Permiso";
+            XElement nuevoPermiso = new XElement("Permiso",
+                new XElement("Codigo", permiso.Codigo),
+                new XElement("Tipo", (permiso is BE_PermisoPadre) ? "PermisoPadre" : "PermisoHijo"),
+                new XElement("Descripcion", permiso.Descripción)
+                );
+            nuevaTupla.Xelement = nuevoPermiso;
+            return nuevaTupla;
+        }
+        private BE_TuplaXML AsignarPermisoXML(BE_PermisoPadre perfil, BE_PermisoHijo permiso)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Padres-Hijos";
+            nuevaTupla.NodoLeaf = "Padre-Hijo";
+            XElement nuevoPermiso = new XElement("Padre-Hijo",
+                new XElement("Padre", perfil.Codigo),
+                new XElement("Hijo", permiso.Codigo),
+                new XElement ("Activo", permiso.Otorgado)
+                );
+            nuevaTupla.Xelement = nuevoPermiso;
+            return nuevaTupla;
+        }
     }
 }

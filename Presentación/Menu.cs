@@ -37,8 +37,9 @@ namespace Trabajo_Final
                 }
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
             }
-            catch
+            catch (Exception ex)
             {
+                throw ex;
                 Application.Exit();
             }
             Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Height);

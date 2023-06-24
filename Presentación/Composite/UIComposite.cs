@@ -24,18 +24,18 @@ namespace Trabajo_Final
                 {
                     if (subMenu.HasDropDown)
                     {
-                        tieneVisibles = false;
+                        tieneVisibles = subMenu.Name != "Empleados" || subMenu.Name != "Inventarios" ? false : true;
                         CambiarVisibilidadMenu(subMenu.DropDownItems, ref tieneVisibles, permiso);
                     }
                     bool visible = false;
                     string tag = subMenu.Tag as string;
                     if (!string.IsNullOrEmpty(tag) && (tag.Equals("Gral") || permiso.Any(p => p.Codigo.Equals(tag))))
                     {
-                        visible = true; 
+                        visible = true;
                         tieneVisibles = true;
                     }
 
-                    if (string.IsNullOrWhiteSpace(tag) && tieneVisibles) 
+                    if (string.IsNullOrWhiteSpace(tag) && tieneVisibles)
                         subMenu.Visible = true;
                     else
                         subMenu.Visible = visible;

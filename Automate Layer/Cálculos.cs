@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Abstraction_Layer;
 
@@ -143,7 +144,17 @@ namespace Automate_Layer
             combo.Refresh();
 
         }
-
+        public static void RefreshTreeView(TreeView tv)
+        {
+            foreach (TreeNode padre in tv.Nodes)
+            {
+                foreach (TreeNode hijo in padre.Nodes)
+                {
+                    hijo.ForeColor = hijo.Checked ? Color.ForestGreen : Color.IndianRed;
+                }
+            }
+            tv.ExpandAll();
+        }
         public static void MsgBoxSiExiste(string nombre)
         {
             MessageBox.Show(nombre + " ya existe en la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

@@ -16,6 +16,7 @@ namespace Trabajo_Final
         {
             CambiarVisibilidad(dropDownItems, permiso);
             MostrarItems(dropDownItems);
+            SubVisibles.Clear();
             MostrarMenuPrincial(dropDownItems);
         }
 

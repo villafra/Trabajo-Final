@@ -150,10 +150,21 @@ namespace Automate_Layer
             {
                 foreach (TreeNode hijo in padre.Nodes)
                 {
-                    hijo.ForeColor = hijo.Checked ? Color.ForestGreen : Color.IndianRed;
+                    if (hijo.Nodes.Count > 0)
+                    {
+                        foreach(TreeNode nieto in hijo.Nodes)
+                        {
+                            nieto.ForeColor = nieto.Checked ? Color.ForestGreen : Color.IndianRed;
+                        }
+                        hijo.Collapse();
+                    }
+                    else
+                    {
+                        hijo.ForeColor = hijo.Checked ? Color.ForestGreen : Color.IndianRed;
+                    }
                 }
+                padre.Expand();
             }
-            tv.ExpandAll();
         }
         public static void MsgBoxSiExiste(string nombre)
         {

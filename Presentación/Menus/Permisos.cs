@@ -17,14 +17,15 @@ namespace Trabajo_Final
     {
         BLL_Permiso oBLL_Permiso;
         BE_PermisoPadre oBE_Padre;
+        BE_PermisoPadre oBE_PHijo;
         BE_PermisoHijo oBE_Hijo;
         public frmPermisos()
         {
             InitializeComponent();
             oBLL_Permiso = new BLL_Permiso();
             oBE_Padre = new BE_PermisoPadre();
+            oBE_PHijo = new BE_PermisoPadre();
             oBE_Hijo = new BE_PermisoHijo();
-
             Aspecto.FormatearGRPPermisos(grpPermisos);
             Aspecto.FormatearGRPPermisos(grpPerfiles);
             Aspecto.FormatearTreeView(tvPermisos);
@@ -60,11 +61,29 @@ namespace Trabajo_Final
             {
                 TreeNode nodoPadre = tvPermisos.Nodes.Add(padre.Codigo, padre.Descripción);
                 nodoPadre.Tag = padre;
-                foreach (BE_PermisoHijo hijo in padre._permisos)
+                foreach (BE_Permiso hijo in padre._permisos)
                 {
-                    TreeNode nodoHijo = nodoPadre.Nodes.Add(hijo.Codigo, hijo.Descripción);
-                    nodoHijo.Tag = hijo;
-                    nodoHijo.Checked = hijo.Otorgado;
+                    if (hijo is BE_PermisoPadre)
+                    {
+                        TreeNode nodoPHijo = nodoPadre.Nodes.Add(hijo.Codigo, hijo.Descripción);
+                        nodoPHijo.Tag = hijo;
+                        nodoPHijo.Checked = hijo.Otorgado;
+
+                        foreach (BE_Permiso nieto in ((BE_PermisoPadre)hijo)._permisos)
+                        {
+                            TreeNode nodoNieto = nodoPHijo.Nodes.Add(nieto.Codigo, nieto.Descripción);
+                            nodoNieto.Tag = hijo;
+                            nodoNieto.Checked = hijo.Otorgado;
+                        }
+                    }
+                    else
+                    {
+                        TreeNode nodoHijo = nodoPadre.Nodes.Add(hijo.Codigo, hijo.Descripción);
+                        nodoHijo.Tag = hijo;
+                        nodoHijo.Checked = hijo.Otorgado;
+
+                    }
+
                 }
             }
         }
@@ -104,11 +123,24 @@ namespace Trabajo_Final
                 }
                 else
                 {
-                    oBE_Padre = (BE_PermisoPadre)e.Node.Tag;
-                    txtCodigo.Text = oBE_Padre.Codigo;
-                    txtDescripción.Text = oBE_Padre.Descripción;
-                    comboPermiso.Text = "";
-                    chkActivo.Checked = false;
+                    if (e.Node.Parent != null)
+                    {
+                        oBE_Padre = (BE_PermisoPadre)e.Node.Parent.Tag;
+                        txtCodigo.Text = oBE_Padre.Codigo;
+                        txtDescripción.Text = oBE_Padre.Descripción;
+                        oBE_PHijo = (BE_PermisoPadre)e.Node.Tag;
+                        comboPermiso.Text = oBE_PHijo.ToString();
+                        chkActivo.Checked = oBE_PHijo.Otorgado;
+                    }
+                    else
+                    {
+                        oBE_Padre = (BE_PermisoPadre)e.Node.Tag;
+                        txtCodigo.Text = oBE_Padre.Codigo;
+                        txtDescripción.Text = oBE_Padre.Descripción;
+                        comboPermiso.Text = "";
+                        chkActivo.Checked = false;
+                    }
+ 
                 }
 
             }
@@ -118,9 +150,26 @@ namespace Trabajo_Final
 
         private void btnAsignar_Click(object sender, EventArgs e)
         {
-            oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
-            oBE_Hijo.Otorgado = true;
-            oBLL_Permiso.AsignarPermiso(oBE_Padre,oBE_Hijo);
+            if (comboPermiso.SelectedItem is BE_PermisoPadre)
+            {
+                oBE_PHijo = comboPermiso.SelectedItem as BE_PermisoPadre;
+                oBE_PHijo.Otorgado = true;
+                if (oBE_Padre.ToString() != oBE_PHijo.ToString())
+                {
+                oBLL_Permiso.AsignarPermiso(oBE_Padre, oBE_PHijo);
+                }
+                else
+                {
+                    MessageBox.Show("NO");
+                }
+
+            }
+            else
+            {
+                oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
+                oBE_Hijo.Otorgado = true;
+                oBLL_Permiso.AsignarPermiso(oBE_Padre, oBE_Hijo);
+            }
             ActualizarListado();
         }
     }

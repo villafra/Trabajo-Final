@@ -10,39 +10,70 @@ namespace Trabajo_Final
 {
     public static class UIComposite
     {
+        private static List<string> SubVisibles = new List<string>();
+        private static List<string> MenusVisibles = new List<string>();
         public static void CambiarVisibilidadMenu(ToolStripItemCollection dropDownItems, IList<BE_Permiso> permiso)
         {
-            bool tieneVisibles = false;
-            CambiarVisibilidadMenu(dropDownItems, ref tieneVisibles, permiso);
+            CambiarVisibilidad(dropDownItems, permiso);
+            MostrarItems(dropDownItems);
+            MostrarMenuPrincial(dropDownItems);
         }
-        public static void CambiarVisibilidadMenu(ToolStripItemCollection dropDownItems, ref bool tieneVisibles, IList<BE_Permiso> permiso)
+
+        private static void CambiarVisibilidad(ToolStripItemCollection Items, IList<BE_Permiso> permisos, bool visibles = false)
         {
-            foreach (object obj in dropDownItems)
+            foreach (ToolStripMenuItem item in Items)
             {
-                ToolStripMenuItem subMenu = obj as ToolStripMenuItem;
-                if (subMenu != null)
+                string tag = item.Tag as string;
+                bool permisopadre;
+                bool permisohijo;
+
+                if (item.OwnerItem == null) { CambiarVisibilidad(item.DropDownItems, permisos); continue ; }
+                if (tag != null && tag.Equals("Gral")) { item.Visible = true;continue; }
+                if (item.HasDropDown) { CambiarVisibilidad(item.DropDownItems, permisos, visibles); }
+                
+                permisopadre = permisos.Any(p => p.Codigo.Equals(tag));
+                permisohijo = permisos.Any(p => p is BE_PermisoPadre ? ((BE_PermisoPadre)p)._permisos.Any(x => x.Codigo.Equals(tag)) : false);
+                
+                if (!string.IsNullOrEmpty(tag) && (permisopadre || permisohijo))
                 {
-                    if (subMenu.HasDropDown)
+                    item.Visible = true;
+                    if (item.OwnerItem != null && item.OwnerItem.Tag != null && item.OwnerItem.Tag.Equals("Sub"))
                     {
-                        tieneVisibles = subMenu.Name != "Empleados" || subMenu.Name != "Inventarios" ? false : true;
-                        CambiarVisibilidadMenu(subMenu.DropDownItems, ref tieneVisibles, permiso);
+                        SubVisibles.Add(item.OwnerItem.Text);
+                        MenusVisibles.Add(item.OwnerItem.OwnerItem.Text);
                     }
-                    bool visible = false;
-                    string tag = subMenu.Tag as string;
-                    if (!string.IsNullOrEmpty(tag) && (tag.Equals("Gral") || permiso.Any(p => p.Codigo.Equals(tag))))
+                    else if(item.OwnerItem != null && item.OwnerItem.Tag != null && item.OwnerItem.Tag.Equals("SubSub"))
                     {
-                        visible = true;
-                        tieneVisibles = true;
+                        SubVisibles.Add(item.OwnerItem.Text);
+                        SubVisibles.Add(item.OwnerItem.OwnerItem.Text);
+                        MenusVisibles.Add(item.OwnerItem.OwnerItem.OwnerItem.Text);
                     }
-
-                    if (string.IsNullOrWhiteSpace(tag) && tieneVisibles)
-                        subMenu.Visible = true;
                     else
-                        subMenu.Visible = visible;
-
-
+                    {
+                        MenusVisibles.Add(item.OwnerItem.Text);
+                    }
+                    continue;
                 }
+                else item.Visible = false;
             }
+        }
+        private static void MostrarItems(ToolStripItemCollection collection)
+        {
+            foreach (ToolStripItem item in collection)
+            {
+                if (SubVisibles.Find(x=> x == item.Text) != null ) item.Visible = true;
+                if (item is ToolStripMenuItem dropDownItem) MostrarItems(dropDownItem.DropDownItems);
+            }
+        }
+        private static void MostrarMenuPrincial(ToolStripItemCollection dropDownItems)
+        {
+            foreach(ToolStripMenuItem item in dropDownItems)
+            {
+                if(item.Text == "Menu Usuario") { item.Visible = true; continue; }
+                if (MenusVisibles.Find(x => x == item.Text) != null) item.Visible = true;
+                else item.Visible = false;
+            }
+            MenusVisibles.Clear();
         }
     }
 }

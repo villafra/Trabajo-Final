@@ -25,7 +25,7 @@ namespace Business_Logic_Layer
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.Guardar(permiso);
         }
-        public bool AsignarPermiso(BE_PermisoPadre perfil, BE_PermisoHijo permiso)
+        public bool AsignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.AsignarPermiso(perfil, permiso);

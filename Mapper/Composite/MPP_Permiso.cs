@@ -83,6 +83,7 @@ namespace Mapper
                     {
                         Codigo = item.Codigo,
                         Descripción = item.Descripción,
+                        Otorgado = item.Otorgado,
                         _permisos = ObtenerPermisos(ds, new BE_PermisoPadre { Codigo = item.Codigo })
                     };
                     permisos.Add(permisoPadre);
@@ -121,7 +122,7 @@ namespace Mapper
             ListadoXML.Add(CrearPermisoXML(permiso));
             return Acceso.ModificarPermiso(ListadoXML);
         }
-        public bool AsignarPermiso(BE_PermisoPadre perfil, BE_PermisoHijo permiso)
+        public bool AsignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
             Acceso = new Xml_Database();
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
@@ -145,7 +146,7 @@ namespace Mapper
             nuevaTupla.Xelement = nuevoPermiso;
             return nuevaTupla;
         }
-        private BE_TuplaXML AsignarPermisoXML(BE_PermisoPadre perfil, BE_PermisoHijo permiso)
+        private BE_TuplaXML AsignarPermisoXML(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             nuevaTupla.NodoRoot = "Padres-Hijos";

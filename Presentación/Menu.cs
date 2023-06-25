@@ -21,7 +21,6 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
-            
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -105,6 +104,7 @@ namespace Trabajo_Final
                 frm.Owner = this;
                 frm.ShowDialog();
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
             }
         }
 

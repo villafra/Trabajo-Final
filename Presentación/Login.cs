@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Business_Logic_Layer;
 using Automate_Layer;
-using Service_Layer.Excepciones;
+using Service_Layer;
 using System.Runtime.InteropServices;
 
 namespace Trabajo_Final

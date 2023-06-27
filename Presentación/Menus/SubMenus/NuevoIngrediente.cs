@@ -33,11 +33,11 @@ namespace Trabajo_Final
         {
             if (_ = oBE_Ingrediente != null ? Viejo() : Nuevo())
             {
-                Cálculos.MsgBoxAlta("Los datos se han guardado correctamente");
+                Cálculos.MsgBox("Los datos se han guardado correctamente");
             }
             else
             {
-                Cálculos.MsgBoxNoAlta("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
+                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
             }
 
         }

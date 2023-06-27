@@ -47,6 +47,7 @@ namespace Trabajo_Final
             this.lblDescPerm = new System.Windows.Forms.Label();
             this.btnDesasignar = new System.Windows.Forms.Button();
             this.btnAsignar = new System.Windows.Forms.Button();
+            this.btnStatus = new System.Windows.Forms.Button();
             this.grpPerfiles.SuspendLayout();
             this.grpPermisos.SuspendLayout();
             this.SuspendLayout();
@@ -173,6 +174,7 @@ namespace Trabajo_Final
             // 
             // grpPermisos
             // 
+            this.grpPermisos.Controls.Add(this.btnStatus);
             this.grpPermisos.Controls.Add(this.comboPermiso);
             this.grpPermisos.Controls.Add(this.chkActivo);
             this.grpPermisos.Controls.Add(this.lblDescPerm);
@@ -220,13 +222,14 @@ namespace Trabajo_Final
             this.btnDesasignar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDesasignar.ImageIndex = 3;
             this.btnDesasignar.ImageList = this.Listado;
-            this.btnDesasignar.Location = new System.Drawing.Point(473, 187);
+            this.btnDesasignar.Location = new System.Drawing.Point(274, 187);
             this.btnDesasignar.Name = "btnDesasignar";
             this.btnDesasignar.Size = new System.Drawing.Size(210, 50);
             this.btnDesasignar.TabIndex = 6;
             this.btnDesasignar.Text = "Desasignar Permiso";
             this.btnDesasignar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDesasignar.UseVisualStyleBackColor = true;
+            this.btnDesasignar.Click += new System.EventHandler(this.btnDesasignar_Click);
             // 
             // btnAsignar
             // 
@@ -236,7 +239,7 @@ namespace Trabajo_Final
             this.btnAsignar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAsignar.ImageIndex = 2;
             this.btnAsignar.ImageList = this.Listado;
-            this.btnAsignar.Location = new System.Drawing.Point(75, 187);
+            this.btnAsignar.Location = new System.Drawing.Point(6, 187);
             this.btnAsignar.Name = "btnAsignar";
             this.btnAsignar.Size = new System.Drawing.Size(210, 50);
             this.btnAsignar.TabIndex = 5;
@@ -244,6 +247,23 @@ namespace Trabajo_Final
             this.btnAsignar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAsignar.UseVisualStyleBackColor = true;
             this.btnAsignar.Click += new System.EventHandler(this.btnAsignar_Click);
+            // 
+            // btnStatus
+            // 
+            this.btnStatus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnStatus.FlatAppearance.BorderSize = 0;
+            this.btnStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatus.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStatus.ImageIndex = 3;
+            this.btnStatus.ImageList = this.Listado;
+            this.btnStatus.Location = new System.Drawing.Point(543, 187);
+            this.btnStatus.Name = "btnStatus";
+            this.btnStatus.Size = new System.Drawing.Size(210, 50);
+            this.btnStatus.TabIndex = 14;
+            this.btnStatus.Text = "Activar/Desactivar";
+            this.btnStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStatus.UseVisualStyleBackColor = true;
+            this.btnStatus.Click += new System.EventHandler(this.btnStatus_Click);
             // 
             // frmPermisos
             // 
@@ -282,5 +302,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnDesasignar;
         private System.Windows.Forms.Button btnAsignar;
         private System.Windows.Forms.ComboBox comboPermiso;
+        private System.Windows.Forms.Button btnStatus;
     }
 }

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="BackUp.cs" />
     <Compile Include="Encriptación.cs" />
+    <Compile Include="Excepciones\ExisteEnBDException.cs" />
     <Compile Include="Excepciones\RestaurantException.cs" />
     <Compile Include="Excepciones\UsuarioBloqueadoException.cs" />
     <Compile Include="Excepciones\UsuarioInexistenteException.cs" />

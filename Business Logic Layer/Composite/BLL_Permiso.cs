@@ -30,7 +30,17 @@ namespace Business_Logic_Layer
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.AsignarPermiso(perfil, permiso);
         }
-        public List<BE_Permiso> Listar()
+        public bool DesasignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.DesasignarPermiso(perfil, permiso);
+        }
+        public bool CambiarStatusPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.CambiarStatusPermiso(perfil, permiso);
+        }
+            public List<BE_Permiso> Listar()
         {
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.Listar();
@@ -52,13 +62,27 @@ namespace Business_Logic_Layer
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.Modificar(permiso);
         }
-
+        public bool ExistePermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.ExistePermiso(perfil, permiso);
+        }
+        public bool ExisteCircular (BE_PermisoPadre permiso1, BE_PermisoPadre permiso2)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.ExisteCircular(permiso1, permiso2);
+        }
+        public bool ExistePerfil(BE_PermisoPadre perfil)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.ExistePerfil(perfil);
+        }
         private List<BE_PermisoPadre> ArmarTreeView(List<BE_PermisoPadre> listado)
         {
             oMPP_Permiso = new MPP_Permiso();
             List<BE_PermisoPadre> listapadres = new List<BE_PermisoPadre>();
 
-            foreach(BE_PermisoPadre permiso in listado)
+            foreach (BE_PermisoPadre permiso in listado)
             {
                 oMPP_Permiso.ArmarArbol(permiso);
                 listapadres.Add(permiso);

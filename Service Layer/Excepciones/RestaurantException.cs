@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Service_Layer.Excepciones
+namespace Service_Layer
 {
     public class RestaurantException : ApplicationException
     {

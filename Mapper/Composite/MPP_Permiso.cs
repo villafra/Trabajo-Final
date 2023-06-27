@@ -65,16 +65,16 @@ namespace Mapper
             List<BE_Permiso> permisos = new List<BE_Permiso>();
 
             var query = from hj in ds.Tables["Padre-Hijo"].AsEnumerable()
-                        where padre.Codigo == hj[0].ToString()
-                        join per in ds.Tables["Permiso"].AsEnumerable()
-                        on hj[1].ToString() equals per[0].ToString()
-                        select new
-                        {
-                            Codigo = per[0].ToString(),
-                            Tipo = per[1].ToString(),
-                            Descripción = per[2].ToString(),
-                            Otorgado = Convert.ToBoolean(hj[2])
-                        };
+                         where padre.Codigo == hj[0].ToString()
+                         join per in ds.Tables["Permiso"].AsEnumerable()
+                         on hj[1].ToString() equals per[0].ToString()
+                         select new
+                         {
+                             Codigo = per[0].ToString(),
+                             Tipo = per[1].ToString(),
+                             Descripción = per[2].ToString(),
+                             Otorgado = Convert.ToBoolean(hj[2])
+                         };
             foreach (var item in query)
             {
                 if (item.Tipo == "PermisoPadre")
@@ -99,9 +99,16 @@ namespace Mapper
                     permisos.Add(permisoHijo);
                 }
             }
-            return permisos;
-        }
 
+            permisos.Sort((p1, p2) => {
+                if (p1 is BE_PermisoHijo && p2 is BE_PermisoPadre) { return -1; }
+                else if (p1 is BE_PermisoPadre && p2 is BE_PermisoHijo) { return 1; }
+                else { return 0; }
+            });
+
+            return permisos;
+                
+        }
         public bool Guardar(BE_Permiso permiso)
         {
             Acceso = new Xml_Database();
@@ -128,6 +135,56 @@ namespace Mapper
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
             return Acceso.EscribirPermiso(ListadoXML);
 
+        }
+        public bool DesasignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
+            return Acceso.BorrarPermiso(ListadoXML);
+        }
+        public bool CambiarStatusPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
+            return Acceso.CambiarStatusPermiso(ListadoXML);
+        }
+        public bool ExistePerfil(BE_PermisoPadre perfil)
+        {
+            Acceso = new Xml_Database();
+            return Acceso.Existe(CrearPermisoXML(perfil),"Codigo");
+        }
+        public bool ExistePermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
+            return Acceso.ExistePermiso(ListadoXML);
+        }
+        public bool ExisteCircular(BE_PermisoPadre permiso1, BE_PermisoPadre permiso2)
+        {
+            foreach (BE_Permiso permiso in permiso1.ListaPermisos())
+            {
+                if (permiso1.ListaPermisos().Any(p => p.Codigo.Equals(permiso2.Codigo)))
+                {
+                    return false;
+                }
+                if (permiso is BE_PermisoPadre padre)
+                {
+                    if (!ExisteCircular(padre, permiso2)) { return false; }
+                }
+            }
+            ArmarArbol(permiso2);
+            foreach (BE_Permiso permiso in permiso2.ListaPermisos() )
+            {
+                if (permiso2.ListaPermisos().Any(p => p.Codigo.Equals(permiso1.Codigo)))
+                {
+                    return false;
+                }
+                if (permiso is BE_PermisoPadre padre)
+                {
+                    if (!ExisteCircular(padre, permiso1)) { return false; }
+                }
+            }
+            return true;
         }
         public BE_Permiso ListarObjeto(BE_Permiso permiso)
         {

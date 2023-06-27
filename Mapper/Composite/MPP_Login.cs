@@ -76,7 +76,7 @@ namespace Mapper
             ListadoXML.Add(CrearLoginXML(user));
             return Acceso.Modificar(ListadoXML);
         }
-
+    
         public BE_Login Login (string user)
         {
             BE_Login DevolverLogin = new BE_Login();

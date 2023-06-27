@@ -270,12 +270,12 @@ namespace Data_Access_Layer
             bool existe;
             try
             {
-                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                return existe = !doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
                                 .Any(x => x.Element(element).Value == tupla.Xelement.Element(element).Value);
             }
             catch (Exception ex)
             {
-                return false;
+                return true;
                 throw ex;
             }
         }
@@ -363,6 +363,76 @@ namespace Data_Access_Layer
                     {
                         dato.Value = tupla.Xelement.Element(dato.Name).Value;
                     }
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+        public bool ExistePermiso(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                XElement existe1 = null;
+                XElement existe2 = null;
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    existe1 =  doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                    .Where(n => n.Element("Padre").Value == tupla.Xelement.Element("Padre").Value
+                                                    & n.Element("Hijo").Value == tupla.Xelement.Element("Hijo").Value)
+                                                    .FirstOrDefault();
+                    existe2 = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                    .Where(n => n.Element("Padre").Value == tupla.Xelement.Element("Hijo").Value
+                                                    & n.Element("Hijo").Value == tupla.Xelement.Element("Padre").Value)
+                                                    .FirstOrDefault();
+                }
+                return existe1 == null && existe2 == null;
+            }
+            finally
+            {
+                CancelarConexion();
+            }
+            
+        }
+        public bool BorrarPermiso(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                    .Where(n => n.Element("Padre").Value == tupla.Xelement.Element("Padre").Value 
+                                                    &  n.Element("Hijo").Value == tupla.Xelement.Element("Hijo").Value)
+                                                    .FirstOrDefault().Remove();
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
+        public bool CambiarStatusPermiso(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                    .Where(n => n.Element("Padre").Value == tupla.Xelement.Element("Padre").Value
+                                                    & n.Element("Hijo").Value == tupla.Xelement.Element("Hijo").Value)
+                                                    .FirstOrDefault().Element("Activo").Value = tupla.Xelement.Element("Activo").Value;
                 }
                 CerrarConexion();
                 return true;

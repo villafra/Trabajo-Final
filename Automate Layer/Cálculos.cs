@@ -146,65 +146,23 @@ namespace Automate_Layer
         }
         public static void RefreshTreeView(TreeView tv)
         {
-            foreach (TreeNode padre in tv.Nodes)
+            RecursivaTreeView(tv.Nodes);
+            foreach(TreeNode nodo in tv.Nodes)
             {
-                foreach (TreeNode hijo in padre.Nodes)
-                {
-                    if (hijo.Nodes.Count > 0)
-                    {
-                        foreach(TreeNode nieto in hijo.Nodes)
-                        {
-                            nieto.ForeColor = nieto.Checked ? Color.ForestGreen : Color.IndianRed;
-                        }
-                        hijo.Collapse();
-                    }
-                    else
-                    {
-                        hijo.ForeColor = hijo.Checked ? Color.ForestGreen : Color.IndianRed;
-                    }
-                }
-                padre.Expand();
+                nodo.Expand();
             }
         }
-        public static void MsgBoxSiExiste(string nombre)
+        private static void RecursivaTreeView(TreeNodeCollection nodos)
         {
-            MessageBox.Show(nombre + " ya existe en la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxSiExisteDNI(string nombre)
-        {
-            MessageBox.Show("El DNI ya existe en la base de datos y no perteneces a " + nombre + ".", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxNoAlta(string nombre)
-        {
-            MessageBox.Show("No se pudo dar de alta el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxNoMod(string nombre)
-        {
-            MessageBox.Show("No se pudo modificar el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxNoBaja(string nombre)
-        {
-            MessageBox.Show("No se pudo dar de baja el objeto (" + nombre + "). Intente nuevamente.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            foreach (TreeNode nodo in nodos)
+            {
+                if (nodo.Nodes.Count > 0) RecursivaTreeView(nodo.Nodes);
+                else nodo.ForeColor = nodo.Checked ? Color.ForestGreen : Color.IndianRed;
+            }
         }
         public static void MsgBox(string mensaje)
         {
             MessageBox.Show(mensaje, "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxAlta(string nombre)
-        {
-            MessageBox.Show(nombre + " ha sido agregado a la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxMod(string nombre)
-        {
-            MessageBox.Show(nombre + " se ha modificado con exito.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxBaja(string nombre)
-        {
-            MessageBox.Show(nombre + " ha sido eliminado de la base de datos.", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-        public static void MsgBoxBajaNegativa(string nombre)
-        {
-            MessageBox.Show("No se puede dar de baja un objeto activo (" + nombre + ").", "Restó", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
         public static void Minimizar(Form formulario)
         {
@@ -214,18 +172,19 @@ namespace Automate_Layer
         {
             System.Windows.Forms.Application.Exit();
         }
-        public static bool EstaSeguro(string objeto, int codigo, string nombre)
+        public static bool EstaSeguroM(string objeto)
         {
             DialogResult resultado;
-            resultado = MessageBox.Show(@"Esta seguro que desea " + objeto + ": " + nombre + "\n Numero: " + codigo.ToString() + "?", objeto, MessageBoxButtons.YesNo);
-            if (resultado == DialogResult.Yes)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            resultado = MessageBox.Show(@"Esta seguro que desea modificar a: " + objeto + "?","Modificar", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
+        public static bool EstaSeguroE(string objeto)
+        {
+            DialogResult resultado;
+            resultado = MessageBox.Show(@"Esta seguro que desea eliminar a: " + objeto + "?", "Eliminar", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
         }
     }
 }

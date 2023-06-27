@@ -20,7 +20,7 @@ namespace Trabajo_Final
             MostrarMenuPrincial(dropDownItems);
         }
 
-        private static void CambiarVisibilidad(ToolStripItemCollection Items, IList<BE_Permiso> permisos, bool visibles = false)
+        private static void CambiarVisibilidad(ToolStripItemCollection Items, IList<BE_Permiso> permisos)
         {
             foreach (ToolStripMenuItem item in Items)
             {
@@ -30,10 +30,10 @@ namespace Trabajo_Final
 
                 if (item.OwnerItem == null) { CambiarVisibilidad(item.DropDownItems, permisos); continue ; }
                 if (tag != null && tag.Equals("Gral")) { item.Visible = true;continue; }
-                if (item.HasDropDown) { CambiarVisibilidad(item.DropDownItems, permisos, visibles); }
+                if (item.HasDropDown) { CambiarVisibilidad(item.DropDownItems, permisos); }
                 
-                permisopadre = permisos.Any(p => p.Codigo.Equals(tag));
-                permisohijo = permisos.Any(p => p is BE_PermisoPadre ? ((BE_PermisoPadre)p)._permisos.Any(x => x.Codigo.Equals(tag)) : false);
+                permisopadre = permisos.Any(p => p.Codigo.Equals(tag) & p.Otorgado==true);
+                permisohijo = VerPermisosDesc(permisos, tag);
                 
                 if (!string.IsNullOrEmpty(tag) && (permisopadre || permisohijo))
                 {
@@ -75,6 +75,21 @@ namespace Trabajo_Final
                 else item.Visible = false;
             }
             MenusVisibles.Clear();
+        }
+        private static bool VerPermisosDesc(IList<BE_Permiso> permisos, string tag)
+        {
+            foreach (BE_Permiso permiso in permisos)
+            {
+                if (permisos.Any(p => p is BE_PermisoPadre ? ((BE_PermisoPadre)p)._permisos.Any(x => x.Codigo.Equals(tag) & x.Otorgado==true) : false))
+                { 
+                    return true;
+                }
+                if (permiso is BE_PermisoPadre padre)
+                {
+                    if (VerPermisosDesc(padre._permisos, tag)) { return true; }
+                }
+            }
+            return false;
         }
     }
 }

@@ -92,6 +92,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Costos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Costos.Designer.cs">
+      <DependentUpon>Costos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\DevolverCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,12 @@
     </Compile>
     <Compile Include="Menus\Rotacion.Designer.cs">
       <DependentUpon>Rotacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoCosto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoCosto.Designer.cs">
+      <DependentUpon>NuevoCosto.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevaDevolucionCompra.cs">
       <SubType>Form</SubType>
@@ -211,6 +223,9 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Costos.resx">
+      <DependentUpon>Costos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\DevolverCompra.resx">
       <DependentUpon>DevolverCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -225,6 +240,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MenuGerente.resx">
       <DependentUpon>MenuGerente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoCosto.resx">
+      <DependentUpon>NuevoCosto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaDevolucionCompra.resx">
       <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
@@ -286,6 +304,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">
+      <Project>{1cb14128-098c-400f-aa4d-6c474e7b7266}</Project>
+      <Name>Abstraction Layer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Automate Layer\Automate Layer.csproj">
       <Project>{ad854a9c-9b6d-4930-99e3-7da378eaa858}</Project>
       <Name>Automate Layer</Name>

@@ -48,6 +48,7 @@
     <Compile Include="BLL_Chef_Principal.cs" />
     <Compile Include="BLL_Cliente.cs" />
     <Compile Include="BLL_Compra.cs" />
+    <Compile Include="BLL_Costo.cs" />
     <Compile Include="BLL_Empleado.cs" />
     <Compile Include="BLL_Gerente_Sucursal.cs" />
     <Compile Include="BLL_Horario.cs" />

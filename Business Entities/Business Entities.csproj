@@ -48,6 +48,10 @@
     <Compile Include="BE_ChefPrincipal.cs" />
     <Compile Include="BE_Cliente.cs" />
     <Compile Include="BE_Compra.cs" />
+    <Compile Include="BE_Costo.cs" />
+    <Compile Include="BE_CostoBebida.cs" />
+    <Compile Include="BE_CostoIngrediente.cs" />
+    <Compile Include="BE_CostoPlato.cs" />
     <Compile Include="BE_Empleado.cs" />
     <Compile Include="BE_GerenteSucursal.cs" />
     <Compile Include="BE_Horario.cs" />

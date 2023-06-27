@@ -289,5 +289,21 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void costosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCostos);
+            if (frm != null)
+            {
+                ((frmCostos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmCostos();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

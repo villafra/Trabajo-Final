@@ -14,23 +14,26 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmNuevaMesa : Form
+    public partial class frmNuevaCombMesa : Form
     {
 
         public BE_Mesa oBE_Mesa;
+        BE_Mesa oBE_Mesa1;
         BLL_Mesa oBLL_Mesa;
         private bool status;
-        public frmNuevaMesa()
+        List<BE_Mesa> lista;
+        public frmNuevaCombMesa()
         {
             InitializeComponent();
             oBLL_Mesa = new BLL_Mesa();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
             Cálculos.DataSourceCombo(comboUbicacion, Enum.GetNames(typeof(Ubicacion)), "Ubicación");
+            Cálculos.DataSourceCombo(comboMesaComb, oBLL_Mesa.ListarLibres(), "Mesas Libres");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Mesa != null ? Viejo() : Nuevo())
+            if (CombinarMesa())
             {
                 Cálculos.MsgBox("Los datos se han guardado correctamente");
             }
@@ -40,25 +43,28 @@ namespace Trabajo_Final
             }
 
         }
-
-        private bool Viejo()
+        private bool CombinarMesa()
         {
-            oBE_Mesa.Codigo = Convert.ToInt32(txtCodigo.Text);
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-            oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            oBE_Mesa.Activo = chkActivo.Checked;
-            return oBLL_Mesa.Modificar(oBE_Mesa);
+            Viejo();
+            return oBLL_Mesa.CombinarMesa(oBE_Mesa, oBE_Mesa1); 
+        }
+        private void Viejo()
+        {
+            oBE_Mesa1 = new BE_Mesa();
+            oBE_Mesa1 = (BE_Mesa)comboMesaComb.SelectedItem;
         }
 
-        private bool Nuevo()
+        private void Nuevo()
         {
+            
             oBE_Mesa = new BE_Mesa();
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
+            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text) + Convert.ToInt32(txtCapacidad2.Text);
             oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            return oBLL_Mesa.Guardar(oBE_Mesa);
+            lista.Add(oBE_Mesa);
+
 
         }
-        private void ImportarEmpleado()
+        private void ImportarMesa()
         {
             if (oBE_Mesa != null)
             {
@@ -66,13 +72,17 @@ namespace Trabajo_Final
                 txtCapacidad.Text = oBE_Mesa.Capacidad.ToString();
                 comboUbicacion.Text = oBE_Mesa.Ubicación.ToString();
                 status = oBE_Mesa.Activo;
-                chkActivo.Checked = status;
             }
         }
 
         private void frmNuevoLogin_Load(object sender, EventArgs e)
         {
-            ImportarEmpleado();
+            ImportarMesa();
+        }
+
+        private void comboMesaComb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -52,7 +52,10 @@ namespace Business_Logic_Layer
         {
             return oMPP_Mesa.Listar();
         }
-
+        public List<BE_Mesa> ListarLibres()
+        {
+            return oMPP_Mesa.ListarLibres();
+        }
         public BE_Mesa ListarObjeto(BE_Mesa mesa)
         {
             return oMPP_Mesa.ListarObjeto(mesa);
@@ -62,7 +65,21 @@ namespace Business_Logic_Layer
         {
             return oMPP_Mesa.Modificar(mesa);
         }
+        public bool CombinarMesa(BE_Mesa mesa1, BE_Mesa mesa2)
+        {
+            BE_Mesa mesa3 = new BE_Mesa();
+            mesa3.Capacidad = mesa1.Capacidad + mesa2.Capacidad;
+            mesa3.Ubicación = mesa1.Ubicación;
+            mesa3.Status = mesa1.Status;
+            mesa1.Status = StatusMesa.No_Disponible;
+            mesa2.Status = StatusMesa.No_Disponible;
 
+            List<BE_Mesa> lista = new List<BE_Mesa>();
+            lista.Add(mesa1);
+            lista.Add(mesa2);
+
+            return oMPP_Mesa.CombinarMesa(lista) & oMPP_Mesa.Guardar(mesa3);
+        }
         public void VerificarStatus()
         {
             throw new NotImplementedException();

@@ -69,7 +69,7 @@ namespace Mapper
                                               Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
                                               OcupaciónActual = Convert.ToInt32(mes[3]),
                                               Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
-                                              ID_Empleado = ds.Tables.Contains("Mozo") != false ? (from mo in ds.Tables["Mozo"].AsEnumerable()
+                                              ID_Empleado = ds.Tables.Contains("Mozo") != false ? Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ? (from mo in ds.Tables["Mozo"].AsEnumerable()
                                                              where Convert.ToInt32(mo[0]) == Convert.ToInt32(mes[5])
                                                              select new BE_Mozo
                                                              {
@@ -137,9 +137,32 @@ namespace Mapper
                                                                                                                                                                                                                                                                                                                                                                                      }).ToList() : null
                                                                                                                                                                                                                                                                      }).ToList() : null,
                                                                                                                                                                     }).ToList() : null
-                                                             }).FirstOrDefault():null
+                                                             }).FirstOrDefault():null:null,
+                                              Activo = Convert.ToBoolean(mes[6]),
 
                                           }).ToList():null;
+            return listadeMesas;
+        }
+
+        public List<BE_Mesa> ListarLibres()
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Mesa> listadeMesas = ds.Tables.Contains("Mesa") != false ? (from mes in ds.Tables["Mesa"].AsEnumerable()
+                                                                                where mes[4].ToString() == StatusMesa.Libre.ToString()
+                                                                                & Convert.ToBoolean(mes[6]) == true
+                                                                                select new BE_Mesa
+                                                                                {
+                                                                                    Codigo = Convert.ToInt32(mes[0]),
+                                                                                    Capacidad = Convert.ToInt32(mes[1]),
+                                                                                    Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
+                                                                                    OcupaciónActual = Convert.ToInt32(mes[3]),
+                                                                                    Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
+                                                                                    Activo = Convert.ToBoolean(mes[6]),
+
+                                                                                }).ToList() : null;
             return listadeMesas;
         }
 
@@ -155,12 +178,12 @@ namespace Mapper
             return Acceso.Modificar(ListadoXML);
         }
 
-        public bool Modificar(List<BE_Mesa> mesas)
+        public bool CombinarMesa(List<BE_Mesa> mesas)
         {
             Acceso = new Xml_Database();
             foreach (BE_Mesa mesa in mesas)
             {
-                ListadoXML.Add(CrearMesaXML(mesa));
+               ListadoXML.Add(CrearMesaXML(mesa));
             }
             return Acceso.Modificar(ListadoXML);
         }
@@ -174,9 +197,10 @@ namespace Mapper
                 new XElement("ID", Cálculos.IDPadleft(mesa.Codigo)),
                 new XElement("Capacidad", mesa.Capacidad.ToString()),
                 new XElement("Ubicación", mesa.Ubicación),
-                new XElement("Ocupación Actual", mesa.OcupaciónActual.ToString()),
+                new XElement("Ocupación_Actual", mesa.OcupaciónActual.ToString()),
                 new XElement("Status", mesa.Status.ToString()),
-                new XElement("ID_Mozo", mesa.ID_Empleado.Codigo.ToString())
+                new XElement("ID_Mozo", mesa.ID_Empleado != null ? mesa.ID_Empleado.Codigo.ToString() : ""),
+                new XElement("Activo", mesa.Activo.ToString())
                 );
             nuevaTupla.Xelement = nuevaMesa;
             return nuevaTupla;

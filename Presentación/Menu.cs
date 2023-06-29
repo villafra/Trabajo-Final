@@ -348,5 +348,21 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void combinarMesaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCombinarMesas);
+            if (frm != null)
+            {
+                ((frmCombinarMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmCombinarMesas();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

@@ -116,6 +116,12 @@
     <Compile Include="Menus\IngresarCompra.Designer.cs">
       <DependentUpon>IngresarCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Combinar Mesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Combinar Mesas.Designer.cs">
+      <DependentUpon>Combinar Mesas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Rotacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +140,11 @@
     <Compile Include="Menus\SubMenus\NuevaDevolucionCompra.Designer.cs">
       <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\SubMenus\NuevaMesa.cs">
+    <Compile Include="Menus\SubMenus\NuevaCombMesa.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menus\SubMenus\NuevaMesa.Designer.cs">
-      <DependentUpon>NuevaMesa.cs</DependentUpon>
+    <Compile Include="Menus\SubMenus\NuevaCombMesa.Designer.cs">
+      <DependentUpon>NuevaCombMesa.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevoIngresoCompra.cs">
       <SubType>Form</SubType>
@@ -247,6 +253,9 @@
     <EmbeddedResource Include="Menus\IngresarCompra.resx">
       <DependentUpon>IngresarCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Combinar Mesas.resx">
+      <DependentUpon>Combinar Mesas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\Rotacion.resx">
       <DependentUpon>Rotacion.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,8 +268,8 @@
     <EmbeddedResource Include="Menus\SubMenus\NuevaDevolucionCompra.resx">
       <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menus\SubMenus\NuevaMesa.resx">
-      <DependentUpon>NuevaMesa.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\SubMenus\NuevaCombMesa.resx">
+      <DependentUpon>NuevaCombMesa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoIngresoCompra.resx">
       <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>

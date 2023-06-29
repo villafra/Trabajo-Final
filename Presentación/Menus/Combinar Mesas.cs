@@ -13,11 +13,11 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmMesas : Form
+    public partial class frmCombinarMesas : Form
     {
         BLL_Mesa oBLL_Mesa;
         BE_Mesa oBE_Mesa;
-        public frmMesas()
+        public frmCombinarMesas()
         {
             InitializeComponent();
             oBLL_Mesa = new BLL_Mesa();
@@ -29,23 +29,24 @@ namespace Trabajo_Final
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.Listar());
+            Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.ListarLibres());
             dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //frmNuevaMesa frm = new frmNuevaMesa();
-            //frm.ShowDialog();
-            //ActualizarListado();
+            frmNuevaCombMesa frm = new frmNuevaCombMesa();
+            frm.oBE_Mesa = oBE_Mesa;
+            frm.ShowDialog();
+            ActualizarListado();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //frmNuevaMesa frm = new frmNuevaMesa();
-            //frm.oBE_Mesa = oBE_Mesa;
-            //frm.ShowDialog();
-            //ActualizarListado();
+            frmNuevaCombMesa frm = new frmNuevaCombMesa();
+            frm.oBE_Mesa = oBE_Mesa;
+            frm.ShowDialog();
+            ActualizarListado();
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -29,7 +29,7 @@ namespace Business_Logic_Layer
 
             try
             {
-                return oMPP_Mesa.Modificar(listadeMesas) & oMPP_Mesa.Guardar(Mesacombinada);
+                return oMPP_Mesa.CombinarMesa(listadeMesas) & oMPP_Mesa.Guardar(Mesacombinada);
             }
             catch(Exception ex)
             {

@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmNuevaMesa
+    partial class frmNuevaCombMesa
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaMesa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaCombMesa));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -41,13 +41,19 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.chkActivo = new System.Windows.Forms.CheckBox();
+            this.lblMesaComb = new System.Windows.Forms.Label();
+            this.comboMesaComb = new System.Windows.Forms.ComboBox();
+            this.lblCapacidad = new System.Windows.Forms.Label();
+            this.txtCapacidad2 = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
-            this.grpNuevoLogin.Controls.Add(this.chkActivo);
+            this.grpNuevoLogin.Controls.Add(this.lblCapacidad);
+            this.grpNuevoLogin.Controls.Add(this.txtCapacidad2);
+            this.grpNuevoLogin.Controls.Add(this.comboMesaComb);
+            this.grpNuevoLogin.Controls.Add(this.lblMesaComb);
             this.grpNuevoLogin.Controls.Add(this.lblUbicacion);
             this.grpNuevoLogin.Controls.Add(this.txtCodigo);
             this.grpNuevoLogin.Controls.Add(this.comboUbicacion);
@@ -56,7 +62,7 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.txtCapacidad);
             this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 271);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 372);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
@@ -120,7 +126,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(323, 315);
+            this.btnCancelar.Location = new System.Drawing.Point(323, 413);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -144,7 +150,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(24, 315);
+            this.btnConfirmar.Location = new System.Drawing.Point(24, 413);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
             this.btnConfirmar.TabIndex = 3;
@@ -153,27 +159,51 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // chkActivo
+            // lblMesaComb
             // 
-            this.chkActivo.AutoSize = true;
-            this.chkActivo.Location = new System.Drawing.Point(306, 222);
-            this.chkActivo.Name = "chkActivo";
-            this.chkActivo.Size = new System.Drawing.Size(68, 21);
-            this.chkActivo.TabIndex = 13;
-            this.chkActivo.Text = "Activo";
-            this.chkActivo.UseVisualStyleBackColor = true;
+            this.lblMesaComb.AutoSize = true;
+            this.lblMesaComb.Location = new System.Drawing.Point(20, 234);
+            this.lblMesaComb.Name = "lblMesaComb";
+            this.lblMesaComb.Size = new System.Drawing.Size(118, 17);
+            this.lblMesaComb.TabIndex = 13;
+            this.lblMesaComb.Text = "Mesa a Combinar";
             // 
-            // frmNuevaMesa
+            // comboMesaComb
+            // 
+            this.comboMesaComb.FormattingEnabled = true;
+            this.comboMesaComb.Location = new System.Drawing.Point(147, 231);
+            this.comboMesaComb.Name = "comboMesaComb";
+            this.comboMesaComb.Size = new System.Drawing.Size(257, 24);
+            this.comboMesaComb.TabIndex = 14;
+            this.comboMesaComb.SelectedIndexChanged += new System.EventHandler(this.comboMesaComb_SelectedIndexChanged);
+            // 
+            // lblCapacidad
+            // 
+            this.lblCapacidad.AutoSize = true;
+            this.lblCapacidad.Location = new System.Drawing.Point(20, 303);
+            this.lblCapacidad.Name = "lblCapacidad";
+            this.lblCapacidad.Size = new System.Drawing.Size(75, 17);
+            this.lblCapacidad.TabIndex = 16;
+            this.lblCapacidad.Text = "Capacidad";
+            // 
+            // txtCapacidad2
+            // 
+            this.txtCapacidad2.Location = new System.Drawing.Point(147, 300);
+            this.txtCapacidad2.Name = "txtCapacidad2";
+            this.txtCapacidad2.Size = new System.Drawing.Size(257, 22);
+            this.txtCapacidad2.TabIndex = 15;
+            // 
+            // frmNuevaCombMesa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 379);
+            this.ClientSize = new System.Drawing.Size(484, 484);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmNuevaMesa";
+            this.Name = "frmNuevaCombMesa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmNuevoLogin";
             this.Load += new System.EventHandler(this.frmNuevoLogin_Load);
@@ -195,6 +225,9 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label lblUbicacion;
-        private System.Windows.Forms.CheckBox chkActivo;
+        private System.Windows.Forms.Label lblCapacidad;
+        private System.Windows.Forms.TextBox txtCapacidad2;
+        private System.Windows.Forms.ComboBox comboMesaComb;
+        private System.Windows.Forms.Label lblMesaComb;
     }
 }

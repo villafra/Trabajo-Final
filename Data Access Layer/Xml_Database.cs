@@ -116,7 +116,7 @@ namespace Data_Access_Layer
                 foreach (BE_TuplaXML tupla in datos)
                 {
                     XElement borrarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                                                            .Where(n => n.Element("Codigo").Value == tupla.Xelement.Element("Codigo").Value)
+                                                            .Where(n => n.Element("ID").Value == tupla.Xelement.Element("ID").Value)
                                                             .FirstOrDefault();
                     borrarObjeto.Remove();
                 }
@@ -250,7 +250,7 @@ namespace Data_Access_Layer
             
         }
 
-        public XElement CrearAdmin()
+        private XElement CrearAdmin()
         {
             XElement Admin = new XElement("Login",
                 new XElement("ID", "0001"),
@@ -258,7 +258,7 @@ namespace Data_Access_Layer
                 new XElement("Usuario", "admin"),
                 new XElement("Password", "ys/ihoA4NkE="),
                 new XElement("Cantidad_Intentos", 0),
-                new XElement("Permiso", ""),
+                new XElement("Permiso", "ADMIN"),
                 new XElement("Activo",true.ToString()),
                 new XElement("Bloqueado", false.ToString())
                 );

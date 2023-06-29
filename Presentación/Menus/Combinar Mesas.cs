@@ -58,7 +58,12 @@ namespace Trabajo_Final
         {
             try
             {
-                oBE_Mesa = (BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem;
+                if ((BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem is BE_MesaCombinada)
+                {
+                    oBE_Mesa = (BE_MesaCombinada)dgvMesas.SelectedRows[0].DataBoundItem;
+                }
+                else oBE_Mesa = (BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem;
+                
             }
             catch { }
 
@@ -66,7 +71,8 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Mesa.Baja(oBE_Mesa);
+            oBLL_Mesa.DescombinarMesa(oBE_Mesa as BE_MesaCombinada);
+            ActualizarListado();
         }
     }
 }

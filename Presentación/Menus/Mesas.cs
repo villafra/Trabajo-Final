@@ -35,17 +35,17 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            //frmNuevaMesa frm = new frmNuevaMesa();
-            //frm.ShowDialog();
-            //ActualizarListado();
+            frmNuevaMesa frm = new frmNuevaMesa();
+            frm.ShowDialog();
+            ActualizarListado();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            //frmNuevaMesa frm = new frmNuevaMesa();
-            //frm.oBE_Mesa = oBE_Mesa;
-            //frm.ShowDialog();
-            //ActualizarListado();
+            frmNuevaMesa frm = new frmNuevaMesa();
+            frm.oBE_Mesa = oBE_Mesa;
+            frm.ShowDialog();
+            ActualizarListado();
         }
 
         private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)

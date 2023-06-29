@@ -58,8 +58,8 @@ namespace Mapper
                                                                                                                      Activo = Convert.ToBoolean(ing[5]),
                                                                                                                      VidaUtil = Convert.ToInt32(ing[6]),
                                                                                                                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                                                     CostoUnitario = Convert.ToDecimal(ing[8]),
-                                                                                                                     GestionLote = Convert.ToBoolean(ing[9])
+                                                                                                                     GestionLote = Convert.ToBoolean(ing[8])
+
                                                                                                                  }).FirstOrDefault() : null,
                                                   Cantidad = Convert.ToDecimal(comp[2]),
                                                   FechaCompra = Convert.ToDateTime(comp[3]),

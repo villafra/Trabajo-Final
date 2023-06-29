@@ -71,7 +71,6 @@ namespace Mapper
             }
             return Acceso.Escribir(ListadoXML);
         }
-
         public List<BE_Bebida> Listar()
         {
             Acceso = new Xml_Database();
@@ -80,58 +79,58 @@ namespace Mapper
             List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
 
             List<BE_Bebida> listaBebidas = ds.Tables.Contains("Bebida") != false ? (from beb in ds.Tables["Bebida"].AsEnumerable()
-                                            select new BE_Bebida
-                                            {
-                                                Codigo = Convert.ToInt32(beb[0]),
-                                                Nombre = Convert.ToString(beb[1]),
-                                                Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
-                                                Presentacion = Convert.ToDecimal(beb[3]),
-                                                CostoUnitario = Convert.ToDecimal(beb[4]),
-                                                UnidadMedida = Convert.ToString(beb[5]),
-                                                VidaUtil = Convert.ToInt32(beb[6]),
-                                            }).ToList():null;
+                                                                                    select new BE_Bebida
+                                                                                    {
+                                                                                        Codigo = Convert.ToInt32(beb[0]),
+                                                                                        Nombre = Convert.ToString(beb[1]),
+                                                                                        Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
+                                                                                        Presentacion = Convert.ToDecimal(beb[3]),
+                                                                                        CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                                                        UnidadMedida = Convert.ToString(beb[5]),
+                                                                                        VidaUtil = Convert.ToInt32(beb[6]),
+                                                                                    }).ToList() : null;
 
             List<BE_Bebida_Alcoholica> listaBebidasAlcoholica = ds.Tables.Contains("Bebida_Acoholica") != false ? (from beb in ds.Tables["Bebida Alcoholica"].AsEnumerable()
-                                                                 select new BE_Bebida_Alcoholica
-                                                                 {
-                                                                     Codigo = Convert.ToInt32(beb[0]),
-                                                                     Nombre = Convert.ToString(beb[1]),
-                                                                     Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
-                                                                     Presentacion = Convert.ToDecimal(beb[3]),
-                                                                     CostoUnitario = Convert.ToDecimal(beb[4]),
-                                                                     UnidadMedida = Convert.ToString(beb[5]),
-                                                                     VidaUtil = Convert.ToInt32(beb[6]),
-                                                                     ABV = Convert.ToDecimal(beb[8])
-                                                                 }).ToList():null;
+                                                                                                                   select new BE_Bebida_Alcoholica
+                                                                                                                   {
+                                                                                                                       Codigo = Convert.ToInt32(beb[0]),
+                                                                                                                       Nombre = Convert.ToString(beb[1]),
+                                                                                                                       Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
+                                                                                                                       Presentacion = Convert.ToDecimal(beb[3]),
+                                                                                                                       CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                                                                                       UnidadMedida = Convert.ToString(beb[5]),
+                                                                                                                       VidaUtil = Convert.ToInt32(beb[6]),
+                                                                                                                       ABV = Convert.ToDecimal(beb[8])
+                                                                                                                   }).ToList() : null;
 
-            List<BE_Bebida_Preparada> listaBebidasPreparadas = ds.Tables.Contains("Bebida_Preparada") != false ?(from beb in ds.Tables["Bebida Preparada"].AsEnumerable()
-                                                                select new BE_Bebida_Preparada
-                                                                {
-                                                                    Codigo = Convert.ToInt32(beb[0]),
-                                                                    Nombre = Convert.ToString(beb[1]),
-                                                                    Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
-                                                                    Presentacion = Convert.ToDecimal(beb[3]),
-                                                                    CostoUnitario = Convert.ToDecimal(beb[4]),
-                                                                    UnidadMedida = Convert.ToString(beb[5]),
-                                                                    VidaUtil = Convert.ToInt32(beb[6]),
-                                                                    ABV = Convert.ToDecimal(beb[7]),
-                                                                    ListaIngredientes = ds.Tables.Contains("Bebida-Ingrediente") & ds.Tables.Contains("Ingrediente") != false ? (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
-                                                                                         join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                         on Convert.ToInt32(obj[1]) equals Convert.ToInt32(beb[0])
-                                                                                         select new BE_Ingrediente
-                                                                                         {
-                                                                                             Codigo = Convert.ToInt32(ing[0]),
-                                                                                             Nombre = Convert.ToString(ing[1]),
-                                                                                             Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                             Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                             UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                             Activo = Convert.ToBoolean(ing[5]),
-                                                                                             VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                             Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[8])),
-                                                                                             CostoUnitario = Convert.ToDecimal(ing[7])
+            List<BE_Bebida_Preparada> listaBebidasPreparadas = ds.Tables.Contains("Bebida_Preparada") != false ? (from beb in ds.Tables["Bebida Preparada"].AsEnumerable()
+                                                                                                                  select new BE_Bebida_Preparada
+                                                                                                                  {
+                                                                                                                      Codigo = Convert.ToInt32(beb[0]),
+                                                                                                                      Nombre = Convert.ToString(beb[1]),
+                                                                                                                      Tipo = (BE_Bebida.Tipo_Bebida)Enum.Parse(typeof(BE_Bebida.Tipo_Bebida), Convert.ToString(beb[2])),
+                                                                                                                      Presentacion = Convert.ToDecimal(beb[3]),
+                                                                                                                      CostoUnitario = Convert.ToDecimal(beb[4]),
+                                                                                                                      UnidadMedida = Convert.ToString(beb[5]),
+                                                                                                                      VidaUtil = Convert.ToInt32(beb[6]),
+                                                                                                                      ABV = Convert.ToDecimal(beb[7]),
+                                                                                                                      ListaIngredientes = ds.Tables.Contains("Bebida-Ingrediente") & ds.Tables.Contains("Ingrediente") != false ? (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
+                                                                                                                                                                                                                                   join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                                                                                                                                                                                   on Convert.ToInt32(obj[1]) equals Convert.ToInt32(beb[0])
+                                                                                                                                                                                                                                   select new BE_Ingrediente
+                                                                                                                                                                                                                                   {
+                                                                                                                                                                                                                                       Codigo = Convert.ToInt32(ing[0]),
+                                                                                                                                                                                                                                       Nombre = Convert.ToString(ing[1]),
+                                                                                                                                                                                                                                       Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                                                                                                                                                       Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                                                                                                                                                       UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                                                                                                                                                       Activo = Convert.ToBoolean(ing[5]),
+                                                                                                                                                                                                                                       VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                                                                                                                                                       Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                                                                                                                       GestionLote = Convert.ToBoolean(ing[8])
 
-                                                                                         }).ToList():null,
-                                                                }).ToList():null;
+                                                                                                                                                                                                                                   }).ToList() : null,
+                                                                                                                  }).ToList() : null;
 
             if (listaBebidas != null && listaBebidasAlcoholica != null && listaBebidasPreparadas != null)
             {
@@ -139,7 +138,7 @@ namespace Mapper
             }
             else
             {
-                if(listaBebidas != null)
+                if (listaBebidas != null)
                 {
                     ListaCompleta.AddRange(listaBebidas);
                 }
@@ -152,7 +151,7 @@ namespace Mapper
                     ListaCompleta.AddRange(listaBebidasPreparadas);
                 }
             }
-          
+
             return ListaCompleta;
         }
 

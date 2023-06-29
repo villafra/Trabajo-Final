@@ -13,50 +13,51 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmCostos : Form
+    public partial class frmMesas : Form
     {
-        BLL_Costo oBLL_Costo;
-        BE_Costo oBE_Costo;
-        public frmCostos()
+        BLL_Mesa oBLL_Mesa;
+        BE_Mesa oBE_Mesa;
+        public frmMesas()
         {
             InitializeComponent();
-            oBLL_Costo = new BLL_Costo();
-            Aspecto.FormatearGRP(grpCostos);
+            oBLL_Mesa = new BLL_Mesa();
+            oBE_Mesa = new BE_Mesa();
+            Aspecto.FormatearGRP(grpMesas);
             Aspecto.FormatearGRPAccion(grpAcciones);
-            Aspecto.FormatearDGV(dgvCostos);
+            Aspecto.FormatearDGV(dgvMesas);
             ActualizarListado();
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvCostos, oBLL_Costo.Listar());
-            dgvCostos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.Listar());
+            dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevoCosto frm = new frmNuevoCosto();
+            frmNuevaMesa frm = new frmNuevaMesa();
             frm.ShowDialog();
             ActualizarListado();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevoCosto frm = new frmNuevoCosto();
-            frm.oBE_Costo = oBE_Costo;
+            frmNuevaMesa frm = new frmNuevaMesa();
+            frm.oBE_Mesa = oBE_Mesa;
             frm.ShowDialog();
             ActualizarListado();
         }
 
-        private void dgvCostos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
+            //oBE_Mesa = (BE_Mesa)dgvUsuarios.SelectedRows[0].DataBoundItem;
         }
 
-        private void dgvCostos_SelectionChanged(object sender, EventArgs e)
+        private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                oBE_Costo = (BE_Costo)dgvCostos.SelectedRows[0].DataBoundItem;
+                oBE_Mesa = (BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem;
             }
             catch { }
 
@@ -64,7 +65,7 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Costo.Baja(oBE_Costo);
+            oBLL_Mesa.Baja(oBE_Mesa);
         }
     }
 }

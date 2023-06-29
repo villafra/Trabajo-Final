@@ -42,7 +42,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Costo> listado = ds.Tables.Contains("Costo") ? (from cos in ds.Tables["Costos"].AsEnumerable()
+            List<BE_Costo> listado = ds.Tables.Contains("Costo") ? (from cos in ds.Tables["Costo"].AsEnumerable()
                                                                     select cos[7].ToString() == TipoMaterial.Ingrediente.ToString() ?
                                                                         new BE_CostoIngrediente
                                                                         {
@@ -65,8 +65,9 @@ namespace Mapper
                                                                                                                                       UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
                                                                                                                                       Activo = Convert.ToBoolean(ing[5]),
                                                                                                                                       VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                                                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[8])),
-                                                                                                                                      CostoUnitario = Convert.ToDecimal(ing[7])
+                                                                                                                                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                      GestionLote = Convert.ToBoolean(ing[8])
+
                                                                                                                                   }).FirstOrDefault() : null
                                                                         } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
                                                                         (BE_Costo)new BE_CostoPlato
@@ -153,7 +154,7 @@ namespace Mapper
                 new XElement("Energía", Costo.Energía.ToString()),
                 new XElement("Otros_Gastos", Costo.OtrosGastos.ToString()),
                 new XElement("Tipo_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).Tipo.ToString(): Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).Tipo.ToString(): ((BE_CostoPlato)Costo).Tipo.ToString()),
-                new XElement("ID_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).ID_Ingrediente.ToString() : Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).ID_Bebida.ToString() : ((BE_CostoPlato)Costo).ID_Plato.ToString())
+                new XElement("ID_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).ID_Ingrediente.Codigo.ToString() : Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).ID_Bebida.Codigo.ToString() : ((BE_CostoPlato)Costo).ID_Plato.Codigo.ToString())
                 );
             nuevaTupla.Xelement = nuevoCosto;
             return nuevaTupla;

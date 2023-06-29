@@ -35,30 +35,29 @@ namespace Mapper
             ListadoXML.Add(CrearLoginXML(user));
             return Acceso.Escribir(ListadoXML);
         }
-
         public List<BE_Login> Listar()
         {
             Acceso = new Xml_Database();
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
-            MPP_Empleado oMPP_Emplado = new MPP_Empleado();
+            MPP_Empleado oMPP_Empleado = new MPP_Empleado();
 
             List<BE_Login> ListaLogins = (from log in ds.Tables["Login"].AsEnumerable()
                                           select new BE_Login
                                           {
                                               Codigo = Convert.ToInt32(log[0]),
-                                              Empleado = Convert.ToString(log[2]) != "admin" ? oMPP_Emplado.Listar().Find(x=> x.Codigo == Convert.ToInt32(log[1])):null,
+                                              Empleado = Convert.ToString(log[2]) != "admin" ? oMPP_Empleado.Listar().Find(x => x.Codigo == Convert.ToInt32(log[1])) : null,
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),
                                               Permiso = (from per in ds.Tables["Permiso"].AsEnumerable()
-                                                        where log[5].ToString() == per[0].ToString()
-                                                        select new BE_PermisoPadre
-                                                        {
-                                                            Codigo = per[0].ToString(),
-                                                            Descripción = per[2].ToString(),
-                                                            
-                                                        }).FirstOrDefault(),
+                                                         where log[5].ToString() == per[0].ToString()
+                                                         select new BE_PermisoPadre
+                                                         {
+                                                             Codigo = per[0].ToString(),
+                                                             Descripción = per[2].ToString(),
+
+                                                         }).FirstOrDefault(),
                                               Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
                                               Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
                                           }).ToList();

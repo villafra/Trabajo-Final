@@ -134,6 +134,12 @@
     <Compile Include="Menus\SubMenus\NuevaDevolucionCompra.Designer.cs">
       <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\NuevaMesa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaMesa.Designer.cs">
+      <DependentUpon>NuevaMesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\NuevoIngresoCompra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,12 @@
     <Compile Include="Menus\Permisos.Designer.cs">
       <DependentUpon>Permisos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Mesas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Mesas.Designer.cs">
+      <DependentUpon>Mesas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +259,9 @@
     <EmbeddedResource Include="Menus\SubMenus\NuevaDevolucionCompra.resx">
       <DependentUpon>NuevaDevolucionCompra.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevaMesa.resx">
+      <DependentUpon>NuevaMesa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoIngresoCompra.resx">
       <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Permisos.resx">
       <DependentUpon>Permisos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Mesas.resx">
+      <DependentUpon>Mesas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
@@ -385,5 +403,6 @@
   <ItemGroup>
     <None Include="Resources\aprobado.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

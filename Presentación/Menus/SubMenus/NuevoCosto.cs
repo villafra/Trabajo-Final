@@ -20,6 +20,10 @@ namespace Trabajo_Final
         
         public BE_Costo oBE_Costo;
         BLL_Costo oBLL_Costo;
+        BLL_Ingrediente oBLL_Ingrediente;
+        BLL_Bebida oBLL_Bebida;
+        BLL_Plato oBLL_Plato;
+
         private bool status;
         public frmNuevoCosto()
         {
@@ -52,7 +56,7 @@ namespace Trabajo_Final
         private bool Nuevo()
         {
             oBE_Costo = new BE_CostoIngrediente();
-            ((BE_CostoIngrediente)oBE_Costo).ID_Ingrediente = (BE_Ingrediente)ComboTipo.SelectedItem;
+            ((BE_CostoIngrediente)oBE_Costo).ID_Ingrediente = (BE_Ingrediente)comboMaterial.SelectedItem;
             oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
             oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
             oBE_Costo.MateriaPrima = numMP.Value;
@@ -72,6 +76,63 @@ namespace Trabajo_Final
         private void frmNuevoLogin_Load(object sender, EventArgs e)
         {
             ImportarCosto();
+        }
+
+        private void ComboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                comboMaterial.DataSource = null;
+
+                if (ComboTipo.SelectedItem != null)
+                {
+
+
+                    if (ComboTipo.SelectedItem.ToString() == "Ingrediente")
+                    {
+                        oBLL_Ingrediente = new BLL_Ingrediente();
+                        Cálculos.DataSourceCombo(comboMaterial, oBLL_Ingrediente.Listar(), "Ingredientes");
+                    }
+                    else if (ComboTipo.SelectedItem.ToString() == "Bebida")
+                    {
+                        oBLL_Bebida = new BLL_Bebida();
+                        Cálculos.DataSourceCombo(comboMaterial, oBLL_Bebida.Listar(), "Bebidas");
+                    }
+                    else
+                    {
+                        oBLL_Plato = new BLL_Plato();
+                        Cálculos.DataSourceCombo(comboMaterial, oBLL_Plato.Listar(), "Platos");
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void ComboTipo_TextChanged(object sender, EventArgs e)
+        {
+            //try
+            //{
+
+            //    comboMaterial.DataSource = null;
+
+            //    if (ComboTipo.SelectedItem.ToString() == "Ingrediente")
+            //    {
+            //        oBLL_Ingrediente = new BLL_Ingrediente();
+            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Ingrediente.Listar(), "Ingredientes");
+            //    }
+            //    else if (ComboTipo.SelectedItem.ToString() == "Bebida")
+            //    {
+            //        oBLL_Bebida = new BLL_Bebida();
+            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Bebida.Listar(), "Bebidas");
+            //    }
+            //    else
+            //    {
+            //        oBLL_Plato = new BLL_Plato();
+            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Plato.Listar(), "Platos");
+            //    }
+            //}
+            //catch {}
         }
     }
 }

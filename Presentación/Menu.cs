@@ -16,13 +16,34 @@ namespace Trabajo_Final
 {
     public partial class frmMenu : Form
     {
+        private static Timer inactivityTimer;
         public Form Contenedor { get; set; }
         public BE_Login UsuarioActivo { get; set; }
         public frmMenu()
         {
             InitializeComponent();
         }
+        private void Iniciar()
+        {
+            inactivityTimer = new Timer();
+            inactivityTimer.Interval = 300000;
+            inactivityTimer.Tick += InactivityTimer_Tick;
 
+            this.MouseMove += frmMenu_MouseMove;
+        }
+        private void ResetInactivityTimer()
+        {
+            MessageBox.Show(inactivityTimer.ToString());
+            inactivityTimer.Stop();
+            inactivityTimer.Start();
+
+        }
+        private void InactivityTimer_Tick(object sender, EventArgs e)
+        {
+            
+
+            inactivityTimer.Stop();
+        }
         private void frmMenu_Load(object sender, EventArgs e)
         {
             try
@@ -33,6 +54,7 @@ namespace Trabajo_Final
                     frmlog.Owner = this;
                     frmlog.ShowDialog();
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
+                    Iniciar();
                 }
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
             }
@@ -302,6 +324,27 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmCostos();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void frmMenu_MouseMove(object sender, MouseEventArgs e)
+        {
+            ResetInactivityTimer();
+        }
+
+        private void listadoToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
+            if (frm != null)
+            {
+                ((frmMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMesas();
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }

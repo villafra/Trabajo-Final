@@ -89,8 +89,8 @@ namespace Mapper
                                                                                                                                                                                                                          UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
                                                                                                                                                                                                                          Activo = Convert.ToBoolean(ing[5]),
                                                                                                                                                                                                                          VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                                                                                                                                         Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[8])),
-                                                                                                                                                                                                                         CostoUnitario = Convert.ToDecimal(ing[7])
+                                                                                                                                                                                                                         Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                                                                                                                                         GestionLote = Convert.ToBoolean(ing[8])
 
                                                                                                                                                                                                                      }).ToList() : null
 

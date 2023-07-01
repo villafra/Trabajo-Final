@@ -78,7 +78,6 @@ namespace Trabajo_Final
             this.dgvUsuarios.RowTemplate.Height = 24;
             this.dgvUsuarios.Size = new System.Drawing.Size(1120, 254);
             this.dgvUsuarios.TabIndex = 3;
-            this.dgvUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsuarios_CellContentClick);
             this.dgvUsuarios.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
             // 
             // grpUsuarios
@@ -204,6 +203,7 @@ namespace Trabajo_Final
             this.btnDesbloquear.Text = "Desbloquear";
             this.btnDesbloquear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDesbloquear.UseVisualStyleBackColor = true;
+            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
             // 
             // btnAgregar
             // 
@@ -237,6 +237,7 @@ namespace Trabajo_Final
             this.btnResetPass.Text = "Reset Pass";
             this.btnResetPass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnResetPass.UseVisualStyleBackColor = true;
+            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
             // btnEliminar
             // 

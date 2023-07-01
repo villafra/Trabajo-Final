@@ -43,11 +43,15 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
+            this.grpNuevoLogin.Controls.Add(this.lblCodigo);
+            this.grpNuevoLogin.Controls.Add(this.txtCodigo);
             this.grpNuevoLogin.Controls.Add(this.comboPermiso);
             this.grpNuevoLogin.Controls.Add(this.lblPermiso);
             this.grpNuevoLogin.Controls.Add(this.comboEmpleado);
@@ -58,7 +62,7 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.txtUsuario);
             this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 280);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(536, 280);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
@@ -66,15 +70,15 @@ namespace Trabajo_Final
             // comboPermiso
             // 
             this.comboPermiso.FormattingEnabled = true;
-            this.comboPermiso.Location = new System.Drawing.Point(147, 194);
+            this.comboPermiso.Location = new System.Drawing.Point(147, 239);
             this.comboPermiso.Name = "comboPermiso";
-            this.comboPermiso.Size = new System.Drawing.Size(257, 24);
+            this.comboPermiso.Size = new System.Drawing.Size(349, 24);
             this.comboPermiso.TabIndex = 8;
             // 
             // lblPermiso
             // 
             this.lblPermiso.AutoSize = true;
-            this.lblPermiso.Location = new System.Drawing.Point(20, 199);
+            this.lblPermiso.Location = new System.Drawing.Point(20, 242);
             this.lblPermiso.Name = "lblPermiso";
             this.lblPermiso.Size = new System.Drawing.Size(59, 17);
             this.lblPermiso.TabIndex = 7;
@@ -83,15 +87,16 @@ namespace Trabajo_Final
             // comboEmpleado
             // 
             this.comboEmpleado.FormattingEnabled = true;
-            this.comboEmpleado.Location = new System.Drawing.Point(147, 42);
+            this.comboEmpleado.Location = new System.Drawing.Point(147, 84);
             this.comboEmpleado.Name = "comboEmpleado";
-            this.comboEmpleado.Size = new System.Drawing.Size(257, 24);
+            this.comboEmpleado.Size = new System.Drawing.Size(349, 24);
             this.comboEmpleado.TabIndex = 6;
+            this.comboEmpleado.Leave += new System.EventHandler(this.comboEmpleado_Leave);
             // 
             // lblPass
             // 
             this.lblPass.AutoSize = true;
-            this.lblPass.Location = new System.Drawing.Point(20, 149);
+            this.lblPass.Location = new System.Drawing.Point(20, 191);
             this.lblPass.Name = "lblPass";
             this.lblPass.Size = new System.Drawing.Size(69, 17);
             this.lblPass.TabIndex = 5;
@@ -100,7 +105,7 @@ namespace Trabajo_Final
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(20, 99);
+            this.lblUsuario.Location = new System.Drawing.Point(20, 140);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 17);
             this.lblUsuario.TabIndex = 4;
@@ -109,7 +114,7 @@ namespace Trabajo_Final
             // lblEmpleado
             // 
             this.lblEmpleado.AutoSize = true;
-            this.lblEmpleado.Location = new System.Drawing.Point(20, 49);
+            this.lblEmpleado.Location = new System.Drawing.Point(20, 89);
             this.lblEmpleado.Name = "lblEmpleado";
             this.lblEmpleado.Size = new System.Drawing.Size(71, 17);
             this.lblEmpleado.TabIndex = 3;
@@ -117,16 +122,17 @@ namespace Trabajo_Final
             // 
             // txtPass
             // 
-            this.txtPass.Location = new System.Drawing.Point(147, 144);
+            this.txtPass.Location = new System.Drawing.Point(147, 188);
             this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(257, 22);
+            this.txtPass.Size = new System.Drawing.Size(349, 22);
             this.txtPass.TabIndex = 2;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(147, 94);
+            this.txtUsuario.Enabled = false;
+            this.txtUsuario.Location = new System.Drawing.Point(147, 137);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(257, 22);
+            this.txtUsuario.Size = new System.Drawing.Size(349, 22);
             this.txtUsuario.TabIndex = 1;
             // 
             // btnCancelar
@@ -138,7 +144,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(323, 320);
+            this.btnCancelar.Location = new System.Drawing.Point(422, 320);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -171,12 +177,29 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(22, 38);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(52, 17);
+            this.lblCodigo.TabIndex = 10;
+            this.lblCodigo.Text = "Codigo";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(149, 33);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(347, 22);
+            this.txtCodigo.TabIndex = 9;
+            // 
             // frmNuevoLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 379);
+            this.ClientSize = new System.Drawing.Size(572, 379);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
@@ -205,5 +228,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnConfirmar;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.TextBox txtCodigo;
     }
 }

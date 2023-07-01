@@ -13,39 +13,42 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmIngredientes : Form
+    public partial class frmBackUp : Form
     {
-        BLL_Ingrediente oBLL_Ingrediente;
-        BE_Ingrediente oBE_Ingrediente;
-        public frmIngredientes()
+        public BE_Login UsuarioActivo;
+        BLL_BackUp oBLL_BackUp;
+        BE_BackUp oBE_BackUp;
+        public frmBackUp()
         {
             InitializeComponent();
-            oBLL_Ingrediente = new BLL_Ingrediente();
-            oBE_Ingrediente = new BE_Ingrediente();
-            Aspecto.FormatearGRP(grpIngredientes);
+            oBLL_BackUp = new BLL_BackUp();
+            Aspecto.FormatearGRP(grpBackUp);
             Aspecto.FormatearGRPAccion(grpAcciones);
-            Aspecto.FormatearDGV(dgvIngredientes);
+            Aspecto.FormatearDGV(dgvBackUps);
             ActualizarListado();
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Ingrediente.Listar());
-            dgvIngredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Cálculos.RefreshGrilla(dgvBackUps, oBLL_BackUp.Listar());
+            dgvBackUps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngrediente frm = new frmNuevoIngrediente();
-            frm.ShowDialog();
-            ActualizarListado();
+            if (Cálculos.EstaSeguroBackUp("BackUp"))
+            {
+                oBLL_BackUp.CrearBackUp(UsuarioActivo);
+                ActualizarListado();
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngrediente frm = new frmNuevoIngrediente();
-            frm.oBE_Ingrediente = oBE_Ingrediente;
-            frm.ShowDialog();
-            ActualizarListado();
+            if (Cálculos.EstaSeguroBackUp("Restore"))
+            {
+                oBLL_BackUp.RestaurarBackUp(UsuarioActivo, oBE_BackUp.NombreArchivo);
+                ActualizarListado();
+            }
         }
 
         private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +60,7 @@ namespace Trabajo_Final
         {
             try
             {
-                oBE_Ingrediente = (BE_Ingrediente)dgvIngredientes.SelectedRows[0].DataBoundItem;
+                oBE_BackUp = (BE_BackUp)dgvBackUps.SelectedRows[0].DataBoundItem;
             }
             catch { }
 
@@ -65,12 +68,11 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Ingrediente.Baja(oBE_Ingrediente);
-        }
-
-        private void btnResetPass_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(oBE_Ingrediente.DevolverNombre());
+            if (Cálculos.EstaSeguroBackUp("RollBack"))
+            {
+                oBLL_BackUp.RollBack(UsuarioActivo);
+                ActualizarListado();
+            }
         }
     }
 }

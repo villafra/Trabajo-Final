@@ -92,32 +92,38 @@ namespace Business_Logic_Layer
             {
                 int aux = oBE_Login.CantidadIntentos;
                 oBE_Login.CantidadIntentos = 0;
-                if (Guardar(oBE_Login))
-                {
-                    return true;
-                }
-                else
-                {
-                    oBE_Login.CantidadIntentos = aux;
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
+                if (Modificar(oBE_Login)) return true;
+                else { oBE_Login.CantidadIntentos = aux; return false; }
+                
+            } else return false; 
         }
-        public bool Intentos(BE_Login oBE_Login)
+        
+        public bool UsuarioBloqueado(BE_Login oBE_Login)
         {
-            return oBE_Login.CantidadIntentos < 5;
+            return oBE_Login.Bloqueado;
         }
         private void IntentoFallido(BE_Login oBE_Login)
         {
             oBE_Login.CantidadIntentos += 1;
-            if (!Guardar(oBE_Login))
+            if (!Modificar(oBE_Login))
             {
                 oBE_Login.CantidadIntentos -= 1;
             }
+            if (oBE_Login.CantidadIntentos >= 5)
+            {
+                BloquearUsuario(oBE_Login);
+            }
+        }
+        private void BloquearUsuario(BE_Login oBE_Login)
+        {
+            oBE_Login.Bloqueado = true;
+            Modificar(oBE_Login);
+        }
+        public bool DesbloquearUsuario (BE_Login login)
+        {
+            login.Bloqueado = false;
+            login.CantidadIntentos = 0;
+            return Modificar(login);
         }
         public BE_Login Login(string user)
         {
@@ -127,14 +133,19 @@ namespace Business_Logic_Layer
         {
             if (oBE_Login.Password == EncriptarPass(pass))
             {
+                ResetCounter(oBE_Login);
                 return true;
             }
             else
             {
-                //if (oBE_Login.CantidadIntentos < 5) { IntentoFallido(oBE_Login); }
+                if (oBE_Login.CantidadIntentos < 5) { IntentoFallido(oBE_Login); }
                 return false;
             }
 
+        }
+        public bool Existe (BE_Login login)
+        {
+            return oMPP_Login.Existe(login);
         }
     }
 }

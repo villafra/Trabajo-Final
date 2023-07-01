@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -42,10 +43,21 @@ namespace Trabajo_Final
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevaCompra frm = new frmNuevaCompra();
-            frm.oBE_Compra = oBE_Compra;
-            frm.ShowDialog();
-            ActualizarListado();
+            try
+            {
+                if (oBE_Compra.Status == StausComp.En_Curso)
+                {
+                    frmNuevaCompra frm = new frmNuevaCompra();
+                    frm.oBE_Compra = oBE_Compra;
+                    frm.ShowDialog();
+                    ActualizarListado();
+                }
+                else { throw new RestaurantException("No se puede modificar un pedido que ya se ha gestionado."); }
+            }
+            catch (Exception ex)
+            {
+                Cálculos.MsgBox(ex.Message);
+            }
         }
 
         private void dgvCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -65,7 +77,23 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Compra.Baja(oBE_Compra);
+            try
+            {
+                if (oBE_Compra.Status == StausComp.En_Curso)
+                {
+                    if (oBLL_Compra.Baja(oBE_Compra))
+                    {
+                        Cálculos.MsgBox("El pedido se ha borrado de la base de datos.");
+                    }
+                    else { throw new Exception(); }
+                    ActualizarListado();
+                }
+                else { throw new RestaurantException("No se puede eliminar un pedido que ya se ha gestionado."); }
+            }
+            catch (Exception ex)
+            {
+                Cálculos.MsgBox(ex.Message);
+            }
         }
     }
 }

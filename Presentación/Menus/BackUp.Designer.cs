@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmIngredientes
+    partial class frmBackUp
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,11 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngredientes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBackUp));
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
-            this.dgvIngredientes = new System.Windows.Forms.DataGridView();
-            this.grpIngredientes = new System.Windows.Forms.GroupBox();
+            this.dgvBackUps = new System.Windows.Forms.DataGridView();
+            this.grpBackUp = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
@@ -42,12 +42,10 @@ namespace Trabajo_Final
             this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).BeginInit();
-            this.grpIngredientes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBackUps)).BeginInit();
+            this.grpBackUp.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,35 +64,35 @@ namespace Trabajo_Final
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
             // 
-            // dgvIngredientes
+            // dgvBackUps
             // 
-            this.dgvIngredientes.AllowUserToAddRows = false;
-            this.dgvIngredientes.AllowUserToDeleteRows = false;
-            this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngredientes.Location = new System.Drawing.Point(102, 249);
-            this.dgvIngredientes.Name = "dgvIngredientes";
-            this.dgvIngredientes.ReadOnly = true;
-            this.dgvIngredientes.RowHeadersWidth = 51;
-            this.dgvIngredientes.RowTemplate.Height = 24;
-            this.dgvIngredientes.Size = new System.Drawing.Size(1120, 254);
-            this.dgvIngredientes.TabIndex = 3;
-            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
-            this.dgvIngredientes.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
+            this.dgvBackUps.AllowUserToAddRows = false;
+            this.dgvBackUps.AllowUserToDeleteRows = false;
+            this.dgvBackUps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBackUps.Location = new System.Drawing.Point(102, 249);
+            this.dgvBackUps.Name = "dgvBackUps";
+            this.dgvBackUps.ReadOnly = true;
+            this.dgvBackUps.RowHeadersWidth = 51;
+            this.dgvBackUps.RowTemplate.Height = 24;
+            this.dgvBackUps.Size = new System.Drawing.Size(1120, 254);
+            this.dgvBackUps.TabIndex = 3;
+            this.dgvBackUps.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
+            this.dgvBackUps.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
-            // grpIngredientes
+            // grpBackUp
             // 
-            this.grpIngredientes.Controls.Add(this.lbl2);
-            this.grpIngredientes.Controls.Add(this.lbl1);
-            this.grpIngredientes.Controls.Add(this.btnReset);
-            this.grpIngredientes.Controls.Add(this.txtFiltro);
-            this.grpIngredientes.Controls.Add(this.comboFiltro);
-            this.grpIngredientes.Controls.Add(this.btBuscar);
-            this.grpIngredientes.Location = new System.Drawing.Point(102, 57);
-            this.grpIngredientes.Name = "grpIngredientes";
-            this.grpIngredientes.Size = new System.Drawing.Size(1120, 168);
-            this.grpIngredientes.TabIndex = 4;
-            this.grpIngredientes.TabStop = false;
-            this.grpIngredientes.Text = "Listado de Ingredientes";
+            this.grpBackUp.Controls.Add(this.lbl2);
+            this.grpBackUp.Controls.Add(this.lbl1);
+            this.grpBackUp.Controls.Add(this.btnReset);
+            this.grpBackUp.Controls.Add(this.txtFiltro);
+            this.grpBackUp.Controls.Add(this.comboFiltro);
+            this.grpBackUp.Controls.Add(this.btBuscar);
+            this.grpBackUp.Location = new System.Drawing.Point(102, 57);
+            this.grpBackUp.Name = "grpBackUp";
+            this.grpBackUp.Size = new System.Drawing.Size(1120, 168);
+            this.grpBackUp.TabIndex = 4;
+            this.grpBackUp.TabStop = false;
+            this.grpBackUp.Text = "Listado de Back Up";
             // 
             // lbl2
             // 
@@ -161,9 +159,7 @@ namespace Trabajo_Final
             // grpAcciones
             // 
             this.grpAcciones.Controls.Add(this.btnModificar);
-            this.grpAcciones.Controls.Add(this.btnDesbloquear);
             this.grpAcciones.Controls.Add(this.btnAgregar);
-            this.grpAcciones.Controls.Add(this.btnResetPass);
             this.grpAcciones.Controls.Add(this.btnEliminar);
             this.grpAcciones.Location = new System.Drawing.Point(102, 768);
             this.grpAcciones.Name = "grpAcciones";
@@ -180,30 +176,14 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(161, 34);
+            this.btnModificar.Location = new System.Drawing.Point(458, 34);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(149, 50);
+            this.btnModificar.Size = new System.Drawing.Size(204, 50);
             this.btnModificar.TabIndex = 6;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Restore";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // btnDesbloquear
-            // 
-            this.btnDesbloquear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDesbloquear.FlatAppearance.BorderSize = 0;
-            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDesbloquear.ImageIndex = 6;
-            this.btnDesbloquear.ImageList = this.Listado;
-            this.btnDesbloquear.Location = new System.Drawing.Point(965, 34);
-            this.btnDesbloquear.Name = "btnDesbloquear";
-            this.btnDesbloquear.Size = new System.Drawing.Size(149, 50);
-            this.btnDesbloquear.TabIndex = 9;
-            this.btnDesbloquear.Text = "Desbloquear";
-            this.btnDesbloquear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDesbloquear.UseVisualStyleBackColor = true;
             // 
             // btnAgregar
             // 
@@ -213,31 +193,14 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(6, 34);
+            this.btnAgregar.Location = new System.Drawing.Point(176, 34);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(149, 50);
+            this.btnAgregar.Size = new System.Drawing.Size(204, 50);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Crear BackUp";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnResetPass
-            // 
-            this.btnResetPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnResetPass.FlatAppearance.BorderSize = 0;
-            this.btnResetPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnResetPass.ImageIndex = 5;
-            this.btnResetPass.ImageList = this.Listado;
-            this.btnResetPass.Location = new System.Drawing.Point(810, 34);
-            this.btnResetPass.Name = "btnResetPass";
-            this.btnResetPass.Size = new System.Drawing.Size(149, 50);
-            this.btnResetPass.TabIndex = 8;
-            this.btnResetPass.Text = "Reset Pass";
-            this.btnResetPass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnResetPass.UseVisualStyleBackColor = true;
-            this.btnResetPass.Click += new System.EventHandler(this.btnResetPass_Click);
             // 
             // btnEliminar
             // 
@@ -247,30 +210,30 @@ namespace Trabajo_Final
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.ImageIndex = 4;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(316, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(740, 34);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(149, 50);
+            this.btnEliminar.Size = new System.Drawing.Size(204, 50);
             this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Make RollBack";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // frmIngredientes
+            // frmBackUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 918);
             this.Controls.Add(this.grpAcciones);
-            this.Controls.Add(this.grpIngredientes);
-            this.Controls.Add(this.dgvIngredientes);
+            this.Controls.Add(this.grpBackUp);
+            this.Controls.Add(this.dgvBackUps);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmIngredientes";
+            this.Name = "frmBackUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
-            this.grpIngredientes.ResumeLayout(false);
-            this.grpIngredientes.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBackUps)).EndInit();
+            this.grpBackUp.ResumeLayout(false);
+            this.grpBackUp.PerformLayout();
             this.grpAcciones.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -281,8 +244,8 @@ namespace Trabajo_Final
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
-        private System.Windows.Forms.DataGridView dgvIngredientes;
-        private System.Windows.Forms.GroupBox grpIngredientes;
+        private System.Windows.Forms.DataGridView dgvBackUps;
+        private System.Windows.Forms.GroupBox grpBackUp;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lbl2;
@@ -290,8 +253,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnResetPass;
-        private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.GroupBox grpAcciones;
     }
 }

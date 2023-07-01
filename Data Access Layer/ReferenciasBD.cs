@@ -287,5 +287,6 @@ namespace Data_Access_Layer
         public static string RootBKP { get { return NodoRootBKP; } }
         public static List<XElement> ArmarPermisos { get { return Permisos; } }
         public static List<XElement> ArmaPadreHijo { get { return PadreHijo; } }
+        public static string NombreBD { get { return BasedeDatos; } }
     }
 }

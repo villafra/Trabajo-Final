@@ -21,7 +21,7 @@ namespace Business_Entities
         public decimal DevolverCosto(decimal cantidad)
         {
             return   ((this.MateriaPrima + this.HorasHombre + this.Energía
-                + this.OtrosGastos) * cantidad ) / this.TamañoLoteCosteo;
+                + this.OtrosGastos) / this.TamañoLoteCosteo) * cantidad;
         }
 
     }

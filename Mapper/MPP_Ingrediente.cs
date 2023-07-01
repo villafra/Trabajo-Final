@@ -43,19 +43,20 @@ namespace Mapper
             ds = Acceso.Listar();
 
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                      select new BE_Ingrediente
-                                                      {
-                                                          Codigo = Convert.ToInt32(ing[0]),
-                                                          Nombre = Convert.ToString(ing[1]),
-                                                          Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                          Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                          UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                          Activo = Convert.ToBoolean(ing[5]),
-                                                          VidaUtil = Convert.ToInt32(ing[6]),
-                                                          Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                          GestionLote = Convert.ToBoolean(ing[8])
+                                                                                                   select new BE_Ingrediente
+                                                                                                   {
+                                                                                                       Codigo = Convert.ToInt32(ing[0]),
+                                                                                                       Nombre = Convert.ToString(ing[1]),
+                                                                                                       Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                                                                                                       Refrigeracion = Convert.ToBoolean(ing[3]),
+                                                                                                       UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                                                                                                       Activo = Convert.ToBoolean(ing[5]),
+                                                                                                       VidaUtil = Convert.ToInt32(ing[6]),
+                                                                                                       Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                                                                                                       GestionLote = Convert.ToBoolean(ing[8]),
+                                                                                                       CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
-                                                      }).ToList():null;
+                                                                                                   }).ToList() : null;
             return listaIngredientes;
             
         }
@@ -87,7 +88,6 @@ namespace Mapper
                 new XElement("Activo", ingrediente.Activo.ToString()),
                 new XElement("Vida_Util", ingrediente.VidaUtil.ToString()),
                 new XElement("Status", ingrediente.Status),
-                new XElement("Costo_Unitario",ingrediente.CostoUnitario.ToString()),
                 new XElement("Gestion_Lote", ingrediente.GestionLote.ToString())
                 );
             nuevaTupla.Xelement = nuevoIngrediente;

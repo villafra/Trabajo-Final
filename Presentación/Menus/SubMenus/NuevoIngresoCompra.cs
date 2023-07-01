@@ -45,6 +45,7 @@ namespace Trabajo_Final
             oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
             oBE_Compra.CantidadRecibida = numCantidad.Value;
             oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
+            oBE_Compra.NroFactura = txtNroFac.Text;
             oBE_Compra.Status = StausComp.Entregada;
             return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Material.AgregarStock(oBE_Material, oBE_Compra);
         }
@@ -55,6 +56,7 @@ namespace Trabajo_Final
                 txtCodigo.Text = oBE_Compra.Codigo.ToString();
                 txtIngrediente.Text = oBE_Compra.ID_Ingrediente.ToString();
                 numCantidad.Value = oBE_Compra.Cantidad;
+                txtNroFac.Text = oBE_Compra.NroFactura;
                 dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                 numCantidad.Value = oBE_Compra.CantidadRecibida;
                 if (!oBE_Compra.ID_Ingrediente.GestionLote)

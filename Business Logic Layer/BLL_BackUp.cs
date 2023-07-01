@@ -22,26 +22,13 @@ namespace Business_Logic_Layer
         {
             return BackUp.Restore(UsuarioActivo, nombreArchivo);
         }
-
-        public BE_BackUp ListarObjeto(string nombreArchivo)
+        public bool RollBack(BE_Login UsuarioActivo)
         {
-            BE_BackUp Usuario = new BE_BackUp();
-            XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
-            using (StreamReader reader = new StreamReader(@".backups/" + nombreArchivo))
-            {
-                Usuario = (BE_BackUp)serial.Deserialize(reader);
-            }
-            return Usuario;
+            return BackUp.RollBack(UsuarioActivo);
         }
-
         public List<BE_BackUp> Listar()
         {
-            throw new NotImplementedException();
-        }
-
-        public BE_BackUp ListarObjeto(BE_BackUp bkp)
-        {
-            throw new NotImplementedException();
+            return BackUp.ListarBackUps();
         }
 
     }

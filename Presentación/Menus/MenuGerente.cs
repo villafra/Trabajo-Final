@@ -24,7 +24,7 @@ namespace Trabajo_Final
             oBE_Gerente = new BE_GerenteSucursal();
             oBLL_Gerente = new BLL_Gerente_Sucursal();
             oBLL_Horario = new BLL_Horario();
-            CargarDGV();
+            //CargarDGV();
         }
 
         private void frmMenuGerente_MouseDown(object sender, MouseEventArgs e)
@@ -33,13 +33,13 @@ namespace Trabajo_Final
             Aspecto.SendMessage(this.MdiParent.Handle, 0x112, 0xf012, 0);
         }
 
-        private void CargarDGV()
-        {
-            if (oBLL_Horario.Listar() == null)
-            {
-                oBLL_Horario.CrearAgenda();
-            }
-            Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Horario.Listar());
-        }
+        //private void CargarDGV()
+        //{
+        //    if (oBLL_Horario.Listar() == null)
+        //    {
+        //        oBLL_Horario.CrearAgenda();
+        //    }
+        //    Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Horario.Listar());
+        //}
     }
 }

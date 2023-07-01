@@ -102,9 +102,12 @@ namespace Automate_Layer
                 if (c is TextBox)
                 {
                     TextBox text = c as TextBox;
-                    if (text.Text == "")
+                    if (text.Name != "txtCodigo")
                     {
-                        sino = 1;
+                        if (text.Text == "")
+                        {
+                            sino = 1;
+                        }
                     }
                 }
                 else if (c is NumericUpDown)
@@ -175,15 +178,27 @@ namespace Automate_Layer
         public static bool EstaSeguroM(string objeto)
         {
             DialogResult resultado;
-            resultado = MessageBox.Show(@"Esta seguro que desea modificar a: " + objeto + "?","Modificar", MessageBoxButtons.YesNo);
+            resultado = MessageBox.Show(@"Esta seguro que desea modificar a: " + objeto + "?","Modificar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes) return true;
             else return false;
         }
         public static bool EstaSeguroE(string objeto)
         {
             DialogResult resultado;
-            resultado = MessageBox.Show(@"Esta seguro que desea eliminar a: " + objeto + "?", "Eliminar", MessageBoxButtons.YesNo);
+            resultado = MessageBox.Show(@"Esta seguro que desea eliminar a: " + objeto + "?", "Eliminar", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
+        public static bool EstaSeguroBackUp(string accion)
+        {
+            DialogResult resultado = MessageBox.Show(@"Esta seguro que desea realizar un " + accion + "?","Gestion BackUp", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
+        public static bool CambiarPass(string pass)
+        {
+            DialogResult resultado = MessageBox.Show(@"La nueva contraseña será: " + pass + ". Tome nota.", "Restó", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK) return true;
             else return false;
         }
     }

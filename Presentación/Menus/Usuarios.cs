@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -48,11 +49,6 @@ namespace Trabajo_Final
             ActualizarListado();
         }
 
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
-        }
-
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -66,6 +62,31 @@ namespace Trabajo_Final
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             oBLL_Login.Baja(oBE_Login);
+        }
+
+        private void btnResetPass_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                oBE_Login.Password = oBLL_Login.AutoGenerarPass();
+                if (Cálculos.CambiarPass(Encriptacion.DesencriptarPass(oBE_Login.Password)))
+                {
+                    if (oBLL_Login.Modificar(oBE_Login)) Cálculos.MsgBox("La contraseña se ha restaurado.");
+                    else throw new RestaurantException("El reset de la contraseña ha fallado. Intente nuevamente.");
+                }
+            }catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (oBLL_Login.DesbloquearUsuario(oBE_Login)) Cálculos.MsgBox("Se ha desbloqueado el usuario."); ActualizarListado();
+            }
+            catch(Exception ex)
+            {
+                Cálculos.MsgBox(ex.Message);
+            }
         }
     }
 }

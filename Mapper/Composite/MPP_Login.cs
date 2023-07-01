@@ -92,7 +92,7 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Login";
             XElement nuevoLogin = new XElement("Login",
                 new XElement("ID", Cálculos.IDPadleft(user.Codigo)),
-                new XElement("ID_Empleado", user.Empleado.Codigo.ToString()),
+                new XElement("ID_Empleado", user.Usuario != "admin" ? user.Empleado.Codigo.ToString(): ""),
                 new XElement("Usuario", user.Usuario),
                 new XElement("Password", user.Password),
                 new XElement("Cantidad_Intentos", user.CantidadIntentos.ToString()),
@@ -102,6 +102,12 @@ namespace Mapper
                 );
             nuevaTupla.Xelement = nuevoLogin;
             return nuevaTupla;
+        }
+
+        public bool Existe(BE_Login login)
+        {
+            Acceso = new Xml_Database();
+            return Acceso.Existe(CrearLoginXML(login), "Usuario");
         }
     }
 }

@@ -41,11 +41,16 @@ namespace Service_Layer
                 System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
                 foreach (System.IO.FileInfo file in directory.GetFiles())
                 {
-                    file.CopyTo(ReferenciasBD.ArchivoRollBack, true);
-                    file.Delete();
+                    if (file.Name == ReferenciasBD.NombreBD)
+                    {
+                        file.CopyTo(ReferenciasBD.ArchivoRollBack, true);
+                        file.Delete();
+                    }
+                    
                 }
                 ZipFile.ExtractToDirectory(pathzip, path);
                 BE_BackUp oBE_BackUp = new BE_BackUp();
+                oBE_BackUp.Codigo = usuario.ToString() + " " + DateTime.Now.ToString("dd-MM-yyy HH-mm-ss");
                 oBE_BackUp.NombreArchivo = pathzip.Substring(7);
                 oBE_BackUp.NombreUsuario = usuario.ToString();
                 oBE_BackUp.Accion = TipoBKP.Restore.ToString();
@@ -62,21 +67,35 @@ namespace Service_Layer
 
         }
 
-        public static void RollBack(BE_Login usuario)
+        public static bool RollBack(BE_Login usuario)
         {
-            string path = ReferenciasBD.DirectorioRollBack;
-            System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
-            foreach (System.IO.FileInfo file in directory.GetFiles("RollBack.xml"))
+            try
             {
-                file.CopyTo(ReferenciasBD.BaseDatosRestaurant, true);
-                file.Delete();
+
+                string path = ReferenciasBD.DirectorioRollBack;
+                System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
+                bool existe = false;
+                foreach (System.IO.FileInfo file in directory.GetFiles("RollBack.xml"))
+                {
+                    file.CopyTo(ReferenciasBD.BaseDatosRestaurant, true);
+                    file.Delete();
+                    existe = true;
+                   
+                }
+                if (existe)
+                {
+                    BE_BackUp oBE_BackUp = new BE_BackUp();
+                    oBE_BackUp.Codigo = usuario.ToString() + " " + DateTime.Now.ToString("dd-MM-yyy HH-mm-ss");
+                    oBE_BackUp.NombreArchivo = "RollBack";
+                    oBE_BackUp.NombreUsuario = usuario.ToString();
+                    oBE_BackUp.Accion = TipoBKP.RollBack.ToString();
+                    oBE_BackUp.FechaHora = DateTime.Now;
+                    return Guardar(oBE_BackUp);
+                }
+                else { return false; }
+                
             }
-            BE_BackUp oBE_BackUp = new BE_BackUp();
-            oBE_BackUp.NombreArchivo = "RollBack.xml";
-            oBE_BackUp.NombreUsuario = usuario.ToString();
-            oBE_BackUp.Accion = TipoBKP.Restore.ToString();
-            oBE_BackUp.FechaHora = DateTime.Now;
-            Guardar(oBE_BackUp);
+            catch (Exception ex) { return false; throw ex; }
         } 
         public static List<BE_BackUp> ListarBackUps()
         {
@@ -141,12 +160,12 @@ namespace Service_Layer
         {
             BE_BackUp Usuario = new BE_BackUp();
             XDocument logs = XDocument.Load(ReferenciasBD.BaseDatosBackups);
-            XElement bkp = logs.Element("BE_BackUp").Descendants("NombreArchivo").FirstOrDefault(x => x.Value == nombreArchivo).AncestorsAndSelf("BE_BackUp").FirstOrDefault();
-            XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
-            using (XmlReader reader = bkp.CreateReader())
-            {
-                Usuario = (BE_BackUp)serial.Deserialize(reader);
-            }
+            XElement bkp = logs.Root.Elements("BackUp").Descendants("NombreArchivo").FirstOrDefault(x => x.Value == nombreArchivo).AncestorsAndSelf("BackUp").FirstOrDefault();
+            Usuario.Codigo = bkp.Element("Codigo").Value;
+            Usuario.NombreArchivo = bkp.Element("NombreArchivo").Value;
+            Usuario.NombreUsuario = bkp.Element("NombreUsuario").Value;
+            Usuario.Accion = ((TipoBKP)Enum.Parse(typeof(TipoBKP), bkp.Element("Accion").Value)).ToString();
+            Usuario.FechaHora = Convert.ToDateTime(bkp.Element("FechaHora").Value);
             return Usuario;
         }
         private static DataSet Listar()

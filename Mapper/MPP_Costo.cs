@@ -133,6 +133,29 @@ namespace Mapper
         {
             throw new NotImplementedException();
         }
+        public decimal DevolverCosto(object tipo, decimal cantidad = 1)
+        {
+            List<BE_Costo> listado = Listar();
+            BE_Costo cost;
+            decimal costo;
+            if (tipo is BE_Ingrediente)
+            {
+                cost = listado.FindLast(x => ((BE_CostoIngrediente)x).ID_Ingrediente.Codigo == ((BE_Ingrediente)tipo).Codigo);
+                costo = cost != null ? cost.DevolverCosto(cantidad) : 0; 
+            }
+            else if (tipo is BE_Plato)
+            {
+                cost = listado.FindLast(x => ((BE_CostoPlato)x).ID_Plato.Codigo == ((BE_Plato)tipo).Codigo);
+                costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
+            }
+            else
+            {
+                cost = listado.FindLast(x => ((BE_CostoBebida)x).ID_Bebida.Codigo == ((BE_Bebida)tipo).Codigo);
+                costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
+            }
+        
+            return costo;
+        }
 
         public bool Modificar(BE_Costo Costo)
         {

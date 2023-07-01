@@ -54,11 +54,13 @@ namespace Business_Logic_Layer
         }
         public decimal CalcularCostoNeto(BE_Compra compra)
         {
-            return compra.CantidadRecibida * compra.ID_Ingrediente.CostoUnitario;
+            decimal costo = new MPP_Costo().DevolverCosto(compra.ID_Ingrediente, compra.CantidadRecibida);
+            return costo;
         }
         public decimal CalcularCostoTeorico(BE_Compra compra)
         {
-            return compra.Cantidad * compra.ID_Ingrediente.CostoUnitario;
+            decimal costo = new MPP_Costo().DevolverCosto(compra.ID_Ingrediente, compra.Cantidad);
+            return costo;
         }
     }
 }

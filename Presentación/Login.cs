@@ -34,33 +34,37 @@ namespace Trabajo_Final
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            oBE_Login = oBLL_Login.Login(txtUsuario.Text);
-
-            if (oBE_Login != null)
+            try
             {
-                if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                oBE_Login = oBLL_Login.Login(txtUsuario.Text);
+
+                if (oBE_Login != null)
                 {
-                    if (oBLL_Login.Intentos(oBE_Login))
+                    if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
                     {
-                        
-                        if (this.Owner is frmMenu menu)
+                        if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
                         {
-                            menu.UsuarioActivo = oBE_Login;
+
+                            if (this.Owner is frmMenu menu)
+                            {
+                                menu.UsuarioActivo = oBE_Login;
+                            }
+                            Cálculos.BorrarCampos(grpLogin);
+                            this.Close();
 
                         }
-                        Cálculos.BorrarCampos(grpLogin);
-                        this.Close();
-                        
+                        else throw new RestaurantException("El usuario está bloqueado. Comuniquese con el administrador.");
                     }
+                    else throw new RestaurantException("La contraseña es incorrecta");
                 }
-                else throw new RestaurantException("La contraseña es incorrecta");
+                else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
             }
-            else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void btnCambiarPass_Click(object sender, EventArgs e)
@@ -70,7 +74,7 @@ namespace Trabajo_Final
             {
                 if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
                 {
-                    if (oBLL_Login.Intentos(oBE_Login))
+                    if (oBLL_Login.UsuarioBloqueado(oBE_Login))
                     {
                         frmCambioPass frm = new frmCambioPass();
                         frm.Usuario(txtUsuario.Text);

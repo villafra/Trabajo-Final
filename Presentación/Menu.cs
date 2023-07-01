@@ -53,15 +53,20 @@ namespace Trabajo_Final
                     frmLogin frmlog = new frmLogin();
                     frmlog.Owner = this;
                     frmlog.ShowDialog();
+                    if (this.UsuarioActivo is null)
+                    {
+                        Cálculos.Salir();
+                        return;
+                    }
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
+                    txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                     Iniciar();
                 }
-                txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                
             }
             catch (Exception ex)
             {
                 throw ex;
-                Application.Exit();
             }
             Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Height);
             frmBienvenida frm = new frmBienvenida();
@@ -133,18 +138,6 @@ namespace Trabajo_Final
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cálculos.Salir();
-        }
-
-        private void crearBackUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BLL_BackUp bkp = new BLL_BackUp();
-            bkp.CrearBackUp(UsuarioActivo);
-        }
-
-        private void restoreBackUpToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            BLL_BackUp bkp = new BLL_BackUp();
-            //bkp.RestaurarBackUp()
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -367,5 +360,38 @@ namespace Trabajo_Final
             }
         }
 
+        private void logsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBackUp);
+            if (frm != null)
+            {
+                ((frmBackUp)frm).UsuarioActivo = UsuarioActivo;
+                ((frmBackUp)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmBackUp();
+                ((frmBackUp)frm).UsuarioActivo = UsuarioActivo;
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void gestionarMesasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
+            if (frm != null)
+            {
+                ((frmMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMesas();
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

@@ -104,6 +104,12 @@
     <Compile Include="Menus\DevolverCompra.Designer.cs">
       <DependentUpon>DevolverCompra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\BackUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\BackUp.Designer.cs">
+      <DependentUpon>BackUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoIngredientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\DevolverCompra.resx">
       <DependentUpon>DevolverCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\BackUp.resx">
+      <DependentUpon>BackUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoIngredientes.resx">
       <DependentUpon>ListadoIngredientes.cs</DependentUpon>

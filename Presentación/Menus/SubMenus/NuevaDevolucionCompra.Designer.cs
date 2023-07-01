@@ -30,7 +30,7 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoIngresoCompra));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaDevolucionCompra));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
             this.dtpFechaLote = new System.Windows.Forms.DateTimePicker();
             this.lblFechaCreacion = new System.Windows.Forms.Label();
@@ -47,12 +47,16 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.lblNroFac = new System.Windows.Forms.Label();
+            this.txtNroFac = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
+            this.grpNuevoLogin.Controls.Add(this.lblNroFac);
+            this.grpNuevoLogin.Controls.Add(this.txtNroFac);
             this.grpNuevoLogin.Controls.Add(this.dtpFechaLote);
             this.grpNuevoLogin.Controls.Add(this.lblFechaCreacion);
             this.grpNuevoLogin.Controls.Add(this.lblLote);
@@ -67,7 +71,7 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.lblCodigo);
             this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 408);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 486);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
@@ -76,7 +80,7 @@ namespace Trabajo_Final
             // 
             this.dtpFechaLote.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaLote.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaLote.Location = new System.Drawing.Point(174, 346);
+            this.dtpFechaLote.Location = new System.Drawing.Point(174, 428);
             this.dtpFechaLote.Name = "dtpFechaLote";
             this.dtpFechaLote.Size = new System.Drawing.Size(257, 22);
             this.dtpFechaLote.TabIndex = 37;
@@ -84,7 +88,7 @@ namespace Trabajo_Final
             // lblFechaCreacion
             // 
             this.lblFechaCreacion.AutoSize = true;
-            this.lblFechaCreacion.Location = new System.Drawing.Point(20, 346);
+            this.lblFechaCreacion.Location = new System.Drawing.Point(20, 427);
             this.lblFechaCreacion.Name = "lblFechaCreacion";
             this.lblFechaCreacion.Size = new System.Drawing.Size(127, 17);
             this.lblFechaCreacion.TabIndex = 36;
@@ -93,7 +97,7 @@ namespace Trabajo_Final
             // lblLote
             // 
             this.lblLote.AutoSize = true;
-            this.lblLote.Location = new System.Drawing.Point(20, 285);
+            this.lblLote.Location = new System.Drawing.Point(20, 364);
             this.lblLote.Name = "lblLote";
             this.lblLote.Size = new System.Drawing.Size(36, 17);
             this.lblLote.TabIndex = 35;
@@ -101,14 +105,14 @@ namespace Trabajo_Final
             // 
             // txtLote
             // 
-            this.txtLote.Location = new System.Drawing.Point(174, 280);
+            this.txtLote.Location = new System.Drawing.Point(174, 364);
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(257, 22);
             this.txtLote.TabIndex = 34;
             // 
             // txtIngrediente
             // 
-            this.txtIngrediente.Location = new System.Drawing.Point(174, 101);
+            this.txtIngrediente.Location = new System.Drawing.Point(174, 108);
             this.txtIngrediente.Name = "txtIngrediente";
             this.txtIngrediente.ReadOnly = true;
             this.txtIngrediente.Size = new System.Drawing.Size(257, 22);
@@ -118,7 +122,7 @@ namespace Trabajo_Final
             // 
             this.dtpFechaArribo.CustomFormat = "dd/MM/yyyy";
             this.dtpFechaArribo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaArribo.Location = new System.Drawing.Point(174, 223);
+            this.dtpFechaArribo.Location = new System.Drawing.Point(174, 300);
             this.dtpFechaArribo.Name = "dtpFechaArribo";
             this.dtpFechaArribo.Size = new System.Drawing.Size(257, 22);
             this.dtpFechaArribo.TabIndex = 32;
@@ -126,7 +130,7 @@ namespace Trabajo_Final
             // lblFechaArribo
             // 
             this.lblFechaArribo.AutoSize = true;
-            this.lblFechaArribo.Location = new System.Drawing.Point(20, 223);
+            this.lblFechaArribo.Location = new System.Drawing.Point(20, 301);
             this.lblFechaArribo.Name = "lblFechaArribo";
             this.lblFechaArribo.Size = new System.Drawing.Size(118, 17);
             this.lblFechaArribo.TabIndex = 31;
@@ -135,7 +139,7 @@ namespace Trabajo_Final
             // lblIngrediente
             // 
             this.lblIngrediente.AutoSize = true;
-            this.lblIngrediente.Location = new System.Drawing.Point(20, 106);
+            this.lblIngrediente.Location = new System.Drawing.Point(20, 112);
             this.lblIngrediente.Name = "lblIngrediente";
             this.lblIngrediente.Size = new System.Drawing.Size(79, 17);
             this.lblIngrediente.TabIndex = 24;
@@ -144,7 +148,7 @@ namespace Trabajo_Final
             // numCantidad
             // 
             this.numCantidad.DecimalPlaces = 2;
-            this.numCantidad.Location = new System.Drawing.Point(174, 158);
+            this.numCantidad.Location = new System.Drawing.Point(174, 172);
             this.numCantidad.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -166,7 +170,7 @@ namespace Trabajo_Final
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(20, 163);
+            this.lblCantidad.Location = new System.Drawing.Point(20, 175);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(64, 17);
             this.lblCantidad.TabIndex = 7;
@@ -190,7 +194,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(323, 453);
+            this.btnCancelar.Location = new System.Drawing.Point(323, 516);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -214,7 +218,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(24, 453);
+            this.btnConfirmar.Location = new System.Drawing.Point(24, 516);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
             this.btnConfirmar.TabIndex = 3;
@@ -223,17 +227,33 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // frmNuevoIngresoCompra
+            // lblNroFac
+            // 
+            this.lblNroFac.AutoSize = true;
+            this.lblNroFac.Location = new System.Drawing.Point(20, 238);
+            this.lblNroFac.Name = "lblNroFac";
+            this.lblNroFac.Size = new System.Drawing.Size(83, 17);
+            this.lblNroFac.TabIndex = 41;
+            this.lblNroFac.Text = "Nro Factura";
+            // 
+            // txtNroFac
+            // 
+            this.txtNroFac.Location = new System.Drawing.Point(174, 236);
+            this.txtNroFac.Name = "txtNroFac";
+            this.txtNroFac.Size = new System.Drawing.Size(257, 22);
+            this.txtNroFac.TabIndex = 40;
+            // 
+            // frmNuevaDevolucionCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 523);
+            this.ClientSize = new System.Drawing.Size(484, 575);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmNuevoIngresoCompra";
+            this.Name = "frmNuevaDevolucionCompra";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmNuevoLogin";
             this.Load += new System.EventHandler(this.frmNuevoLogin_Load);
@@ -262,5 +282,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label lblFechaCreacion;
         private System.Windows.Forms.Label lblLote;
         private System.Windows.Forms.TextBox txtLote;
+        private System.Windows.Forms.Label lblNroFac;
+        private System.Windows.Forms.TextBox txtNroFac;
     }
 }

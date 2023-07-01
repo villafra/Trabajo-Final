@@ -32,37 +32,28 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaCompra));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.dtpFechaEntrega = new System.Windows.Forms.DateTimePicker();
+            this.numCosto = new System.Windows.Forms.NumericUpDown();
+            this.dtpFechaCompra = new System.Windows.Forms.DateTimePicker();
+            this.ComboIngrediente = new System.Windows.Forms.ComboBox();
+            this.lblIngrediente = new System.Windows.Forms.Label();
             this.numCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblCosto = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblCantidad = new System.Windows.Forms.Label();
+            this.lblFechaEntrega = new System.Windows.Forms.Label();
             this.blFechaComp = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.ComboIngrediente = new System.Windows.Forms.ComboBox();
-            this.lblIngrediente = new System.Windows.Forms.Label();
-            this.dtpFechaCompra = new System.Windows.Forms.DateTimePicker();
-            this.numCosto = new System.Windows.Forms.NumericUpDown();
-            this.lblFechaEntrega = new System.Windows.Forms.Label();
-            this.dtpFechaEntrega = new System.Windows.Forms.DateTimePicker();
-            this.numCantRecibida = new System.Windows.Forms.NumericUpDown();
-            this.lblCantRecibida = new System.Windows.Forms.Label();
-            this.dtpFechaArribo = new System.Windows.Forms.DateTimePicker();
-            this.lblFechaArribo = new System.Windows.Forms.Label();
             this.grpNuevoLogin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCosto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantRecibida)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
-            this.grpNuevoLogin.Controls.Add(this.dtpFechaArribo);
-            this.grpNuevoLogin.Controls.Add(this.lblFechaArribo);
-            this.grpNuevoLogin.Controls.Add(this.numCantRecibida);
-            this.grpNuevoLogin.Controls.Add(this.lblCantRecibida);
             this.grpNuevoLogin.Controls.Add(this.dtpFechaEntrega);
             this.grpNuevoLogin.Controls.Add(this.numCosto);
             this.grpNuevoLogin.Controls.Add(this.dtpFechaCompra);
@@ -77,10 +68,60 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.lblCodigo);
             this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 498);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 399);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // dtpFechaEntrega
+            // 
+            this.dtpFechaEntrega.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaEntrega.Location = new System.Drawing.Point(174, 331);
+            this.dtpFechaEntrega.Name = "dtpFechaEntrega";
+            this.dtpFechaEntrega.Size = new System.Drawing.Size(257, 22);
+            this.dtpFechaEntrega.TabIndex = 28;
+            // 
+            // numCosto
+            // 
+            this.numCosto.DecimalPlaces = 2;
+            this.numCosto.Enabled = false;
+            this.numCosto.Location = new System.Drawing.Point(174, 272);
+            this.numCosto.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numCosto.Name = "numCosto";
+            this.numCosto.Size = new System.Drawing.Size(257, 22);
+            this.numCosto.TabIndex = 27;
+            this.numCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // dtpFechaCompra
+            // 
+            this.dtpFechaCompra.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaCompra.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaCompra.Location = new System.Drawing.Point(174, 215);
+            this.dtpFechaCompra.Name = "dtpFechaCompra";
+            this.dtpFechaCompra.Size = new System.Drawing.Size(257, 22);
+            this.dtpFechaCompra.TabIndex = 26;
+            // 
+            // ComboIngrediente
+            // 
+            this.ComboIngrediente.FormattingEnabled = true;
+            this.ComboIngrediente.Location = new System.Drawing.Point(174, 99);
+            this.ComboIngrediente.Name = "ComboIngrediente";
+            this.ComboIngrediente.Size = new System.Drawing.Size(257, 24);
+            this.ComboIngrediente.TabIndex = 25;
+            // 
+            // lblIngrediente
+            // 
+            this.lblIngrediente.AutoSize = true;
+            this.lblIngrediente.Location = new System.Drawing.Point(20, 106);
+            this.lblIngrediente.Name = "lblIngrediente";
+            this.lblIngrediente.Size = new System.Drawing.Size(79, 17);
+            this.lblIngrediente.TabIndex = 24;
+            this.lblIngrediente.Text = "Ingrediente";
             // 
             // numCantidad
             // 
@@ -95,6 +136,7 @@ namespace Trabajo_Final
             this.numCantidad.Size = new System.Drawing.Size(257, 22);
             this.numCantidad.TabIndex = 20;
             this.numCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numCantidad.Leave += new System.EventHandler(this.numCantidad_Leave);
             // 
             // lblCosto
             // 
@@ -121,6 +163,15 @@ namespace Trabajo_Final
             this.lblCantidad.Size = new System.Drawing.Size(64, 17);
             this.lblCantidad.TabIndex = 7;
             this.lblCantidad.Text = "Cantidad";
+            // 
+            // lblFechaEntrega
+            // 
+            this.lblFechaEntrega.AutoSize = true;
+            this.lblFechaEntrega.Location = new System.Drawing.Point(20, 331);
+            this.lblFechaEntrega.Name = "lblFechaEntrega";
+            this.lblFechaEntrega.Size = new System.Drawing.Size(121, 17);
+            this.lblFechaEntrega.TabIndex = 5;
+            this.lblFechaEntrega.Text = "Fecha de Entrega";
             // 
             // blFechaComp
             // 
@@ -149,7 +200,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(323, 528);
+            this.btnCancelar.Location = new System.Drawing.Point(323, 442);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -173,7 +224,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(24, 528);
+            this.btnConfirmar.Location = new System.Drawing.Point(24, 442);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
             this.btnConfirmar.TabIndex = 3;
@@ -182,111 +233,12 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // ComboIngrediente
-            // 
-            this.ComboIngrediente.FormattingEnabled = true;
-            this.ComboIngrediente.Location = new System.Drawing.Point(174, 99);
-            this.ComboIngrediente.Name = "ComboIngrediente";
-            this.ComboIngrediente.Size = new System.Drawing.Size(257, 24);
-            this.ComboIngrediente.TabIndex = 25;
-            // 
-            // lblIngrediente
-            // 
-            this.lblIngrediente.AutoSize = true;
-            this.lblIngrediente.Location = new System.Drawing.Point(20, 106);
-            this.lblIngrediente.Name = "lblIngrediente";
-            this.lblIngrediente.Size = new System.Drawing.Size(79, 17);
-            this.lblIngrediente.TabIndex = 24;
-            this.lblIngrediente.Text = "Ingrediente";
-            // 
-            // dtpFechaCompra
-            // 
-            this.dtpFechaCompra.CustomFormat = "dd/MM/yyyy";
-            this.dtpFechaCompra.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaCompra.Location = new System.Drawing.Point(174, 215);
-            this.dtpFechaCompra.Name = "dtpFechaCompra";
-            this.dtpFechaCompra.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaCompra.TabIndex = 26;
-            // 
-            // numCosto
-            // 
-            this.numCosto.DecimalPlaces = 2;
-            this.numCosto.Location = new System.Drawing.Point(174, 272);
-            this.numCosto.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numCosto.Name = "numCosto";
-            this.numCosto.Size = new System.Drawing.Size(257, 22);
-            this.numCosto.TabIndex = 27;
-            this.numCosto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblFechaEntrega
-            // 
-            this.lblFechaEntrega.AutoSize = true;
-            this.lblFechaEntrega.Location = new System.Drawing.Point(20, 331);
-            this.lblFechaEntrega.Name = "lblFechaEntrega";
-            this.lblFechaEntrega.Size = new System.Drawing.Size(121, 17);
-            this.lblFechaEntrega.TabIndex = 5;
-            this.lblFechaEntrega.Text = "Fecha de Entrega";
-            // 
-            // dtpFechaEntrega
-            // 
-            this.dtpFechaEntrega.CustomFormat = "dd/MM/yyyy";
-            this.dtpFechaEntrega.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaEntrega.Location = new System.Drawing.Point(174, 331);
-            this.dtpFechaEntrega.Name = "dtpFechaEntrega";
-            this.dtpFechaEntrega.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaEntrega.TabIndex = 28;
-            // 
-            // numCantRecibida
-            // 
-            this.numCantRecibida.DecimalPlaces = 2;
-            this.numCantRecibida.Location = new System.Drawing.Point(174, 455);
-            this.numCantRecibida.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numCantRecibida.Name = "numCantRecibida";
-            this.numCantRecibida.Size = new System.Drawing.Size(257, 22);
-            this.numCantRecibida.TabIndex = 30;
-            this.numCantRecibida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblCantRecibida
-            // 
-            this.lblCantRecibida.AutoSize = true;
-            this.lblCantRecibida.Location = new System.Drawing.Point(20, 460);
-            this.lblCantRecibida.Name = "lblCantRecibida";
-            this.lblCantRecibida.Size = new System.Drawing.Size(123, 17);
-            this.lblCantRecibida.TabIndex = 29;
-            this.lblCantRecibida.Text = "Cantidad Recibida";
-            // 
-            // dtpFechaArribo
-            // 
-            this.dtpFechaArribo.CustomFormat = "dd/MM/yyyy";
-            this.dtpFechaArribo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaArribo.Location = new System.Drawing.Point(174, 394);
-            this.dtpFechaArribo.Name = "dtpFechaArribo";
-            this.dtpFechaArribo.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaArribo.TabIndex = 32;
-            // 
-            // lblFechaArribo
-            // 
-            this.lblFechaArribo.AutoSize = true;
-            this.lblFechaArribo.Location = new System.Drawing.Point(20, 394);
-            this.lblFechaArribo.Name = "lblFechaArribo";
-            this.lblFechaArribo.Size = new System.Drawing.Size(118, 17);
-            this.lblFechaArribo.TabIndex = 31;
-            this.lblFechaArribo.Text = "Fecha de Ingreso";
-            // 
             // frmNuevaCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 596);
+            this.ClientSize = new System.Drawing.Size(484, 511);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
@@ -297,9 +249,8 @@ namespace Trabajo_Final
             this.Load += new System.EventHandler(this.frmNuevoLogin_Load);
             this.grpNuevoLogin.ResumeLayout(false);
             this.grpNuevoLogin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCosto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantRecibida)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -322,9 +273,5 @@ namespace Trabajo_Final
         private System.Windows.Forms.NumericUpDown numCosto;
         private System.Windows.Forms.DateTimePicker dtpFechaEntrega;
         private System.Windows.Forms.Label lblFechaEntrega;
-        private System.Windows.Forms.DateTimePicker dtpFechaArribo;
-        private System.Windows.Forms.Label lblFechaArribo;
-        private System.Windows.Forms.NumericUpDown numCantRecibida;
-        private System.Windows.Forms.Label lblCantRecibida;
     }
 }

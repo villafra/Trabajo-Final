@@ -50,9 +50,6 @@ namespace Trabajo_Final
             oBE_Compra.Cantidad = numCantidad.Value;
             oBE_Compra.FechaCompra = dtpFechaCompra.Value;
             oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
-            oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-            oBE_Compra.CantidadRecibida = numCantRecibida.Value;
-            oBE_Compra.Costo = oBE_Compra.Status == StausComp.Entregada ? oBLL_Compra.CalcularCostoNeto(oBE_Compra) : oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
             oBE_Compra.Activo = status;
             return oBLL_Compra.Modificar(oBE_Compra);
         }
@@ -64,8 +61,6 @@ namespace Trabajo_Final
             oBE_Compra.Cantidad = numCantidad.Value;
             oBE_Compra.FechaCompra = dtpFechaCompra.Value;
             oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
-            oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-            oBE_Compra.Costo = oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
             return oBLL_Compra.Guardar(oBE_Compra);
         }
         private void ImportarEmpleado()
@@ -77,8 +72,7 @@ namespace Trabajo_Final
                 numCantidad.Value = oBE_Compra.Cantidad;
                 dtpFechaCompra.Value = oBE_Compra.FechaCompra;
                 dtpFechaEntrega.Value = oBE_Compra.FechaEntrega;
-                dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
-                numCantidad.Value = oBE_Compra.CantidadRecibida;
+                numCosto.Value = oBE_Compra.Status == StausComp.Entregada ? oBE_Compra.Costo : oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
                 status = oBE_Compra.Activo;
             }
         }
@@ -87,5 +81,11 @@ namespace Trabajo_Final
         {
             ImportarEmpleado();
         }
+
+        private void numCantidad_Leave(object sender, EventArgs e)
+        {
+            numCosto.Value = oBLL_Compra.CalcularCostoTeorico(new BE_Compra { ID_Ingrediente = (BE_Ingrediente)ComboIngrediente.SelectedItem, Cantidad = numCantidad.Value });
+        }
+        
     }
 }

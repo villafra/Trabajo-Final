@@ -16,6 +16,7 @@ namespace Business_Entities
         public DateTime FechaEntrega { get; set; }
         public DateTime? FechaIngreso { get; set; }
         public decimal CantidadRecibida { get; set; }
+        public string NroFactura { get; set; }
         public decimal Costo { get; set; }
         public StausComp Status { get; set; }
         public bool Activo { get; set; } = true;

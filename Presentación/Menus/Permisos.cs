@@ -100,7 +100,7 @@ namespace Trabajo_Final
                 Nuevo();
                 if (Cálculos.EstaSeguroE(oBE_Padre.ToString()))
                 {
-                    if (oBLL_Permiso.Baja(oBE_Padre))
+                    if (oBLL_Permiso.EliminarPerfil(oBE_Padre))
                     {
                         Cálculos.MsgBox("El perfil se ha eliminado de la base de datos.");
                     }

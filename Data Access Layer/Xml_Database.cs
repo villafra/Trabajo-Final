@@ -374,6 +374,28 @@ namespace Data_Access_Layer
                 throw ex;
             }
         }
+        public bool BorrarPerfil(List<BE_TuplaXML> datos)
+        {
+            AbrirConexion();
+            try
+            {
+                foreach (BE_TuplaXML tupla in datos)
+                {
+                    XElement borrarObjeto = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                                            .Where(n => n.Element("Codigo").Value == tupla.Xelement.Element("Codigo").Value)
+                                                            .FirstOrDefault();
+                    borrarObjeto.Remove();
+                }
+                CerrarConexion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                CancelarConexion();
+                return false;
+                throw ex;
+            }
+        }
         public bool ExistePermiso(List<BE_TuplaXML> datos)
         {
             AbrirConexion();

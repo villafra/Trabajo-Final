@@ -62,6 +62,11 @@ namespace Business_Logic_Layer
             oMPP_Permiso = new MPP_Permiso();
             return oMPP_Permiso.Modificar(permiso);
         }
+        public bool EliminarPerfil(BE_Permiso perfil)
+        {
+            oMPP_Permiso = new MPP_Permiso();
+            return oMPP_Permiso.BorrarPerfil(perfil);
+        }
         public bool ExistePermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
             oMPP_Permiso = new MPP_Permiso();

@@ -19,6 +19,7 @@ namespace Data_Access_Layer
         private static string CarpetaRollBack = $"C:\\Users\\Public\\Documents";
         private static string RollBack = "Rollback.xml";
         private static string NodoRoot = "Restaurant";
+        private static string NodoRootBKP = "BackUps";
         
         private static List<string> Leafs = new List<string>
         {
@@ -283,6 +284,7 @@ namespace Data_Access_Layer
         public static string ArchivoRollBack { get { return Path.Combine(CarpetaRollBack, RollBack); } }
         public static string DirectorioRollBack { get { return CarpetaRollBack; } }
         public static string Root { get { return NodoRoot; } }
+        public static string RootBKP { get { return NodoRootBKP; } }
         public static List<XElement> ArmarPermisos { get { return Permisos; } }
         public static List<XElement> ArmaPadreHijo { get { return PadreHijo; } }
     }

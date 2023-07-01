@@ -53,6 +53,7 @@
     <Compile Include="BLL_Gerente_Sucursal.cs" />
     <Compile Include="BLL_Horario.cs" />
     <Compile Include="BLL_Ingrediente.cs" />
+    <Compile Include="BLL_Inventario.cs" />
     <Compile Include="BLL_Material-Stock.cs" />
     <Compile Include="Composite\BLL_Login.cs" />
     <Compile Include="BLL_Mesa.cs" />

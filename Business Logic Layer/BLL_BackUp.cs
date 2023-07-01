@@ -7,33 +7,20 @@ using Abstraction_Layer;
 using Business_Entities;
 using System.Xml.Serialization;
 using System.IO;
+using Service_Layer;
 
 namespace Business_Logic_Layer
 {
-    public class BLL_BackUp : IGestionable<BE_BackUp>
+    public class BLL_BackUp
     {
-        public bool Baja(BE_BackUp bkp)
+
+        public bool CrearBackUp(BE_Login UsuarioActivo)
         {
-            throw new NotImplementedException();
+            return BackUp.CrearBackUp(UsuarioActivo);
         }
-
-        public bool Guardar(BE_BackUp bkp)
+        public bool RestaurarBackUp(BE_Login UsuarioActivo, string nombreArchivo)
         {
-            try
-            {
-                XmlSerializer serial = new XmlSerializer(typeof(BE_BackUp));
-                using (StreamWriter writer = new StreamWriter(@".backups/" + bkp.NombreArchivo))
-                {
-                    serial.Serialize(writer, bkp);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-                throw ex;
-            }
-
+            return BackUp.Restore(UsuarioActivo, nombreArchivo);
         }
 
         public BE_BackUp ListarObjeto(string nombreArchivo)
@@ -57,9 +44,5 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
-        public bool Modificar(BE_BackUp bkp)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

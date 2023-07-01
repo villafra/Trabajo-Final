@@ -7,9 +7,9 @@ using Abstraction_Layer;
 
 namespace Business_Entities
 {
-    public class BE_BackUp:IEntidable
+    public class BE_BackUp
     {
-        public int Codigo { get; set; }
+        public string Codigo { get; set; }
         public string NombreArchivo { get; set; }
         public string NombreUsuario { get; set; }
         public string Accion { get; set; }

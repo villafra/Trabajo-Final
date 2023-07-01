@@ -137,12 +137,14 @@ namespace Trabajo_Final
 
         private void crearBackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackUp.CrearBackUp(UsuarioActivo);
+            BLL_BackUp bkp = new BLL_BackUp();
+            bkp.CrearBackUp(UsuarioActivo);
         }
 
         private void restoreBackUpToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            BLL_BackUp bkp = new BLL_BackUp();
+            //bkp.RestaurarBackUp()
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -364,5 +366,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
     }
 }

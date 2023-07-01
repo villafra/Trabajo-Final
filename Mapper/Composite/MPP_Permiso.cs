@@ -122,7 +122,12 @@ namespace Mapper
             ListadoXML.Add(CrearPermisoXML(permiso));
             return Acceso.Borrar(ListadoXML);
         }
-
+        public bool BorrarPerfil(BE_Permiso perfil)
+        {
+            Acceso = new Xml_Database();
+            ListadoXML.Add(CrearPermisoXML(perfil));
+            return Acceso.BorrarPerfil(ListadoXML);
+        }
         public bool Modificar(BE_Permiso permiso)
         {
             Acceso = new Xml_Database();

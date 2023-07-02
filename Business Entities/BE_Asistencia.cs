@@ -21,12 +21,16 @@ namespace Business_Entities
 
     public enum Inasistencia
     {
+        Asistencia,
         Vacaciones,
         Enfermedad,
         Licencia,
         Tramite_Personal,
         Día_Compensatorio,
         Día_Estudio,
-
+        Duelo,
+        Familiar_Enfermo,
+        Asuntos_Legales,
+        Casamiento,
     }
 }

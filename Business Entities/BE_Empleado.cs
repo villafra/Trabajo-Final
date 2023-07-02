@@ -42,18 +42,19 @@ namespace Business_Entities
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
 
-        public enum Category
-        {
-            Gerente_Sucursal = 1,
-            Chef_Ejecutivo = 2,
-            Sous_Chef = 3,
-            Cocinero = 4,
-            Bachero = 5,
-            Mozo = 6,
-            Busboy = 7,
-            Bartender = 8
+        
+    }
+    public enum Category
+    {
+        Gerente_Sucursal = 1,
+        Chef_Ejecutivo = 2,
+        Sous_Chef = 3,
+        Cocinero = 4,
+        Bachero = 5,
+        Mozo = 6,
+        Busboy = 7,
+        Bartender = 8
 
-        }
     }
 
 }

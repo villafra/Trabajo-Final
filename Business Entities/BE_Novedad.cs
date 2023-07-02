@@ -14,6 +14,7 @@ namespace Business_Entities
         public BE_Empleado Empleado { get; set; }
         public int VacacionesDisponibles { get; set; }
         public List<BE_Asistencia> listadoAsistencia { get; set; }
+        public bool Activo { get; set; }
 
 
     }

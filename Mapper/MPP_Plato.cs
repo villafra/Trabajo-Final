@@ -17,14 +17,10 @@ namespace Mapper
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
 
-        public MPP_Plato()
-        {
-            ListadoXML = new List<BE_TuplaXML>();
-        }
-
         public bool Baja(BE_Plato plato)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPlatoXML(plato));
             return Acceso.Borrar(ListadoXML);
         }
@@ -32,6 +28,7 @@ namespace Mapper
         public bool Guardar(BE_Plato plato)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPlatoXML(plato));
             return Acceso.Escribir(ListadoXML);
         }
@@ -42,40 +39,69 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Plato> listaPlatos = ds.Tables.Contains("Plato") != false ? (from platos in ds.Tables["Plato"].AsEnumerable()
-                                          select new BE_Plato
-                                          {
-                                              Codigo = Convert.ToInt32(platos[0]),
-                                              Nombre = Convert.ToString(platos[1]),
-                                              Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                              Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                              Status = Convert.ToString(platos[4]),
-                                              CostoUnitario = Convert.ToDecimal(platos[5]),
-                                              Activo = Convert.ToBoolean(platos[6]),
-                                              ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") & ds.Tables.Contains("Plato") != false ? (from obj in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                       join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                       on Convert.ToInt32(obj[1]) equals Convert.ToInt32(platos[0])
-                                                                                       select new BE_Ingrediente
-                                                                                       {
-                                                                                           Codigo = Convert.ToInt32(ing[0]),
-                                                                                           Nombre = Convert.ToString(ing[1]),
-                                                                                           Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                           Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                           UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                           Activo = Convert.ToBoolean(ing[5]),
-                                                                                           VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                           Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                           GestionLote = Convert.ToBoolean(ing[8])
+            List<BE_Plato> listaPlatos = ds.Tables.Contains("Plato") != false ?
+                (from platos in ds.Tables["Plato"].AsEnumerable()
+                 select new BE_Plato
+                 {
+                     Codigo = Convert.ToInt32(platos[0]),
+                     Nombre = Convert.ToString(platos[1]),
+                     Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                     Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
+                     Status = Convert.ToString(platos[4]),
+                     CostoUnitario = Convert.ToDecimal(platos[5]),
+                     Activo = Convert.ToBoolean(platos[6]),
+                     ListaIngredientes = new MPP_Ingrediente().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) })
 
-                                                                                       }).ToList():null
-
-                                          }).ToList():null;
+                 }).ToList() : null;
             return listaPlatos;
         }
 
         public BE_Plato ListarObjeto(BE_Plato plato)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Plato ObjetoEncontrado = ds.Tables.Contains("Plato") != false ?
+                (from platos in ds.Tables["Plato"].AsEnumerable()
+                 where Convert.ToInt32(platos[0]) == plato.Codigo
+                 select new BE_Plato
+                 {
+                     Codigo = Convert.ToInt32(platos[0]),
+                     Nombre = Convert.ToString(platos[1]),
+                     Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                     Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
+                     Status = Convert.ToString(platos[4]),
+                     CostoUnitario = Convert.ToDecimal(platos[5]),
+                     Activo = Convert.ToBoolean(platos[6]),
+                     ListaIngredientes = new MPP_Ingrediente().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) })
+                 }).FirstOrDefault() : null;
+            return ObjetoEncontrado;
+        }
+
+        public List<BE_Plato> Platos_Pedidos (BE_Pedido pedido)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Plato> listaPlatos = ds.Tables.Contains("Plato") != false ?
+                    (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
+                     join platos in ds.Tables["Plato"].AsEnumerable()
+                     on Convert.ToInt32(obj[1]) equals pedido.Codigo
+                     select new BE_Plato
+                     {
+                         Codigo = Convert.ToInt32(platos[0]),
+                         Nombre = Convert.ToString(platos[1]),
+                         Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
+                         Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
+                         Status = Convert.ToString(platos[4]),
+                         CostoUnitario = Convert.ToDecimal(platos[5]),
+                         Activo = Convert.ToBoolean(platos[6]),
+                         ListaIngredientes = new MPP_Ingrediente().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) })
+
+                     }).ToList() : null;
+            return listaPlatos;
         }
 
         private BE_TuplaXML CrearPlatoXML(BE_Plato plato)
@@ -116,6 +142,7 @@ namespace Mapper
         public bool Modificar(BE_Plato plato)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPlatoXML(plato));
             return Acceso.Modificar(ListadoXML);
         }

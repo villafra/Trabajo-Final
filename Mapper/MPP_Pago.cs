@@ -17,14 +17,10 @@ namespace Mapper
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
 
-        public MPP_Pago()
-        {
-            ListadoXML = new List<BE_TuplaXML>();
-        }
-
         public bool Baja(BE_Pago pago)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPagoXML(pago));
             return Acceso.Borrar(ListadoXML);
         }
@@ -32,6 +28,7 @@ namespace Mapper
         public bool Guardar(BE_Pago pago)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPagoXML(pago));
             return Acceso.Escribir(ListadoXML);
         }
@@ -42,24 +39,38 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Pago> listadePagos = ds.Tables.Contains("Pago") != false ? (from pag in ds.Tables["Pago"].AsEnumerable()
-                                          select new BE_Pago
-                                          {
-                                              Codigo = Convert.ToInt32(pag[0]),
-                                              Tipo = Convert.ToString(pag[1])
-                                          }).ToList():null;
+            List<BE_Pago> listadePagos = ds.Tables.Contains("Pago") != false ?
+                (from pag in ds.Tables["Pago"].AsEnumerable()
+                 select new BE_Pago
+                 {
+                     Codigo = Convert.ToInt32(pag[0]),
+                     Tipo = Convert.ToString(pag[1])
+                 }).ToList() : null;
             return listadePagos;
 
         }
 
         public BE_Pago ListarObjeto(BE_Pago pago)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Pago ObjetoEncontrado = ds.Tables.Contains("Pago") != false ?
+                (from pag in ds.Tables["Pago"].AsEnumerable()
+                 where Convert.ToInt32(pag[0]) == pago.Codigo
+                 select new BE_Pago
+                 {
+                     Codigo = Convert.ToInt32(pag[0]),
+                     Tipo = Convert.ToString(pag[1])
+                 }).FirstOrDefault() : null;
+            return ObjetoEncontrado;
         }
 
         public bool Modificar(BE_Pago pago)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPagoXML(pago));
             return Acceso.Modificar(ListadoXML);
         }

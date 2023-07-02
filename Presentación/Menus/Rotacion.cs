@@ -58,7 +58,7 @@ namespace Trabajo_Final
         {
             try
             {
-                BE_Empleado.Category categoria = ((BE_Empleado)dgvEmpleados.SelectedRows[0].DataBoundItem).Categoria;
+                Category categoria = ((BE_Empleado)dgvEmpleados.SelectedRows[0].DataBoundItem).Categoria;
                 if ((int)categoria == 1)
                 {
                     oBE_Empleado = (BE_GerenteSucursal)dgvEmpleados.SelectedRows[0].DataBoundItem;
@@ -78,7 +78,7 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            BE_Empleado.Category categoria = oBE_Empleado.Categoria;
+            Category categoria = oBE_Empleado.Categoria;
             if ((int)categoria == 1)
             {
                 oBLL_Empleado = new BLL_Gerente_Sucursal();

@@ -17,14 +17,10 @@ namespace Mapper
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
 
-        public MPP_Ingrediente()
-        {
-            ListadoXML = new List<BE_TuplaXML>();
-        }
-
         public bool Baja(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
             return Acceso.Baja(ListadoXML);
         }
@@ -32,6 +28,7 @@ namespace Mapper
         public bool Guardar(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
             return Acceso.Escribir(ListadoXML);
         }
@@ -42,21 +39,22 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                   select new BE_Ingrediente
-                                                                                                   {
-                                                                                                       Codigo = Convert.ToInt32(ing[0]),
-                                                                                                       Nombre = Convert.ToString(ing[1]),
-                                                                                                       Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                                       Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                       UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                                       Activo = Convert.ToBoolean(ing[5]),
-                                                                                                       VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                       Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                                       GestionLote = Convert.ToBoolean(ing[8]),
-                                                                                                       CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+            List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ?
+                (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 select new BE_Ingrediente
+                 {
+                     Codigo = Convert.ToInt32(ing[0]),
+                     Nombre = Convert.ToString(ing[1]),
+                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                     Activo = Convert.ToBoolean(ing[5]),
+                     VidaUtil = Convert.ToInt32(ing[6]),
+                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                     GestionLote = Convert.ToBoolean(ing[8]),
+                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
-                                                                                                   }).ToList() : null;
+                 }).ToList() : null;
             return listaIngredientes;
             
         }
@@ -64,12 +62,88 @@ namespace Mapper
 
         public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Ingrediente ObjetoEncontrado = ds.Tables.Contains("Ingrediente") != false ?
+                (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 select new BE_Ingrediente
+                 {
+                     Codigo = Convert.ToInt32(ing[0]),
+                     Nombre = Convert.ToString(ing[1]),
+                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                     Activo = Convert.ToBoolean(ing[5]),
+                     VidaUtil = Convert.ToInt32(ing[6]),
+                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                     GestionLote = Convert.ToBoolean(ing[8]),
+                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+
+                 }).FirstOrDefault() : null;
+            return ObjetoEncontrado;
+        }
+
+        public List<BE_Ingrediente> Bebidas_Ingrediente(BE_Bebida_Preparada bebida)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
+                ds.Tables.Contains("Bebida-Ingrediente") != false ?
+                (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
+                 join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 on Convert.ToInt32(obj[1]) equals bebida.Codigo
+                 select new BE_Ingrediente
+                 {
+                     Codigo = Convert.ToInt32(ing[0]),
+                     Nombre = Convert.ToString(ing[1]),
+                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                     Activo = Convert.ToBoolean(ing[5]),
+                     VidaUtil = Convert.ToInt32(ing[6]),
+                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                     GestionLote = Convert.ToBoolean(ing[8]),
+                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+
+                 }).ToList() : null;
+            return listaIngredientes;
+        }
+        public List<BE_Ingrediente> Platos_Ingrediente(BE_Plato plato)
+        {
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
+                ds.Tables.Contains("Plato-Ingrediente") != false ?
+                (from obj in ds.Tables["Plato-Ingrediente"].AsEnumerable()
+                 join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 on Convert.ToInt32(obj[1]) equals plato.Codigo
+                 select new BE_Ingrediente
+                 {
+                     Codigo = Convert.ToInt32(ing[0]),
+                     Nombre = Convert.ToString(ing[1]),
+                     Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
+                     Refrigeracion = Convert.ToBoolean(ing[3]),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
+                     Activo = Convert.ToBoolean(ing[5]),
+                     VidaUtil = Convert.ToInt32(ing[6]),
+                     Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
+                     GestionLote = Convert.ToBoolean(ing[8]),
+                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+
+                 }).ToList() : null;
+            return listaIngredientes;
         }
 
         public bool Modificar(BE_Ingrediente ingrediente)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
             return Acceso.Modificar(ListadoXML);
         }

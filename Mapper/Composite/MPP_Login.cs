@@ -46,7 +46,7 @@ namespace Mapper
                                           select new BE_Login
                                           {
                                               Codigo = Convert.ToInt32(log[0]),
-                                              Empleado = Convert.ToString(log[2]) != "admin" ? oMPP_Empleado.Listar().Find(x => x.Codigo == Convert.ToInt32(log[1])) : null,
+                                              Empleado = Convert.ToString(log[2]) != "admin" ? oMPP_Empleado.ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(log[1]) }) : null,
                                               Usuario = Convert.ToString(log[2]),
                                               Password = Convert.ToString(log[3]),
                                               CantidadIntentos = Convert.ToInt32(log[4]),

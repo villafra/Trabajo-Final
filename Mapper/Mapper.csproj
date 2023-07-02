@@ -53,6 +53,7 @@
     <Compile Include="MPP_Inventario.cs" />
     <Compile Include="MPP_Material-Stock.cs" />
     <Compile Include="MPP_Mesa.cs" />
+    <Compile Include="MPP_Novedad.cs" />
     <Compile Include="MPP_Orden.cs" />
     <Compile Include="MPP_Pago.cs" />
     <Compile Include="MPP_Pedido.cs" />

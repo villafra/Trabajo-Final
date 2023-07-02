@@ -17,14 +17,10 @@ namespace Mapper
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
 
-        public MPP_Costo()
-        {
-            ListadoXML = new List<BE_TuplaXML>();
-        }
-
         public bool Baja(BE_Costo Costo)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
             return Acceso.Baja(ListadoXML);
         }
@@ -32,6 +28,7 @@ namespace Mapper
         public bool Guardar(BE_Costo Costo)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
             return Acceso.Escribir(ListadoXML);
         }
@@ -42,88 +39,44 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Costo> listado = ds.Tables.Contains("Costo") ? (from cos in ds.Tables["Costo"].AsEnumerable()
-                                                                    select cos[7].ToString() == TipoMaterial.Ingrediente.ToString() ?
-                                                                        new BE_CostoIngrediente
-                                                                        {
-                                                                            Codigo = Convert.ToInt32(cos[0]),
-                                                                            DíaCosteo = Convert.ToDateTime(cos[1]),
-                                                                            TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
-                                                                            MateriaPrima = Convert.ToDecimal(cos[3]),
-                                                                            HorasHombre = Convert.ToDecimal(cos[4]),
-                                                                            Energía = Convert.ToDecimal(cos[5]),
-                                                                            OtrosGastos = Convert.ToDecimal(cos[6]),
-                                                                            Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            Material = ds.Tables.Contains("Ingrediente") ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                                                  where Convert.ToInt32(cos[8]) == Convert.ToInt32(ing[0])
-                                                                                                                                  select new BE_Ingrediente
-                                                                                                                                  {
-                                                                                                                                      Codigo = Convert.ToInt32(ing[0]),
-                                                                                                                                      Nombre = Convert.ToString(ing[1]),
-                                                                                                                                      Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                                                                      Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                                                      UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                                                                      Activo = Convert.ToBoolean(ing[5]),
-                                                                                                                                      VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                                                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                                                                      GestionLote = Convert.ToBoolean(ing[8])
-
-                                                                                                                                  }).FirstOrDefault() : null
-                                                                        } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
-                                                                        (BE_Costo)new BE_CostoPlato
-                                                                        {
-                                                                            Codigo = Convert.ToInt32(cos[0]),
-                                                                            DíaCosteo = Convert.ToDateTime(cos[1]),
-                                                                            TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
-                                                                            MateriaPrima = Convert.ToDecimal(cos[3]),
-                                                                            HorasHombre = Convert.ToDecimal(cos[4]),
-                                                                            Energía = Convert.ToDecimal(cos[5]),
-                                                                            OtrosGastos = Convert.ToDecimal(cos[6]),
-                                                                            Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            Material = ds.Tables.Contains("Plato") ? (from platos in ds.Tables["Plato"].AsEnumerable()
-                                                                                                                      where cos[8].ToString() == platos[0].ToString()
-                                                                                                                      select new BE_Plato
-                                                                                                                      {
-                                                                                                                          Codigo = Convert.ToInt32(platos[0]),
-                                                                                                                          Nombre = Convert.ToString(platos[1]),
-                                                                                                                          Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                                                                          Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                                                                          Status = Convert.ToString(platos[4]),
-                                                                                                                          CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                                                                          Activo = Convert.ToBoolean(platos[6]),
-                                                                                                                          ListaIngredientes = ds.Tables.Contains("Ingrediente-Plato") && ds.Tables.Contains("Plato") ? (from obj in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                                                                                                                                                        join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                                                                                                                           on Convert.ToInt32(obj[1]) equals Convert.ToInt32(platos[0])
-                                                                                                                                                                                                                        select new BE_Ingrediente
-                                                                                                                                                                                                                        {
-                                                                                                                                                                                                                            Codigo = Convert.ToInt32(ing[0]),
-                                                                                                                                                                                                                            Nombre = Convert.ToString(ing[1]),
-                                                                                                                                                                                                                            Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                                                                                                                                                            Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                                                                                                                                            UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                                                                                                                                                            Activo = Convert.ToBoolean(ing[5]),
-                                                                                                                                                                                                                            VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                                                                                                                                            Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[8])),
-                                                                                                                                                                                                                            CostoUnitario = Convert.ToDecimal(ing[7])
-                                                                                                                                                                                                                        }).ToList() : null
-                                                                                                                      }).FirstOrDefault() : null
-                                                                        } : new BE_CostoBebida
-                                                                        {
-                                                                            Codigo = Convert.ToInt32(cos[0]),
-                                                                            DíaCosteo = Convert.ToDateTime(cos[1]),
-                                                                            TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
-                                                                            MateriaPrima = Convert.ToDecimal(cos[3]),
-                                                                            HorasHombre = Convert.ToDecimal(cos[4]),
-                                                                            Energía = Convert.ToDecimal(cos[5]),
-                                                                            OtrosGastos = Convert.ToDecimal(cos[6]),
-                                                                            Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            Material = ds.Tables.Contains("Bebida") ? (from beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                                                                        where cos[8].ToString() == beb[0].ToString()
-                                                                                                                        select new BE_Bebida
-                                                                                                                        {
-                                                                                                                            
-                                                                                                                        }).FirstOrDefault() : null
-                                                                        }).ToList() : null;
+            List<BE_Costo> listado = ds.Tables.Contains("Costo") ?
+                (from cos in ds.Tables["Costo"].AsEnumerable()
+                 select cos[7].ToString() == TipoMaterial.Ingrediente.ToString() ?
+                     new BE_CostoIngrediente
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) })
+                     } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
+                     (BE_Costo)new BE_CostoPlato
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Plato().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) })
+                     } : new BE_CostoBebida
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Bebida().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) })
+                     }).ToList() : null;
 
             return listado;
 
@@ -131,7 +84,50 @@ namespace Mapper
 
         public BE_Costo ListarObjeto(BE_Costo Costo)
         {
-            throw new NotImplementedException();
+            Acceso = new Xml_Database();
+            DataSet ds = new DataSet();
+            ds = Acceso.Listar();
+
+            BE_Costo ObjetoEncontrado = ds.Tables.Contains("Costo") ?
+                (from cos in ds.Tables["Costo"].AsEnumerable()
+                 where Convert.ToInt32(cos[0]) == Costo.Codigo
+                 select cos[7].ToString() == TipoMaterial.Ingrediente.ToString() ?
+                     new BE_CostoIngrediente
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) })
+                     } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
+                     (BE_Costo)new BE_CostoPlato
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Plato().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) })
+                     } : new BE_CostoBebida
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
+                         Material = new MPP_Bebida().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) })
+                     }).FirstOrDefault() : null;
+            return ObjetoEncontrado;
         }
         public decimal DevolverCosto(object tipo, decimal cantidad = 1)
         {
@@ -160,6 +156,7 @@ namespace Mapper
         public bool Modificar(BE_Costo Costo)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
             return Acceso.Modificar(ListadoXML);
         }

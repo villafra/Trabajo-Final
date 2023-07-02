@@ -24,7 +24,7 @@ namespace Trabajo_Final
         {
             InitializeComponent();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
-            Cálculos.DataSourceCombo(comboCategoria, Enum.GetNames(typeof(BE_Empleado.Category)), "Categoría");
+            Cálculos.DataSourceCombo(comboCategoria, Enum.GetNames(typeof(Category)), "Categoría");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Trabajo_Final
 
         private bool Viejo()
         {
-            BE_Empleado.Category categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), comboCategoria.SelectedItem.ToString());
+            Category categoria = (Category)Enum.Parse(typeof(Category), comboCategoria.SelectedItem.ToString());
             if ((int)categoria == 1)
             {
                 oBE_Empleado = new BE_GerenteSucursal();
@@ -65,14 +65,14 @@ namespace Trabajo_Final
             oBE_Empleado.Apellido = txtApellido.Text;
             oBE_Empleado.FechaNacimiento = dtpFechaNac.Value;
             oBE_Empleado.FechaIngreso = dtpFechaIng.Value;
-            oBE_Empleado.Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), comboCategoria.SelectedItem.ToString());
+            oBE_Empleado.Categoria = (Category)Enum.Parse(typeof(Category), comboCategoria.SelectedItem.ToString());
             oBE_Empleado.Activo = status;
             return oBLL_Empleado.Modificar(oBE_Empleado);
         }
 
         private bool Nuevo()
         {
-            BE_Empleado.Category categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), comboCategoria.SelectedItem.ToString());
+            Category categoria = (Category)Enum.Parse(typeof(Category), comboCategoria.SelectedItem.ToString());
             if ((int)categoria == 1)
             {
                 oBE_Empleado = new BE_GerenteSucursal();
@@ -95,7 +95,7 @@ namespace Trabajo_Final
             oBE_Empleado.Apellido = txtApellido.Text;
             oBE_Empleado.FechaNacimiento = dtpFechaNac.Value;
             oBE_Empleado.FechaIngreso = dtpFechaIng.Value;
-            oBE_Empleado.Categoria = (BE_Empleado.Category)Enum.Parse(typeof(BE_Empleado.Category), comboCategoria.SelectedItem.ToString());
+            oBE_Empleado.Categoria = (Category)Enum.Parse(typeof(Category), comboCategoria.SelectedItem.ToString());
             return oBLL_Empleado.Guardar(oBE_Empleado);
 
         }

@@ -12,19 +12,14 @@ using Automate_Layer;
 
 namespace Mapper
 {
-    public class MPP_Pedido:IGestionable<BE_Pedido>
+    public class MPP_Pedido : IGestionable<BE_Pedido>
     {
         Xml_Database Acceso;
         List<BE_TuplaXML> ListadoXML;
-
-        public MPP_Pedido()
-        {
-            ListadoXML = new List<BE_TuplaXML>();
-        }
-
         public bool Baja(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
             return Acceso.Borrar(ListadoXML);
         }
@@ -32,6 +27,7 @@ namespace Mapper
         public bool Guardar(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
             return Acceso.Escribir(ListadoXML);
         }
@@ -42,64 +38,31 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Acceso.Listar();
 
-            List<BE_Pedido> ListadePedidos = (from ped in ds.Tables["Pedido"].AsEnumerable()
-                                              select new BE_Pedido
-                                              {
-                                                  Codigo = Convert.ToInt32(ped[0]),
-                                                  FechaInicio = Convert.ToDateTime(ped[1]),
-                                                  Customizado = Convert.ToBoolean(ped[2]),
-                                                  Aclaraciones = Convert.ToString(ped[3]),
-                                                  Status = Convert.ToString(ped[4]),
-                                                  Monto_Total = Convert.ToDecimal(ped[5]),
-                                                  ID_Pago = ds.Tables.Contains("Pago") != false ? (from pago in ds.Tables["Pago"].AsEnumerable()
-                                                                                                   where Convert.ToInt32(ped[6]) == Convert.ToInt32(pago[0])
-                                                                                                   select new BE_Pago
-                                                                                                   {
-                                                                                                       Codigo = Convert.ToInt32(pago[0]),
-                                                                                                       Tipo = Convert.ToString(pago[1])
-                                                                                                   }).FirstOrDefault() : null,
-                                                  ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
-                                                                                                                                                 join beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                                                                                                 on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
-                                                                                                                                                 select new BE_Bebida
-                                                                                                                                                 {
+            List<BE_Pedido> ListadePedidos = ds.Tables.Contains("Pedido") != false ?
+                (from ped in ds.Tables["Pedido"].AsEnumerable()
+                 select new BE_Pedido
+                 {
+                     Codigo = Convert.ToInt32(ped[0]),
+                     FechaInicio = Convert.ToDateTime(ped[1]),
+                     Customizado = Convert.ToBoolean(ped[2]),
+                     Aclaraciones = Convert.ToString(ped[3]),
+                     Status = Convert.ToString(ped[4]),
+                     Monto_Total = Convert.ToDecimal(ped[5]),
+                     ID_Pago = new MPP_Pago().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }),
+                     ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
+                                                                                                                    join beb in ds.Tables["Bebida"].AsEnumerable()
+                                                                                                                    on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
+                                                                                                                    select new BE_Bebida
+                                                                                                                    {
 
-                                                                                                                                                 }).ToList() : null,
-                                                  ListadePlatos = ds.Tables.Contains("Plato-Pedido") & ds.Tables.Contains("Plato") != false ? (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
-                                                                                                                                               join platos in ds.Tables["Plato"].AsEnumerable()
-                                                                                                                                               on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
-                                                                                                                                               select new BE_Plato
-                                                                                                                                               {
-                                                                                                                                                   Codigo = Convert.ToInt32(platos[0]),
-                                                                                                                                                   Nombre = Convert.ToString(platos[1]),
-                                                                                                                                                   Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                                                                                                   Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                                                                                                   Status = Convert.ToString(platos[4]),
-                                                                                                                                                   CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                                                                                                   Activo = Convert.ToBoolean(platos[6]),
-                                                                                                                                                   ListaIngredientes = ds.Tables.Contains("Ingrediente") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
-                                                                                                                                                                                                                     join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                                                                                                                                                                                                                     on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])
-                                                                                                                                                                                                                     select new BE_Ingrediente
-                                                                                                                                                                                                                     {
-                                                                                                                                                                                                                         Codigo = Convert.ToInt32(ing[0]),
-                                                                                                                                                                                                                         Nombre = Convert.ToString(ing[1]),
-                                                                                                                                                                                                                         Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), Convert.ToString(ing[2])),
-                                                                                                                                                                                                                         Refrigeracion = Convert.ToBoolean(ing[3]),
-                                                                                                                                                                                                                         UnidadMedida = (UM)Enum.Parse(typeof(UM), Convert.ToString(ing[4])),
-                                                                                                                                                                                                                         Activo = Convert.ToBoolean(ing[5]),
-                                                                                                                                                                                                                         VidaUtil = Convert.ToInt32(ing[6]),
-                                                                                                                                                                                                                         Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
-                                                                                                                                                                                                                         GestionLote = Convert.ToBoolean(ing[8])
-
-                                                                                                                                                                                                                     }).ToList() : null
-
-                                                                                                                                               }).ToList() : null,
-                                              }).ToList();
+                                                                                                                    }).ToList() : null,
+                     ListadePlatos = new MPP_Plato().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) })
+                 }).ToList() : null;
 
             return ListadePedidos;
-
         }
+
+     
 
         public BE_Pedido ListarObjeto(BE_Pedido pedido)
         {
@@ -163,6 +126,7 @@ namespace Mapper
         public bool Modificar(BE_Pedido pedido)
         {
             Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
             return Acceso.Modificar(ListadoXML);
         }

@@ -41,7 +41,7 @@ namespace Business_Logic_Layer
             
         }
 
-        public bool relevarCategoria(BE_Empleado empleado, BE_Empleado.Category categoria)
+        public bool relevarCategoria(BE_Empleado empleado, Category categoria)
         {
             MPP_Empleado oMPP_Empleado = new MPP_Empleado();
 

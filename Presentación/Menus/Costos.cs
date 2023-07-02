@@ -66,5 +66,6 @@ namespace Trabajo_Final
         {
             oBLL_Costo.Baja(oBE_Costo);
         }
+        
     }
 }

@@ -134,6 +134,7 @@ namespace Automate_Layer
             dgv.DataSource = null;
             dgv.DataSource = refObject;
         }
+       
         public static void GrillaEnBlanco(DataGridView dgv)
         {
             dgv.DataSource = null;

@@ -56,7 +56,7 @@ namespace Trabajo_Final
         private bool Nuevo()
         {
             oBE_Costo = new BE_CostoIngrediente();
-            ((BE_CostoIngrediente)oBE_Costo).ID_Ingrediente = (BE_Ingrediente)comboMaterial.SelectedItem;
+            ((BE_CostoIngrediente)oBE_Costo).Material = (BE_Ingrediente)comboMaterial.SelectedItem;
             oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
             oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
             oBE_Costo.MateriaPrima = numMP.Value;

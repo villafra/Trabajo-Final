@@ -7,7 +7,7 @@ using Abstraction_Layer;
 
 namespace Business_Entities
 {
-    public abstract class BE_Costo:IEntidable
+    public abstract class BE_Costo : IEntidable
     {
         public int Codigo { get; set; }
         public DateTime DíaCosteo { get; set; }
@@ -17,7 +17,7 @@ namespace Business_Entities
         public decimal Energía { get; set; }
         public decimal OtrosGastos { get; set; }
         public bool Activo { get; set; } = true;
-
+        public TipoMaterial Tipo { get; set; }
         public decimal DevolverCosto(decimal cantidad)
         {
             return   ((this.MateriaPrima + this.HorasHombre + this.Energía

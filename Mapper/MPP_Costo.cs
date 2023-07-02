@@ -54,7 +54,7 @@ namespace Mapper
                                                                             Energía = Convert.ToDecimal(cos[5]),
                                                                             OtrosGastos = Convert.ToDecimal(cos[6]),
                                                                             Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            ID_Ingrediente = ds.Tables.Contains("Ingrediente") ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                                                                            Material = ds.Tables.Contains("Ingrediente") ? (from ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                                                                   where Convert.ToInt32(cos[8]) == Convert.ToInt32(ing[0])
                                                                                                                                   select new BE_Ingrediente
                                                                                                                                   {
@@ -80,7 +80,7 @@ namespace Mapper
                                                                             Energía = Convert.ToDecimal(cos[5]),
                                                                             OtrosGastos = Convert.ToDecimal(cos[6]),
                                                                             Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            ID_Plato = ds.Tables.Contains("Plato") ? (from platos in ds.Tables["Plato"].AsEnumerable()
+                                                                            Material = ds.Tables.Contains("Plato") ? (from platos in ds.Tables["Plato"].AsEnumerable()
                                                                                                                       where cos[8].ToString() == platos[0].ToString()
                                                                                                                       select new BE_Plato
                                                                                                                       {
@@ -117,7 +117,7 @@ namespace Mapper
                                                                             Energía = Convert.ToDecimal(cos[5]),
                                                                             OtrosGastos = Convert.ToDecimal(cos[6]),
                                                                             Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                                                                            ID_Bebida = ds.Tables.Contains("Bebida") ? (from beb in ds.Tables["Bebida"].AsEnumerable()
+                                                                            Material = ds.Tables.Contains("Bebida") ? (from beb in ds.Tables["Bebida"].AsEnumerable()
                                                                                                                         where cos[8].ToString() == beb[0].ToString()
                                                                                                                         select new BE_Bebida
                                                                                                                         {
@@ -140,17 +140,17 @@ namespace Mapper
             decimal costo;
             if (tipo is BE_Ingrediente)
             {
-                cost = listado.FindLast(x => ((BE_CostoIngrediente)x).ID_Ingrediente.Codigo == ((BE_Ingrediente)tipo).Codigo);
+                cost = listado.FindLast(x => ((BE_CostoIngrediente)x).Material.Codigo == ((BE_Ingrediente)tipo).Codigo);
                 costo = cost != null ? cost.DevolverCosto(cantidad) : 0; 
             }
             else if (tipo is BE_Plato)
             {
-                cost = listado.FindLast(x => ((BE_CostoPlato)x).ID_Plato.Codigo == ((BE_Plato)tipo).Codigo);
+                cost = listado.FindLast(x => ((BE_CostoPlato)x).Material.Codigo == ((BE_Plato)tipo).Codigo);
                 costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
             }
             else
             {
-                cost = listado.FindLast(x => ((BE_CostoBebida)x).ID_Bebida.Codigo == ((BE_Bebida)tipo).Codigo);
+                cost = listado.FindLast(x => ((BE_CostoBebida)x).Material.Codigo == ((BE_Bebida)tipo).Codigo);
                 costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
             }
         
@@ -177,7 +177,7 @@ namespace Mapper
                 new XElement("Energía", Costo.Energía.ToString()),
                 new XElement("Otros_Gastos", Costo.OtrosGastos.ToString()),
                 new XElement("Tipo_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).Tipo.ToString(): Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).Tipo.ToString(): ((BE_CostoPlato)Costo).Tipo.ToString()),
-                new XElement("ID_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).ID_Ingrediente.Codigo.ToString() : Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).ID_Bebida.Codigo.ToString() : ((BE_CostoPlato)Costo).ID_Plato.Codigo.ToString())
+                new XElement("ID_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).Material.Codigo.ToString() : Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).Material.Codigo.ToString() : ((BE_CostoPlato)Costo).Material.Codigo.ToString())
                 );
             nuevaTupla.Xelement = nuevoCosto;
             return nuevaTupla;

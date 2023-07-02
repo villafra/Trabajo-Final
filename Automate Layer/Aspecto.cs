@@ -224,7 +224,7 @@ namespace Automate_Layer
             dgv.BorderStyle = BorderStyle.None;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-
+            dgv.AutoGenerateColumns = true;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(56, 62, 131);
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
             dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(0, 126, 249);

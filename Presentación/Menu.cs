@@ -16,6 +16,7 @@ namespace Trabajo_Final
 {
     public partial class frmMenu : Form
     {
+        private List<Form> formulariosHijos = new List<Form>();
         private static Timer inactivityTimer;
         public Form Contenedor { get; set; }
         public BE_Login UsuarioActivo { get; set; }
@@ -111,6 +112,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmMenuGerente();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
                
             }
@@ -130,6 +132,8 @@ namespace Trabajo_Final
                 frm = new frmLogin();
                 frm.Owner = this;
                 frm.ShowDialog();
+
+                CambiarUsuario();
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                 UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
             }
@@ -176,6 +180,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmUsuarios();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -192,6 +197,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmEmpleados();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -207,6 +213,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmRotacion();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -223,6 +230,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmCompras();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -239,6 +247,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmIngresarCompra();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -255,6 +264,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmDevolverCompra();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -271,6 +281,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmPermisos();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -287,6 +298,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmIngredientes();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -303,6 +315,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmListadoIngredientes();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -319,6 +332,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmCostos();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -340,6 +354,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmMesas();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -356,6 +371,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmCombinarMesas();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
@@ -373,6 +389,7 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmBackUp();
+                formulariosHijos.Add(frm);
                 ((frmBackUp)frm).UsuarioActivo = UsuarioActivo;
                 Aspecto.AbrirNuevoForm(this, frm);
             }
@@ -390,8 +407,17 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmMesas();
+                formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
+        }
+        private void CambiarUsuario()
+        {
+            foreach (Form formulario in formulariosHijos)
+            {
+                formulario.Close();
+            }
+            formulariosHijos.Clear();
         }
     }
 }

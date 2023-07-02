@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BE_Asistencia.cs" />
     <Compile Include="BE_BackUp.cs" />
     <Compile Include="BE_Bebida.cs" />
     <Compile Include="BE_Bebida_Alcoholica.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="BE_Inventario.cs" />
     <Compile Include="BE_Material-Stock.cs" />
     <Compile Include="BE_MesaCombinada.cs" />
+    <Compile Include="BE_Novedad.cs" />
     <Compile Include="Composite\BE_Login.cs" />
     <Compile Include="BE_Mesa.cs" />
     <Compile Include="BE_Mozo.cs" />

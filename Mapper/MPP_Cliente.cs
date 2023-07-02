@@ -14,24 +14,28 @@ namespace Mapper
 {
     public class MPP_Cliente:IGestionable<BE_Cliente>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
-        public MPP_Cliente()
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Cliente mapper = null;
+        public static MPP_Cliente DevolverInstancia()
         {
-            ListadoXML = new List<BE_TuplaXML>();
+            if (mapper == null) mapper = new MPP_Cliente();
+            else ListadoXML = null;
+            return mapper;
         }
-
+        ~MPP_Cliente()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
+     
         public bool Baja(BE_Cliente cliente)
         {
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearClienteXML(cliente));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Cliente cliente)
         {
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearClienteXML(cliente));
             foreach(BE_TuplaXML tupla in CrearListaBebidasXML(cliente))
             {
@@ -46,15 +50,14 @@ namespace Mapper
                 ListadoXML.Add(tupla);
             }
 
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
                 
         }
 
         public List<BE_Cliente> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
             MPP_Ingrediente oMPP_Ingrediente = new MPP_Ingrediente();
 
             List<BE_Cliente> listaClientes = ds.Tables.Contains("Cliente")!= false ? (from cli in ds.Tables["Cliente"].AsEnumerable()
@@ -124,7 +127,7 @@ namespace Mapper
 
         }
 
-        public BE_Cliente ListarObjeto(BE_Cliente cliente)
+        public BE_Cliente ListarObjeto(BE_Cliente cliente, DataSet ds = null)
         {
             throw new NotImplementedException();
         }
@@ -206,9 +209,8 @@ namespace Mapper
 
         public bool Modificar(BE_Cliente cliente)
         {
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearClienteXML(cliente));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
     }

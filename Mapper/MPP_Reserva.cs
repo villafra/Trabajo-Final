@@ -14,30 +14,38 @@ namespace Mapper
 {
     public class MPP_Reserva:IGestionable<BE_Reserva>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Reserva mapper = null;
+        public static MPP_Reserva DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Reserva();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Reserva()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Reserva reserva)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearReservaXML(reserva));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Reserva reserva)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearReservaXML(reserva));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Reserva> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Reserva> listaReservas = ds.Tables.Contains("Reserva") != false ?
                 (from res in ds.Tables["Reserva"].AsEnumerable()
@@ -50,17 +58,18 @@ namespace Mapper
                      Recurrencia = Convert.ToBoolean(res[4]),
                      FechaFin = Convert.ToDateTime(res[5]),
                      TipoRecurrencia = Convert.ToString(res[6]),
-                     ID_Pedido = new MPP_Pedido().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(res[7])})
+                     ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(res[7])},ds)
                  }).ToList() : null;
             return listaReservas;
         }
 
-        public BE_Reserva ListarObjeto(BE_Reserva reserva)
+        public BE_Reserva ListarObjeto(BE_Reserva reserva, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             BE_Reserva ObjetoEncontrado = ds.Tables.Contains("Reserva") != false ?
                 (from res in ds.Tables["Reserva"].AsEnumerable()
                  where Convert.ToInt32(res[0]) == reserva.Codigo
@@ -73,17 +82,16 @@ namespace Mapper
                      Recurrencia = Convert.ToBoolean(res[4]),
                      FechaFin = Convert.ToDateTime(res[5]),
                      TipoRecurrencia = Convert.ToString(res[6]),
-                     ID_Pedido = new MPP_Pedido().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(res[7]) })
+                     ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(res[7]) },ds)
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
 
         public bool Modificar(BE_Reserva reserva)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearReservaXML(reserva));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         private BE_TuplaXML CrearReservaXML(BE_Reserva reserva)

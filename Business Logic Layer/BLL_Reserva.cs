@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,31 +12,24 @@ namespace Business_Logic_Layer
 {
     public class BLL_Reserva : IGestionable<BE_Reserva>
     {
-        MPP_Reserva oMPP_Reserva;
-
-        public BLL_Reserva()
-        {
-            oMPP_Reserva = new MPP_Reserva();
-        }
-
         public bool Baja(BE_Reserva reserva)
         {
-            return oMPP_Reserva.Baja(reserva);
+            return MPP_Reserva.DevolverInstancia().Baja(reserva);
         }
 
         public bool Guardar(BE_Reserva reserva)
         {
-            return oMPP_Reserva.Guardar(reserva);
+            return MPP_Reserva.DevolverInstancia().Guardar(reserva);
         }
 
         public List<BE_Reserva> Listar()
         {
-            return oMPP_Reserva.Listar();
+            return MPP_Reserva.DevolverInstancia().Listar();
         }
 
-        public BE_Reserva ListarObjeto(BE_Reserva reserva)
+        public BE_Reserva ListarObjeto(BE_Reserva reserva, DataSet ds = null)
         {
-            return oMPP_Reserva.ListarObjeto(reserva);
+            return MPP_Reserva.DevolverInstancia().ListarObjeto(reserva);
         }
 
         public bool modificarReserva()
@@ -65,7 +59,7 @@ namespace Business_Logic_Layer
 
         public bool Modificar(BE_Reserva reserva)
         {
-            return oMPP_Reserva.Modificar(reserva);
+            return MPP_Reserva.DevolverInstancia().Modificar(reserva);
         }
     }
 }

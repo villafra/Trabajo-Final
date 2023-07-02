@@ -14,18 +14,25 @@ namespace Mapper
 {
     public class MPP_Horario : IGestionable<BE_Horario>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-        public MPP_Horario()
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Horario mapper = null;
+        public static MPP_Horario DevolverInstancia()
         {
-            ListadoXML = new List<BE_TuplaXML>();
+            if (mapper == null) mapper = new MPP_Horario();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Horario()
+        {
+            mapper = null;
+            ListadoXML = null;
         }
 
         public void CrearAgenda(List<BE_Horario> agenda)
         {
-            Acceso = new Xml_Database();
             CrearAgendaXML(agenda);
-            Acceso.CrearCalendario(ListadoXML);
+            Xml_Database.DevolverInstancia().CrearCalendario(ListadoXML);
         }
  
         public bool Baja(BE_Horario horario)
@@ -40,9 +47,8 @@ namespace Mapper
 
         public List<BE_Horario> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Horario> calendario = ds.Tables.Contains("Calendario") != false ? (from dia in ds.Tables["Calendario"].AsEnumerable()
                                            select new BE_Horario
@@ -126,7 +132,7 @@ namespace Mapper
 
         }
 
-        public BE_Horario ListarObjeto(BE_Horario horario)
+        public BE_Horario ListarObjeto(BE_Horario horario,DataSet ds = null)
         {
             throw new NotImplementedException();
         }

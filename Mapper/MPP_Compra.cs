@@ -14,55 +14,64 @@ namespace Mapper
 {
     public class MPP_Compra:IGestionable<BE_Compra>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Compra mapper = null;
+        public static MPP_Compra DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Compra();
+            else ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Compra()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCompraXML(compra));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCompraXML(compra));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Compra> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Compra> listadeCompras = ds.Tables.Contains("Compra") != false ?
                 (from comp in ds.Tables["Compra"].AsEnumerable()
                  select new BE_Compra
                  {
                      Codigo = Convert.ToInt32(comp[0]),
-                     ID_Ingrediente = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }),
+                     ID_Ingrediente = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) },ds),
                      Cantidad = Convert.ToDecimal(comp[2]),
                      FechaCompra = Convert.ToDateTime(comp[3]),
                      FechaEntrega = Convert.ToDateTime(comp[4]),
                      FechaIngreso = comp[9].ToString() != StausComp.En_Curso.ToString() ? Convert.ToDateTime(comp[5]) : (DateTime?)null,
                      CantidadRecibida = Convert.ToDecimal(comp[6]),
                      NroFactura = comp[7].ToString(),
-                     Costo = comp[9].ToString() == StausComp.En_Curso.ToString() ? new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }, Convert.ToDecimal(comp[2])) : Convert.ToDecimal(comp[8]),
+                     Costo = comp[9].ToString() == StausComp.En_Curso.ToString() ? MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }, Convert.ToDecimal(comp[2])) : Convert.ToDecimal(comp[8]),
                      Status = (StausComp)Enum.Parse(typeof(StausComp), comp[9].ToString()),
                      Activo = Convert.ToBoolean(comp[10])
                  }).ToList() : null;
             return listadeCompras;
         }
 
-        public BE_Compra ListarObjeto(BE_Compra compra)
+        public BE_Compra ListarObjeto(BE_Compra compra, DataSet ds = null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             BE_Compra ObjetoEncontrado = ds.Tables.Contains("Compra") != false ?
                 (from comp in ds.Tables["Compra"].AsEnumerable()
@@ -70,14 +79,14 @@ namespace Mapper
                  select new BE_Compra
                  {
                      Codigo = Convert.ToInt32(comp[0]),
-                     ID_Ingrediente = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }),
+                     ID_Ingrediente = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) },ds),
                      Cantidad = Convert.ToDecimal(comp[2]),
                      FechaCompra = Convert.ToDateTime(comp[3]),
                      FechaEntrega = Convert.ToDateTime(comp[4]),
                      FechaIngreso = comp[9].ToString() != StausComp.En_Curso.ToString() ? Convert.ToDateTime(comp[5]) : (DateTime?)null,
                      CantidadRecibida = Convert.ToDecimal(comp[6]),
                      NroFactura = comp[7].ToString(),
-                     Costo = comp[9].ToString() == StausComp.En_Curso.ToString() ? new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }, Convert.ToDecimal(comp[2])) : Convert.ToDecimal(comp[8]),
+                     Costo = comp[9].ToString() == StausComp.En_Curso.ToString() ? MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[1]) }, Convert.ToDecimal(comp[2])) : Convert.ToDecimal(comp[8]),
                      Status = (StausComp)Enum.Parse(typeof(StausComp), comp[9].ToString()),
                      Activo = Convert.ToBoolean(comp[10])
 
@@ -87,14 +96,13 @@ namespace Mapper
 
         public bool Modificar(BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCompraXML(compra));
             if ((int)compra.ID_Ingrediente.Status == 1 || (int)compra.ID_Ingrediente.Status == 3 || (int)compra.ID_Ingrediente.Status == 5)
             {
                 compra.ID_Ingrediente.Status = StatusIng.Disponible;
             }
-            return Acceso.Modificar(ListadoXML) & new MPP_Ingrediente().Modificar(compra.ID_Ingrediente);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML) & MPP_Ingrediente.DevolverInstancia().Modificar(compra.ID_Ingrediente);
         }
 
         private BE_TuplaXML CrearCompraXML(BE_Compra compra)

@@ -16,7 +16,14 @@ namespace Data_Access_Layer
 {
     public class Xml_Database
     {
+        private static Xml_Database _acceso = null;
         private XDocument doc = new XDocument();
+
+        public static Xml_Database DevolverInstancia()
+        {
+            if (_acceso == null) _acceso = new Xml_Database();
+            return _acceso;
+        }
         private bool ExisteBD()
         {
             if (File.Exists(ReferenciasBD.BaseDatosRestaurant))

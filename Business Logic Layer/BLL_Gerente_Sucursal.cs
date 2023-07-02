@@ -22,14 +22,13 @@ namespace Business_Logic_Layer
             Mesacombinada.Status = mesabase.Status;
             Mesacombinada.ID_Empleado = mesabase.ID_Empleado;
 
-            MPP_Mesa oMPP_Mesa = new MPP_Mesa();
             List<BE_Mesa> listadeMesas = new List<BE_Mesa>();
             listadeMesas.Add(mesabase);
             listadeMesas.Add(submesa);
 
             try
             {
-                return oMPP_Mesa.CombinarMesa(listadeMesas) & oMPP_Mesa.Guardar(Mesacombinada);
+                return MPP_Mesa.DevolverInstancia().CombinarMesa(listadeMesas) & MPP_Mesa.DevolverInstancia().Guardar(Mesacombinada);
             }
             catch(Exception ex)
             {

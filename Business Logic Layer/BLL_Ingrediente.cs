@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +13,23 @@ namespace Business_Logic_Layer
 {
     public class BLL_Ingrediente : IGestionable<BE_Ingrediente>
     {
-        MPP_Ingrediente oMPP_Ingrediente;
-
-        public BLL_Ingrediente()
-        {
-            oMPP_Ingrediente = new MPP_Ingrediente();
-        }
-
         public bool Baja(BE_Ingrediente ingrediente)
         {
-            return oMPP_Ingrediente.Baja(ingrediente);
+            return MPP_Ingrediente.DevolverInstancia().Baja(ingrediente);
         }
 
         public bool Guardar(BE_Ingrediente ingrediente)
         {
-            return oMPP_Ingrediente.Guardar(ingrediente);
+            return MPP_Ingrediente.DevolverInstancia().Guardar(ingrediente);
         }
 
         public List<BE_Ingrediente> Listar()
         {
-            return oMPP_Ingrediente.Listar();
+            return MPP_Ingrediente.DevolverInstancia().Listar();
         }
-            public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
+        public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente, DataSet ds = null)
         {
-            return oMPP_Ingrediente.ListarObjeto(ingrediente);
+            return MPP_Ingrediente.DevolverInstancia().ListarObjeto(ingrediente);
         }
 
         public bool actualizarStatus()
@@ -50,7 +44,7 @@ namespace Business_Logic_Layer
 
         public bool Modificar(BE_Ingrediente ingrediente)
         {
-            return oMPP_Ingrediente.Modificar(ingrediente);
+            return MPP_Ingrediente.DevolverInstancia().Modificar(ingrediente);
         }
     }
 }

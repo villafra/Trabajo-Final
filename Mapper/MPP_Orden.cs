@@ -14,30 +14,38 @@ namespace Mapper
 {
     public class MPP_Orden:IGestionable<BE_Orden>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Orden mapper = null;
+        public static MPP_Orden DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Orden();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Orden()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Orden orden)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearOrdenXML(orden));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Orden orden)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearOrdenXML(orden));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Orden> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Orden> listadeOrdenes = ds.Tables.Contains("Orden") != false ?
                 (from ord in ds.Tables["Orden"].AsEnumerable()
@@ -46,19 +54,20 @@ namespace Mapper
                      Codigo = Convert.ToInt32(ord[0]),
                      Pasos_Orden = Convert.ToInt32(ord[1]),
                      Status = Convert.ToString(ord[2]),
-                     ID_Pedido = new MPP_Pedido().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3])}),
-                     ID_Mesa = new MPP_Mesa().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4])}),
-                     ID_Empleado = new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5])})
+                     ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3])},ds),
+                     ID_Mesa = MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4])},ds),
+                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5])},ds)
                  }).ToList() : null;
             return listadeOrdenes;
         }
 
-        public BE_Orden ListarObjeto(BE_Orden orden)
+        public BE_Orden ListarObjeto(BE_Orden orden, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             BE_Orden ObjetoEncontrado = ds.Tables.Contains("Orden") != false ?
                 (from ord in ds.Tables["Orden"].AsEnumerable()
                  where Convert.ToInt32(ord[0]) == orden.Codigo
@@ -67,19 +76,18 @@ namespace Mapper
                      Codigo = Convert.ToInt32(ord[0]),
                      Pasos_Orden = Convert.ToInt32(ord[1]),
                      Status = Convert.ToString(ord[2]),
-                     ID_Pedido = new MPP_Pedido().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3]) }),
-                     ID_Mesa = new MPP_Mesa().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4]) }),
-                     ID_Empleado = new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5]) })
+                     ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3]) },ds),
+                     ID_Mesa = MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4]) },ds),
+                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5]) },ds)
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
 
         public bool Modificar(BE_Orden orden)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearOrdenXML(orden));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         private BE_TuplaXML CrearOrdenXML (BE_Orden orden)

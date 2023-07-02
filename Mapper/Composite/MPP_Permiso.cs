@@ -13,50 +13,54 @@ namespace Mapper
 {
     public class MPP_Permiso
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
-        public MPP_Permiso()
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Permiso mapper = null;
+        public static MPP_Permiso DevolverInstancia()
         {
-            ListadoXML = new List<BE_TuplaXML>();
+            if (mapper == null) mapper = new MPP_Permiso();
+            else ListadoXML = null;
+            return mapper;
         }
-
+        ~MPP_Permiso()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public List<BE_Permiso> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-            List<BE_Permiso> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
-                                        select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre
-                                        {
-                                            Codigo = per[0].ToString(),
-                                            Descripción = per[2].ToString(),
-                                        } : (BE_Permiso)new BE_PermisoHijo
-                                        {
-                                            Codigo = per[0].ToString(),
-                                            Descripción = per[2].ToString(),
-                                        }).ToList();
+            ds = Xml_Database.DevolverInstancia().Listar();
+            List<BE_Permiso> listado =
+                (from per in ds.Tables["Permiso"].AsEnumerable()
+                 select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre
+                 {
+                     Codigo = per[0].ToString(),
+                     Descripción = per[2].ToString(),
+                 } : (BE_Permiso)new BE_PermisoHijo
+                 {
+                     Codigo = per[0].ToString(),
+                     Descripción = per[2].ToString(),
+                 }).ToList();
             return listado;
         }
         public List<BE_PermisoPadre> ListarPadre()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-            List<BE_PermisoPadre> listado = (from per in ds.Tables["Permiso"].AsEnumerable()
-                                        where per[1].ToString() == "PermisoPadre" 
-                                        select new BE_PermisoPadre
-                                        {
-                                            Codigo = per[0].ToString(),
-                                            Descripción = per[2].ToString(),
-                                        } ).ToList();
+            ds = Xml_Database.DevolverInstancia().Listar();
+            List<BE_PermisoPadre> listado =
+                (from per in ds.Tables["Permiso"].AsEnumerable()
+                 where per[1].ToString() == "PermisoPadre"
+                 select new BE_PermisoPadre
+                 {
+                     Codigo = per[0].ToString(),
+                     Descripción = per[2].ToString(),
+                 }).ToList();
             return listado;
         }
 
         public void ArmarArbol(BE_Permiso padre)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = Acceso.Listar();
+            DataSet ds = Xml_Database.DevolverInstancia().Listar();
             ((BE_PermisoPadre)padre)._permisos =  ObtenerPermisos(ds, padre);
         } 
 
@@ -111,58 +115,57 @@ namespace Mapper
         }
         public bool Guardar(BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPermisoXML(permiso));
-            return Acceso.EscribirPermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().EscribirPermiso(ListadoXML);
         }
 
         public bool Baja(BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPermisoXML(permiso));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
         public bool BorrarPerfil(BE_Permiso perfil)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPermisoXML(perfil));
-            return Acceso.BorrarPerfil(ListadoXML);
+            return Xml_Database.DevolverInstancia().BorrarPerfil(ListadoXML);
         }
         public bool Modificar(BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPermisoXML(permiso));
-            return Acceso.ModificarPermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().ModificarPermiso(ListadoXML);
         }
         public bool AsignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
-            return Acceso.EscribirPermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().EscribirPermiso(ListadoXML);
 
         }
         public bool DesasignarPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
-            return Acceso.BorrarPermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().BorrarPermiso(ListadoXML);
         }
         public bool CambiarStatusPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
-            return Acceso.CambiarStatusPermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().CambiarStatusPermiso(ListadoXML);
         }
         public bool ExistePerfil(BE_PermisoPadre perfil)
         {
-            Acceso = new Xml_Database();
-            return Acceso.Existe(CrearPermisoXML(perfil),"Codigo");
+            return Xml_Database.DevolverInstancia().Existe(CrearPermisoXML(perfil),"Codigo");
         }
         public bool ExistePermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
-            Acceso = new Xml_Database();
+            ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(AsignarPermisoXML(perfil, permiso));
-            return Acceso.ExistePermiso(ListadoXML);
+            return Xml_Database.DevolverInstancia().ExistePermiso(ListadoXML);
         }
         public bool ExisteCircular(BE_PermisoPadre permiso1, BE_PermisoPadre permiso2)
         {
@@ -191,9 +194,26 @@ namespace Mapper
             }
             return true;
         }
-        public BE_Permiso ListarObjeto(BE_Permiso permiso)
+        public BE_Permiso ListarObjeto(BE_Permiso permiso, DataSet ds = null)
         {
-            throw new NotImplementedException();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+            BE_Permiso ObjetoEncontrado =
+                (from per in ds.Tables["Permiso"].AsEnumerable()
+                 where per[0].ToString() == permiso.Codigo
+                 select per[1].ToString() == "PermisoPadre" ? new BE_PermisoPadre
+                 {
+                     Codigo = per[0].ToString(),
+                     Descripción = per[2].ToString(),
+                 } : (BE_Permiso)new BE_PermisoHijo
+                 {
+                     Codigo = per[0].ToString(),
+                     Descripción = per[2].ToString(),
+                 }).FirstOrDefault();
+            return ObjetoEncontrado;
         }
         private BE_TuplaXML CrearPermisoXML(BE_Permiso permiso)
         {

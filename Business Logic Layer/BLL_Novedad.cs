@@ -6,41 +6,35 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Mapper;
 using Abstraction_Layer;
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Novedad : IGestionable<BE_Novedad>
     {
-        MPP_Novedad oMPP_Novedad;
-
-        public BLL_Novedad()
-        {
-            oMPP_Novedad = new MPP_Novedad();
-        }
-
         public bool Baja(BE_Novedad Novedad)
         {
-            return oMPP_Novedad.Baja(Novedad);
+            return MPP_Novedad.DevolverInstancia().Baja(Novedad);
         }
 
         public bool Guardar(BE_Novedad Novedad)
         {
-            return oMPP_Novedad.Guardar(Novedad);
+            return MPP_Novedad.DevolverInstancia().Guardar(Novedad);
         }
 
         public List<BE_Novedad> Listar()
         {
-            return oMPP_Novedad.Listar();
+            return MPP_Novedad.DevolverInstancia().Listar();
         }
 
-        public BE_Novedad ListarObjeto(BE_Novedad Novedad)
+        public BE_Novedad ListarObjeto(BE_Novedad Novedad, DataSet ds = null)
         {
-            return oMPP_Novedad.ListarObjeto(Novedad);
+            return MPP_Novedad.DevolverInstancia().ListarObjeto(Novedad);
         }
 
         public bool Modificar(BE_Novedad Novedad)
         {
-            return oMPP_Novedad.Modificar(Novedad);
+            return MPP_Novedad.DevolverInstancia().Modificar(Novedad);
         }
     }
 }

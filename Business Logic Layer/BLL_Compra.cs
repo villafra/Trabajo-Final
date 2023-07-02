@@ -6,36 +6,31 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
 using Mapper;
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Compra : IGestionable<BE_Compra>
     {
-        MPP_Compra oMPP_Compra;
-
-        public BLL_Compra()
-        {
-            oMPP_Compra = new MPP_Compra();
-        }
-
+       
         public bool Baja(BE_Compra compra)
         {
-            return oMPP_Compra.Baja(compra);
+            return MPP_Compra.DevolverInstancia().Baja(compra);
         }
 
         public bool Guardar(BE_Compra compra)
         {
-            return oMPP_Compra.Guardar(compra);
+            return MPP_Compra.DevolverInstancia().Guardar(compra);
         }
 
         public List<BE_Compra> Listar()
         {
-            return oMPP_Compra.Listar();
+            return MPP_Compra.DevolverInstancia().Listar();
         }
 
-        public BE_Compra ListarObjeto(BE_Compra compra)
+        public BE_Compra ListarObjeto(BE_Compra compra, DataSet ds = null)
         {
-            return oMPP_Compra.ListarObjeto(compra);
+            return MPP_Compra.DevolverInstancia().ListarObjeto(compra);
         }
 
         public bool recepcionarCompra(long nroCompra)
@@ -50,16 +45,16 @@ namespace Business_Logic_Layer
 
         public bool Modificar(BE_Compra compra)
         {
-            return oMPP_Compra.Modificar(compra);
+            return MPP_Compra.DevolverInstancia().Modificar(compra);
         }
         public decimal CalcularCostoNeto(BE_Compra compra)
         {
-            decimal costo = new MPP_Costo().DevolverCosto(compra.ID_Ingrediente, compra.CantidadRecibida);
+            decimal costo = MPP_Costo.DevolverInstancia().DevolverCosto(compra.ID_Ingrediente, compra.CantidadRecibida);
             return costo;
         }
         public decimal CalcularCostoTeorico(BE_Compra compra)
         {
-            decimal costo = new MPP_Costo().DevolverCosto(compra.ID_Ingrediente, compra.Cantidad);
+            decimal costo = MPP_Costo.DevolverInstancia().DevolverCosto(compra.ID_Ingrediente, compra.Cantidad);
             return costo;
         }
     }

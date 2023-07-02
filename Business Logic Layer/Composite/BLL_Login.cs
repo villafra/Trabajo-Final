@@ -7,41 +7,36 @@ using Business_Entities;
 using Abstraction_Layer;
 using Mapper;
 using Service_Layer;
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Login : IGestionable<BE_Login>
     {
-        MPP_Login oMPP_Login;
-
-        public BLL_Login()
-        {
-            oMPP_Login = new MPP_Login();
-        }
-
+  
         public bool Baja(BE_Login usuario)
         {
-            return oMPP_Login.Baja(usuario);
+            return MPP_Login.DevolverInstancia().Baja(usuario);
         }
 
         public bool Guardar(BE_Login usuario)
         {
-            return oMPP_Login.Guardar(usuario);
+            return MPP_Login.DevolverInstancia().Guardar(usuario);
         }
 
         public List<BE_Login> Listar()
         {
-            return oMPP_Login.Listar();
+            return MPP_Login.DevolverInstancia().Listar();
         }
 
-        public BE_Login ListarObjeto(BE_Login usuario)
+        public BE_Login ListarObjeto(BE_Login usuario, DataSet ds = null)
         {
-            return oMPP_Login.ListarObjeto(usuario);
+            return MPP_Login.DevolverInstancia().ListarObjeto(usuario);
         }
 
         public bool Modificar(BE_Login usuario)
         {
-            return oMPP_Login.Modificar(usuario);
+            return MPP_Login.DevolverInstancia().Modificar(usuario);
         }
 
 
@@ -127,7 +122,7 @@ namespace Business_Logic_Layer
         }
         public BE_Login Login(string user)
         {
-            return oMPP_Login.Login(user);
+            return MPP_Login.DevolverInstancia().Login(user);
         }
         public bool CheckPass(BE_Login oBE_Login, string pass)
         {
@@ -145,7 +140,7 @@ namespace Business_Logic_Layer
         }
         public bool Existe (BE_Login login)
         {
-            return oMPP_Login.Existe(login);
+            return MPP_Login.DevolverInstancia().Existe(login);
         }
     }
 }

@@ -14,50 +14,56 @@ namespace Mapper
 {
     public class MPP_Mesa:IGestionable<BE_Mesa>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Mesa mapper = null;
+        public static MPP_Mesa DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Mesa();
+            else ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Mesa()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Mesa mesa)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearMesaXML(mesa));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
         public bool Baja (List<BE_Mesa> mesas)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             foreach(BE_Mesa mesa in mesas)
             {
                 ListadoXML.Add(CrearMesaXML(mesa));
             }
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Mesa mesa)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearMesaXML(mesa));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public bool Guardar(List<BE_Mesa> mesas)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             foreach (BE_Mesa mesa in mesas)
             {
                 ListadoXML.Add(CrearMesaXML(mesa));
             }
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Mesa> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Mesa> listadeMesas = ds.Tables.Contains("Mesa") != false ?
                 (from mes in ds.Tables["Mesa"].AsEnumerable()
@@ -69,7 +75,7 @@ namespace Mapper
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
                      ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
-                     new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5])}) : null,
+                     MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5])},ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
 
                  } : new BE_MesaCombinada
@@ -80,19 +86,18 @@ namespace Mapper
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
                      ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
-                     new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) }) : null,
+                     MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
-                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) }),
-                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) }),
+                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) },ds),
+                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) },ds),
                  }).ToList() : null;
             return listadeMesas;
         }
 
         public List<BE_Mesa> ListarLibres()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Mesa> listadeMesas = ds.Tables.Contains("Mesa") != false ?
                 (from mes in ds.Tables["Mesa"].AsEnumerable()
@@ -115,19 +120,15 @@ namespace Mapper
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
                      Activo = Convert.ToBoolean(mes[6]),
-                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) }),
-                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) }),
+                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) },ds),
+                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) },ds),
 
                  }).ToList() : null;
             return listadeMesas;
         }
 
-        public BE_Mesa ListarObjeto(BE_Mesa mesa)
+        public BE_Mesa ListarObjeto(BE_Mesa mesa, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
             BE_Mesa ObjetoEncontrado = ds.Tables.Contains("Mesa") != false ?
                 (from mes in ds.Tables["Mesa"].AsEnumerable()
                  select mes[7].ToString() != "Combinada" ? new BE_Mesa
@@ -138,7 +139,7 @@ namespace Mapper
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
                      ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
-                     new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) }) : null,
+                     MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
 
                  } : new BE_MesaCombinada
@@ -149,10 +150,10 @@ namespace Mapper
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
                      ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
-                     new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) }) : null,
+                     MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
-                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) }),
-                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) }),
+                     Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) },ds),
+                     Mesa2 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[9]) },ds),
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -160,20 +161,18 @@ namespace Mapper
         public bool Modificar(BE_Mesa mesa)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             ListadoXML.Add(CrearMesaXML(mesa));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         public bool CombinarMesa(List<BE_Mesa> mesas)
         {
             ListadoXML = new List<BE_TuplaXML>();
-            Acceso = new Xml_Database();
             foreach (BE_Mesa mesa in mesas)
             {
                ListadoXML.Add(CrearMesaXML(mesa));
             }
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         private BE_TuplaXML CrearMesaXML(BE_Mesa mesa)

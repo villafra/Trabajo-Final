@@ -14,37 +14,44 @@ namespace Mapper
 {
     public class MPP_Novedad: IGestionable<BE_Novedad>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Novedad mapper = null;
+        public static MPP_Novedad DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Novedad();
+            else ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Novedad()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Novedad Novedad)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearNovedadXML(Novedad));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Novedad Novedad)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearNovedadXML(Novedad));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Novedad> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Novedad> listado = ds.Tables.Contains("Novedad") != false ?
                 (from nov in ds.Tables["Novedad"].AsEnumerable()
                  select new BE_Novedad
                  {
                      Codigo = Convert.ToInt32(nov[0]),
-                     Empleado = new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(nov[1])}),
+                     Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(nov[1])},ds),
                      VacacionesDisponibles = Convert.ToInt32(nov[2]),
                      listadoAsistencia = null,
                      Activo = Convert.ToBoolean(nov[4])
@@ -52,11 +59,13 @@ namespace Mapper
             return listado;
         }
 
-        public BE_Novedad ListarObjeto(BE_Novedad Novedad)
+        public BE_Novedad ListarObjeto(BE_Novedad Novedad, DataSet ds = null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             BE_Novedad ObjectoEncontrado = ds.Tables.Contains("Novedad") != false ?
                 (from nov in ds.Tables["Novedad"].AsEnumerable()
@@ -64,7 +73,7 @@ namespace Mapper
                  select new BE_Novedad
                  {
                      Codigo = Convert.ToInt32(nov[0]),
-                     Empleado = new MPP_Empleado().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(nov[1]) }),
+                     Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(nov[1]) },ds),
                      VacacionesDisponibles = Convert.ToInt32(nov[2]),
                      listadoAsistencia = null,
                      Activo = Convert.ToBoolean(nov[4])
@@ -75,10 +84,9 @@ namespace Mapper
 
         public bool Modificar(BE_Novedad Novedad)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearNovedadXML(Novedad));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
         private BE_TuplaXML CrearNovedadXML(BE_Novedad Novedad)
         {

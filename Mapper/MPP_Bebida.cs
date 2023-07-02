@@ -14,17 +14,22 @@ namespace Mapper
 {
     public class MPP_Bebida:IGestionable<BE_Bebida>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
-        public MPP_Bebida()
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Bebida mapper = null;
+        public static MPP_Bebida DevolverInstancia()
         {
-            ListadoXML = new List<BE_TuplaXML>();
+            if (mapper == null) mapper = new MPP_Bebida();
+            else ListadoXML = null;
+            return mapper;
         }
-
+        ~MPP_Bebida()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
+        
         public bool Baja(BE_Bebida bebida)
         {
-            Acceso = new Xml_Database();
             if (bebida.DevolverNombre() != "Bebida")
             {
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
@@ -44,12 +49,11 @@ namespace Mapper
             {
                 ListadoXML.Add(CrearBebidaXML(bebida));
             }
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Bebida bebida)
         {
-            Acceso = new Xml_Database();
             if (bebida.DevolverNombre() != "Bebida")
             {
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
@@ -69,13 +73,12 @@ namespace Mapper
             {
                 ListadoXML.Add(CrearBebidaXML(bebida));
             }
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
         public List<BE_Bebida> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
             List<BE_Bebida> ListaCompleta = new List<BE_Bebida>();
 
             List<BE_Bebida> listaBebidas = ds.Tables.Contains("Bebida") != false ? (from beb in ds.Tables["Bebida"].AsEnumerable()
@@ -155,14 +158,13 @@ namespace Mapper
             return ListaCompleta;
         }
 
-        public BE_Bebida ListarObjeto(BE_Bebida bebida)
+        public BE_Bebida ListarObjeto(BE_Bebida bebida, DataSet ds = null)
         {
             throw new NotImplementedException();
         }
 
         public bool Modificar(BE_Bebida bebida)
         {
-            Acceso = new Xml_Database();
             if (bebida.DevolverNombre() != "Bebida")
             {
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
@@ -177,7 +179,7 @@ namespace Mapper
             }
             else ListadoXML.Add(CrearBebidaXML(bebida));
 
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         public BE_TuplaXML CrearBebidaXML(BE_Bebida bebida)

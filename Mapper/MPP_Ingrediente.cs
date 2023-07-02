@@ -14,30 +14,38 @@ namespace Mapper
 {
     public class MPP_Ingrediente:IGestionable<BE_Ingrediente>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Ingrediente mapper = null;
+        public static MPP_Ingrediente DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Ingrediente();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Ingrediente()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Ingrediente ingrediente)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Ingrediente ingrediente)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Ingrediente> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ?
                 (from ing in ds.Tables["Ingrediente"].AsEnumerable()
@@ -52,7 +60,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
                  }).ToList() : null;
             return listaIngredientes;
@@ -60,14 +68,12 @@ namespace Mapper
         }
 
 
-        public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente)
+        public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
 
             BE_Ingrediente ObjetoEncontrado = ds.Tables.Contains("Ingrediente") != false ?
                 (from ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 where Convert.ToInt32(ing[0]) == ingrediente.Codigo
                  select new BE_Ingrediente
                  {
                      Codigo = Convert.ToInt32(ing[0]),
@@ -79,7 +85,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
@@ -87,9 +93,8 @@ namespace Mapper
 
         public List<BE_Ingrediente> Bebidas_Ingrediente(BE_Bebida_Preparada bebida)
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
                 ds.Tables.Contains("Bebida-Ingrediente") != false ?
@@ -107,16 +112,18 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
                  }).ToList() : null;
             return listaIngredientes;
         }
-        public List<BE_Ingrediente> Platos_Ingrediente(BE_Plato plato)
+        public List<BE_Ingrediente> Platos_Ingrediente(BE_Plato plato, DataSet ds = null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
                 ds.Tables.Contains("Plato-Ingrediente") != false ?
@@ -134,7 +141,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = new MPP_Costo().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
 
                  }).ToList() : null;
             return listaIngredientes;
@@ -142,10 +149,9 @@ namespace Mapper
 
         public bool Modificar(BE_Ingrediente ingrediente)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearIngredienteXML(ingrediente));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         private BE_TuplaXML CrearIngredienteXML(BE_Ingrediente ingrediente)

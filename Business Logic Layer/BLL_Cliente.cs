@@ -6,41 +6,36 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
 using Mapper;
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Cliente : IGestionable<BE_Cliente>
     {
-        MPP_Cliente oMPP_Cliente;
-
-        public BLL_Cliente()
-        {
-            oMPP_Cliente = new MPP_Cliente();
-        }
-
+        
         public bool Baja(BE_Cliente cliente)
         {
-            return oMPP_Cliente.Baja(cliente);
+            return MPP_Cliente.DevolverInstancia().Baja(cliente);
         }
 
         public bool Guardar(BE_Cliente cliente)
         {
-            return oMPP_Cliente.Guardar(cliente);
+            return MPP_Cliente.DevolverInstancia().Guardar(cliente);
         }
 
         public List<BE_Cliente> Listar()
         {
-            return oMPP_Cliente.Listar();
+            return MPP_Cliente.DevolverInstancia().Listar();
         }
 
-        public BE_Cliente ListarObjeto(BE_Cliente cliente)
+        public BE_Cliente ListarObjeto(BE_Cliente cliente, DataSet ds = null)
         {
-            return oMPP_Cliente.ListarObjeto(cliente);
+            return MPP_Cliente.DevolverInstancia().ListarObjeto(cliente);
         }
 
         public bool modificarCliente(BE_Cliente cliente)
         {
-            return oMPP_Cliente.Modificar(cliente);
+            return MPP_Cliente.DevolverInstancia().Modificar(cliente);
         }
 
         public bool borrarCliente(BE_Cliente cliente)
@@ -65,7 +60,7 @@ namespace Business_Logic_Layer
 
         public bool Modificar(BE_Cliente cliente)
         {
-            return oMPP_Cliente.Modificar(cliente);
+            return MPP_Cliente.DevolverInstancia().Modificar(cliente);
         }
     }
 }

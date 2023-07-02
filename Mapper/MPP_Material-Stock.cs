@@ -14,14 +14,23 @@ namespace Mapper
 {
     public class MPP_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock, BE_Compra>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Material_Stock mapper = null;
+        public static MPP_Material_Stock DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Material_Stock();
+            else ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Material_Stock()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool AgregarStock(BE_Material_Stock material, BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
-            if (Acceso.ExisteMatLot(CrearMaterial_StockXML(material)))
+            if (Xml_Database.DevolverInstancia().ExisteMatLot(CrearMaterial_StockXML(material)))
             {
                 return ModificarMatLot(material, compra);
             }
@@ -33,10 +42,9 @@ namespace Mapper
         
         public bool Baja(BE_Material_Stock material)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearMaterial_StockXML(material));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public DateTime DevolverFechaVencimiento(BE_Material_Stock material)
@@ -58,32 +66,29 @@ namespace Mapper
 
         public bool Guardar(BE_Material_Stock material)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearMaterial_StockXML(material));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
         public bool Guardar(BE_Material_Stock material, BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearMaterial_StockXML(material));
             ListadoXML.Add(CrearMaterialCompraXML(material, compra));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Material_Stock> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Material_Stock> listaMateriales = ds.Tables.Contains("Material-Stock") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
                  select new BE_Material_Stock
                  {
                      Codigo = Convert.ToInt32(mat[0]),
-                     Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1])}),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1])},ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
@@ -93,19 +98,21 @@ namespace Mapper
             return listaMateriales;
         }
 
-        public BE_Material_Stock ListarObjeto(BE_Material_Stock material)
+        public BE_Material_Stock ListarObjeto(BE_Material_Stock material,DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+   
             BE_Material_Stock oBE_Material_Stock = ds.Tables.Contains("Material-Stock") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
                  where Convert.ToInt32(mat[0]) == material.Codigo && mat[5].ToString() == material.Lote
                  select new BE_Material_Stock
                  {
                      Codigo = Convert.ToInt32(mat[0]),
-                     Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) }),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) },ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
@@ -114,11 +121,13 @@ namespace Mapper
             return oBE_Material_Stock;
         }
 
-        public BE_Material_Stock ListarXCompra(BE_Compra compra)
+        public BE_Material_Stock ListarXCompra(BE_Compra compra, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             BE_Material_Stock Material_Stock = ds.Tables.Contains("Material-Stock") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
@@ -129,7 +138,7 @@ namespace Mapper
                  select new BE_Material_Stock
                  {
                      Codigo = Convert.ToInt32(mat[0]),
-                     Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) }),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) },ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
@@ -138,9 +147,8 @@ namespace Mapper
         }
         public List<BE_Material_Stock> ListarConStock()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Material_Stock> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
@@ -150,7 +158,7 @@ namespace Mapper
                  select new BE_Material_Stock
                  {
                      Codigo = Convert.ToInt32(mat[0]),
-                     Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) }),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) },ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
@@ -158,11 +166,13 @@ namespace Mapper
                  }).ToList() : null;
             return listaIngredientes;
         }
-        public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote)
+        public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote,DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             BE_Material_Stock oBE_Material_Stock = ds.Tables.Contains("Material-Stock") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
@@ -170,7 +180,7 @@ namespace Mapper
                  select new BE_Material_Stock
                  {
                      Codigo = Convert.ToInt32(mat[0]),
-                     Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) }),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) },ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
@@ -180,23 +190,21 @@ namespace Mapper
         }
         public bool Modificar(BE_Material_Stock material)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearMaterial_StockXML(material));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
         public bool ModificarMatLot(BE_Material_Stock material, BE_Compra compra)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             if (compra.Status != StausComp.Devolucion)
             {
                 ListadoXML.Add(CrearMaterialCompraXML(material, compra));
-                Acceso.Escribir(ListadoXML);
+                Xml_Database.DevolverInstancia().Escribir(ListadoXML);
                 ListadoXML.Clear();
             }
             ListadoXML.Add(CrearMaterial_StockXML(material));
-            return Acceso.ModificarMatLot(ListadoXML);
+            return Xml_Database.DevolverInstancia().ModificarMatLot(ListadoXML);
         }
 
         private BE_TuplaXML CrearMaterial_StockXML(BE_Material_Stock material)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,16 +12,9 @@ namespace Business_Logic_Layer
 {
     public class BLL_Material_Stock : IGestionable<BE_Material_Stock>, IMovimentable<BE_Material_Stock,BE_Compra>
     {
-        MPP_Material_Stock oMPP_Material_Stock;
-
-        public BLL_Material_Stock()
-        {
-            oMPP_Material_Stock = new MPP_Material_Stock();
-        }
-
         public bool AgregarStock(BE_Material_Stock material, BE_Compra compra)
         {
-            return oMPP_Material_Stock.AgregarStock(material, compra);
+            return MPP_Material_Stock.DevolverInstancia().AgregarStock(material, compra);
         }
         public void RestarStock(BE_Material_Stock material)
         {
@@ -28,7 +22,7 @@ namespace Business_Logic_Layer
         }
         public bool Baja(BE_Material_Stock material)
         {
-            return oMPP_Material_Stock.Baja(material);
+            return MPP_Material_Stock.DevolverInstancia().Baja(material);
         }
 
         public DateTime DevolverFechaVencimiento(BE_Material_Stock material)
@@ -43,33 +37,33 @@ namespace Business_Logic_Layer
 
         public bool Guardar(BE_Material_Stock material)
         {
-            return oMPP_Material_Stock.Guardar(material);
+            return MPP_Material_Stock.DevolverInstancia().Guardar(material);
         }
 
         public List<BE_Material_Stock> Listar()
         {
-            return oMPP_Material_Stock.Listar();
+            return MPP_Material_Stock.DevolverInstancia().Listar();
         }
 
-        public BE_Material_Stock ListarObjeto(BE_Material_Stock material)
+        public BE_Material_Stock ListarObjeto(BE_Material_Stock material, DataSet ds = null)
         {
-            return oMPP_Material_Stock.ListarObjeto(material);
+            return MPP_Material_Stock.DevolverInstancia().ListarObjeto(material);
         }
         public BE_Material_Stock ListarXCompra(BE_Compra compra)
         {
-            return oMPP_Material_Stock.ListarXCompra(compra);
+            return MPP_Material_Stock.DevolverInstancia().ListarXCompra(compra);
         }
         public List<BE_Material_Stock> ListarConStock()
         {
-            return oMPP_Material_Stock.ListarConStock();
+            return MPP_Material_Stock.DevolverInstancia().ListarConStock();
         }
         public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote)
         {
-            return oMPP_Material_Stock.BuscarXLote(compra, lote);
+            return MPP_Material_Stock.DevolverInstancia().BuscarXLote(compra, lote);
         }
         public bool Modificar(BE_Material_Stock material)
         { 
-            return oMPP_Material_Stock.Modificar(material);
+            return MPP_Material_Stock.DevolverInstancia().Modificar(material);
         }
     }
 }

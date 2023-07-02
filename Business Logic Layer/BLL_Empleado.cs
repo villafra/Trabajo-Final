@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,21 +12,14 @@ namespace Business_Logic_Layer
 {
     public abstract class BLL_Empleado : IGestionable<BE_Empleado>
     {
-        MPP_Empleado oMPP_Empleado;
-
-        public BLL_Empleado()
-        {
-            oMPP_Empleado = new MPP_Empleado();
-        }
-
         public bool Baja(BE_Empleado empleado)
         {
-            return oMPP_Empleado.Baja(empleado);
+            return MPP_Empleado.DevolverInstancia().Baja(empleado);
         }
 
         public bool Guardar(BE_Empleado empleado)
         {
-            return oMPP_Empleado.Guardar(empleado);
+            return MPP_Empleado.DevolverInstancia().Guardar(empleado);
         }
 
         public List<BE_Ingrediente> listadosCiegos()
@@ -35,17 +29,17 @@ namespace Business_Logic_Layer
 
         public List<BE_Empleado> Listar()
         {
-            return oMPP_Empleado.Listar();
+            return MPP_Empleado.DevolverInstancia().Listar();
         }
 
-        public BE_Empleado ListarObjeto(BE_Empleado empleado)
+        public BE_Empleado ListarObjeto(BE_Empleado empleado, DataSet ds = null)
         {
-            return oMPP_Empleado.ListarObjeto(empleado);
+            return MPP_Empleado.DevolverInstancia().ListarObjeto(empleado);
         }
 
         public bool Modificar(BE_Empleado empleado)
         {
-            return oMPP_Empleado.Modificar(empleado);
+            return MPP_Empleado.DevolverInstancia().Modificar(empleado);
         }
 
         public void verificarStock()

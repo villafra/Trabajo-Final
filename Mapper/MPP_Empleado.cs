@@ -14,30 +14,38 @@ namespace Mapper
 {
     public class MPP_Empleado:IGestionable<BE_Empleado>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Empleado mapper = null;
+        public static MPP_Empleado DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Empleado();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Empleado()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Empleado empleado)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearEmpleadoXML(empleado));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Empleado empleado)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearEmpleadoXML(empleado));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Empleado> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
             List<BE_Empleado> ListaTotal = new List<BE_Empleado>();
             try
             {
@@ -94,119 +102,121 @@ namespace Mapper
 
         public List<BE_Mozo> ListarMozos()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
-            List<BE_Mozo> listadeMozos = ds.Tables.Contains("Empleado") != false ? (from emp in ds.Tables["Empleado"].AsEnumerable()
-                                                                                    where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 6
-                                                                                    select new BE_Mozo
-                                                                                    {
-                                                                                        Codigo = Convert.ToInt32(emp[0]),
-                                                                                        DNI = Convert.ToInt64(emp[1]),
-                                                                                        Nombre = Convert.ToString(emp[2]),
-                                                                                        Apellido = Convert.ToString(emp[3]),
-                                                                                        FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                                        FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                                        Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                                        Activo = Convert.ToBoolean(emp[7]),
-                                                                                        PedidosTomados = null
+            List<BE_Mozo> listadeMozos = ds.Tables.Contains("Empleado") != false ?
+                (from emp in ds.Tables["Empleado"].AsEnumerable()
+                 where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 6
+                 select new BE_Mozo
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     PedidosTomados = null
 
-                                                                                    }).ToList() : null;
+                 }).ToList() : null;
             return listadeMozos;
         }
         public List<BE_GerenteSucursal> ListarGerentes()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
-            List<BE_GerenteSucursal> listadeGerentes = ds.Tables.Contains("Empleado") != false ? (from emp in ds.Tables["Empleado"].AsEnumerable()
-                                                                                                  where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) == 1
-                                                                                                  select new BE_GerenteSucursal
-                                                                                                  {
-                                                                                                      Codigo = Convert.ToInt32(emp[0]),
-                                                                                                      DNI = Convert.ToInt64(emp[1]),
-                                                                                                      Nombre = Convert.ToString(emp[2]),
-                                                                                                      Apellido = Convert.ToString(emp[3]),
-                                                                                                      FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                                                      FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                                                      Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                                                      Activo = Convert.ToBoolean(emp[7]),
-                                                                                                      Contacto = Convert.ToString(emp[8])
+            List<BE_GerenteSucursal> listadeGerentes = ds.Tables.Contains("Empleado") != false ?
+                (from emp in ds.Tables["Empleado"].AsEnumerable()
+                 where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) == 1
+                 select new BE_GerenteSucursal
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     Contacto = Convert.ToString(emp[8])
 
-                                                                                                  }).ToList() : null;
+                 }).ToList() : null;
             return listadeGerentes;
         }
 
         public List<BE_ChefPrincipal> ListarChefs()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
-            List<BE_ChefPrincipal> listadeChef = ds.Tables.Contains("Empleado") != false ? (from emp in ds.Tables["Empleado"].AsEnumerable()
-                                                                                            where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 1 & 
-                                                                                            (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) < 6
-                                                                                            select new BE_ChefPrincipal
-                                                                                            {
-                                                                                                Codigo = Convert.ToInt32(emp[0]),
-                                                                                                DNI = Convert.ToInt64(emp[1]),
-                                                                                                Nombre = Convert.ToString(emp[2]),
-                                                                                                Apellido = Convert.ToString(emp[3]),
-                                                                                                FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                                                FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                                                Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                                                Activo = Convert.ToBoolean(emp[7]),
-                                                                                                OrdenesPendientes = null
+            List<BE_ChefPrincipal> listadeChef = ds.Tables.Contains("Empleado") != false ?
+                (from emp in ds.Tables["Empleado"].AsEnumerable()
+                 where (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 1 &
+                 (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) < 6
+                 select new BE_ChefPrincipal
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     OrdenesPendientes = null
 
-                                                                                            }).ToList() : null;
+                 }).ToList() : null;
             return listadeChef;
         }
-        public BE_Empleado ListarObjeto(BE_Empleado empleado)
+        public BE_Empleado ListarObjeto(BE_Empleado empleado, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-            var Empleado = ds.Tables.Contains("Empleado") != false ? (from emp in ds.Tables["Empleado"].AsEnumerable()
-                                                                      where Convert.ToInt32(emp[0]) == empleado.Codigo
-                                                                      select (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) == 1 ?
-                                                                      new BE_GerenteSucursal
-                                                                      {
-                                                                          Codigo = Convert.ToInt32(emp[0]),
-                                                                          DNI = Convert.ToInt64(emp[1]),
-                                                                          Nombre = Convert.ToString(emp[2]),
-                                                                          Apellido = Convert.ToString(emp[3]),
-                                                                          FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                          FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                          Activo = Convert.ToBoolean(emp[7]),
-                                                                          Contacto = Convert.ToString(emp[8])
-                                                                      } : (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 1 & (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) < 6 ?
-                                                                      (BE_Empleado)new BE_ChefPrincipal
-                                                                      {
-                                                                          Codigo = Convert.ToInt32(emp[0]),
-                                                                          DNI = Convert.ToInt64(emp[1]),
-                                                                          Nombre = Convert.ToString(emp[2]),
-                                                                          Apellido = Convert.ToString(emp[3]),
-                                                                          FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                          FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                          Activo = Convert.ToBoolean(emp[7]),
-                                                                          OrdenesPendientes = null
-                                                                      } : new BE_Mozo
-                                                                      {
-                                                                          Codigo = Convert.ToInt32(emp[0]),
-                                                                          DNI = Convert.ToInt64(emp[1]),
-                                                                          Nombre = Convert.ToString(emp[2]),
-                                                                          Apellido = Convert.ToString(emp[3]),
-                                                                          FechaNacimiento = Convert.ToDateTime(emp[4]),
-                                                                          FechaIngreso = Convert.ToDateTime(emp[5]),
-                                                                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
-                                                                          Activo = Convert.ToBoolean(emp[7]),
-                                                                          PedidosTomados = null
-                                                                      }
-                                                                      ).FirstOrDefault() : null;
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+            var Empleado = ds.Tables.Contains("Empleado") != false ?
+                (from emp in ds.Tables["Empleado"].AsEnumerable()
+                 where Convert.ToInt32(emp[0]) == empleado.Codigo
+                 select (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) == 1 ?
+                 new BE_GerenteSucursal
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     Contacto = Convert.ToString(emp[8])
+                 } : (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) > 1 & (int)(Category)Enum.Parse(typeof(Category), emp[6].ToString()) < 6 ?
+                 (BE_Empleado)new BE_ChefPrincipal
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     OrdenesPendientes = null
+                 } : new BE_Mozo
+                 {
+                     Codigo = Convert.ToInt32(emp[0]),
+                     DNI = Convert.ToInt64(emp[1]),
+                     Nombre = Convert.ToString(emp[2]),
+                     Apellido = Convert.ToString(emp[3]),
+                     FechaNacimiento = Convert.ToDateTime(emp[4]),
+                     FechaIngreso = Convert.ToDateTime(emp[5]),
+                     Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
+                     Activo = Convert.ToBoolean(emp[7]),
+                     PedidosTomados = null
+                 }).FirstOrDefault() : null;
             return Empleado;
                                                                   
                                                                       
@@ -214,10 +224,9 @@ namespace Mapper
 
         public bool Modificar(BE_Empleado empleado)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearEmpleadoXML(empleado));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
 
         private BE_TuplaXML CrearEmpleadoXML(BE_Empleado empleado)

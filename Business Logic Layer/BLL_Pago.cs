@@ -6,41 +6,36 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Abstraction_Layer;
 using Mapper;
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Pago : IGestionable<BE_Pago>
     {
-        MPP_Pago oMPP_Pago;
-
-        public BLL_Pago()
-        {
-            oMPP_Pago = new MPP_Pago();
-        }
-
+ 
         public bool Baja(BE_Pago pago)
         {
-            return oMPP_Pago.Baja(pago);
+            return MPP_Pago.DevolverInstancia().Baja(pago);
         }
 
         public bool Guardar(BE_Pago pago)
         {
-            return oMPP_Pago.Guardar(pago);
+            return MPP_Pago.DevolverInstancia().Guardar(pago);
         }
 
         public List<BE_Pago> Listar()
         {
-            return oMPP_Pago.Listar();
+            return MPP_Pago.DevolverInstancia().Listar();
         }
 
-        public BE_Pago ListarObjeto(BE_Pago pago)
+        public BE_Pago ListarObjeto(BE_Pago pago, DataSet ds = null)
         {
-            return oMPP_Pago.ListarObjeto(pago);
+            return MPP_Pago.DevolverInstancia().ListarObjeto(pago);
         }
 
         public bool Modificar(BE_Pago pago)
         {
-            return oMPP_Pago.Modificar(pago);
+            return MPP_Pago.DevolverInstancia().Modificar(pago);
         }
     }
 }

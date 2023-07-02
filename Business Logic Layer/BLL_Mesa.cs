@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,6 @@ namespace Business_Logic_Layer
 {
     public class BLL_Mesa : IGestionable<BE_Mesa>, IMovimentable<BE_Mesa,BE_Compra>
     {
-        MPP_Mesa oMPP_Mesa;
-
-        public BLL_Mesa()
-        {
-            oMPP_Mesa = new MPP_Mesa();
-        }
-
         public void ActualizarStatus()
         {
             throw new NotImplementedException();
@@ -30,7 +24,7 @@ namespace Business_Logic_Layer
 
         public bool Baja(BE_Mesa mesa)
         {
-            return oMPP_Mesa.Baja(mesa);
+            return MPP_Mesa.DevolverInstancia().Baja(mesa);
         }
 
         public DateTime DevolverFechaVencimiento(BE_Mesa mesa)
@@ -45,25 +39,25 @@ namespace Business_Logic_Layer
 
         public bool Guardar(BE_Mesa mesa)
         {
-            return oMPP_Mesa.Guardar(mesa);
+            return MPP_Mesa.DevolverInstancia().Guardar(mesa);
         }
 
         public List<BE_Mesa> Listar()
         {
-            return oMPP_Mesa.Listar();
+            return MPP_Mesa.DevolverInstancia().Listar();
         }
         public List<BE_Mesa> ListarLibres()
         {
-            return oMPP_Mesa.ListarLibres();
+            return MPP_Mesa.DevolverInstancia().ListarLibres();
         }
-        public BE_Mesa ListarObjeto(BE_Mesa mesa)
+        public BE_Mesa ListarObjeto(BE_Mesa mesa, DataSet ds = null)
         {
-            return oMPP_Mesa.ListarObjeto(mesa);
+            return MPP_Mesa.DevolverInstancia().ListarObjeto(mesa);
         }
 
         public bool Modificar(BE_Mesa mesa)
         {
-            return oMPP_Mesa.Modificar(mesa);
+            return MPP_Mesa.DevolverInstancia().Modificar(mesa);
         }
         public bool CombinarMesa(BE_Mesa mesa1, BE_Mesa mesa2)
         {
@@ -80,7 +74,7 @@ namespace Business_Logic_Layer
             lista.Add(mesa1);
             lista.Add(mesa2);
 
-            return oMPP_Mesa.CombinarMesa(lista) & oMPP_Mesa.Guardar(mesa3);
+            return MPP_Mesa.DevolverInstancia().CombinarMesa(lista) & MPP_Mesa.DevolverInstancia().Guardar(mesa3);
         }
         public bool DescombinarMesa(BE_MesaCombinada mesa3)
         {
@@ -95,7 +89,7 @@ namespace Business_Logic_Layer
             lista.Add(mesa1);
             lista.Add(mesa2);
 
-            return oMPP_Mesa.CombinarMesa(lista) & oMPP_Mesa.Baja(mesa3);
+            return MPP_Mesa.DevolverInstancia().CombinarMesa(lista) & MPP_Mesa.DevolverInstancia().Baja(mesa3);
         }
         public void VerificarStatus()
         {

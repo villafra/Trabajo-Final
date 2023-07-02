@@ -14,30 +14,38 @@ namespace Mapper
 {
     public class MPP_Costo : IGestionable<BE_Costo>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
-
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Costo mapper = null;
+        public static MPP_Costo DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Costo();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Costo()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Costo Costo)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
-            return Acceso.Baja(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Costo Costo)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Costo> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Costo> listado = ds.Tables.Contains("Costo") ?
                 (from cos in ds.Tables["Costo"].AsEnumerable()
@@ -52,7 +60,7 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) },ds)
                      } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
                      (BE_Costo)new BE_CostoPlato
                      {
@@ -64,7 +72,7 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Plato().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Plato.DevolverInstancia().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) },ds)
                      } : new BE_CostoBebida
                      {
                          Codigo = Convert.ToInt32(cos[0]),
@@ -75,19 +83,20 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Bebida().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) },ds)
                      }).ToList() : null;
 
             return listado;
 
         }
 
-        public BE_Costo ListarObjeto(BE_Costo Costo)
+        public BE_Costo ListarObjeto(BE_Costo Costo, DataSet ds=null)
         {
-            Acceso = new Xml_Database();
-            DataSet ds = new DataSet();
-            ds = Acceso.Listar();
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             BE_Costo ObjetoEncontrado = ds.Tables.Contains("Costo") ?
                 (from cos in ds.Tables["Costo"].AsEnumerable()
                  where Convert.ToInt32(cos[0]) == Costo.Codigo
@@ -102,7 +111,7 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Ingrediente().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(cos[8]) },ds)
                      } : cos[7].ToString() == TipoMaterial.Plato.ToString() ?
                      (BE_Costo)new BE_CostoPlato
                      {
@@ -114,7 +123,7 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Plato().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Plato.DevolverInstancia().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(cos[8]) },ds)
                      } : new BE_CostoBebida
                      {
                          Codigo = Convert.ToInt32(cos[0]),
@@ -125,11 +134,11 @@ namespace Mapper
                          Energía = Convert.ToDecimal(cos[5]),
                          OtrosGastos = Convert.ToDecimal(cos[6]),
                          Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString()),
-                         Material = new MPP_Bebida().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) })
+                         Material = MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(cos[8]) },ds)
                      }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
-        public decimal DevolverCosto(object tipo, decimal cantidad = 1)
+        public decimal DevolverCosto(object tipo, decimal cantidad = 1,DataSet ds = null)
         {
             List<BE_Costo> listado = Listar();
             BE_Costo cost;
@@ -155,10 +164,9 @@ namespace Mapper
 
         public bool Modificar(BE_Costo Costo)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearCostoXML(Costo));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
         private BE_TuplaXML CrearCostoXML(BE_Costo Costo)
         {

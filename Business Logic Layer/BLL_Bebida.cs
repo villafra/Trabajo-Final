@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +12,6 @@ namespace Business_Logic_Layer
 {
     public class BLL_Bebida : IGestionable<BE_Bebida>/*, IMovimentable<BE_Bebida>*/
     {
-        MPP_Bebida oMPP_Bebida;
-        public BLL_Bebida()
-        {
-            oMPP_Bebida = new MPP_Bebida();
-        }
-
         public void ActualizarStatus(BE_Bebida bebida, BE_Bebida.Tipo_Bebida tipo)
         {
             bebida.Tipo = tipo;
@@ -31,7 +26,7 @@ namespace Business_Logic_Layer
 
         public bool Baja(BE_Bebida bebida)
         {
-            return oMPP_Bebida.Baja(bebida);
+            return MPP_Bebida.DevolverInstancia().Baja(bebida);
         }
 
         public DateTime DevolverFechaVencimiento(BE_Material_Stock bebida)
@@ -46,22 +41,22 @@ namespace Business_Logic_Layer
 
         public bool Guardar(BE_Bebida bebida)
         {
-            return oMPP_Bebida.Guardar(bebida);
+            return MPP_Bebida.DevolverInstancia().Guardar(bebida);
         }
 
         public List<BE_Bebida> Listar()
         {
-            return oMPP_Bebida.Listar();
+            return MPP_Bebida.DevolverInstancia().Listar();
         }
 
-        public BE_Bebida ListarObjeto(BE_Bebida bebida)
+        public BE_Bebida ListarObjeto(BE_Bebida bebida, DataSet ds = null)
         {
-            return oMPP_Bebida.ListarObjeto(bebida);
+            return MPP_Bebida.DevolverInstancia().ListarObjeto(bebida);
         }
 
         public bool Modificar(BE_Bebida bebida)
         {
-            return oMPP_Bebida.Modificar(bebida);
+            return MPP_Bebida.DevolverInstancia().Modificar(bebida);
         }
 
         public BE_Bebida.Tipo_Bebida VerificarStatus(BE_Bebida bebida)

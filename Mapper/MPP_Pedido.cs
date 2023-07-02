@@ -14,29 +14,38 @@ namespace Mapper
 {
     public class MPP_Pedido : IGestionable<BE_Pedido>
     {
-        Xml_Database Acceso;
-        List<BE_TuplaXML> ListadoXML;
+        private static List<BE_TuplaXML> ListadoXML;
+        private static MPP_Pedido mapper = null;
+        public static MPP_Pedido DevolverInstancia()
+        {
+            if (mapper == null) mapper = new MPP_Pedido();
+            else
+                ListadoXML = null;
+            return mapper;
+        }
+        ~MPP_Pedido()
+        {
+            mapper = null;
+            ListadoXML = null;
+        }
         public bool Baja(BE_Pedido pedido)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
-            return Acceso.Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
         }
 
         public bool Guardar(BE_Pedido pedido)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
-            return Acceso.Escribir(ListadoXML);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
         public List<BE_Pedido> Listar()
         {
-            Acceso = new Xml_Database();
             DataSet ds = new DataSet();
-            ds = Acceso.Listar();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
             List<BE_Pedido> ListadePedidos = ds.Tables.Contains("Pedido") != false ?
                 (from ped in ds.Tables["Pedido"].AsEnumerable()
@@ -48,7 +57,7 @@ namespace Mapper
                      Aclaraciones = Convert.ToString(ped[3]),
                      Status = Convert.ToString(ped[4]),
                      Monto_Total = Convert.ToDecimal(ped[5]),
-                     ID_Pago = new MPP_Pago().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }),
+                     ID_Pago = MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) },ds),
                      ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
                                                                                                                     join beb in ds.Tables["Bebida"].AsEnumerable()
                                                                                                                     on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
@@ -56,7 +65,7 @@ namespace Mapper
                                                                                                                     {
 
                                                                                                                     }).ToList() : null,
-                     ListadePlatos = new MPP_Plato().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) })
+                     ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) },ds)
                  }).ToList() : null;
 
             return ListadePedidos;
@@ -64,7 +73,7 @@ namespace Mapper
 
      
 
-        public BE_Pedido ListarObjeto(BE_Pedido pedido)
+        public BE_Pedido ListarObjeto(BE_Pedido pedido, DataSet ds=null)
         {
             throw new NotImplementedException();
         }
@@ -125,10 +134,9 @@ namespace Mapper
 
         public bool Modificar(BE_Pedido pedido)
         {
-            Acceso = new Xml_Database();
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
-            return Acceso.Modificar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
     }
 }

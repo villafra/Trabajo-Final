@@ -6,22 +6,16 @@ using System.Threading.Tasks;
 using Business_Entities;
 using Mapper;
 using Abstraction_Layer;
-
+using System.Data;
 
 namespace Business_Logic_Layer
 {
     public class BLL_Horario : IGestionable<BE_Horario>
     {
-        MPP_Horario oMPP_Horario;
-
-        public BLL_Horario()
-        {
-            oMPP_Horario = new MPP_Horario();
-        }
 
         public bool Baja(BE_Horario horario)
         {
-            return oMPP_Horario.Baja(horario);
+            return MPP_Horario.DevolverInstancia().Baja(horario);
         }
 
         public void CrearAgenda()
@@ -45,7 +39,7 @@ namespace Business_Logic_Layer
                 agenda.Add(nuevaHora);
                 codigo++;
             }
-            oMPP_Horario.CrearAgenda(agenda);
+            MPP_Horario.DevolverInstancia().CrearAgenda(agenda);
 
         }
 
@@ -56,17 +50,17 @@ namespace Business_Logic_Layer
 
         public List<BE_Horario> Listar()
         {
-            return oMPP_Horario.Listar();
+            return MPP_Horario.DevolverInstancia().Listar();
         }
 
-        public BE_Horario ListarObjeto(BE_Horario horario)
+        public BE_Horario ListarObjeto(BE_Horario horario, DataSet ds = null)
         {
             throw new NotImplementedException();
         }
 
         public bool Modificar(BE_Horario horario)
         {
-            return oMPP_Horario.Modificar(horario);
+            return MPP_Horario.DevolverInstancia().Modificar(horario);
         }
     }
 }

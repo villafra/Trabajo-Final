@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,31 +12,24 @@ namespace Business_Logic_Layer
 {
     public class BLL_Pedido : IGestionable<BE_Pedido>
     {
-        MPP_Pedido oMPP_Pedido;
-
-        public BLL_Pedido()
-        {
-            oMPP_Pedido = new MPP_Pedido();
-        }
-
         public bool Baja(BE_Pedido pedido)
         {
-            return oMPP_Pedido.Baja(pedido);
+            return MPP_Pedido.DevolverInstancia().Baja(pedido);
         }
 
         public bool Guardar(BE_Pedido pedido)
         {
-            return oMPP_Pedido.Guardar(pedido);
+            return MPP_Pedido.DevolverInstancia().Guardar(pedido);
         }
 
         public List<BE_Pedido> Listar()
         {
-            return oMPP_Pedido.Listar();
+            return MPP_Pedido.DevolverInstancia().Listar();
         }
 
-        public BE_Pedido ListarObjeto(BE_Pedido pedido)
+        public BE_Pedido ListarObjeto(BE_Pedido pedido, DataSet ds = null)
         {
-            return oMPP_Pedido.ListarObjeto(pedido);
+            return MPP_Pedido.DevolverInstancia().ListarObjeto(pedido);
         }
 
         public bool agregarPlato()
@@ -95,7 +89,7 @@ namespace Business_Logic_Layer
 
         public bool Modificar(BE_Pedido pedido)
         {
-            return oMPP_Pedido.Modificar(pedido);
+            return MPP_Pedido.DevolverInstancia().Modificar(pedido);
         }
     }
 }

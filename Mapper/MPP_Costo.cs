@@ -138,27 +138,63 @@ namespace Mapper
                      }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
-        public decimal DevolverCosto(object tipo, decimal cantidad = 1,DataSet ds = null)
+
+        public decimal DevolverCosto(object tipo, decimal cantidad =1, DataSet ds = null)
         {
-            List<BE_Costo> listado = Listar();
-            BE_Costo cost;
-            decimal costo;
-            if (tipo is BE_Ingrediente)
+            if (ds is null)
             {
-                cost = listado.FindLast(x => ((BE_CostoIngrediente)x).Material.Codigo == ((BE_Ingrediente)tipo).Codigo);
-                costo = cost != null ? cost.DevolverCosto(cantidad) : 0; 
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
             }
-            else if (tipo is BE_Plato)
+            decimal costo;
+            var objeto = ds.Tables.Contains("Costo") ?
+                (from cos in ds.Tables["Costo"].AsEnumerable()
+                 where (cos[7].ToString() == TipoMaterial.Ingrediente.ToString() && Convert.ToInt32(cos[8]) == ((BE_Ingrediente)tipo).Codigo)
+                || (cos[7].ToString() == TipoMaterial.Plato.ToString() && Convert.ToInt32(cos[8]) == ((BE_Plato)tipo).Codigo)
+                 select (cos[7].ToString() == TipoMaterial.Ingrediente.ToString() && Convert.ToInt32(cos[8]) == ((BE_Ingrediente)tipo).Codigo) ?
+                     new BE_CostoIngrediente
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString())
+                     } : cos[7].ToString() == TipoMaterial.Plato.ToString() & Convert.ToInt32(cos[8]) == ((BE_Plato)tipo).Codigo ?
+                     new BE_CostoPlato
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString())
+                     } : (BE_Costo)new BE_CostoBebida
+                     {
+                         Codigo = Convert.ToInt32(cos[0]),
+                         DíaCosteo = Convert.ToDateTime(cos[1]),
+                         TamañoLoteCosteo = Convert.ToDecimal(cos[2]),
+                         MateriaPrima = Convert.ToDecimal(cos[3]),
+                         HorasHombre = Convert.ToDecimal(cos[4]),
+                         Energía = Convert.ToDecimal(cos[5]),
+                         OtrosGastos = Convert.ToDecimal(cos[6]),
+                         Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), cos[7].ToString())
+                     }).FirstOrDefault() : null;
+
+            if (objeto != null)
             {
-                cost = listado.FindLast(x => ((BE_CostoPlato)x).Material.Codigo == ((BE_Plato)tipo).Codigo);
-                costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
+                if (objeto is BE_CostoIngrediente) costo = ((BE_CostoIngrediente)objeto).DevolverCosto(cantidad);
+                else if (objeto is BE_CostoBebida) costo = ((BE_CostoBebida)objeto).DevolverCosto(cantidad);
+                else costo = ((BE_CostoPlato)objeto).DevolverCosto(cantidad);
             }
             else
             {
-                cost = listado.FindLast(x => ((BE_CostoBebida)x).Material.Codigo == ((BE_Bebida)tipo).Codigo);
-                costo = cost != null ? cost.DevolverCosto(cantidad) : 0;
+                costo = 0;
             }
-        
             return costo;
         }
 

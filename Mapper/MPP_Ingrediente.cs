@@ -60,7 +60,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
 
                  }).ToList() : null;
             return listaIngredientes;
@@ -85,7 +85,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
 
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
@@ -112,7 +112,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
 
                  }).ToList() : null;
             return listaIngredientes;
@@ -141,7 +141,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]), })
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
 
                  }).ToList() : null;
             return listaIngredientes;

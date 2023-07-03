@@ -22,7 +22,6 @@ namespace Trabajo_Final
         {
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
-            oBE_Compra = new BE_Compra();
             Aspecto.FormatearGRP(grpCompras);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvCompras);

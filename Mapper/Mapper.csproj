@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Composite\MPP_Permiso.cs" />
     <Compile Include="MPP_Asistencia.cs" />
+    <Compile Include="MPP_Plato-Stock.cs" />
     <Compile Include="MPP_Bebida.cs" />
     <Compile Include="MPP_Compra.cs" />
     <Compile Include="MPP_Cliente.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="MPP_Ingrediente.cs" />
     <Compile Include="Composite\MPP_Login.cs" />
     <Compile Include="MPP_Inventario.cs" />
+    <Compile Include="MPP_Bebida-Stock.cs" />
     <Compile Include="MPP_Material-Stock.cs" />
     <Compile Include="MPP_Mesa.cs" />
     <Compile Include="MPP_Novedad.cs" />

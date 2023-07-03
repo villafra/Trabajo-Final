@@ -31,6 +31,7 @@ namespace Trabajo_Final
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMenu));
             this.pnlMenu = new System.Windows.Forms.Panel();
+            this.picboxPanel = new System.Windows.Forms.PictureBox();
             this.txtUsuarioActivo = new System.Windows.Forms.TextBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,12 +70,12 @@ namespace Trabajo_Final
             this.bebidasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarbebidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comprasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ingresarPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.devolverPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.platosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarPlatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comprasToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ingresarPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.devolverPedidoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mesasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarMesasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,10 +90,9 @@ namespace Trabajo_Final
             this.gestionarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.picboxPanel = new System.Windows.Forms.PictureBox();
             this.pnlMenu.SuspendLayout();
-            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -104,6 +104,18 @@ namespace Trabajo_Final
             this.pnlMenu.Size = new System.Drawing.Size(258, 965);
             this.pnlMenu.TabIndex = 0;
             this.pnlMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMenu_MouseDown);
+            // 
+            // picboxPanel
+            // 
+            this.picboxPanel.Image = global::Trabajo_Final.Properties.Resources.Picture4;
+            this.picboxPanel.Location = new System.Drawing.Point(0, 0);
+            this.picboxPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.picboxPanel.Name = "picboxPanel";
+            this.picboxPanel.Size = new System.Drawing.Size(254, 227);
+            this.picboxPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picboxPanel.TabIndex = 11;
+            this.picboxPanel.TabStop = false;
+            this.picboxPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picboxPanel_MouseDown);
             // 
             // txtUsuarioActivo
             // 
@@ -206,7 +218,7 @@ namespace Trabajo_Final
             this.empleadosToolStripMenuItem2,
             this.clientesToolStripMenuItem2});
             this.personasToolStripMenuItem.Name = "personasToolStripMenuItem";
-            this.personasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.personasToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.personasToolStripMenuItem.Tag = "Sub";
             this.personasToolStripMenuItem.Text = "Personas";
             // 
@@ -216,7 +228,7 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem,
             this.cargarNovedadesToolStripMenuItem});
             this.empleadosToolStripMenuItem2.Name = "empleadosToolStripMenuItem2";
-            this.empleadosToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.empleadosToolStripMenuItem2.Size = new System.Drawing.Size(166, 26);
             this.empleadosToolStripMenuItem2.Tag = "SubSub";
             this.empleadosToolStripMenuItem2.Text = "Empleados";
             this.empleadosToolStripMenuItem2.Click += new System.EventHandler(this.empleadosToolStripMenuItem2_Click);
@@ -224,7 +236,7 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem
             // 
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.listadoToolStripMenuItem.Tag = "Comp1";
             this.listadoToolStripMenuItem.Text = "Listado";
             this.listadoToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -233,7 +245,7 @@ namespace Trabajo_Final
             // cargarNovedadesToolStripMenuItem
             // 
             this.cargarNovedadesToolStripMenuItem.Name = "cargarNovedadesToolStripMenuItem";
-            this.cargarNovedadesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cargarNovedadesToolStripMenuItem.Size = new System.Drawing.Size(215, 26);
             this.cargarNovedadesToolStripMenuItem.Tag = "Comp3";
             this.cargarNovedadesToolStripMenuItem.Text = "Cargar Novedades";
             this.cargarNovedadesToolStripMenuItem.Click += new System.EventHandler(this.cargarNovedadesToolStripMenuItem_Click);
@@ -241,7 +253,7 @@ namespace Trabajo_Final
             // clientesToolStripMenuItem2
             // 
             this.clientesToolStripMenuItem2.Name = "clientesToolStripMenuItem2";
-            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.clientesToolStripMenuItem2.Size = new System.Drawing.Size(166, 26);
             this.clientesToolStripMenuItem2.Tag = "Comp4";
             this.clientesToolStripMenuItem2.Text = "Clientes";
             // 
@@ -253,7 +265,7 @@ namespace Trabajo_Final
             this.costosToolStripMenuItem1,
             this.inventarioToolStripMenuItem1});
             this.materialesToolStripMenuItem1.Name = "materialesToolStripMenuItem1";
-            this.materialesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.materialesToolStripMenuItem1.Size = new System.Drawing.Size(209, 26);
             this.materialesToolStripMenuItem1.Tag = "Sub";
             this.materialesToolStripMenuItem1.Text = "Materiales";
             // 
@@ -317,7 +329,7 @@ namespace Trabajo_Final
             this.salónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.combinarMesaToolStripMenuItem});
             this.salónToolStripMenuItem.Name = "salónToolStripMenuItem";
-            this.salónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.salónToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.salónToolStripMenuItem.Tag = "Sub";
             this.salónToolStripMenuItem.Text = "Salón";
             // 
@@ -332,14 +344,14 @@ namespace Trabajo_Final
             // proveedoresToolStripMenuItem
             // 
             this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.proveedoresToolStripMenuItem.Tag = "Comp12";
             this.proveedoresToolStripMenuItem.Text = "Proveedores";
             // 
             // métodosDePagoToolStripMenuItem1
             // 
             this.métodosDePagoToolStripMenuItem1.Name = "métodosDePagoToolStripMenuItem1";
-            this.métodosDePagoToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.métodosDePagoToolStripMenuItem1.Size = new System.Drawing.Size(209, 26);
             this.métodosDePagoToolStripMenuItem1.Tag = "Comp13";
             this.métodosDePagoToolStripMenuItem1.Text = "Métodos de Pago";
             // 
@@ -350,7 +362,7 @@ namespace Trabajo_Final
             this.permisosToolStripMenuItem,
             this.usuariosToolStripMenuItem});
             this.sistemaToolStripMenuItem.Name = "sistemaToolStripMenuItem";
-            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.sistemaToolStripMenuItem.Size = new System.Drawing.Size(209, 26);
             this.sistemaToolStripMenuItem.Tag = "Sub";
             this.sistemaToolStripMenuItem.Text = "Sistema";
             this.sistemaToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -393,8 +405,8 @@ namespace Trabajo_Final
             this.materialesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ingredientesToolStripMenuItem1,
             this.bebidasToolStripMenuItem1,
-            this.comprasToolStripMenuItem1,
-            this.platosToolStripMenuItem1});
+            this.platosToolStripMenuItem1,
+            this.comprasToolStripMenuItem1});
             this.materialesToolStripMenuItem.Name = "materialesToolStripMenuItem";
             this.materialesToolStripMenuItem.Size = new System.Drawing.Size(92, 31);
             this.materialesToolStripMenuItem.Text = "Materiales";
@@ -405,7 +417,7 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem3,
             this.gestionarIngredientesToolStripMenuItem});
             this.ingredientesToolStripMenuItem1.Name = "ingredientesToolStripMenuItem1";
-            this.ingredientesToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
+            this.ingredientesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.ingredientesToolStripMenuItem1.Tag = "Sub";
             this.ingredientesToolStripMenuItem1.Text = "Ingredientes";
             // 
@@ -431,23 +443,50 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem1,
             this.gestionarbebidasToolStripMenuItem});
             this.bebidasToolStripMenuItem1.Name = "bebidasToolStripMenuItem1";
-            this.bebidasToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
+            this.bebidasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.bebidasToolStripMenuItem1.Tag = "Sub";
             this.bebidasToolStripMenuItem1.Text = "Bebidas";
             // 
             // listadoToolStripMenuItem1
             // 
             this.listadoToolStripMenuItem1.Name = "listadoToolStripMenuItem1";
-            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(212, 26);
+            this.listadoToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem1.Tag = "Comp22";
             this.listadoToolStripMenuItem1.Text = "Listado";
+            this.listadoToolStripMenuItem1.Click += new System.EventHandler(this.listadoToolStripMenuItem1_Click);
             // 
             // gestionarbebidasToolStripMenuItem
             // 
             this.gestionarbebidasToolStripMenuItem.Name = "gestionarbebidasToolStripMenuItem";
-            this.gestionarbebidasToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.gestionarbebidasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gestionarbebidasToolStripMenuItem.Tag = "Comp23";
             this.gestionarbebidasToolStripMenuItem.Text = "Gestionar Bebidas";
+            this.gestionarbebidasToolStripMenuItem.Click += new System.EventHandler(this.gestionarbebidasToolStripMenuItem_Click);
+            // 
+            // platosToolStripMenuItem1
+            // 
+            this.platosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listadoToolStripMenuItem2,
+            this.gestionarPlatosToolStripMenuItem});
+            this.platosToolStripMenuItem1.Name = "platosToolStripMenuItem1";
+            this.platosToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.platosToolStripMenuItem1.Tag = "Sub";
+            this.platosToolStripMenuItem1.Text = "Platos";
+            // 
+            // listadoToolStripMenuItem2
+            // 
+            this.listadoToolStripMenuItem2.Name = "listadoToolStripMenuItem2";
+            this.listadoToolStripMenuItem2.Size = new System.Drawing.Size(199, 26);
+            this.listadoToolStripMenuItem2.Tag = "Comp24";
+            this.listadoToolStripMenuItem2.Text = "Listado";
+            this.listadoToolStripMenuItem2.Click += new System.EventHandler(this.listadoToolStripMenuItem2_Click);
+            // 
+            // gestionarPlatosToolStripMenuItem
+            // 
+            this.gestionarPlatosToolStripMenuItem.Name = "gestionarPlatosToolStripMenuItem";
+            this.gestionarPlatosToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.gestionarPlatosToolStripMenuItem.Tag = "Comp25";
+            this.gestionarPlatosToolStripMenuItem.Text = "Gestionar Platos";
             // 
             // comprasToolStripMenuItem1
             // 
@@ -455,7 +494,7 @@ namespace Trabajo_Final
             this.ingresarPedidoToolStripMenuItem,
             this.devolverPedidoToolStripMenuItem});
             this.comprasToolStripMenuItem1.Name = "comprasToolStripMenuItem1";
-            this.comprasToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
+            this.comprasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.comprasToolStripMenuItem1.Tag = "Sub";
             this.comprasToolStripMenuItem1.Text = "Compras";
             // 
@@ -474,30 +513,6 @@ namespace Trabajo_Final
             this.devolverPedidoToolStripMenuItem.Tag = "Comp27";
             this.devolverPedidoToolStripMenuItem.Text = "Devolver Pedido";
             this.devolverPedidoToolStripMenuItem.Click += new System.EventHandler(this.devolverPedidoToolStripMenuItem_Click);
-            // 
-            // platosToolStripMenuItem1
-            // 
-            this.platosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoToolStripMenuItem2,
-            this.gestionarPlatosToolStripMenuItem});
-            this.platosToolStripMenuItem1.Name = "platosToolStripMenuItem1";
-            this.platosToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
-            this.platosToolStripMenuItem1.Tag = "Sub";
-            this.platosToolStripMenuItem1.Text = "Platos";
-            // 
-            // listadoToolStripMenuItem2
-            // 
-            this.listadoToolStripMenuItem2.Name = "listadoToolStripMenuItem2";
-            this.listadoToolStripMenuItem2.Size = new System.Drawing.Size(199, 26);
-            this.listadoToolStripMenuItem2.Tag = "Comp24";
-            this.listadoToolStripMenuItem2.Text = "Listado";
-            // 
-            // gestionarPlatosToolStripMenuItem
-            // 
-            this.gestionarPlatosToolStripMenuItem.Name = "gestionarPlatosToolStripMenuItem";
-            this.gestionarPlatosToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
-            this.gestionarPlatosToolStripMenuItem.Tag = "Comp25";
-            this.gestionarPlatosToolStripMenuItem.Text = "Gestionar Platos";
             // 
             // mesasToolStripMenuItem
             // 
@@ -621,18 +636,6 @@ namespace Trabajo_Final
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // picboxPanel
-            // 
-            this.picboxPanel.Image = global::Trabajo_Final.Properties.Resources.Picture4;
-            this.picboxPanel.Location = new System.Drawing.Point(0, 0);
-            this.picboxPanel.Margin = new System.Windows.Forms.Padding(4);
-            this.picboxPanel.Name = "picboxPanel";
-            this.picboxPanel.Size = new System.Drawing.Size(254, 227);
-            this.picboxPanel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picboxPanel.TabIndex = 11;
-            this.picboxPanel.TabStop = false;
-            this.picboxPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picboxPanel_MouseDown);
-            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -651,9 +654,9 @@ namespace Trabajo_Final
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseMove);
             this.pnlMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

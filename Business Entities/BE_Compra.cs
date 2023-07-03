@@ -7,10 +7,10 @@ using Abstraction_Layer;
 
 namespace Business_Entities
 {
-    public class BE_Compra : IEntidable
+    public abstract class BE_Compra : IEntidable
     {
         public int Codigo { get; set; }
-        public BE_Ingrediente ID_Ingrediente { get; set; }
+        public MaterialCompra Material { get; set; }
         public decimal Cantidad { get; set; }
         public DateTime FechaCompra { get; set; }
         public DateTime FechaEntrega { get; set; }
@@ -29,4 +29,10 @@ namespace Business_Entities
         Devolucion,
         Rechazada
     }
+    public enum MaterialCompra
+    {
+        Ingrediente = 1,
+        Bebida = 2
+    }
+
 }

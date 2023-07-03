@@ -49,12 +49,28 @@ namespace Business_Logic_Layer
         }
         public decimal CalcularCostoNeto(BE_Compra compra)
         {
-            decimal costo = MPP_Costo.DevolverInstancia().DevolverCosto(compra.ID_Ingrediente, compra.CantidadRecibida);
+            decimal costo;
+            if (compra is BE_CompraIngrediente)
+            {
+                costo = MPP_Costo.DevolverInstancia().DevolverCosto(((BE_CompraIngrediente)compra).ID_Material, compra.CantidadRecibida);
+            }
+            else
+            {
+                costo = MPP_Costo.DevolverInstancia().DevolverCosto(((BE_CompraBebida)compra).ID_Material, compra.CantidadRecibida);
+            } 
             return costo;
         }
         public decimal CalcularCostoTeorico(BE_Compra compra)
         {
-            decimal costo = MPP_Costo.DevolverInstancia().DevolverCosto(compra.ID_Ingrediente, compra.Cantidad);
+            decimal costo;
+            if (compra is BE_CompraIngrediente)
+            {
+                costo = MPP_Costo.DevolverInstancia().DevolverCosto(((BE_CompraIngrediente)compra).ID_Material, compra.Cantidad);
+            }
+            else
+            {
+                costo = MPP_Costo.DevolverInstancia().DevolverCosto(((BE_CompraBebida)compra).ID_Material, compra.Cantidad);
+            }
             return costo;
         }
     }

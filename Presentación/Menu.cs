@@ -436,5 +436,56 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void listadoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoBebidas);
+            if (frm != null)
+            {
+                ((frmListadoBebidas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoBebidas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void listadoToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoPlatos);
+            if (frm != null)
+            {
+                ((frmListadoPlatos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoPlatos();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void gestionarbebidasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBebidas);
+            if (frm != null)
+            {
+                ((frmBebidas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmBebidas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

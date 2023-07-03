@@ -20,14 +20,16 @@ namespace Trabajo_Final
         public BE_Compra oBE_Compra;
         BLL_Compra oBLL_Compra;
         BLL_Ingrediente oBLL_Ingrediente;
+        BLL_Bebida oBLL_Bebida;
         private bool status;
         public frmNuevaCompra()
         {
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
             oBLL_Ingrediente = new BLL_Ingrediente();
+            oBLL_Bebida = new BLL_Bebida();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
-            Cálculos.DataSourceCombo(ComboIngrediente,oBLL_Ingrediente.Listar(),"Ingrediente");
+            Cálculos.DataSourceCombo(comboTipoMat, Enum.GetNames(typeof(MaterialCompra)), "Tipo Material");
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -45,35 +47,74 @@ namespace Trabajo_Final
 
         private bool Viejo()
         {
-            oBE_Compra.Codigo = Convert.ToInt32(txtCodigo.Text);
-            oBE_Compra.ID_Ingrediente = (BE_Ingrediente)ComboIngrediente.SelectedItem;
-            oBE_Compra.Cantidad = numCantidad.Value;
-            oBE_Compra.FechaCompra = dtpFechaCompra.Value;
-            oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
-            oBE_Compra.Activo = status;
+            if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
+            {
+                oBE_Compra.Codigo = Convert.ToInt32(txtCodigo.Text);
+                ((BE_CompraIngrediente)oBE_Compra).ID_Material = (BE_Ingrediente)comboMaterial.SelectedItem;
+                oBE_Compra.Cantidad = numCantidad.Value;
+                oBE_Compra.FechaCompra = dtpFechaCompra.Value;
+                oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
+                oBE_Compra.Activo = status;
+            }
+            else
+            {
+                oBE_Compra.Codigo = Convert.ToInt32(txtCodigo.Text);
+                ((BE_CompraBebida)oBE_Compra).ID_Material = (BE_Bebida)comboMaterial.SelectedItem;
+                oBE_Compra.Cantidad = numCantidad.Value;
+                oBE_Compra.FechaCompra = dtpFechaCompra.Value;
+                oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
+                oBE_Compra.Activo = status;
+            }
+            
             return oBLL_Compra.Modificar(oBE_Compra);
         }
 
         private bool Nuevo()
         {
-            oBE_Compra = new BE_Compra();
-            oBE_Compra.ID_Ingrediente = (BE_Ingrediente)ComboIngrediente.SelectedItem;
-            oBE_Compra.Cantidad = numCantidad.Value;
-            oBE_Compra.FechaCompra = dtpFechaCompra.Value;
-            oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
+            if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
+            {
+                oBE_Compra = new BE_CompraIngrediente();
+                ((BE_CompraIngrediente)oBE_Compra).ID_Material = (BE_Ingrediente)comboMaterial.SelectedItem;
+                oBE_Compra.Cantidad = numCantidad.Value;
+                oBE_Compra.FechaCompra = dtpFechaCompra.Value;
+                oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
+            }
+            else
+            {
+                oBE_Compra = new BE_CompraBebida();
+                ((BE_CompraBebida)oBE_Compra).ID_Material = (BE_Bebida)comboMaterial.SelectedItem;
+                oBE_Compra.Cantidad = numCantidad.Value;
+                oBE_Compra.FechaCompra = dtpFechaCompra.Value;
+                oBE_Compra.FechaEntrega = dtpFechaEntrega.Value;
+            }
             return oBLL_Compra.Guardar(oBE_Compra);
+
         }
         private void ImportarEmpleado()
         {
             if (oBE_Compra != null)
             {
-                txtCodigo.Text = oBE_Compra.Codigo.ToString();
-                ComboIngrediente.Text = oBE_Compra.ID_Ingrediente.ToString();
-                numCantidad.Value = oBE_Compra.Cantidad;
-                dtpFechaCompra.Value = oBE_Compra.FechaCompra;
-                dtpFechaEntrega.Value = oBE_Compra.FechaEntrega;
-                numCosto.Value = oBE_Compra.Status == StausComp.Entregada ? oBE_Compra.Costo : oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
-                status = oBE_Compra.Activo;
+                if (oBE_Compra is BE_CompraIngrediente)
+                {
+                    txtCodigo.Text = oBE_Compra.Codigo.ToString();
+                    comboMaterial.Text = ((BE_CompraIngrediente)oBE_Compra).ID_Material.ToString();
+                    numCantidad.Value = oBE_Compra.Cantidad;
+                    dtpFechaCompra.Value = oBE_Compra.FechaCompra;
+                    dtpFechaEntrega.Value = oBE_Compra.FechaEntrega;
+                    numCosto.Value = oBE_Compra.Status == StausComp.Entregada ? oBE_Compra.Costo : oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
+                    status = oBE_Compra.Activo;
+                }
+                else
+                {
+                    txtCodigo.Text = oBE_Compra.Codigo.ToString();
+                    comboMaterial.Text = ((BE_CompraBebida)oBE_Compra).ID_Material.ToString();
+                    numCantidad.Value = oBE_Compra.Cantidad;
+                    dtpFechaCompra.Value = oBE_Compra.FechaCompra;
+                    dtpFechaEntrega.Value = oBE_Compra.FechaEntrega;
+                    numCosto.Value = oBE_Compra.Status == StausComp.Entregada ? oBE_Compra.Costo : oBLL_Compra.CalcularCostoTeorico(oBE_Compra);
+                    status = oBE_Compra.Activo;
+                }
+
             }
         }
 
@@ -84,8 +125,38 @@ namespace Trabajo_Final
 
         private void numCantidad_Leave(object sender, EventArgs e)
         {
-            numCosto.Value = oBLL_Compra.CalcularCostoTeorico(new BE_Compra { ID_Ingrediente = (BE_Ingrediente)ComboIngrediente.SelectedItem, Cantidad = numCantidad.Value });
+            if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
+            {
+                numCosto.Value = oBLL_Compra.CalcularCostoTeorico(new BE_CompraIngrediente { ID_Material = (BE_Ingrediente)comboMaterial.SelectedItem, Cantidad = numCantidad.Value });
+            }
+            else
+            {
+                numCosto.Value = oBLL_Compra.CalcularCostoTeorico(new BE_CompraBebida { ID_Material = (BE_Bebida)comboMaterial.SelectedItem, Cantidad = numCantidad.Value });
+            }
         }
-        
+
+        private void comboTipoMat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                comboMaterial.DataSource = null;
+
+                if (comboTipoMat.SelectedItem != null)
+                {
+                    if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
+                    {
+                        oBLL_Ingrediente = new BLL_Ingrediente();
+                        Cálculos.DataSourceCombo(comboMaterial, oBLL_Ingrediente.Listar(), "Ingredientes");
+                    }
+                    else
+                    {
+                        oBLL_Bebida = new BLL_Bebida();
+                        Cálculos.DataSourceCombo(comboMaterial, oBLL_Bebida.Listar(), "Bebidas");
+                    }
+                }
+            }
+            catch { }
+        }
     }
 }

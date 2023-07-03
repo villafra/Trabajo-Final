@@ -292,7 +292,7 @@ namespace Data_Access_Layer
             bool existe;
             try
             {
-                return existe = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf) != null ? doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                return existe = doc.Root.Element(tupla.NodoRoot) != null ? doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
                                 .Any(x => x.Element("ID_Ingrediente").Value == tupla.Xelement.Element("ID_Ingrediente").Value
                                 && x.Element("Lote").Value == tupla.Xelement.Element("Lote").Value):false;
             }

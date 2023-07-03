@@ -138,8 +138,13 @@ namespace Mapper
                 {
                     ((BE_CompraIngrediente)compra).ID_Material.Status = StatusIng.Disponible;
                 }
+                return Xml_Database.DevolverInstancia().Modificar(ListadoXML) & MPP_Ingrediente.DevolverInstancia().Modificar(((BE_CompraIngrediente)compra).ID_Material);
             }
-            return Xml_Database.DevolverInstancia().Modificar(ListadoXML) & MPP_Ingrediente.DevolverInstancia().Modificar(((BE_CompraIngrediente)compra).ID_Material);
+            else
+            {
+                return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
+            }
+
         }
 
         private BE_TuplaXML CrearCompraXML(BE_Compra compra)

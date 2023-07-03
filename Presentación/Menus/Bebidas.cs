@@ -35,7 +35,7 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevoIngrediente frm = new frmNuevoIngrediente();
+            frmNuevaBebida frm = new frmNuevaBebida();
             frm.ShowDialog();
             ActualizarListado();
         }

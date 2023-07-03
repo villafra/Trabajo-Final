@@ -28,6 +28,7 @@ namespace Trabajo_Final
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
             oBLL_Material = new BLL_Material_Stock();
+            oBLL_Bebida = new BLL_Bebida_Stock();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
         }
 
@@ -94,7 +95,10 @@ namespace Trabajo_Final
                     txtNroFac.Text = oBE_Compra.NroFactura;
                     dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                     numCantidad.Value = oBE_Compra.CantidadRecibida;
-                    txtLote.Enabled = false;
+                    if (!((BE_CompraBebida)oBE_Compra).ID_Material.GestionLote)
+                    {
+                        txtLote.Enabled = false;
+                    }
                 }
                 
             }

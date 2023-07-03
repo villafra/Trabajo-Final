@@ -48,6 +48,7 @@ namespace Mapper
 
         public bool Guardar(BE_Bebida bebida)
         {
+            ListadoXML = new List<BE_TuplaXML>();
             if (bebida.DevolverNombre() != "Bebida")
             {
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
@@ -75,11 +76,13 @@ namespace Mapper
                  {
                      Codigo = Convert.ToInt32(beb[0]),
                      Nombre = beb[1].ToString(),
-                     Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
+                     Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[2].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
-                     VidaUtil = Convert.ToInt32(beb[7])
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM),beb[6].ToString()),
+                     VidaUtil = Convert.ToInt32(beb[7]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9])
                  } : beb[2].ToString() == "Bebida_Preparada" ?
                  (BE_Bebida)new BE_Bebida_Preparada
                  {
@@ -88,9 +91,11 @@ namespace Mapper
                      Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
                      VidaUtil = Convert.ToInt32(beb[7]),
-                     ABV = Convert.ToDecimal(beb[8]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9]),
+                     ABV = Convert.ToDecimal(beb[10]),
                      ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Bebidas_Ingrediente(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(beb[0]) })
                  } : new BE_Bebida_Alcoholica
                  {
@@ -99,9 +104,11 @@ namespace Mapper
                      Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
                      VidaUtil = Convert.ToInt32(beb[7]),
-                     ABV = Convert.ToDecimal(beb[8]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9]),
+                     ABV = Convert.ToDecimal(beb[10]),
                  }).ToList() : null;
 
             return ListaCompleta;
@@ -125,8 +132,10 @@ namespace Mapper
                      Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
-                     VidaUtil = Convert.ToInt32(beb[7])
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
+                     VidaUtil = Convert.ToInt32(beb[7]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9])
                  } : beb[2].ToString() == "Bebida_Preparada" ?
                  (BE_Bebida)new BE_Bebida_Preparada
                  {
@@ -135,9 +144,11 @@ namespace Mapper
                      Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
                      VidaUtil = Convert.ToInt32(beb[7]),
-                     ABV = Convert.ToDecimal(beb[8]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9]),
+                     ABV = Convert.ToDecimal(beb[10]),
                      ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Bebidas_Ingrediente(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(beb[0]) })
                  } : new BE_Bebida_Alcoholica
                  {
@@ -146,9 +157,11 @@ namespace Mapper
                      Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
                      Presentacion = Convert.ToDecimal(beb[4]),
                      CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
-                     UnidadMedida = beb[6].ToString(),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
                      VidaUtil = Convert.ToInt32(beb[7]),
-                     ABV = Convert.ToDecimal(beb[8]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9]),
+                     ABV = Convert.ToDecimal(beb[10])
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -184,12 +197,14 @@ namespace Mapper
                 new XElement("ID", bebida.Codigo.ToString()),
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo_Bebida",bebida.DevolverNombre()),
-                new XElement("Tipo", bebida.Tipo),
+                new XElement("Tipo", bebida.Tipo.ToString()),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
                 new XElement("Costo_Unitario", bebida.CostoUnitario.ToString()),
                 new XElement("Unidad_Medida", bebida.UnidadMedida),
-                new XElement("Vida_Util", bebida.VidaUtil.ToString())
-                );
+                new XElement("Vida_Util", bebida.VidaUtil.ToString()),
+                new XElement("Gestion_Lote", bebida.GestionLote.ToString()),
+                new XElement("Activo", bebida.Activo.ToString())
+                );;
             }
             else
             {
@@ -197,11 +212,13 @@ namespace Mapper
                 new XElement("ID", Cálculos.IDPadleft(bebida.Codigo)),
                 new XElement("Nombre", bebida.Nombre),
                 new XElement("Tipo_Bebida", bebida.DevolverNombre()),
-                new XElement("Tipo", bebida.Tipo),
+                new XElement("Tipo", bebida.Tipo.ToString()),
                 new XElement("Presentación", bebida.Presentacion.ToString()),
                 new XElement("Costo_Unitario", bebida.CostoUnitario.ToString()),
                 new XElement("Unidad_Medida", bebida.UnidadMedida),
                 new XElement("Vida_Util", bebida.VidaUtil.ToString()),
+                new XElement("Gestion_Lote", bebida.GestionLote.ToString()),
+                new XElement("Activo", bebida.Activo.ToString()),
                 new XElement("ABV", ((BE_Bebida_Alcoholica)bebida).ABV.ToString())
                 );
             }

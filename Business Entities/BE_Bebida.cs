@@ -15,24 +15,31 @@ namespace Business_Entities
         public Tipo_Bebida Tipo { get; set; }
         public decimal Presentacion { get; set; }
         public decimal CostoUnitario { get; set; }
-        public string UnidadMedida { get; set; }
+        public UM UnidadMedida { get; set; }
         public int VidaUtil { get; set; }
+        public bool GestionLote { get; set; }
         public bool Activo { get; set; } = true;
+
 
         public string DevolverNombre()
         {
             string clase = this.GetType().Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
+        public override string ToString()
+        {
+            return Nombre;
+        }
     }
     public enum Tipo_Bebida
     {
-        Agua,
-        Jugo,
-        Gaseosa,
-        Cerveza,
-        Vino,
-        Trago,
-        Aperitivo,
+        Agua = 1,
+        Jugo = 2,
+        Licuado = 3,
+        Gaseosa = 4,
+        Cerveza = 5,
+        Vino = 6,
+        Trago = 7,
+        Aperitivo = 8,
     }
 }

@@ -50,6 +50,7 @@ namespace Trabajo_Final
             if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
             {
                 oBE_Compra.Codigo = Convert.ToInt32(txtCodigo.Text);
+                oBE_Compra.Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comboTipoMat.SelectedItem.ToString());
                 ((BE_CompraIngrediente)oBE_Compra).ID_Material = (BE_Ingrediente)comboMaterial.SelectedItem;
                 oBE_Compra.Cantidad = numCantidad.Value;
                 oBE_Compra.FechaCompra = dtpFechaCompra.Value;
@@ -59,6 +60,7 @@ namespace Trabajo_Final
             else
             {
                 oBE_Compra.Codigo = Convert.ToInt32(txtCodigo.Text);
+                oBE_Compra.Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comboTipoMat.SelectedItem.ToString());
                 ((BE_CompraBebida)oBE_Compra).ID_Material = (BE_Bebida)comboMaterial.SelectedItem;
                 oBE_Compra.Cantidad = numCantidad.Value;
                 oBE_Compra.FechaCompra = dtpFechaCompra.Value;
@@ -74,6 +76,7 @@ namespace Trabajo_Final
             if (comboTipoMat.SelectedItem.ToString() == "Ingrediente")
             {
                 oBE_Compra = new BE_CompraIngrediente();
+                oBE_Compra.Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comboTipoMat.SelectedItem.ToString());
                 ((BE_CompraIngrediente)oBE_Compra).ID_Material = (BE_Ingrediente)comboMaterial.SelectedItem;
                 oBE_Compra.Cantidad = numCantidad.Value;
                 oBE_Compra.FechaCompra = dtpFechaCompra.Value;
@@ -82,6 +85,7 @@ namespace Trabajo_Final
             else
             {
                 oBE_Compra = new BE_CompraBebida();
+                oBE_Compra.Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comboTipoMat.SelectedItem.ToString());
                 ((BE_CompraBebida)oBE_Compra).ID_Material = (BE_Bebida)comboMaterial.SelectedItem;
                 oBE_Compra.Cantidad = numCantidad.Value;
                 oBE_Compra.FechaCompra = dtpFechaCompra.Value;
@@ -97,6 +101,7 @@ namespace Trabajo_Final
                 if (oBE_Compra is BE_CompraIngrediente)
                 {
                     txtCodigo.Text = oBE_Compra.Codigo.ToString();
+                    comboTipoMat.Text = oBE_Compra.Material.ToString();
                     comboMaterial.Text = ((BE_CompraIngrediente)oBE_Compra).ID_Material.ToString();
                     numCantidad.Value = oBE_Compra.Cantidad;
                     dtpFechaCompra.Value = oBE_Compra.FechaCompra;
@@ -107,6 +112,7 @@ namespace Trabajo_Final
                 else
                 {
                     txtCodigo.Text = oBE_Compra.Codigo.ToString();
+                    comboTipoMat.Text = oBE_Compra.Material.ToString();
                     comboMaterial.Text = ((BE_CompraBebida)oBE_Compra).ID_Material.ToString();
                     numCantidad.Value = oBE_Compra.Cantidad;
                     dtpFechaCompra.Value = oBE_Compra.FechaCompra;

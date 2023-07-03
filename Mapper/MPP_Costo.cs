@@ -149,8 +149,8 @@ namespace Mapper
             decimal costo;
             var objeto = ds.Tables.Contains("Costo") ?
                 (from cos in ds.Tables["Costo"].AsEnumerable()
-                 where (cos[7].ToString() == TipoMaterial.Ingrediente.ToString() && Convert.ToInt32(cos[8]) == ((BE_Ingrediente)tipo).Codigo)
-                || (cos[7].ToString() == TipoMaterial.Plato.ToString() && Convert.ToInt32(cos[8]) == ((BE_Plato)tipo).Codigo)
+                 where (cos[7].ToString() == TipoMaterial.Ingrediente.ToString() && (tipo is BE_Ingrediente) && Convert.ToInt32(cos[8]) == ((BE_Ingrediente)tipo).Codigo)
+                || (cos[7].ToString() == TipoMaterial.Plato.ToString() && (tipo is BE_Plato) && Convert.ToInt32(cos[8]) == ((BE_Plato)tipo).Codigo)
                  select (cos[7].ToString() == TipoMaterial.Ingrediente.ToString() && Convert.ToInt32(cos[8]) == ((BE_Ingrediente)tipo).Codigo) ?
                      new BE_CostoIngrediente
                      {

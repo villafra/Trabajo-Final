@@ -12,7 +12,7 @@ namespace Business_Logic_Layer
 {
     public class BLL_Bebida : IGestionable<BE_Bebida>/*, IMovimentable<BE_Bebida>*/
     {
-        public void ActualizarStatus(BE_Bebida bebida, BE_Bebida.Tipo_Bebida tipo)
+        public void ActualizarStatus(BE_Bebida bebida, Tipo_Bebida tipo)
         {
             bebida.Tipo = tipo;
             Modificar(bebida);
@@ -59,7 +59,7 @@ namespace Business_Logic_Layer
             return MPP_Bebida.DevolverInstancia().Modificar(bebida);
         }
 
-        public BE_Bebida.Tipo_Bebida VerificarStatus(BE_Bebida bebida)
+        public Tipo_Bebida VerificarStatus(BE_Bebida bebida)
         {
             return bebida.Tipo;
         }

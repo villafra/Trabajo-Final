@@ -100,7 +100,7 @@ namespace Mapper
                 ds.Tables.Contains("Bebida-Ingrediente") != false ?
                 (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
                  join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                 on Convert.ToInt32(obj[1]) equals bebida.Codigo
+                 on Convert.ToInt32(obj[0]) equals bebida.Codigo
                  select new BE_Ingrediente
                  {
                      Codigo = Convert.ToInt32(ing[0]),

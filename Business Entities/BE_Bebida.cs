@@ -24,16 +24,15 @@ namespace Business_Entities
             string clase = this.GetType().Name;
             return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
-
-        public enum Tipo_Bebida
-        {
-            Agua,
-            Jugo,
-            Gaseosa,
-            Cerveza,
-            Vino,
-            Trago,
-            Aperitivo,
-        }
+    }
+    public enum Tipo_Bebida
+    {
+        Agua,
+        Jugo,
+        Gaseosa,
+        Cerveza,
+        Vino,
+        Trago,
+        Aperitivo,
     }
 }

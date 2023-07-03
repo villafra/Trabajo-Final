@@ -99,6 +99,7 @@ namespace Trabajo_Final
 
         private void comboEmpleado_Leave(object sender, EventArgs e)
         {
+            if (txtUsuario.Text.Length > 0)
             txtUsuario.Text = oBLL_Login.GenerarUsuario((BE_Empleado)comboEmpleado.SelectedItem);
         }
     }

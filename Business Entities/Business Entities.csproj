@@ -58,6 +58,7 @@
     <Compile Include="BE_Horario.cs" />
     <Compile Include="BE_Ingrediente.cs" />
     <Compile Include="BE_Inventario.cs" />
+    <Compile Include="BE_Bebida-Stock.cs" />
     <Compile Include="BE_Material-Stock.cs" />
     <Compile Include="BE_MesaCombinada.cs" />
     <Compile Include="BE_Novedad.cs" />

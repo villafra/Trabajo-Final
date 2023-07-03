@@ -277,8 +277,8 @@ namespace Data_Access_Layer
             bool existe;
             try
             {
-                return existe = !doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
-                                .Any(x => x.Element(element).Value == tupla.Xelement.Element(element).Value);
+                return existe = doc.Root.Element(tupla.NodoRoot) != null ? !doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                .Any(x => x.Element(element).Value == tupla.Xelement.Element(element).Value):true;
             }
             catch (Exception ex)
             {

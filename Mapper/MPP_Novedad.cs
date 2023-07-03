@@ -53,7 +53,7 @@ namespace Mapper
                      Codigo = Convert.ToInt32(nov[0]),
                      Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(nov[1])},ds),
                      VacacionesDisponibles = Convert.ToInt32(nov[2]),
-                     listadoAsistencia = null,
+                     listadoAsistencia = MPP_Asistencia.DevolverInstancia().Asistencia_Empleado(new BE_Novedad { Codigo = Convert.ToInt32(nov[0]) }, ds),
                      Activo = Convert.ToBoolean(nov[4])
                  }).ToList() : null;
             return listado;
@@ -81,12 +81,36 @@ namespace Mapper
                  }).FirstOrDefault() : null;
             return ObjectoEncontrado;
         }
+        public BE_Novedad Novedad_Empleado(BE_Empleado empleado, DataSet ds = null)
+        {
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
+            BE_Novedad ObjectoEncontrado = ds.Tables.Contains("Novedad") != false ?
+                (from nov in ds.Tables["Novedad"].AsEnumerable()
+                 where Convert.ToInt32(nov[1]) == empleado.Codigo
+                 select new BE_Novedad
+                 {
+                     Codigo = Convert.ToInt32(nov[0]),
+                     VacacionesDisponibles = Convert.ToInt32(nov[2]),
+                     listadoAsistencia = MPP_Asistencia.DevolverInstancia().Asistencia_Empleado(new BE_Novedad { Codigo = Convert.ToInt32(nov[0]) }, ds),
+                     Activo = Convert.ToBoolean(nov[4])
+
+                 }).FirstOrDefault() : null;
+            return ObjectoEncontrado;
+        }
         public bool Modificar(BE_Novedad Novedad)
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearNovedadXML(Novedad));
             return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
+        }
+        public bool ExisteNovedad(BE_Empleado empleado)
+        {
+            return Xml_Database.DevolverInstancia().Existe(BuscarNovedadXML(empleado), "ID_Empleado");
         }
         private BE_TuplaXML CrearNovedadXML(BE_Novedad Novedad)
         {
@@ -94,10 +118,21 @@ namespace Mapper
             nuevaTupla.NodoRoot = "Novedades";
             nuevaTupla.NodoLeaf = "Novedad";
             XElement nuevaNovedad = new XElement("Novedad",
-                new XElement("ID", Novedad.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(Novedad.Codigo)),
                 new XElement("ID_Empleado", Novedad.Empleado.Codigo.ToString()),
                 new XElement("Vacaciones_Disponibles", Novedad.VacacionesDisponibles.ToString()),
                 new XElement("Activo", Novedad.Activo.ToString())
+                );
+            nuevaTupla.Xelement = nuevaNovedad;
+            return nuevaTupla;
+        }
+        private BE_TuplaXML BuscarNovedadXML(BE_Empleado empleado)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Novedades";
+            nuevaTupla.NodoLeaf = "Novedad";
+            XElement nuevaNovedad = new XElement("Novedad",
+                new XElement("ID_Empleado", empleado.Codigo.ToString())
                 );
             nuevaTupla.Xelement = nuevaNovedad;
             return nuevaTupla;

@@ -36,5 +36,16 @@ namespace Business_Logic_Layer
         {
             return MPP_Asistencia.DevolverInstancia().Modificar(asistencia);
         }
+        public bool CompletarAsistencias(BE_Asistencia asistencia, DateTime inicio, DateTime fin)
+        {
+            List<BE_Asistencia> listado = new List<BE_Asistencia>();
+            for (DateTime fecha = inicio; fecha <= fin; fecha = fecha.AddDays(1))
+            {
+                BE_Asistencia nueva = (BE_Asistencia)asistencia.Clone();
+                nueva.Fecha = fecha;
+                listado.Add(nueva);
+            }
+            return MPP_Asistencia.DevolverInstancia().Guardar(listado);
+        }
     }
 }

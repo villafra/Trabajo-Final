@@ -110,6 +110,12 @@
     <Compile Include="Menus\BackUp.Designer.cs">
       <DependentUpon>BackUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Novedades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Novedades.Designer.cs">
+      <DependentUpon>Novedades.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoIngredientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,12 @@
     <Compile Include="Menus\Rotacion.Designer.cs">
       <DependentUpon>Rotacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\ModificarAsistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\ModificarAsistencias.Designer.cs">
+      <DependentUpon>ModificarAsistencias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\NuevaMesa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +169,12 @@
     </Compile>
     <Compile Include="Menus\SubMenus\NuevaCombMesa.Designer.cs">
       <DependentUpon>NuevaCombMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\Asistencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\Asistencias.Designer.cs">
+      <DependentUpon>Asistencias.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevoIngresoCompra.cs">
       <SubType>Form</SubType>
@@ -262,6 +280,9 @@
     <EmbeddedResource Include="Menus\BackUp.resx">
       <DependentUpon>BackUp.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Novedades.resx">
+      <DependentUpon>Novedades.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoIngredientes.resx">
       <DependentUpon>ListadoIngredientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +298,9 @@
     <EmbeddedResource Include="Menus\MenuGerente.resx">
       <DependentUpon>MenuGerente.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\ModificarAsistencias.resx">
+      <DependentUpon>ModificarAsistencias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaMesa.resx">
       <DependentUpon>NuevaMesa.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaCombMesa.resx">
       <DependentUpon>NuevaCombMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\Asistencias.resx">
+      <DependentUpon>Asistencias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoIngresoCompra.resx">
       <DependentUpon>NuevoIngresoCompra.cs</DependentUpon>

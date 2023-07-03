@@ -36,5 +36,24 @@ namespace Business_Logic_Layer
         {
             return MPP_Novedad.DevolverInstancia().Modificar(Novedad);
         }
+        public bool ExisteNovedad(BE_Empleado empleado)
+        {
+            return MPP_Novedad.DevolverInstancia().ExisteNovedad(empleado);
+        }
+        public BE_Novedad Novedad_Empleado(BE_Empleado empleado, DataSet ds = null)
+        {
+            return MPP_Novedad.DevolverInstancia().Novedad_Empleado(empleado);
+        }
+        public bool AsignarVacacionesXLey(BE_Novedad novedad)
+        {
+            int antiguedad = novedad.Empleado.CalcularAños(novedad.Empleado.FechaIngreso);
+            int vacaciones;
+            if (antiguedad >= 0 && antiguedad < 5) vacaciones = 14;
+            else if (antiguedad >= 5 && antiguedad < 10) vacaciones = 21;
+            else if (antiguedad >= 10 && antiguedad < 20) vacaciones = 28;
+            else vacaciones = 35;
+            novedad.VacacionesDisponibles = vacaciones;
+            return MPP_Novedad.DevolverInstancia().Modificar(novedad);
+        }
     }
 }

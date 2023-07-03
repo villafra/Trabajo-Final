@@ -10,12 +10,16 @@ namespace Business_Entities
 {
     public class BE_Novedad:IEntidable
     {
+        
         public int Codigo { get; set; }
         public BE_Empleado Empleado { get; set; }
         public int VacacionesDisponibles { get; set; }
         public List<BE_Asistencia> listadoAsistencia { get; set; }
         public bool Activo { get; set; }
 
-
+        public override string ToString()
+        {
+            return Empleado.DevolverNombre();
+        }
     }
 }

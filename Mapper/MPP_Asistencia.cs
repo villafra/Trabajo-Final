@@ -40,6 +40,11 @@ namespace Mapper
             ListadoXML.Add(CrearAsistenciaXML(asistencia));
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
+        public bool Guardar(List<BE_Asistencia> asistencias)
+        {
+            ListadoXML = CrearAsistenciasXML(asistencias);
+            return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
+        }
 
         public List<BE_Asistencia> Listar()
         {
@@ -51,12 +56,12 @@ namespace Mapper
                  select new BE_Asistencia
                  {
                      Codigo = Convert.ToInt32(asi[0]),
-                     Fecha = Convert.ToDateTime(asi[1]),
-                     Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(asi[2]) }, ds),
+                     Novedad = MPP_Novedad.DevolverInstancia().ListarObjeto(new BE_Novedad { Codigo = Convert.ToInt32(asi[1]) }),
+                     Fecha = Convert.ToDateTime(asi[2]),
                      Asistencia = Convert.ToBoolean(asi[3]),
                      HoraIngreso = TimeSpan.Parse(asi[4].ToString()),
                      HoraEgreso = TimeSpan.Parse(asi[5].ToString()),
-                     Motivo = (Inasistencia)Enum.Parse(typeof(Inasistencia),asi[6].ToString())
+                     Motivo = (Inasistencia)Enum.Parse(typeof(Inasistencia), asi[6].ToString())
                  }).ToList() : null;
             return listado;
                 
@@ -75,14 +80,37 @@ namespace Mapper
                  select new BE_Asistencia
                  {
                      Codigo = Convert.ToInt32(asi[0]),
-                     Fecha = Convert.ToDateTime(asi[1]),
-                     Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(asi[2]) }, ds),
+                     Novedad = MPP_Novedad.DevolverInstancia().ListarObjeto(new BE_Novedad { Codigo = Convert.ToInt32(asi[1]) }),
+                     Fecha = Convert.ToDateTime(asi[2]),
                      Asistencia = Convert.ToBoolean(asi[3]),
                      HoraIngreso = TimeSpan.Parse(asi[4].ToString()),
                      HoraEgreso = TimeSpan.Parse(asi[5].ToString()),
                      Motivo = (Inasistencia)Enum.Parse(typeof(Inasistencia), asi[6].ToString())
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
+        }
+        public List<BE_Asistencia>Asistencia_Empleado(BE_Novedad novedad, DataSet ds = null)
+        {
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+
+            List<BE_Asistencia> listado = ds.Tables.Contains("Asistencia") != false ?
+                (from asi in ds.Tables["Asistencia"].AsEnumerable()
+                 where Convert.ToInt32(asi[1]) == novedad.Codigo
+                 select new BE_Asistencia
+                 {
+                     Codigo = Convert.ToInt32(asi[0]),
+                     Novedad = MPP_Novedad.DevolverInstancia().ListarObjeto(new BE_Novedad { Codigo = Convert.ToInt32(asi[1])}),
+                     Fecha = Convert.ToDateTime(asi[2]),
+                     Asistencia = Convert.ToBoolean(asi[3]),
+                     HoraIngreso = TimeSpan.Parse(asi[4].ToString()),
+                     HoraEgreso = TimeSpan.Parse(asi[5].ToString()),
+                     Motivo = (Inasistencia)Enum.Parse(typeof(Inasistencia), asi[6].ToString())
+                 }).ToList() : null;
+            return listado.OrderBy(x=> x.Fecha).ToList();
         }
 
         public bool Modificar(BE_Asistencia asistencia)
@@ -97,16 +125,38 @@ namespace Mapper
             nuevaTupla.NodoRoot = "Asistencias";
             nuevaTupla.NodoLeaf = "Asistencia";
             XElement nuevaAsistencia = new XElement("Asistencia",
-                new XElement("ID", asistencia.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(asistencia.Codigo)),
+                new XElement("ID_Novedad", asistencia.Novedad.Codigo.ToString()),
                 new XElement("Fecha", asistencia.Fecha.ToString("dd/MM/yyyy HH:mm:ss")),
-                new XElement("ID_Empleado",asistencia.Empleado.Codigo.ToString()),
-                new XElement("Asistencia", asistencia.Asistencia.ToString()),
-                new XElement("Hora_Ingreso",asistencia.HoraIngreso.ToString("HH:mm:ss")),
-                new XElement("Hora_Egreso", asistencia.HoraEgreso.ToString("HH:mm:ss")),
+                new XElement("Asistio", asistencia.Asistencia.ToString()),
+                new XElement("Hora_Ingreso", asistencia.Asistencia ? asistencia.HoraIngreso.ToString() : TimeSpan.Zero.ToString()),
+                new XElement("Hora_Egreso", asistencia.Asistencia ? asistencia.HoraEgreso.ToString() : TimeSpan.Zero.ToString()),
                 new XElement("Motivo", asistencia.Motivo.ToString())
                 );
             nuevaTupla.Xelement = nuevaAsistencia;
             return nuevaTupla;
+        }
+        private List<BE_TuplaXML> CrearAsistenciasXML(List<BE_Asistencia> asistencias)
+        {
+            List<BE_TuplaXML> ListadeAsistencias = new List<BE_TuplaXML>();
+            foreach (BE_Asistencia asistencia in asistencias)
+            {
+                BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+                nuevaTupla.NodoRoot = "Asistencias";
+                nuevaTupla.NodoLeaf = "Asistencia";
+                XElement nuevaAsistencia = new XElement("Asistencia",
+                new XElement("ID", Cálculos.IDPadleft(asistencia.Codigo)),
+                new XElement("ID_Novedad", asistencia.Novedad.Codigo.ToString()),
+                new XElement("Fecha", asistencia.Fecha.ToString("dd/MM/yyyy HH:mm:ss")),
+                new XElement("Asistio", asistencia.Asistencia.ToString()),
+                new XElement("Hora_Ingreso", asistencia.Asistencia ? asistencia.HoraIngreso.ToString() : TimeSpan.Zero.ToString()),
+                new XElement("Hora_Egreso", asistencia.Asistencia ? asistencia.HoraEgreso.ToString() : TimeSpan.Zero.ToString()),
+                new XElement("Motivo", asistencia.Motivo.ToString())
+                );
+                nuevaTupla.Xelement = nuevaAsistencia;
+                ListadeAsistencias.Add(nuevaTupla);
+            }
+            return ListadeAsistencias;
         }
     }
 }

@@ -55,5 +55,24 @@ namespace Business_Logic_Layer
             novedad.VacacionesDisponibles = vacaciones;
             return MPP_Novedad.DevolverInstancia().Modificar(novedad);
         }
+        public bool DescontarVacaciones (BE_Novedad novedad, int cantidad)
+        {
+            if (novedad.VacacionesDisponibles >= cantidad)
+            {
+                novedad.VacacionesDisponibles -= cantidad;
+            }
+            else { throw new Exception("No quedan días de vacaciones disponibles."); }
+            return MPP_Novedad.DevolverInstancia().Modificar(novedad);
+        }
+        public bool DescontarVacaciones(BE_Novedad novedad, DateTime inicio, DateTime fin)
+        {
+            TimeSpan dias = fin.Date - inicio.Date.AddDays(-1);
+            if (novedad.VacacionesDisponibles >= dias.Days)
+            {
+                novedad.VacacionesDisponibles -= dias.Days;
+            }
+            else { throw new Exception("La cantidad de días seleccionados supera las vacaciones disponibles."); }
+            return MPP_Novedad.DevolverInstancia().Modificar(novedad);
+        }
     }
 }

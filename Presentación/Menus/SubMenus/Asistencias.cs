@@ -45,11 +45,6 @@ namespace Trabajo_Final
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
-        private bool Viejo()
-        {
-            return true;
-        }
-
         private bool Nuevo()
         {
             oBE_Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
@@ -74,15 +69,24 @@ namespace Trabajo_Final
                 oBE_Asistencia.HoraIngreso = TimeSpan.Zero;
                 oBE_Asistencia.HoraEgreso = TimeSpan.Zero;
             }
-            if (dtpFechaInicio.Value == dtpFechaFin.Value)
+            if (dtpFechaInicio.Value.Date == dtpFechaFin.Value.Date)
             {
                 
                 oBE_Asistencia.Fecha = dtpFechaInicio.Value;
-                return oBLL_Asistencia.Guardar(oBE_Asistencia);
+                if (oBE_Asistencia.Motivo == Inasistencia.Vacaciones)
+                {
+                    return oBLL_Asistencia.Guardar(oBE_Asistencia) & oBLL_Novedad.DescontarVacaciones(oBE_Novedad,1);
+                }
+                else return oBLL_Asistencia.Guardar(oBE_Asistencia);
             }
             else
             {
-                return oBLL_Asistencia.CompletarAsistencias(oBE_Asistencia, dtpFechaInicio.Value, dtpFechaFin.Value);
+                if (oBE_Asistencia.Motivo == Inasistencia.Vacaciones)
+                {
+                    return oBLL_Asistencia.CompletarAsistencias(oBE_Asistencia, dtpFechaInicio.Value, dtpFechaFin.Value) &
+                        oBLL_Novedad.DescontarVacaciones(oBE_Novedad,dtpFechaInicio.Value,dtpFechaFin.Value);
+                }
+                else return oBLL_Asistencia.CompletarAsistencias(oBE_Asistencia, dtpFechaInicio.Value, dtpFechaFin.Value);
             }
             
             

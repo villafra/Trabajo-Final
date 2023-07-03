@@ -57,6 +57,10 @@ namespace Trabajo_Final
                 oBE_Asistencia.Motivo = (Inasistencia)comboMotivo.SelectedItem;
                 oBE_Asistencia.HoraIngreso = TimeSpan.Zero;
                 oBE_Asistencia.HoraEgreso = TimeSpan.Zero;
+                if (oBE_Asistencia.Motivo == Inasistencia.Vacaciones)
+                {
+                    return oBLL_Asistencia.Modificar(oBE_Asistencia) & oBLL_Novedad.DescontarVacaciones(oBE_Novedad, 1);
+                }
             }
                 return oBLL_Asistencia.Modificar(oBE_Asistencia);
             

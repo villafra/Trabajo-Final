@@ -66,11 +66,13 @@ namespace Mapper
             return listaIngredientes;
             
         }
-
-
         public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente, DataSet ds=null)
         {
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             BE_Ingrediente ObjetoEncontrado = ds.Tables.Contains("Ingrediente") != false ?
                 (from ing in ds.Tables["Ingrediente"].AsEnumerable()
                  where Convert.ToInt32(ing[0]) == ingrediente.Codigo
@@ -91,10 +93,13 @@ namespace Mapper
             return ObjetoEncontrado;
         }
 
-        public List<BE_Ingrediente> Bebidas_Ingrediente(BE_Bebida_Preparada bebida)
+        public List<BE_Ingrediente> Bebidas_Ingrediente(BE_Bebida_Preparada bebida, DataSet ds = null)
         {
-            DataSet ds = new DataSet();
-            ds = Xml_Database.DevolverInstancia().Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
                 ds.Tables.Contains("Bebida-Ingrediente") != false ?

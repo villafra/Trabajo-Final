@@ -186,6 +186,10 @@ namespace Automate_Layer
                 FormatearBoton(btn);
             }
         };
+        public static Action<GroupBox> FormatearGRPREcetas = (grp) =>
+        {
+            FormatearControlExterno(grp);
+        };
         public static Action<GroupBox> FormatearGRPPermisos = (grp) =>
         {
             FormatearControlExterno(grp);

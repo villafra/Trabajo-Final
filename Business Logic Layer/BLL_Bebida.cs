@@ -48,7 +48,10 @@ namespace Business_Logic_Layer
         {
             return MPP_Bebida.DevolverInstancia().Listar();
         }
-
+        public List<BE_Bebida_Preparada> ListarPreparadas()
+        {
+            return MPP_Bebida.DevolverInstancia().ListarPreparadas();
+        }
         public BE_Bebida ListarObjeto(BE_Bebida bebida, DataSet ds = null)
         {
             return MPP_Bebida.DevolverInstancia().ListarObjeto(bebida);

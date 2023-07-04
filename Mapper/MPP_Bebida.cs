@@ -35,15 +35,11 @@ namespace Mapper
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
                 {
                     ListadoXML.Add(CrearBebidaXML((BE_Bebida_Preparada)bebida));
-                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
-                    {
-                        ListadoXML.Add(ing);
-                    }
                 }
                 else ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
             }
             else ListadoXML.Add(CrearBebidaXML(bebida));
-            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Bebida bebida)
@@ -54,10 +50,6 @@ namespace Mapper
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
                 {
                     ListadoXML.Add(CrearBebidaXML((BE_Bebida_Preparada)bebida));
-                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
-                    {
-                        ListadoXML.Add(ing);
-                    }
                 }
                 else ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));
             }
@@ -113,7 +105,30 @@ namespace Mapper
 
             return ListaCompleta;
         }
+        public List<BE_Bebida_Preparada> ListarPreparadas()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+            List<BE_Bebida_Preparada> Preparadas = ds.Tables.Contains("Bebida") != false ?
+                (from beb in ds.Tables["Bebida"].AsEnumerable()
+                 where beb[2].ToString() == "Bebida_Preparada"
+                 select new BE_Bebida_Preparada
+                 {
+                     Codigo = Convert.ToInt32(beb[0]),
+                     Nombre = beb[1].ToString(),
+                     Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
+                     Presentacion = Convert.ToDecimal(beb[4]),
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
+                     UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
+                     VidaUtil = Convert.ToInt32(beb[7]),
+                     GestionLote = Convert.ToBoolean(beb[8]),
+                     Activo = Convert.ToBoolean(beb[9]),
+                     ABV = Convert.ToDecimal(beb[10]),
+                     ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Bebidas_Ingrediente(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(beb[0]) },ds)
+                 }).ToList() : null;
 
+            return Preparadas;
+        }
         public BE_Bebida ListarObjeto(BE_Bebida bebida, DataSet ds = null)
         {
             if (ds is null)
@@ -173,10 +188,6 @@ namespace Mapper
                 if (bebida.DevolverNombre() == "Bebida_Preparada")
                 {
                     ListadoXML.Add(CrearBebidaXML((BE_Bebida_Preparada)bebida));
-                    foreach (BE_TuplaXML ing in CrearListaBebidaIngrediente((BE_Bebida_Preparada)bebida))
-                    {
-                        ListadoXML.Add(ing);
-                    }
                 }
                 else ListadoXML.Add(CrearBebidaXML((BE_Bebida_Alcoholica)bebida));   
             }
@@ -219,28 +230,12 @@ namespace Mapper
                 new XElement("Vida_Util", bebida.VidaUtil.ToString()),
                 new XElement("Gestion_Lote", bebida.GestionLote.ToString()),
                 new XElement("Activo", bebida.Activo.ToString()),
-                new XElement("ABV", ((BE_Bebida_Alcoholica)bebida).ABV.ToString())
+                new XElement("ABV", bebida is BE_Bebida_Alcoholica ? ((BE_Bebida_Alcoholica)bebida).ABV.ToString(): ((BE_Bebida_Preparada)bebida).ABV.ToString())
                 );
             }
             nuevaTupla.Xelement = nuevaBebida;
             return nuevaTupla;
         }
-        public List<BE_TuplaXML> CrearListaBebidaIngrediente(BE_Bebida_Preparada bebida)
-        {
-            List<BE_TuplaXML> listadeIngredientes = new List<BE_TuplaXML>();
-            foreach (BE_Ingrediente ingrediente in bebida.ListaIngredientes)
-            {
-                BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-                nuevaTupla.NodoRoot = "Bebidas-Ingredientes";
-                nuevaTupla.NodoLeaf = "Bebida-Ingrediente";
-                XElement nuevaBebidaIngrediente = new XElement("Bebida-Ingrediente",
-                    new XElement("ID_Bebida", Cálculos.IDPadleft(bebida.Codigo)),
-                    new XElement("ID_Ingrediente", Cálculos.IDPadleft(ingrediente.Codigo))
-                    );
-                nuevaTupla.Xelement = nuevaBebidaIngrediente;
-                listadeIngredientes.Add(nuevaTupla);
-            }
-            return listadeIngredientes;
-        }
+        
     }
 }

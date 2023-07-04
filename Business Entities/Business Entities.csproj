@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BE_Asistencia.cs" />
     <Compile Include="BE_BackUp.cs" />
+    <Compile Include="BE_BebidaReceta.cs" />
     <Compile Include="BE_CompraBebida.cs" />
     <Compile Include="BE_CompraIngrediente.cs" />
     <Compile Include="BE_Plato-Stock.cs" />

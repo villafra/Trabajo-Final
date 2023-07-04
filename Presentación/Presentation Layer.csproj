@@ -116,6 +116,12 @@
     <Compile Include="Menus\Bebidas.Designer.cs">
       <DependentUpon>Bebidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\RecetaBebidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\RecetaBebidas.Designer.cs">
+      <DependentUpon>RecetaBebidas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoPlatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +272,12 @@
     <Compile Include="Menus\Mesas.Designer.cs">
       <DependentUpon>Mesas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\NuevaReceta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaReceta.Designer.cs">
+      <DependentUpon>NuevaReceta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Usuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Bebidas.resx">
       <DependentUpon>Bebidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\RecetaBebidas.resx">
+      <DependentUpon>RecetaBebidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoPlatos.resx">
       <DependentUpon>ListadoPlatos.cs</DependentUpon>
@@ -384,6 +399,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Mesas.resx">
       <DependentUpon>Mesas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevaReceta.resx">
+      <DependentUpon>NuevaReceta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>

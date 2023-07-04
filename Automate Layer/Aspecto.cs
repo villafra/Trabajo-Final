@@ -255,6 +255,39 @@ namespace Automate_Layer
             // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
 
         };
+        public static Action<DataGridView> FormatearDGVRecetas = (dgv) =>
+        {
+            dgv.BackgroundColor = SystemColors.Control;
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv.AutoGenerateColumns = true;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.Control;
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = SystemColors.ControlText;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = SystemColors.Control;
+            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = SystemColors.ControlText;
+
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.DefaultCellStyle.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            dgv.DefaultCellStyle.BackColor = SystemColors.Window;
+            dgv.DefaultCellStyle.ForeColor = SystemColors.ControlText;
+            dgv.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+            dgv.DefaultCellStyle.SelectionForeColor = SystemColors.HighlightText;
+
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgv.AllowUserToResizeColumns = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.GridColor = Color.FromArgb(44, 68, 101);
+            dgv.RowHeadersVisible = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
+
+        };
         public static Action<Panel> FormatearPanelMenu = (panel) =>
         {
             panel.BackColor = Color.FromArgb(46, 51, 73);

@@ -47,10 +47,11 @@ namespace Trabajo_Final
             this.grpIngredientes = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtCantReceta = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnSacar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).BeginInit();
             this.grpReceta.SuspendLayout();
             this.grpIngredientes.SuspendLayout();
@@ -90,6 +91,7 @@ namespace Trabajo_Final
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(216, 22);
             this.txtLote.TabIndex = 9;
+            this.txtLote.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblLote
             // 
@@ -106,6 +108,7 @@ namespace Trabajo_Final
             this.txtBebida.Name = "txtBebida";
             this.txtBebida.Size = new System.Drawing.Size(216, 22);
             this.txtBebida.TabIndex = 7;
+            this.txtBebida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtAlternativa
             // 
@@ -113,6 +116,7 @@ namespace Trabajo_Final
             this.txtAlternativa.Name = "txtAlternativa";
             this.txtAlternativa.Size = new System.Drawing.Size(393, 22);
             this.txtAlternativa.TabIndex = 6;
+            this.txtAlternativa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl2
             // 
@@ -140,6 +144,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(1, "rechazado.png");
             this.Listado.Images.SetKeyName(2, "mas.png");
             this.Listado.Images.SetKeyName(3, "menos (2).png");
+            this.Listado.Images.SetKeyName(4, "lapiz (3).png");
             // 
             // comboIngrediente
             // 
@@ -155,6 +160,8 @@ namespace Trabajo_Final
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(149, 22);
             this.txtCantidad.TabIndex = 10;
+            this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // btnConfirmar
             // 
@@ -172,6 +179,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // btnCancelar
             // 
@@ -189,12 +197,15 @@ namespace Trabajo_Final
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // grpIngredientes
             // 
+            this.grpIngredientes.BackColor = System.Drawing.SystemColors.Control;
+            this.grpIngredientes.Controls.Add(this.btnModificar);
             this.grpIngredientes.Controls.Add(this.label3);
             this.grpIngredientes.Controls.Add(this.label2);
-            this.grpIngredientes.Controls.Add(this.textBox3);
+            this.grpIngredientes.Controls.Add(this.txtCantReceta);
             this.grpIngredientes.Controls.Add(this.btnAgregar);
             this.grpIngredientes.Controls.Add(this.btnSacar);
             this.grpIngredientes.Controls.Add(this.label1);
@@ -226,12 +237,14 @@ namespace Trabajo_Final
             this.label2.TabIndex = 17;
             this.label2.Text = "Lts";
             // 
-            // textBox3
+            // txtCantReceta
             // 
-            this.textBox3.Location = new System.Drawing.Point(165, 357);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(149, 22);
-            this.textBox3.TabIndex = 18;
+            this.txtCantReceta.Location = new System.Drawing.Point(165, 357);
+            this.txtCantReceta.Name = "txtCantReceta";
+            this.txtCantReceta.ReadOnly = true;
+            this.txtCantReceta.Size = new System.Drawing.Size(149, 22);
+            this.txtCantReceta.TabIndex = 18;
+            this.txtCantReceta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnAgregar
             // 
@@ -248,6 +261,7 @@ namespace Trabajo_Final
             this.btnAgregar.TabIndex = 16;
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
             // btnSacar
             // 
@@ -264,6 +278,7 @@ namespace Trabajo_Final
             this.btnSacar.TabIndex = 15;
             this.btnSacar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSacar.UseVisualStyleBackColor = true;
+            this.btnSacar.Click += new System.EventHandler(this.btnSacar_Click);
             // 
             // label1
             // 
@@ -273,6 +288,24 @@ namespace Trabajo_Final
             this.label1.Size = new System.Drawing.Size(27, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Lts";
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnModificar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.ImageIndex = 4;
+            this.btnModificar.ImageList = this.Listado;
+            this.btnModificar.Location = new System.Drawing.Point(623, 34);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(43, 40);
+            this.btnModificar.TabIndex = 20;
+            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Visible = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // frmNuevaReceta
             // 
@@ -287,6 +320,7 @@ namespace Trabajo_Final
             this.Name = "frmNuevaReceta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmNuevaReceta_FormClosed);
             this.Load += new System.EventHandler(this.frmNuevaReceta_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).EndInit();
             this.grpReceta.ResumeLayout(false);
@@ -314,9 +348,10 @@ namespace Trabajo_Final
         private System.Windows.Forms.GroupBox grpIngredientes;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtCantReceta;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnSacar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnModificar;
     }
 }

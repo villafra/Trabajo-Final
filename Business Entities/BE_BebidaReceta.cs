@@ -12,7 +12,9 @@ namespace Business_Entities
         public int Codigo { get; set; }
         public BE_Bebida_Preparada Bebida { get; set; }
         public BE_Ingrediente Ingrediente { get; set; }
+        public decimal Cantidad { get; set; }
         public string Alternativa { get; set; }
+        public bool Activo { get; set; } = true;
 
         public override string ToString()
         {

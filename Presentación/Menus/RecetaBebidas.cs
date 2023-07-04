@@ -19,6 +19,7 @@ namespace Trabajo_Final
         BLL_BebidaReceta oBLL_Receta;
         BE_Bebida_Preparada oBE_Bebida;
         BE_BebidaReceta oBE_Receta;
+        List<BE_BebidaReceta> listado;
         public frmRecetaBebidas()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace Trabajo_Final
             try
             {
                 oBE_Bebida = (BE_Bebida_Preparada)comboBebida.SelectedItem;
+                if (oBE_Bebida != null)
                 Cálculos.DataSourceCombo(comboAlt, oBLL_Receta.ListarAlternativasDataSource(oBE_Bebida),"Alternativas Vigentes");
             }
             catch { }
@@ -51,9 +53,10 @@ namespace Trabajo_Final
             try
             {
                 oBE_Receta = (BE_BebidaReceta)comboAlt.SelectedItem;
-                if (oBE_Receta != null)
+                if (oBE_Receta != null && comboAlt.Text != "")
                 Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Bebida, oBE_Receta));
-            }
+                else Cálculos.GrillaEnBlanco(dgvReceta);
+            }   
             catch { }
         }
 
@@ -61,7 +64,47 @@ namespace Trabajo_Final
         {
             frmNuevaReceta frm = new frmNuevaReceta();
             frm.oBE_Bebida = oBE_Bebida;
-            frm.ShowDialog();
+            frm.Owner = this;
+            frm.nuevo = true;
+            frm.CerrarForm += ActualizarListado;
+            frm.Show();
+            
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (oBE_Receta != null && oBE_Bebida!= null)
+            {
+                frmNuevaReceta frm = new frmNuevaReceta();
+                frm.Owner = this;
+                frm.oBE_Bebida = oBE_Bebida;
+                frm.oBE_Receta = oBE_Receta;
+                frm.nuevo = false;
+                frm.CerrarForm += ActualizarListado;
+                frm.RecuperarReceta();
+                frm.Show();
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            listado = oBLL_Receta.ListarObjeto(oBE_Bebida, oBE_Receta);
+            foreach (BE_BebidaReceta beb in listado)
+            {
+                beb.Activo = false;
+            }
+            oBLL_Receta.Modificar(listado);
+            ActualizarListado();
+        }
+
+        private void btnDesbloquear_Click(object sender, EventArgs e)
+        {
+            listado = oBLL_Receta.ListarObjeto(oBE_Bebida, oBE_Receta);
+            foreach (BE_BebidaReceta beb in listado)
+            {
+                beb.Activo = true;
+            }
+            oBLL_Receta.Modificar(listado);
             ActualizarListado();
         }
     }

@@ -37,14 +37,11 @@ namespace Trabajo_Final
             this.comboAlt = new System.Windows.Forms.ComboBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
-            this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).BeginInit();
             this.grpBebidas.SuspendLayout();
@@ -54,7 +51,7 @@ namespace Trabajo_Final
             // comboBebida
             // 
             this.comboBebida.FormattingEnabled = true;
-            this.comboBebida.Location = new System.Drawing.Point(21, 94);
+            this.comboBebida.Location = new System.Drawing.Point(182, 94);
             this.comboBebida.Name = "comboBebida";
             this.comboBebida.Size = new System.Drawing.Size(233, 24);
             this.comboBebida.TabIndex = 1;
@@ -78,9 +75,7 @@ namespace Trabajo_Final
             this.grpBebidas.Controls.Add(this.comboAlt);
             this.grpBebidas.Controls.Add(this.lbl2);
             this.grpBebidas.Controls.Add(this.lbl1);
-            this.grpBebidas.Controls.Add(this.btnReset);
             this.grpBebidas.Controls.Add(this.comboBebida);
-            this.grpBebidas.Controls.Add(this.btBuscar);
             this.grpBebidas.Location = new System.Drawing.Point(102, 57);
             this.grpBebidas.Name = "grpBebidas";
             this.grpBebidas.Size = new System.Drawing.Size(1120, 168);
@@ -91,7 +86,7 @@ namespace Trabajo_Final
             // comboAlt
             // 
             this.comboAlt.FormattingEnabled = true;
-            this.comboAlt.Location = new System.Drawing.Point(304, 94);
+            this.comboAlt.Location = new System.Drawing.Point(465, 94);
             this.comboAlt.Name = "comboAlt";
             this.comboAlt.Size = new System.Drawing.Size(473, 24);
             this.comboAlt.TabIndex = 6;
@@ -100,7 +95,7 @@ namespace Trabajo_Final
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(301, 71);
+            this.lbl2.Location = new System.Drawing.Point(462, 71);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(152, 17);
             this.lbl2.TabIndex = 5;
@@ -109,27 +104,11 @@ namespace Trabajo_Final
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(21, 71);
+            this.lbl1.Location = new System.Drawing.Point(182, 71);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(82, 17);
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Elija Bebida";
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.ImageIndex = 1;
-            this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Restablecer";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
             // 
             // Listado
             // 
@@ -143,28 +122,11 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
             // 
-            // btBuscar
-            // 
-            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btBuscar.FlatAppearance.BorderSize = 0;
-            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBuscar.ImageIndex = 0;
-            this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBuscar.UseVisualStyleBackColor = true;
-            // 
             // grpAcciones
             // 
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnDesbloquear);
             this.grpAcciones.Controls.Add(this.btnAgregar);
-            this.grpAcciones.Controls.Add(this.btnResetPass);
             this.grpAcciones.Controls.Add(this.btnEliminar);
             this.grpAcciones.Location = new System.Drawing.Point(102, 765);
             this.grpAcciones.Name = "grpAcciones";
@@ -181,13 +143,14 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(161, 34);
+            this.btnModificar.Location = new System.Drawing.Point(325, 34);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(149, 50);
             this.btnModificar.TabIndex = 6;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnDesbloquear
             // 
@@ -197,13 +160,14 @@ namespace Trabajo_Final
             this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDesbloquear.ImageIndex = 6;
             this.btnDesbloquear.ImageList = this.Listado;
-            this.btnDesbloquear.Location = new System.Drawing.Point(965, 34);
+            this.btnDesbloquear.Location = new System.Drawing.Point(963, 34);
             this.btnDesbloquear.Name = "btnDesbloquear";
             this.btnDesbloquear.Size = new System.Drawing.Size(149, 50);
             this.btnDesbloquear.TabIndex = 9;
             this.btnDesbloquear.Text = "Desbloquear";
             this.btnDesbloquear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDesbloquear.UseVisualStyleBackColor = true;
+            this.btnDesbloquear.Click += new System.EventHandler(this.btnDesbloquear_Click);
             // 
             // btnAgregar
             // 
@@ -222,37 +186,22 @@ namespace Trabajo_Final
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnResetPass
-            // 
-            this.btnResetPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnResetPass.FlatAppearance.BorderSize = 0;
-            this.btnResetPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnResetPass.ImageIndex = 5;
-            this.btnResetPass.ImageList = this.Listado;
-            this.btnResetPass.Location = new System.Drawing.Point(810, 34);
-            this.btnResetPass.Name = "btnResetPass";
-            this.btnResetPass.Size = new System.Drawing.Size(149, 50);
-            this.btnResetPass.TabIndex = 8;
-            this.btnResetPass.Text = "Reset Pass";
-            this.btnResetPass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnResetPass.UseVisualStyleBackColor = true;
-            // 
             // btnEliminar
             // 
             this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEliminar.FlatAppearance.BorderSize = 0;
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.ImageIndex = 4;
+            this.btnEliminar.ImageIndex = 6;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(316, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(644, 34);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(149, 50);
             this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.Text = "Bloquear";
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // frmRecetaBebidas
             // 
@@ -276,11 +225,9 @@ namespace Trabajo_Final
 
         #endregion
         private System.Windows.Forms.ComboBox comboBebida;
-        private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.DataGridView dgvReceta;
         private System.Windows.Forms.GroupBox grpBebidas;
         private System.Windows.Forms.ImageList Listado;
-        private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Label lbl2;
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.ComboBox comboAlt;
@@ -288,7 +235,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Button btnEliminar;
     }
 }

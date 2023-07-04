@@ -54,7 +54,9 @@ namespace Mapper
                      Codigo = Convert.ToInt32(bi[0]),
                      Bebida = (BE_Bebida_Preparada)MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(bi[1]) }, ds),
                      Ingrediente = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(bi[2]) }, ds),
-                     Alternativa = bi[3].ToString()
+                     Cantidad = Convert.ToDecimal(bi[3]),
+                     Alternativa = bi[4].ToString(),
+                     Activo = Convert.ToBoolean(bi[5])
                  }).ToList() : null;
             return listado;
         }
@@ -69,13 +71,15 @@ namespace Mapper
 
             List<BE_BebidaReceta> ObjetoEncontrado = ds.Tables.Contains("Bebida-Ingrediente") != false ?
                 (from bi in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
-                 where Convert.ToInt32(bi[1]) == bebida.Codigo && alternativa.Alternativa == bi[3].ToString()
+                 where Convert.ToInt32(bi[1]) == bebida.Codigo && alternativa.Alternativa == bi[4].ToString()
                  select new BE_BebidaReceta
                  {
                      Codigo = Convert.ToInt32(bi[0]),
                      Bebida = (BE_Bebida_Preparada)MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(bi[1]) }, ds),
                      Ingrediente = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(bi[2]) }, ds),
-                     Alternativa = bi[3].ToString()
+                     Cantidad = Convert.ToDecimal(bi[3]),
+                     Alternativa = bi[4].ToString(),
+                     Activo = Convert.ToBoolean(bi[5])
                  }).OrderBy(x=> x.Ingrediente.Codigo).ToList() : null;
             return ObjetoEncontrado;
         }
@@ -86,12 +90,29 @@ namespace Mapper
 
             List<BE_BebidaReceta> listado = ds.Tables.Contains("Bebida-Ingrediente") != false ?
                 (from bi in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
-                 where Convert.ToInt32(bi[0]) == bebida.Codigo
+                 where Convert.ToInt32(bi[1]) == bebida.Codigo
+                 select bi[4].ToString()).Distinct().Select(alternativa =>
+                 new BE_BebidaReceta
+                 {
+                     Alternativa = alternativa
+                 }).ToList() : null;
+            return listado;
+        }
+        public BE_BebidaReceta ListarAlternativaVigente(BE_Bebida bebida)
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_BebidaReceta> listado = ds.Tables.Contains("Bebida-Ingrediente") != false ?
+                (from bi in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
+                 where Convert.ToInt32(bi[1]) == bebida.Codigo && Convert.ToBoolean(bi[5])
                  select new BE_BebidaReceta
                  {
-                     Alternativa = bi[3].ToString()
+                     Codigo = Convert.ToInt32(bi[0]),
+                     Alternativa = bi[4].ToString(),
                  }).ToList() : null;
-            return listado != null ? listado.Distinct().ToList(): listado;
+            BE_BebidaReceta vigente =  listado != null ? listado.Distinct().OrderByDescending(x=> x.Codigo).FirstOrDefault(): null;
+            return vigente;
         }
 
         public bool Modificar(List<BE_BebidaReceta> BebidaReceta)
@@ -113,7 +134,9 @@ namespace Mapper
                     new XElement("ID", Cálculos.IDPadleft(bebida.Codigo)),
                     new XElement("ID_Bebida", Cálculos.IDPadleft(bebida.Bebida.Codigo)),
                     new XElement("ID_Ingrediente", Cálculos.IDPadleft(bebida.Ingrediente.Codigo)),
-                    new XElement("Alternativa", bebida.Alternativa)
+                    new XElement("Cantidad", bebida.Cantidad.ToString()),
+                    new XElement("Alternativa", bebida.Alternativa),
+                    new XElement("Activo", bebida.Activo.ToString())
                     );
                 nuevaTupla.Xelement = nuevaBebidaIngrediente;
                 listadeIngredientes.Add(nuevaTupla);

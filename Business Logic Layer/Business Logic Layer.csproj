@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BLL_Asistencia.cs" />
     <Compile Include="BLL_BackUp.cs" />
+    <Compile Include="BLL_PlatoReceta.cs" />
     <Compile Include="BLL_BebidaReceta.cs" />
     <Compile Include="BLL_Plato-Stock.cs" />
     <Compile Include="BLL_Bebida.cs" />

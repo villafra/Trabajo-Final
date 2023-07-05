@@ -54,11 +54,10 @@ namespace Mapper
                  {
                      Codigo = Convert.ToInt32(platos[0]),
                      Nombre = Convert.ToString(platos[1]),
-                     Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                     Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                     Status = Convert.ToString(platos[4]),
-                     CostoUnitario = Convert.ToDecimal(platos[5]),
-                     Activo = Convert.ToBoolean(platos[6]),
+                     Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
+                     Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
+                     CostoUnitario = Convert.ToDecimal(platos[4]),
+                     Activo = Convert.ToBoolean(platos[5]),
                      ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
 
                  }).ToList() : null;
@@ -80,11 +79,10 @@ namespace Mapper
                  {
                      Codigo = Convert.ToInt32(platos[0]),
                      Nombre = Convert.ToString(platos[1]),
-                     Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                     Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                     Status = Convert.ToString(platos[4]),
-                     CostoUnitario = Convert.ToDecimal(platos[5]),
-                     Activo = Convert.ToBoolean(platos[6]),
+                     Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
+                     Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
+                     CostoUnitario = Convert.ToDecimal(platos[4]),
+                     Activo = Convert.ToBoolean(platos[5]),
                      ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
@@ -106,11 +104,10 @@ namespace Mapper
                      {
                          Codigo = Convert.ToInt32(platos[0]),
                          Nombre = Convert.ToString(platos[1]),
-                         Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                         Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                         Status = Convert.ToString(platos[4]),
-                         CostoUnitario = Convert.ToDecimal(platos[5]),
-                         Activo = Convert.ToBoolean(platos[6]),
+                         Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
+                         Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
+                         CostoUnitario = Convert.ToDecimal(platos[4]),
+                         Activo = Convert.ToBoolean(platos[5]),
                          ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
 
                      }).ToList() : null;
@@ -120,15 +117,14 @@ namespace Mapper
         private BE_TuplaXML CrearPlatoXML(BE_Plato plato)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
-            nuevaTupla.NodoRoot = "Plato";
-            nuevaTupla.NodoLeaf = "Platos";
+            nuevaTupla.NodoRoot = "Platos";
+            nuevaTupla.NodoLeaf = "Plato";
             XElement nuevoPlato = new XElement("Plato",
                 new XElement("ID",  Cálculos.IDPadleft(plato.Codigo)),
                 new XElement("Nombre", plato.Nombre.ToString()),
                 new XElement("Tipo", plato.Tipo.ToString()),
                 new XElement("Clase", plato.Clase.ToString()),
-                new XElement("Status", plato.Status.ToString()),
-                new XElement("Costo Unitario", plato.CostoUnitario.ToString()),
+                new XElement("Costo_Unitario", plato.CostoUnitario.ToString()),
                 new XElement("Activo",plato.Activo.ToString())
                 );
             nuevaTupla.Xelement = nuevoPlato;

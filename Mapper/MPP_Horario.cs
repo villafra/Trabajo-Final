@@ -99,11 +99,10 @@ namespace Mapper
                                                                                                    {
                                                                                                        Codigo = Convert.ToInt32(platos[0]),
                                                                                                        Nombre = Convert.ToString(platos[1]),
-                                                                                                       Tipo = (BE_Plato.Tipo_Plato)Enum.Parse(typeof(BE_Plato.Tipo_Plato), Convert.ToString(platos[2])),
-                                                                                                       Clase = (BE_Plato.Clasificación)Enum.Parse(typeof(BE_Plato.Clasificación), Convert.ToString(platos[3])),
-                                                                                                       Status = Convert.ToString(platos[4]),
-                                                                                                       CostoUnitario = Convert.ToDecimal(platos[5]),
-                                                                                                       Activo = Convert.ToBoolean(platos[6]),
+                                                                                                       Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
+                                                                                                       Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
+                                                                                                       CostoUnitario = Convert.ToDecimal(platos[4]),
+                                                                                                       Activo = Convert.ToBoolean(platos[5]),
                                                                                                        ListaIngredientes = ds.Tables.Contains("Ingrediente") & ds.Tables.Contains("Ingrediente-Pedido") != false ? (from obje in ds.Tables["Ingrediente-Plato"].AsEnumerable()
                                                                                                                             join ing in ds.Tables["Ingrediente"].AsEnumerable()
                                                                                                                             on Convert.ToInt32(obje[1]) equals Convert.ToInt32(platos[0])

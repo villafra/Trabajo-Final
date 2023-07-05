@@ -13,24 +13,32 @@ namespace Business_Entities
         public string Nombre { get; set; }
         public Tipo_Plato Tipo { get; set; }
         public Clasificación Clase { get; set; }
-        public string Status { get; set; }
         public decimal CostoUnitario { get; set; }
         public bool Activo { get; set; } = true;
         public List<BE_Ingrediente> ListaIngredientes { get; set; }
 
-        public enum Tipo_Plato
+        public string DevolverNombre()
         {
-            Entrada,
-            Plato_Principal,
-            Guarnición,
-            Postre
+            string clase = this.GetType().Name;
+            return clase.Substring(clase.IndexOf("_") + 1, clase.Length - clase.IndexOf("_") - 1);
         }
-        public enum Clasificación
+        public override string ToString()
         {
-            Regular,
-            Vegetariano,
-            Vegano,
-            Sin_TACC
+            return Codigo + "-" + Nombre;
         }
+    }
+    public enum Tipo_Plato
+    {
+        Entrada,
+        Plato_Principal,
+        Guarnición,
+        Postre
+    }
+    public enum Clasificación
+    {
+        Regular,
+        Vegetariano,
+        Vegano,
+        Sin_TACC
     }
 }

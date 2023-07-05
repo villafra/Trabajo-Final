@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Composite\MPP_Permiso.cs" />
     <Compile Include="MPP_Asistencia.cs" />
+    <Compile Include="MPP_PlatoReceta.cs" />
     <Compile Include="MPP_BebidaReceta.cs" />
     <Compile Include="MPP_Plato-Stock.cs" />
     <Compile Include="MPP_Bebida.cs" />

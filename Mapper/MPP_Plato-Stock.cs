@@ -150,7 +150,7 @@ namespace Mapper
             DataSet ds = new DataSet();
             ds = Xml_Database.DevolverInstancia().Listar();
 
-            List<BE_Plato_Stock> listaIngredientes = ds.Tables.Contains("Plato") != false ?
+            List<BE_Plato_Stock> listaIngredientes = ds.Tables.Contains("Plato") != false && ds.Tables.Contains("Plato-Stock") != false ?
                 (from mat in ds.Tables["Plato-Stock"].AsEnumerable()
                  join ing in ds.Tables["Bebida"].AsEnumerable()
                  on Convert.ToInt32(mat[1]) equals Convert.ToInt32(ing[0])

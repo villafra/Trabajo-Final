@@ -93,6 +93,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\Platos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\Platos.Designer.cs">
+      <DependentUpon>Platos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\Costos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +122,12 @@
     </Compile>
     <Compile Include="Menus\Bebidas.Designer.cs">
       <DependentUpon>Bebidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\RecetaPlatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\RecetaPlatos.Designer.cs">
+      <DependentUpon>RecetaPlatos.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\RecetaBebidas.cs">
       <SubType>Form</SubType>
@@ -171,6 +183,12 @@
     <Compile Include="Menus\SubMenus\ModificarAsistencias.Designer.cs">
       <DependentUpon>ModificarAsistencias.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\NuevoPlato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoPlato.Designer.cs">
+      <DependentUpon>NuevoPlato.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\NuevaBebida.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +200,12 @@
     </Compile>
     <Compile Include="Menus\SubMenus\NuevaMesa.Designer.cs">
       <DependentUpon>NuevaMesa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaRecetaP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevaRecetaP.Designer.cs">
+      <DependentUpon>NuevaRecetaP.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\NuevoCosto.cs">
       <SubType>Form</SubType>
@@ -308,6 +332,9 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\Platos.resx">
+      <DependentUpon>Platos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\Costos.resx">
       <DependentUpon>Costos.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Bebidas.resx">
       <DependentUpon>Bebidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\RecetaPlatos.resx">
+      <DependentUpon>RecetaPlatos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\RecetaBebidas.resx">
       <DependentUpon>RecetaBebidas.cs</DependentUpon>
@@ -350,11 +380,17 @@
     <EmbeddedResource Include="Menus\SubMenus\ModificarAsistencias.resx">
       <DependentUpon>ModificarAsistencias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoPlato.resx">
+      <DependentUpon>NuevoPlato.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaBebida.resx">
       <DependentUpon>NuevaBebida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevaMesa.resx">
       <DependentUpon>NuevaMesa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevaRecetaP.resx">
+      <DependentUpon>NuevaRecetaP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoCosto.resx">
       <DependentUpon>NuevoCosto.cs</DependentUpon>

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BE_Asistencia.cs" />
     <Compile Include="BE_BackUp.cs" />
+    <Compile Include="BE_PlatoReceta.cs" />
     <Compile Include="BE_BebidaReceta.cs" />
     <Compile Include="BE_CompraBebida.cs" />
     <Compile Include="BE_CompraIngrediente.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Composite\BE_PermisoHijo.cs" />
     <Compile Include="Composite\BE_PermisoPadre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\IngEnPla.cs" />
     <Compile Include="Vistas\IngEnBeb.cs" />
   </ItemGroup>
   <ItemGroup>

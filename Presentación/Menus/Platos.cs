@@ -13,37 +13,37 @@ using Business_Logic_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmBebidas : Form
+    public partial class frmPlatos : Form
     {
-        BLL_Bebida oBLL_Bebida;
-        BE_Bebida oBE_Bebida;
-        public frmBebidas()
+        BLL_Plato oBLL_Plato;
+        BE_Plato oBE_Plato;
+        public frmPlatos()
         {
             InitializeComponent();
-            oBLL_Bebida = new BLL_Bebida();
-            oBE_Bebida = new BE_Bebida();
-            Aspecto.FormatearGRP(grpBebidas);
+            oBLL_Plato = new BLL_Plato();
+            oBE_Plato = new BE_Plato();
+            Aspecto.FormatearGRP(grpPlatos);
             Aspecto.FormatearGRPAccion(grpAcciones);
-            Aspecto.FormatearDGV(dgvBebidas);
+            Aspecto.FormatearDGV(dgvPlatos);
             ActualizarListado();
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvBebidas, oBLL_Bebida.Listar());
-            dgvBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            Cálculos.RefreshGrilla(dgvPlatos, oBLL_Plato.Listar());
+            dgvPlatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevaBebida frm = new frmNuevaBebida();
+            frmNuevoPlato frm = new frmNuevoPlato();
             frm.ShowDialog();
             ActualizarListado();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevaBebida frm = new frmNuevaBebida();
-            frm.oBE_Bebida = oBE_Bebida;
+            frmNuevoPlato frm = new frmNuevoPlato();
+            frm.oBE_Plato = oBE_Plato;
             frm.ShowDialog();
             ActualizarListado();
         }
@@ -52,7 +52,7 @@ namespace Trabajo_Final
         {
             try
             {
-                oBE_Bebida = (BE_Bebida)dgvBebidas.SelectedRows[0].DataBoundItem;
+                oBE_Plato = (BE_Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
             }
             catch { }
 
@@ -60,12 +60,12 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Bebida.Baja(oBE_Bebida);
+            oBLL_Plato.Baja(oBE_Plato);
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(oBE_Bebida.DevolverNombre());
+            MessageBox.Show(oBE_Plato.DevolverNombre());
         }
     }
 }

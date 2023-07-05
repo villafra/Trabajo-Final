@@ -17,7 +17,7 @@ namespace Trabajo_Final
 {
     public partial class frmNuevaRecetaP : Form
     {
-        BLL_Plato oBLL_Plato;
+        BLL_Plato_Stock oBLL_Plato;
         BLL_PlatoReceta oBLL_Receta;
         BLL_Ingrediente oBLL_Ingrediente;
         public BE_Plato oBE_Plato;
@@ -31,7 +31,7 @@ namespace Trabajo_Final
         public frmNuevaRecetaP()
         {
             InitializeComponent();
-            oBLL_Plato = new BLL_Plato();
+            oBLL_Plato = new BLL_Plato_Stock();
             oBLL_Receta = new BLL_PlatoReceta();
             oBLL_Ingrediente = new BLL_Ingrediente();
             listado = new List<IngEnBeb>();
@@ -66,6 +66,15 @@ namespace Trabajo_Final
                         nueva.Cantidad = ing.Cantidad;
                         nueva.Alternativa = ing.Alt;
                         listabr.Add(nueva);
+                    }
+                    oBLL_Plato = new BLL_Plato_Stock();
+                    BE_Plato_Stock oBE_Stock = new BE_Plato_Stock();
+                    oBE_Stock.Material = oBE_Plato;
+                    oBE_Stock.Stock = 1;
+                    oBE_Stock.FechaCreacion = DateTime.Now;
+                    if (TieneStock(oBE_Stock))
+                    {
+                        oBLL_Plato.Guardar(oBE_Stock);
                     }
                     return oBLL_Receta.Guardar(listabr);
                 }
@@ -214,6 +223,10 @@ namespace Trabajo_Final
             }
             listado.Find(x => x.Ingrediente.Codigo == ingrediente.Ingrediente.Codigo).Cantidad = valor;
             ActualizarRecetario();
+        }
+        public bool TieneStock(BE_Plato_Stock plato)
+        {
+            return oBLL_Plato.Existe(plato);
         }
     }
 }

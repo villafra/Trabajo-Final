@@ -207,7 +207,10 @@ namespace Mapper
             ListadoXML.Add(CrearBebida_StockXML(material));
             return Xml_Database.DevolverInstancia().ModificarMatLot(ListadoXML);
         }
-
+        public bool Existe(BE_Bebida_Stock bebida)
+        {
+            return Xml_Database.DevolverInstancia().Existe(CrearBebida_StockXML(bebida), "ID_Ingrediente");
+        }
         private BE_TuplaXML CrearBebida_StockXML(BE_Bebida_Stock material)
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();

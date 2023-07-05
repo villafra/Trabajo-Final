@@ -17,9 +17,10 @@ namespace Trabajo_Final
 {
     public partial class frmNuevaReceta : Form
     {
-        BLL_Bebida oBLL_Bebida;
+        BLL_Bebida_Stock oBLL_Bebida;
         BLL_BebidaReceta oBLL_Receta;
         BLL_Ingrediente oBLL_Ingrediente;
+        BLL_Bebida_Stock oBLL_Stock;
         public BE_Bebida_Preparada oBE_Bebida;
         public BE_BebidaReceta oBE_Receta;
         BE_BebidaReceta nueva;
@@ -31,7 +32,7 @@ namespace Trabajo_Final
         public frmNuevaReceta()
         {
             InitializeComponent();
-            oBLL_Bebida = new BLL_Bebida();
+            oBLL_Bebida = new BLL_Bebida_Stock();
             oBLL_Receta = new BLL_BebidaReceta();
             oBLL_Ingrediente = new BLL_Ingrediente();
             listado = new List<IngEnBeb>();
@@ -66,6 +67,15 @@ namespace Trabajo_Final
                         nueva.Cantidad = ing.Cantidad;
                         nueva.Alternativa = ing.Alt;
                         listabr.Add(nueva);
+                    }
+                    oBLL_Stock = new BLL_Bebida_Stock();
+                    BE_Bebida_Stock oBE_Stock = new BE_Bebida_Stock();
+                    oBE_Stock.Material = oBE_Bebida;
+                    oBE_Stock.Stock = 1;
+                    oBE_Stock.FechaCreacion = DateTime.Now;
+                    if (TieneStock(oBE_Stock))
+                    {
+                        oBLL_Stock.Guardar(oBE_Stock);
                     }
                     return oBLL_Receta.Guardar(listabr);
                 }
@@ -147,6 +157,7 @@ namespace Trabajo_Final
             {
                 if (nuevo)
                 {
+                    
                     if (Nuevo()) { Cálculos.MsgBox("La receta se ha cargado correctamente."); this.Close(); }
                     else { throw new RestaurantException("La carga de datos, ha fallado. Intente Nuevamente"); }
                 }
@@ -214,6 +225,10 @@ namespace Trabajo_Final
             }
             listado.Find(x => x.Ingrediente.Codigo == ingrediente.Ingrediente.Codigo).Cantidad = valor;
             ActualizarRecetario();
+        }
+        public bool TieneStock(BE_Bebida_Stock bebida)
+        {
+            return oBLL_Bebida.Existe(bebida);
         }
     }
 }

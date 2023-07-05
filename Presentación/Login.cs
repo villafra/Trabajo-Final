@@ -74,11 +74,11 @@ namespace Trabajo_Final
             {
                 if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
                 {
-                    if (oBLL_Login.UsuarioBloqueado(oBE_Login))
+                    if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
                     {
                         frmCambioPass frm = new frmCambioPass();
                         frm.Usuario(txtUsuario.Text);
-                        frm.Show();
+                        frm.ShowDialog();
                     }
                     else
                     {

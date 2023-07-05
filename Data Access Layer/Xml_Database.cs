@@ -285,6 +285,7 @@ namespace Data_Access_Layer
                 return true;
                 throw ex;
             }
+            finally { CancelarConexion(); }
         }
         public bool ExisteMatLot(BE_TuplaXML tupla)
         {

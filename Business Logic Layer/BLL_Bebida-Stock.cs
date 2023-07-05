@@ -65,5 +65,9 @@ namespace Business_Logic_Layer
         { 
             return MPP_Bebida_Stock.DevolverInstancia().Modificar(material);
         }
+        public bool Existe(BE_Bebida_Stock bebida)
+        {
+            return MPP_Bebida_Stock.DevolverInstancia().Existe(bebida);
+        }
     }
 }

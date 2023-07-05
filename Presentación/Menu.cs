@@ -67,7 +67,7 @@ namespace Trabajo_Final
             }
             catch (Exception ex)
             {
-                throw ex;
+                Cálculos.MsgBox(ex.Message);
             }
             Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Height);
             frmBienvenida frm = new frmBienvenida();
@@ -157,10 +157,8 @@ namespace Trabajo_Final
         private void passwordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmCambioPass frm = new frmCambioPass();
-            Cálculos.Minimizar(this);
+            frm.Usuario(UsuarioActivo.Usuario);
             frm.ShowDialog();
-            frm.Activate();
-            this.WindowState = FormWindowState.Normal;
         }
 
         private void empleadosToolStripMenuItem2_Click(object sender, EventArgs e)

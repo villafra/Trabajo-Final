@@ -78,6 +78,11 @@ namespace Mapper
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
+        public bool Existe(BE_Plato_Stock plato)
+        {
+            return Xml_Database.DevolverInstancia().Existe(CrearPlato_StockXML(plato), "ID_Ingrediente");
+        }
+
         public List<BE_Plato_Stock> Listar()
         {
             DataSet ds = new DataSet();

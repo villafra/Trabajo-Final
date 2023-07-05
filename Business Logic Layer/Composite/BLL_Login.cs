@@ -52,7 +52,7 @@ namespace Business_Logic_Layer
         public string GenerarUsuario(BE_Empleado empleado)
         {
             string nombre, apellido;
-            if (empleado.Nombre.Length < 3)
+            if (empleado.Nombre.Replace(" ",string.Empty).Trim().Length < 3)
             {
                 nombre = empleado.Nombre.Substring(0, empleado.Nombre.Length).ToLower();
             }
@@ -60,13 +60,13 @@ namespace Business_Logic_Layer
             {
                 nombre = empleado.Nombre.Substring(0, 3).ToLower();
             }
-            if (empleado.Apellido.Length < 5)
+            if (empleado.Apellido.Replace(" ", string.Empty).Trim().Length < 5)
             {
                 apellido = empleado.Apellido.Substring(0, empleado.Apellido.Length).ToLower();
             }
             else
             {
-                apellido = empleado.Apellido.Substring(0, 5).ToLower();
+                apellido = empleado.Apellido.Replace(" ", string.Empty).Trim().Substring(0, 5).ToLower();
             }
             return apellido.PadRight(5, '1') + nombre.PadRight(3, '1');
         }

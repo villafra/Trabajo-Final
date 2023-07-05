@@ -65,5 +65,10 @@ namespace Business_Logic_Layer
         { 
             return MPP_Plato_Stock.DevolverInstancia().Modificar(material);
         }
+
+        public bool Existe(BE_Plato_Stock plato)
+        {
+            return MPP_Plato_Stock.DevolverInstancia().Existe(plato);
+        }
     }
 }

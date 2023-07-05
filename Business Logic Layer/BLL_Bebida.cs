@@ -66,6 +66,10 @@ namespace Business_Logic_Layer
         {
             return bebida.Tipo;
         }
+        public bool Existe (BE_Bebida bebida)
+        {
+            return MPP_Bebida.DevolverInstancia().Existe(bebida);
+        }
 
     }
 }

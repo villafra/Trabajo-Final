@@ -217,7 +217,7 @@ namespace Mapper
                 new XElement("Horas_Hombre", Costo.HorasHombre.ToString()),
                 new XElement("Energía", Costo.Energía.ToString()),
                 new XElement("Otros_Gastos", Costo.OtrosGastos.ToString()),
-                new XElement("Tipo_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).Tipo.ToString(): Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).Tipo.ToString(): ((BE_CostoPlato)Costo).Tipo.ToString()),
+                new XElement("Tipo_Material", Costo.Tipo.ToString()),
                 new XElement("ID_Material", Costo is BE_CostoIngrediente ? ((BE_CostoIngrediente)Costo).Material.Codigo.ToString() : Costo is BE_CostoBebida ? ((BE_CostoBebida)Costo).Material.Codigo.ToString() : ((BE_CostoPlato)Costo).Material.Codigo.ToString())
                 );
             nuevaTupla.Xelement = nuevoCosto;

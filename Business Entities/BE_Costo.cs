@@ -28,9 +28,9 @@ namespace Business_Entities
 
     public enum TipoMaterial
     {
-        Ingrediente,
-        Bebida,
-        Bebida_Preparada,
-        Plato
+        Ingrediente=1,
+        Bebida=2,
+        Bebida_Preparada=3,
+        Plato=4
     }
 }

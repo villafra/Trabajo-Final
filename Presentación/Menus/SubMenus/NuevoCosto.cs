@@ -23,7 +23,9 @@ namespace Trabajo_Final
         BLL_Ingrediente oBLL_Ingrediente;
         BLL_Bebida oBLL_Bebida;
         BLL_Plato oBLL_Plato;
-
+        List<int> Ingrediente = new List<int> { 1 };
+        List<int> Bebida = new List<int> { 2, 3 };
+        List<int> Plato = new List<int> { 4 };
         private bool status;
         public frmNuevoCosto()
         {
@@ -55,13 +57,42 @@ namespace Trabajo_Final
 
         private bool Nuevo()
         {
-            oBE_Costo = new BE_CostoIngrediente();
-            ((BE_CostoIngrediente)oBE_Costo).Material = (BE_Ingrediente)comboMaterial.SelectedItem;
-            oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
-            oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
-            oBE_Costo.MateriaPrima = numMP.Value;
-            oBE_Costo.HorasHombre = numHH.Value;
-            oBE_Costo.OtrosGastos = numOtros.Value;
+            int tipo = (int)(TipoMaterial)Enum.Parse(typeof(TipoMaterial), ComboTipo.SelectedItem.ToString());
+            if (Ingrediente.Contains(tipo))
+            {
+                oBE_Costo = new BE_CostoIngrediente();
+                ((BE_CostoIngrediente)oBE_Costo).Material = (BE_Ingrediente)comboMaterial.SelectedItem;
+                oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
+                oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
+                oBE_Costo.MateriaPrima = numMP.Value;
+                oBE_Costo.HorasHombre = numHH.Value;
+                oBE_Costo.OtrosGastos = numOtros.Value;
+                oBE_Costo.Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), ComboTipo.SelectedItem.ToString());
+
+            }
+            else if (Bebida.Contains(tipo))
+            {
+                oBE_Costo = new BE_CostoBebida();
+                ((BE_CostoBebida)oBE_Costo).Material = (BE_Bebida)comboMaterial.SelectedItem;
+                oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
+                oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
+                oBE_Costo.MateriaPrima = numMP.Value;
+                oBE_Costo.HorasHombre = numHH.Value;
+                oBE_Costo.OtrosGastos = numOtros.Value;
+                oBE_Costo.Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), ComboTipo.SelectedItem.ToString());
+            }
+            else
+            {
+                oBE_Costo = new BE_CostoPlato();
+                ((BE_CostoPlato)oBE_Costo).Material = (BE_Plato)comboMaterial.SelectedItem;
+                oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
+                oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
+                oBE_Costo.MateriaPrima = numMP.Value;
+                oBE_Costo.HorasHombre = numHH.Value;
+                oBE_Costo.OtrosGastos = numOtros.Value;
+                oBE_Costo.Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial), ComboTipo.SelectedItem.ToString());
+            }
+
             return oBLL_Costo.Guardar(oBE_Costo);
         }
         private void ImportarCosto()
@@ -82,13 +113,9 @@ namespace Trabajo_Final
         {
             try
             {
-
                 comboMaterial.DataSource = null;
-
                 if (ComboTipo.SelectedItem != null)
                 {
-
-
                     if (ComboTipo.SelectedItem.ToString() == "Ingrediente")
                     {
                         oBLL_Ingrediente = new BLL_Ingrediente();

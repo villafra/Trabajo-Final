@@ -536,5 +536,22 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
+
+        private void gestionarPedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmTomarPedido);
+            if (frm != null)
+            {
+                //((frmTomarPedido)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmTomarPedido();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

@@ -438,7 +438,7 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem3,
             this.gestionarIngredientesToolStripMenuItem});
             this.ingredientesToolStripMenuItem1.Name = "ingredientesToolStripMenuItem1";
-            this.ingredientesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.ingredientesToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.ingredientesToolStripMenuItem1.Tag = "Sub";
             this.ingredientesToolStripMenuItem1.Text = "Ingredientes";
             // 
@@ -464,7 +464,7 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem1,
             this.gestionarbebidasToolStripMenuItem});
             this.bebidasToolStripMenuItem1.Name = "bebidasToolStripMenuItem1";
-            this.bebidasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.bebidasToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.bebidasToolStripMenuItem1.Tag = "Sub";
             this.bebidasToolStripMenuItem1.Text = "Bebidas";
             // 
@@ -490,14 +490,14 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem2,
             this.gestionarPlatosToolStripMenuItem});
             this.platosToolStripMenuItem1.Name = "platosToolStripMenuItem1";
-            this.platosToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.platosToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.platosToolStripMenuItem1.Tag = "Sub";
             this.platosToolStripMenuItem1.Text = "Platos";
             // 
             // listadoToolStripMenuItem2
             // 
             this.listadoToolStripMenuItem2.Name = "listadoToolStripMenuItem2";
-            this.listadoToolStripMenuItem2.Size = new System.Drawing.Size(224, 26);
+            this.listadoToolStripMenuItem2.Size = new System.Drawing.Size(199, 26);
             this.listadoToolStripMenuItem2.Tag = "Comp24";
             this.listadoToolStripMenuItem2.Text = "Listado";
             this.listadoToolStripMenuItem2.Click += new System.EventHandler(this.listadoToolStripMenuItem2_Click);
@@ -505,7 +505,7 @@ namespace Trabajo_Final
             // gestionarPlatosToolStripMenuItem
             // 
             this.gestionarPlatosToolStripMenuItem.Name = "gestionarPlatosToolStripMenuItem";
-            this.gestionarPlatosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gestionarPlatosToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
             this.gestionarPlatosToolStripMenuItem.Tag = "Comp25";
             this.gestionarPlatosToolStripMenuItem.Text = "Gestionar Platos";
             this.gestionarPlatosToolStripMenuItem.Click += new System.EventHandler(this.gestionarPlatosToolStripMenuItem_Click);
@@ -516,7 +516,7 @@ namespace Trabajo_Final
             this.ingresarPedidoToolStripMenuItem,
             this.devolverPedidoToolStripMenuItem});
             this.comprasToolStripMenuItem1.Name = "comprasToolStripMenuItem1";
-            this.comprasToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.comprasToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.comprasToolStripMenuItem1.Tag = "Sub";
             this.comprasToolStripMenuItem1.Text = "Compras";
             // 
@@ -573,14 +573,14 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem5
             // 
             this.listadoToolStripMenuItem5.Name = "listadoToolStripMenuItem5";
-            this.listadoToolStripMenuItem5.Size = new System.Drawing.Size(224, 26);
+            this.listadoToolStripMenuItem5.Size = new System.Drawing.Size(216, 26);
             this.listadoToolStripMenuItem5.Tag = "Comp30";
             this.listadoToolStripMenuItem5.Text = "Listado";
             // 
             // gestionarReservasToolStripMenuItem
             // 
             this.gestionarReservasToolStripMenuItem.Name = "gestionarReservasToolStripMenuItem";
-            this.gestionarReservasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gestionarReservasToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.gestionarReservasToolStripMenuItem.Tag = "Comp31";
             this.gestionarReservasToolStripMenuItem.Text = "Gestionar Reservas";
             // 
@@ -596,14 +596,14 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem6
             // 
             this.listadoToolStripMenuItem6.Name = "listadoToolStripMenuItem6";
-            this.listadoToolStripMenuItem6.Size = new System.Drawing.Size(224, 26);
+            this.listadoToolStripMenuItem6.Size = new System.Drawing.Size(214, 26);
             this.listadoToolStripMenuItem6.Tag = "Comp32";
             this.listadoToolStripMenuItem6.Text = "Listado";
             // 
             // gestionarOrdenesToolStripMenuItem
             // 
             this.gestionarOrdenesToolStripMenuItem.Name = "gestionarOrdenesToolStripMenuItem";
-            this.gestionarOrdenesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gestionarOrdenesToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.gestionarOrdenesToolStripMenuItem.Tag = "Comp33";
             this.gestionarOrdenesToolStripMenuItem.Text = "Gestionar Ordenes";
             // 
@@ -619,16 +619,17 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem7
             // 
             this.listadoToolStripMenuItem7.Name = "listadoToolStripMenuItem7";
-            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(211, 26);
+            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem7.Tag = "Comp34";
             this.listadoToolStripMenuItem7.Text = "Listado";
             // 
             // gestionarPedidosToolStripMenuItem
             // 
             this.gestionarPedidosToolStripMenuItem.Name = "gestionarPedidosToolStripMenuItem";
-            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gestionarPedidosToolStripMenuItem.Tag = "Comp35";
             this.gestionarPedidosToolStripMenuItem.Text = "Gestionar Pedidos";
+            this.gestionarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gestionarPedidosToolStripMenuItem_Click);
             // 
             // btnMinimizar
             // 

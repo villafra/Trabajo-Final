@@ -24,6 +24,7 @@ namespace Trabajo_Final
             InitializeComponent();
             Permiso = permiso;
             oBLL_Permiso = new BLL_Permiso();
+            Aspecto.FormatearTreeViewPermXUsu(tvPermisos);
             ActualizarListado();
         }
 

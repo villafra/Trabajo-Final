@@ -22,4 +22,5 @@ namespace Business_Entities
         public BE_Mozo ID_Mozo { get; set; }
         public bool Activo { get; set; } = true;
     }
+   
 }

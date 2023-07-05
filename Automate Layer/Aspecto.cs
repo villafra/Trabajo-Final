@@ -222,6 +222,15 @@ namespace Automate_Layer
             tv.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
             tv.ForeColor = Color.FromArgb(0, 126, 249);
         };
+        public static Action<TreeView> FormatearTreeViewPermXUsu = (tv) =>
+        {
+            tv.BackColor = SystemColors.Window;
+            tv.ForeColor = SystemColors.WindowText;
+            tv.LineColor = SystemColors.ControlDark;
+            tv.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            tv.Indent = 20;
+            tv.ItemHeight = 20;
+        };
         public static Action<DataGridView> FormatearDGV = (dgv) =>
         {
             dgv.BackgroundColor = Color.FromArgb(46, 51, 73); //(44, 68, 101);
@@ -288,6 +297,14 @@ namespace Automate_Layer
             // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
 
         };
+        public static Action<FlowLayoutPanel> FormatearFLowPanel = (fp) =>
+        {
+            //fp.Dock = DockStyle.Fill;
+            fp.AutoScroll = true;
+            fp.BackColor = Color.Transparent;
+            fp.BorderStyle = BorderStyle.None;
+        };
+
         public static Action<Panel> FormatearPanelMenu = (panel) =>
         {
             panel.BackColor = Color.FromArgb(46, 51, 73);

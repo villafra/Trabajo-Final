@@ -342,16 +342,16 @@ namespace Trabajo_Final
 
         private void listadoToolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoMesas);
             if (frm != null)
             {
-                ((frmMesas)frm).ActualizarListado();
+                ((frmListadoMesas)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
             else
             {
-                frm = new frmMesas();
+                frm = new frmListadoMesas();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

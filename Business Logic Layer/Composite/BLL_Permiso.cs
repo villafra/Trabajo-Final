@@ -30,6 +30,12 @@ namespace Business_Logic_Layer
         {
             return MPP_Permiso.DevolverInstancia().DesasignarPermiso(perfil, permiso);
         }
+
+        public void ArmarArbol(BE_Permiso permiso)
+        {
+            MPP_Permiso.DevolverInstancia().ArmarArbol(permiso);
+        }
+
         public bool CambiarStatusPermiso(BE_PermisoPadre perfil, BE_Permiso permiso)
         {
             return MPP_Permiso.DevolverInstancia().CambiarStatusPermiso(perfil, permiso);

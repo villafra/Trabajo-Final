@@ -88,5 +88,12 @@ namespace Trabajo_Final
                 Cálculos.MsgBox(ex.Message);
             }
         }
+
+        private void btnPermisos_Click(object sender, EventArgs e)
+        {
+            frmVerPermisos frm = new frmVerPermisos(oBE_Login.Permiso);
+            frm.ActualizarListado();
+            frm.ShowDialog();
+        }
     }
 }

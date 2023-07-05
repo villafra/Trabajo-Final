@@ -46,6 +46,7 @@ namespace Trabajo_Final
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnPermisos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.grpUsuarios.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -140,6 +141,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            this.Listado.Images.SetKeyName(7, "organigrama.png");
             // 
             // btBuscar
             // 
@@ -159,6 +161,7 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
+            this.grpAcciones.Controls.Add(this.btnPermisos);
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnDesbloquear);
             this.grpAcciones.Controls.Add(this.btnAgregar);
@@ -179,7 +182,7 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(161, 34);
+            this.btnModificar.Location = new System.Drawing.Point(199, 34);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(149, 50);
             this.btnModificar.TabIndex = 6;
@@ -196,7 +199,7 @@ namespace Trabajo_Final
             this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDesbloquear.ImageIndex = 6;
             this.btnDesbloquear.ImageList = this.Listado;
-            this.btnDesbloquear.Location = new System.Drawing.Point(965, 34);
+            this.btnDesbloquear.Location = new System.Drawing.Point(963, 34);
             this.btnDesbloquear.Name = "btnDesbloquear";
             this.btnDesbloquear.Size = new System.Drawing.Size(149, 50);
             this.btnDesbloquear.TabIndex = 9;
@@ -213,7 +216,7 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(6, 34);
+            this.btnAgregar.Location = new System.Drawing.Point(8, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(149, 50);
             this.btnAgregar.TabIndex = 5;
@@ -230,7 +233,7 @@ namespace Trabajo_Final
             this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetPass.ImageIndex = 5;
             this.btnResetPass.ImageList = this.Listado;
-            this.btnResetPass.Location = new System.Drawing.Point(810, 34);
+            this.btnResetPass.Location = new System.Drawing.Point(772, 34);
             this.btnResetPass.Name = "btnResetPass";
             this.btnResetPass.Size = new System.Drawing.Size(149, 50);
             this.btnResetPass.TabIndex = 8;
@@ -247,7 +250,7 @@ namespace Trabajo_Final
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.ImageIndex = 4;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(316, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(390, 34);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(149, 50);
             this.btnEliminar.TabIndex = 7;
@@ -255,6 +258,23 @@ namespace Trabajo_Final
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnPermisos
+            // 
+            this.btnPermisos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPermisos.FlatAppearance.BorderSize = 0;
+            this.btnPermisos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPermisos.ImageIndex = 7;
+            this.btnPermisos.ImageList = this.Listado;
+            this.btnPermisos.Location = new System.Drawing.Point(581, 34);
+            this.btnPermisos.Name = "btnPermisos";
+            this.btnPermisos.Size = new System.Drawing.Size(149, 50);
+            this.btnPermisos.TabIndex = 10;
+            this.btnPermisos.Text = "VerPermisos";
+            this.btnPermisos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPermisos.UseVisualStyleBackColor = true;
+            this.btnPermisos.Click += new System.EventHandler(this.btnPermisos_Click);
             // 
             // frmUsuarios
             // 
@@ -293,5 +313,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.GroupBox grpAcciones;
+        private System.Windows.Forms.Button btnPermisos;
     }
 }

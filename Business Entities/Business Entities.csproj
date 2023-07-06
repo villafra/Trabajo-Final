@@ -80,6 +80,8 @@
     <Compile Include="Composite\BE_PermisoHijo.cs" />
     <Compile Include="Composite\BE_PermisoPadre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\Dash_Asistencia.cs" />
+    <Compile Include="Vistas\Dash_Motivos.cs" />
     <Compile Include="Vistas\IngEnPla.cs" />
     <Compile Include="Vistas\IngEnBeb.cs" />
   </ItemGroup>

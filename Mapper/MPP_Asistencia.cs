@@ -40,6 +40,7 @@ namespace Mapper
             ListadoXML.Add(CrearAsistenciaXML(asistencia));
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
+
         public bool Guardar(List<BE_Asistencia> asistencias)
         {
             ListadoXML = CrearAsistenciasXML(asistencias);

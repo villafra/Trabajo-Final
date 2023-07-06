@@ -3,6 +3,8 @@ using System.Collections;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
 
 namespace Automate_Layer
 {
@@ -303,6 +305,27 @@ namespace Automate_Layer
             fp.AutoScroll = true;
             fp.BackColor = Color.Transparent;
             fp.BorderStyle = BorderStyle.None;
+        };
+        public static Action<Chart> FormatearChartAsist = (chart) =>
+        {
+            chart.BackColor = Color.FromArgb(46, 51, 73);
+            chart.ChartAreas[0].BackColor = Color.Transparent;
+            chart.ChartAreas[0].BackSecondaryColor = Color.Transparent;
+            chart.ChartAreas[0].BackGradientStyle = GradientStyle.None;
+            chart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chart.ChartAreas[0].AxisX.LineColor = Color.White;
+            chart.ChartAreas[0].AxisY.LineColor = Color.White;
+            chart.ChartAreas[0].AxisX.LabelStyle.ForeColor = Color.White;
+            chart.ChartAreas[0].AxisY.LabelStyle.ForeColor = Color.White;
+            chart.ChartAreas[0].AxisX.LabelStyle.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
+            chart.ChartAreas[0].AxisY.LabelStyle.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
+            chart.Legends[0].BackColor = Color.Transparent;
+            chart.Legends[0].ForeColor = Color.White;
+            chart.Series[0].LabelBackColor = Color.Transparent;
+            chart.Series[0].LabelForeColor = Color.White;
+            chart.Series[0].IsValueShownAsLabel = true;
+            chart.Series[0].Font = new Font("Nirmala UI", 8, FontStyle.Bold);
         };
 
         public static Action<Panel> FormatearPanelMenu = (panel) =>

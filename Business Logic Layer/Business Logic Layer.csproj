@@ -71,6 +71,8 @@
     <Compile Include="BLL_Reserva.cs" />
     <Compile Include="Composite\BLL_Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vistas\BLL_Dash_Asistencia.cs" />
+    <Compile Include="Vistas\BLL_Dash_Motivos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Abstraction Layer\Abstraction Layer.csproj">

@@ -92,6 +92,7 @@ namespace Trabajo_Final
             this.gestionarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
             this.menuStrip.SuspendLayout();
@@ -99,6 +100,7 @@ namespace Trabajo_Final
             // 
             // pnlMenu
             // 
+            this.pnlMenu.Controls.Add(this.button1);
             this.pnlMenu.Controls.Add(this.picboxPanel);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 35);
@@ -619,7 +621,7 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem7
             // 
             this.listadoToolStripMenuItem7.Name = "listadoToolStripMenuItem7";
-            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
+            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(211, 26);
             this.listadoToolStripMenuItem7.Tag = "Comp34";
             this.listadoToolStripMenuItem7.Text = "Listado";
             this.listadoToolStripMenuItem7.Click += new System.EventHandler(this.listadoToolStripMenuItem7_Click);
@@ -627,7 +629,7 @@ namespace Trabajo_Final
             // gestionarPedidosToolStripMenuItem
             // 
             this.gestionarPedidosToolStripMenuItem.Name = "gestionarPedidosToolStripMenuItem";
-            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gestionarPedidosToolStripMenuItem.Tag = "Comp35";
             this.gestionarPedidosToolStripMenuItem.Text = "Gestionar Pedidos";
             this.gestionarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gestionarPedidosToolStripMenuItem_Click);
@@ -659,6 +661,16 @@ namespace Trabajo_Final
             this.btnCerrar.TabIndex = 13;
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(84, 320);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMenu
             // 
@@ -750,6 +762,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem gestionarPedidosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bebidasPreparadasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem platosToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 

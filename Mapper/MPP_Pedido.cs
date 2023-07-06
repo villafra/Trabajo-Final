@@ -57,21 +57,33 @@ namespace Mapper
                      Aclaraciones = Convert.ToString(ped[3]),
                      Status = Convert.ToString(ped[4]),
                      Monto_Total = Convert.ToDecimal(ped[5]),
-                     ID_Pago = MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) },ds),
-                     ListadeBebida = ds.Tables.Contains("Bebida-Pedido") & ds.Tables.Contains("Bebida") != false ? (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
-                                                                                                                    join beb in ds.Tables["Bebida"].AsEnumerable()
-                                                                                                                    on Convert.ToInt32(obj[1]) equals Convert.ToInt32(ped[0])
-                                                                                                                    select new BE_Bebida
-                                                                                                                    {
-
-                                                                                                                    }).ToList() : null,
-                     ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) },ds)
+                     ID_Pago = MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }, ds),
+                     ListadeBebida = MPP_Bebida.DevolverInstancia().Bebidas_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds),
+                     ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds)
                  }).ToList() : null;
 
             return ListadePedidos;
         }
 
-     
+        public bool EliminarBebida(BE_Pedido pedido, BE_Bebida_Stock bebida)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool EliminarPlato(BE_Pedido pedido, BE_Plato_Stock plato)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AgregarPlato(BE_Pedido pedido, BE_Plato_Stock plato)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AgregarBebida(BE_Pedido pedido, BE_Bebida_Stock bebida)
+        {
+            throw new NotImplementedException();
+        }
 
         public BE_Pedido ListarObjeto(BE_Pedido pedido, DataSet ds=null)
         {

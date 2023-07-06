@@ -581,5 +581,11 @@
   <ItemGroup>
     <None Include="Resources\pago-con-tarjeta.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pedido-en-linea %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\caja-registradora.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

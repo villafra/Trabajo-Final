@@ -63,7 +63,7 @@
             // 
             // btnPagar
             // 
-            this.btnPagar.BackgroundImage = global::Trabajo_Final.Properties.Resources.pago_con_tarjeta;
+            this.btnPagar.BackgroundImage = global::Trabajo_Final.Properties.Resources.caja_registradora;
             this.btnPagar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPagar.FlatAppearance.BorderSize = 0;
             this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -75,13 +75,13 @@
             // 
             // btnCrearOrden
             // 
-            this.btnCrearOrden.BackgroundImage = global::Trabajo_Final.Properties.Resources.orden;
+            this.btnCrearOrden.BackgroundImage = global::Trabajo_Final.Properties.Resources.pedido_en_linea__1_;
             this.btnCrearOrden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnCrearOrden.FlatAppearance.BorderSize = 0;
             this.btnCrearOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCrearOrden.Location = new System.Drawing.Point(918, 843);
             this.btnCrearOrden.Name = "btnCrearOrden";
-            this.btnCrearOrden.Size = new System.Drawing.Size(120, 120);
+            this.btnCrearOrden.Size = new System.Drawing.Size(120, 110);
             this.btnCrearOrden.TabIndex = 15;
             this.btnCrearOrden.UseVisualStyleBackColor = true;
             // 

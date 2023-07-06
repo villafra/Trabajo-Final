@@ -103,6 +103,16 @@ namespace Trabajo_Final.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap caja_registradora {
+            get {
+                object obj = ResourceManager.GetObject("caja-registradora", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap camarero {
             get {
                 object obj = ResourceManager.GetObject("camarero", resourceCulture);
@@ -186,6 +196,16 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap pago_con_tarjeta {
             get {
                 object obj = ResourceManager.GetObject("pago-con-tarjeta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pedido_en_linea__1_ {
+            get {
+                object obj = ResourceManager.GetObject("pedido-en-linea (1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

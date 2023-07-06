@@ -106,6 +106,11 @@ namespace Mapper
             return ListaCompleta;
         }
 
+        internal List<BE_Bebida> Bebidas_Pedidos(BE_Pedido bE_Pedido, DataSet ds)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Existe(BE_Bebida bebida)
         {
             return Xml_Database.DevolverInstancia().Existe(CrearBebidaXML(bebida), "ID");

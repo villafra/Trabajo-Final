@@ -27,7 +27,6 @@ namespace Trabajo_Final
             oBLL_Bebida = new BLL_Bebida_Stock();
             oBLL_Plato = new BLL_Plato_Stock();
             oBLL_Pedido = new BLL_Pedido();
-            oBE_Pedido = new BE_Pedido();
             platos = new List<BE_Plato_Stock>();
             bebidas = new List<BE_Bebida_Stock>();
             Aspecto.FormatearFLowPanel(flowBebidas);
@@ -195,7 +194,10 @@ namespace Trabajo_Final
         }
         private void ArmarPedido()
         {
-           
+            oBE_Pedido = new BE_Pedido();
+            oBE_Pedido.ListadePlatos = oBLL_Pedido.AgregarPlatos(platos);
+            oBE_Pedido.ListadeBebida = oBLL_Pedido.AgregarBebidas(bebidas);
+            oBE_Pedido.Monto_Total = oBLL_Pedido.CalcularTotal(oBE_Pedido);
 
         }
     }

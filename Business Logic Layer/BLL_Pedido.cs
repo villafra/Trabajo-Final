@@ -32,29 +32,49 @@ namespace Business_Logic_Layer
             return MPP_Pedido.DevolverInstancia().ListarObjeto(pedido);
         }
 
-        public bool agregarPlato()
+        public List<BE_Plato> AgregarPlatos(List<BE_Plato_Stock> platos)
         {
-            throw new NotImplementedException();
+            List<BE_Plato> lista = new List<BE_Plato>();
+            foreach(BE_Plato_Stock plato in platos)
+            {
+                lista.Add(plato.Material);
+            }
+            return lista;
         }
 
-        public bool agregarBebida()
+        public List<BE_Bebida> AgregarBebidas(List<BE_Bebida_Stock> bebidas)
         {
-            throw new NotImplementedException();
+            List<BE_Bebida> lista = new List<BE_Bebida>();
+            foreach (BE_Bebida_Stock bebida in bebidas)
+            {
+                lista.Add(bebida.Material);
+            }
+            return lista;
+        }
+        public bool AgregarBebida(BE_Pedido pedido, BE_Bebida_Stock bebida)
+        {
+            return MPP_Pedido.DevolverInstancia().AgregarBebida(pedido, bebida);
+        }
+        public bool AgregarPlato(BE_Pedido pedido, BE_Plato_Stock plato)
+        {
+            return MPP_Pedido.DevolverInstancia().AgregarPlato(pedido, plato);
+        }
+        public bool EliminarPlato(BE_Pedido pedido, BE_Plato_Stock plato)
+        {
+            return MPP_Pedido.DevolverInstancia().EliminarPlato(pedido, plato);
         }
 
-        public bool eliminarPlato()
+        public bool EliminarBebida(BE_Pedido pedido, BE_Bebida_Stock bebida)
         {
-            throw new NotImplementedException();
+            return MPP_Pedido.DevolverInstancia().EliminarBebida(pedido, bebida);
         }
 
-        public bool eliminarBebida()
+        public decimal CalcularTotal(BE_Pedido pedido)
         {
-            throw new NotImplementedException();
-        }
+            decimal SubTotal = pedido.ListadeBebida.Sum(x => x.CostoUnitario);
+            SubTotal += pedido.ListadePlatos.Sum(x => x.CostoUnitario);
+            return SubTotal;
 
-        public decimal calcularTotal()
-        {
-            throw new NotImplementedException();
         }
 
         public bool modificarPedido()

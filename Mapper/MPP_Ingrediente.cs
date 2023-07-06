@@ -100,12 +100,14 @@ namespace Mapper
                 ds = new DataSet();
                 ds = Xml_Database.DevolverInstancia().Listar();
             }
-
+            BE_BebidaReceta altvigente = MPP_BebidaReceta.DevolverInstancia().ListarAlternativaVigente(bebida);
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
                 ds.Tables.Contains("Bebida-Ingrediente") != false ?
                 (from obj in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
                  join ing in ds.Tables["Ingrediente"].AsEnumerable()
-                 on Convert.ToInt32(obj[0]) equals bebida.Codigo
+                 on Convert.ToInt32(obj[1]) equals bebida.Codigo
+                 where Convert.ToInt32(obj[2]) == Convert.ToInt32(ing[0]) &&
+                 obj[4].ToString() == altvigente.Alternativa
                  select new BE_Ingrediente
                  {
                      Codigo = Convert.ToInt32(ing[0]),
@@ -117,9 +119,10 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) }, 1, ds)
 
                  }).ToList() : null;
+
             return listaIngredientes;
         }
         public List<BE_Ingrediente> Platos_Ingrediente(BE_Plato plato, DataSet ds = null)
@@ -129,12 +132,14 @@ namespace Mapper
                 ds = new DataSet();
                 ds = Xml_Database.DevolverInstancia().Listar();
             }
-
+            BE_PlatoReceta altvigente = MPP_PlatoReceta.DevolverInstancia().ListarAlternativaVigente(plato);
             List<BE_Ingrediente> listaIngredientes = ds.Tables.Contains("Ingrediente") &
                 ds.Tables.Contains("Plato-Ingrediente") != false ?
                 (from obj in ds.Tables["Plato-Ingrediente"].AsEnumerable()
                  join ing in ds.Tables["Ingrediente"].AsEnumerable()
                  on Convert.ToInt32(obj[1]) equals plato.Codigo
+                 where Convert.ToInt32(obj[2]) == Convert.ToInt32(ing[0]) &&
+                 obj[4].ToString() == altvigente.Alternativa
                  select new BE_Ingrediente
                  {
                      Codigo = Convert.ToInt32(ing[0]),
@@ -146,7 +151,7 @@ namespace Mapper
                      VidaUtil = Convert.ToInt32(ing[6]),
                      Status = (StatusIng)Enum.Parse(typeof(StatusIng), Convert.ToString(ing[7])),
                      GestionLote = Convert.ToBoolean(ing[8]),
-                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) },1,ds)
+                     CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(ing[0]) }, 1, ds)
 
                  }).ToList() : null;
             return listaIngredientes;

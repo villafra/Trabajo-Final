@@ -83,16 +83,6 @@ namespace Trabajo_Final.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BorrarMozo {
-            get {
-                object obj = ResourceManager.GetObject("BorrarMozo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap buscar {
             get {
                 object obj = ResourceManager.GetObject("buscar", resourceCulture);
@@ -106,16 +96,6 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap caja_registradora {
             get {
                 object obj = ResourceManager.GetObject("caja-registradora", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap camarero {
-            get {
-                object obj = ResourceManager.GetObject("camarero", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,36 +146,6 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap menos {
             get {
                 object obj = ResourceManager.GetObject("menos", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ModificarMozo {
-            get {
-                object obj = ResourceManager.GetObject("ModificarMozo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap orden {
-            get {
-                object obj = ResourceManager.GetObject("orden", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pago_con_tarjeta {
-            get {
-                object obj = ResourceManager.GetObject("pago-con-tarjeta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

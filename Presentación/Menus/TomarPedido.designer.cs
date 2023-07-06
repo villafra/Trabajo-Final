@@ -84,6 +84,7 @@
             this.btnCrearOrden.Size = new System.Drawing.Size(120, 110);
             this.btnCrearOrden.TabIndex = 15;
             this.btnCrearOrden.UseVisualStyleBackColor = true;
+            this.btnCrearOrden.Click += new System.EventHandler(this.btnCrearOrden_Click);
             // 
             // picboxPrincipal
             // 

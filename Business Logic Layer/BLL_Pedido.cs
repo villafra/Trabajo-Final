@@ -26,7 +26,10 @@ namespace Business_Logic_Layer
         {
             return MPP_Pedido.DevolverInstancia().Listar();
         }
-
+        public List<BE_Pedido> ListarLiberados()
+        {
+            return MPP_Pedido.DevolverInstancia().ListarLiberados();
+        }
         public BE_Pedido ListarObjeto(BE_Pedido pedido, DataSet ds = null)
         {
             return MPP_Pedido.DevolverInstancia().ListarObjeto(pedido);
@@ -37,6 +40,9 @@ namespace Business_Logic_Layer
             List<BE_Plato> lista = new List<BE_Plato>();
             foreach(BE_Plato_Stock plato in platos)
             {
+                BE_PlatoReceta alt = MPP_PlatoReceta.DevolverInstancia().ListarAlternativaVigente(plato.Material);
+                List<BE_PlatoReceta> alts = MPP_PlatoReceta.DevolverInstancia().ListarObjeto(plato.Material, alt);
+                plato.Material.CostoUnitario = alts.Sum(x => x.Ingrediente.CostoUnitario * x.Cantidad) / plato.Material.Presentación;
                 lista.Add(plato.Material);
             }
             return lista;
@@ -47,6 +53,12 @@ namespace Business_Logic_Layer
             List<BE_Bebida> lista = new List<BE_Bebida>();
             foreach (BE_Bebida_Stock bebida in bebidas)
             {
+                if(bebida.Material is BE_Bebida_Preparada)
+                {
+                    BE_BebidaReceta alt = MPP_BebidaReceta.DevolverInstancia().ListarAlternativaVigente(bebida.Material);
+                    List<BE_BebidaReceta> alts = MPP_BebidaReceta.DevolverInstancia().ListarObjeto(bebida.Material, alt);
+                    bebida.Material.CostoUnitario = alts.Sum(x => x.Ingrediente.CostoUnitario * x.Cantidad) / bebida.Material.Presentacion;
+                }
                 lista.Add(bebida.Material);
             }
             return lista;

@@ -210,7 +210,6 @@ namespace Trabajo_Final
             this.ComboTipo.Size = new System.Drawing.Size(257, 24);
             this.ComboTipo.TabIndex = 25;
             this.ComboTipo.SelectedIndexChanged += new System.EventHandler(this.ComboTipo_SelectedIndexChanged);
-            this.ComboTipo.TextChanged += new System.EventHandler(this.ComboTipo_TextChanged);
             // 
             // lblTipo
             // 

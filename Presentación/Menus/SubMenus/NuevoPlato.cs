@@ -48,6 +48,7 @@ namespace Trabajo_Final
             oBE_Plato.Nombre = txtNombre.Text;
             oBE_Plato.Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), comboTipo.SelectedItem.ToString());
             oBE_Plato.Clase = (Clasificación)Enum.Parse(typeof(Clasificación), ComboClas.SelectedItem.ToString());
+            oBE_Plato.Presentación = Convert.ToDecimal(txtPresentacion.Text);
             return oBLL_Plato.Modificar(oBE_Plato);
         }
 
@@ -57,6 +58,7 @@ namespace Trabajo_Final
             oBE_Plato.Nombre = txtNombre.Text;
             oBE_Plato.Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), comboTipo.SelectedItem.ToString());
             oBE_Plato.Clase = (Clasificación)Enum.Parse(typeof(Clasificación), ComboClas.SelectedItem.ToString());
+            oBE_Plato.Presentación = Convert.ToDecimal(txtPresentacion.Text);
             return oBLL_Plato.Guardar(oBE_Plato);
 
         }
@@ -68,8 +70,10 @@ namespace Trabajo_Final
                 txtNombre.Text = oBE_Plato.Nombre;
                 comboTipo.Text = oBE_Plato.Tipo.ToString();
                 ComboClas.Text = oBE_Plato.Clase.ToString();
+                txtPresentacion.Text = oBE_Plato.Presentación.ToString();
                 Cálculos.DataSourceCombo(comboIngredientes, oBE_Plato.ListaIngredientes, "Lista Ingredientes");
                 comboIngredientes.Visible = true;
+                lblIng.Visible = true;
             }
         }
 

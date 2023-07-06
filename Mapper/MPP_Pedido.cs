@@ -39,6 +39,8 @@ namespace Mapper
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
+            ListadoXML.AddRange(CrearPlatoPedido(pedido));
+            ListadoXML.AddRange(CrearBebidaPedido(pedido));
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
@@ -55,9 +57,33 @@ namespace Mapper
                      FechaInicio = Convert.ToDateTime(ped[1]),
                      Customizado = Convert.ToBoolean(ped[2]),
                      Aclaraciones = Convert.ToString(ped[3]),
-                     Status = Convert.ToString(ped[4]),
+                     Status = (StatusPedido)Enum.Parse(typeof(StatusPedido), Convert.ToString(ped[4])),
                      Monto_Total = Convert.ToDecimal(ped[5]),
                      ID_Pago = MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }, ds),
+                     ListadeBebida = MPP_Bebida.DevolverInstancia().Bebidas_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds),
+                     ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds)
+                 }).ToList() : null;
+
+            return ListadePedidos;
+        }
+        public List<BE_Pedido> ListarLiberados()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Pedido> ListadePedidos = ds.Tables.Contains("Pedido") != false ?
+                (from ped in ds.Tables["Pedido"].AsEnumerable()
+                 where ped[4].ToString() == StatusPedido.Liberado.ToString()
+                 select new BE_Pedido
+                 {
+                     Codigo = Convert.ToInt32(ped[0]),
+                     FechaInicio = Convert.ToDateTime(ped[1]),
+                     Customizado = Convert.ToBoolean(ped[2]),
+                     Aclaraciones = ped[3] != null ? Convert.ToString(ped[3]):null,
+                     Status = (StatusPedido)Enum.Parse(typeof(StatusPedido), Convert.ToString(ped[4])),
+                     Monto_Total = Convert.ToDecimal(ped[5]),
+                     ID_Pago = ped[6].ToString() != "" ? MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }, ds) : null,
+                     ID_Empleado = ped[7].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_GerenteSucursal { Codigo = Convert.ToInt32(ped[7]) }, ds) : null,
                      ListadeBebida = MPP_Bebida.DevolverInstancia().Bebidas_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds),
                      ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds)
                  }).ToList() : null;
@@ -87,7 +113,28 @@ namespace Mapper
 
         public BE_Pedido ListarObjeto(BE_Pedido pedido, DataSet ds=null)
         {
-            throw new NotImplementedException();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+            BE_Pedido ObjetoEncontrado = ds.Tables.Contains("Pedido") != false ?
+               (from ped in ds.Tables["Pedido"].AsEnumerable()
+                where ped[4].ToString() == StatusPedido.Liberado.ToString()
+                select new BE_Pedido
+                {
+                    Codigo = Convert.ToInt32(ped[0]),
+                    FechaInicio = Convert.ToDateTime(ped[1]),
+                    Customizado = Convert.ToBoolean(ped[2]),
+                    Aclaraciones = Convert.ToString(ped[3]),
+                    Status = (StatusPedido)Enum.Parse(typeof(StatusPedido), Convert.ToString(ped[4])),
+                    Monto_Total = Convert.ToDecimal(ped[5]),
+                    ID_Pago = MPP_Pago.DevolverInstancia().ListarObjeto(new BE_Pago { Codigo = Convert.ToInt32(ped[6]) }, ds),
+                    ListadeBebida = MPP_Bebida.DevolverInstancia().Bebidas_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds),
+                    ListadePlatos = MPP_Plato.DevolverInstancia().Platos_Pedidos(new BE_Pedido { Codigo = Convert.ToInt32(ped[0]) }, ds)
+                }).FirstOrDefault() : null;
+
+            return ObjetoEncontrado;
         }
 
         private BE_TuplaXML CrearPedidoXML(BE_Pedido pedido)
@@ -97,12 +144,13 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Pedido";
             XElement nuevoPedido = new XElement("Pedido",
                 new XElement("ID", Cálculos.IDPadleft(pedido.Codigo)),
-                new XElement("Fecha de Inicio", pedido.FechaInicio.ToString()),
+                new XElement("Fecha_Inicio", pedido.FechaInicio.ToString()),
                 new XElement("Customizado", pedido.Customizado.ToString()),
                 new XElement("Aclaraciones", pedido.Aclaraciones),
-                new XElement("Status", pedido.Status),
-                new XElement("Monto Total", pedido.Monto_Total.ToString()),
-                new XElement("ID_Pago", pedido.ID_Pago.Codigo.ToString())
+                new XElement("Status", pedido.Status.ToString()),
+                new XElement("Monto_Total", pedido.Monto_Total.ToString()),
+                new XElement("ID_Pago", pedido.ID_Pago != null ? pedido.ID_Pago.Codigo.ToString(): null),
+                new XElement("ID_Empleado", pedido.ID_Empleado != null ? pedido.ID_Empleado.Codigo.ToString() : null)
                 );
             nuevaTupla.Xelement = nuevoPedido;
             return nuevaTupla;
@@ -117,8 +165,9 @@ namespace Mapper
                 nuevaTupla.NodoRoot = "Platos-Pedidos";
                 nuevaTupla.NodoLeaf = "Plato-Pedido";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
-                    new XElement("ID Pedido", Cálculos.IDPadleft(pedido.Codigo)),
-                    new XElement("ID Plato", Cálculos.IDPadleft(plato.Codigo))
+                    new XElement("ID", Cálculos.IDPadleft(0)),
+                    new XElement("ID_Pedido", Cálculos.IDPadleft(pedido.Codigo)),
+                    new XElement("ID_Plato", Cálculos.IDPadleft(plato.Codigo))
                     );
                 nuevaTupla.Xelement= nuevoPlatoPedido;
                 listadePlatos.Add(nuevaTupla);
@@ -135,8 +184,9 @@ namespace Mapper
                 nuevaTupla.NodoRoot = "Bebidas-Pedidos";
                 nuevaTupla.NodoLeaf = "Bebida-Pedido";
                 XElement nuevaBebidaPedido = new XElement("Bebida-Pedido",
-                   new XElement("ID Pedido", Cálculos.IDPadleft(bebida.Codigo)),
-                   new XElement("ID Bebida", Cálculos.IDPadleft(bebida.Codigo))
+                   new XElement("ID", Cálculos.IDPadleft(0)),
+                   new XElement("ID_Pedido", Cálculos.IDPadleft(bebida.Codigo)),
+                   new XElement("ID_Bebida", Cálculos.IDPadleft(bebida.Codigo))
                     ); 
                 nuevaTupla.Xelement = nuevaBebidaPedido;
                 listadeBebidas.Add(nuevaTupla);

@@ -56,10 +56,10 @@ namespace Mapper
                      Nombre = Convert.ToString(platos[1]),
                      Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
                      Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
-                     CostoUnitario = Convert.ToDecimal(platos[4]),
-                     Activo = Convert.ToBoolean(platos[5]),
-                     ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
-
+                     Presentación = Convert.ToDecimal(platos[4]),
+                     CostoUnitario = Convert.ToDecimal(platos[5]),
+                     Activo = Convert.ToBoolean(platos[6]),
+                     ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) }, ds)
                  }).ToList() : null;
             return listaPlatos;
         }
@@ -81,9 +81,10 @@ namespace Mapper
                      Nombre = Convert.ToString(platos[1]),
                      Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
                      Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
-                     CostoUnitario = Convert.ToDecimal(platos[4]),
-                     Activo = Convert.ToBoolean(platos[5]),
-                     ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
+                     Presentación = Convert.ToDecimal(platos[4]),
+                     CostoUnitario = Convert.ToDecimal(platos[5]),
+                     Activo = Convert.ToBoolean(platos[6]),
+                     ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) }, ds)
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -106,10 +107,10 @@ namespace Mapper
                          Nombre = Convert.ToString(platos[1]),
                          Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), Convert.ToString(platos[2])),
                          Clase = (Clasificación)Enum.Parse(typeof(Clasificación), Convert.ToString(platos[3])),
-                         CostoUnitario = Convert.ToDecimal(platos[4]),
-                         Activo = Convert.ToBoolean(platos[5]),
+                         Presentación = Convert.ToDecimal(platos[4]),
+                         CostoUnitario = Convert.ToDecimal(platos[5]),
+                         Activo = Convert.ToBoolean(platos[6]),
                          ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Platos_Ingrediente(new BE_Plato { Codigo = Convert.ToInt32(platos[0]) },ds)
-
                      }).ToList() : null;
             return listaPlatos;
         }
@@ -124,6 +125,7 @@ namespace Mapper
                 new XElement("Nombre", plato.Nombre.ToString()),
                 new XElement("Tipo", plato.Tipo.ToString()),
                 new XElement("Clase", plato.Clase.ToString()),
+                new XElement("Presentación", plato.Presentación.ToString()),
                 new XElement("Costo_Unitario", plato.CostoUnitario.ToString()),
                 new XElement("Activo",plato.Activo.ToString())
                 );

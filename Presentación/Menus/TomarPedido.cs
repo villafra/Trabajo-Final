@@ -21,9 +21,11 @@ namespace Trabajo_Final
         BLL_Bebida_Stock oBLL_Bebida;
         BE_Pedido oBE_Pedido;
         BLL_Pedido oBLL_Pedido;
-        public frmTomarPedido()
+        private BE_Login usuario;
+        public frmTomarPedido(BE_Login usuarioActivo)
         {
             InitializeComponent();
+            usuario = usuarioActivo;
             oBLL_Bebida = new BLL_Bebida_Stock();
             oBLL_Plato = new BLL_Plato_Stock();
             oBLL_Pedido = new BLL_Pedido();
@@ -198,7 +200,16 @@ namespace Trabajo_Final
             oBE_Pedido.ListadePlatos = oBLL_Pedido.AgregarPlatos(platos);
             oBE_Pedido.ListadeBebida = oBLL_Pedido.AgregarBebidas(bebidas);
             oBE_Pedido.Monto_Total = oBLL_Pedido.CalcularTotal(oBE_Pedido);
+            oBE_Pedido.Status = StatusPedido.Liberado;
+            oBE_Pedido.FechaInicio = DateTime.Now;
+            oBE_Pedido.ID_Empleado = usuario.Empleado;
+            oBLL_Pedido.Guardar(oBE_Pedido);
 
+        }
+
+        private void btnCrearOrden_Click(object sender, EventArgs e)
+        {
+            ArmarPedido();
         }
     }
 }

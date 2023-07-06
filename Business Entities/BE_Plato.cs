@@ -13,6 +13,7 @@ namespace Business_Entities
         public string Nombre { get; set; }
         public Tipo_Plato Tipo { get; set; }
         public Clasificación Clase { get; set; }
+        public decimal Presentación { get; set; }
         public decimal CostoUnitario { get; set; }
         public bool Activo { get; set; } = true;
         public List<BE_Ingrediente> ListaIngredientes { get; set; }

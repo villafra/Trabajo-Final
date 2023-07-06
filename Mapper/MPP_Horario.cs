@@ -76,7 +76,6 @@ namespace Mapper
                                                                                   FechaInicio = Convert.ToDateTime(ped[1]),
                                                                                   Customizado = Convert.ToBoolean(ped[2]),
                                                                                   Aclaraciones = Convert.ToString(ped[3]),
-                                                                                  Status = Convert.ToString(ped[4]),
                                                                                   Monto_Total = Convert.ToDecimal(ped[5]),
                                                                                   ID_Pago = ds.Tables.Contains("Pago") != false ? (from pago in ds.Tables["Pago"].AsEnumerable()
                                                                                              where Convert.ToInt32(ped[6]) == Convert.ToInt32(pago[0])

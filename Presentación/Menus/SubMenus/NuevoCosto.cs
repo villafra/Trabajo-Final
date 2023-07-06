@@ -51,7 +51,13 @@ namespace Trabajo_Final
         private bool Viejo()
         {
             oBE_Costo.Codigo = Convert.ToInt32(txtCodigo.Text);
-            
+            oBE_Costo.Tipo = (TipoMaterial)Enum.Parse(typeof(TipoMaterial),ComboTipo.SelectedItem.ToString());
+            oBE_Costo.DíaCosteo = dtpFechaCosteo.Value;
+            oBE_Costo.TamañoLoteCosteo = numTamaño.Value;
+            oBE_Costo.MateriaPrima = numMP.Value;
+            oBE_Costo.HorasHombre = numHH.Value;
+            oBE_Costo.Energía = numNRG.Value;
+            oBE_Costo.OtrosGastos = numOtros.Value;
             return oBLL_Costo.Modificar(oBE_Costo);
         }
 
@@ -100,7 +106,17 @@ namespace Trabajo_Final
             if (oBE_Costo != null)
             {
                 txtCodigo.Text = oBE_Costo.Codigo.ToString();
-                
+                ComboTipo.Text = oBE_Costo.Tipo.ToString();
+                dtpFechaCosteo.Value = oBE_Costo.DíaCosteo;
+                numTamaño.Value = oBE_Costo.TamañoLoteCosteo;
+                numMP.Value = oBE_Costo.MateriaPrima;
+                numHH.Value = oBE_Costo.HorasHombre;
+                numNRG.Value = oBE_Costo.Energía;
+                numOtros.Value = oBE_Costo.OtrosGastos;
+                int tipo = (int)oBE_Costo.Tipo;
+                if (Ingrediente.Contains(tipo)) comboMaterial.Text = TipoMaterial.Ingrediente.ToString();
+                else if (Bebida.Contains(tipo)) comboMaterial.Text = TipoMaterial.Bebida.ToString();
+                else comboMaterial.Text = TipoMaterial.Plato.ToString();
             }
         }
 
@@ -136,30 +152,5 @@ namespace Trabajo_Final
             catch { }
         }
 
-        private void ComboTipo_TextChanged(object sender, EventArgs e)
-        {
-            //try
-            //{
-
-            //    comboMaterial.DataSource = null;
-
-            //    if (ComboTipo.SelectedItem.ToString() == "Ingrediente")
-            //    {
-            //        oBLL_Ingrediente = new BLL_Ingrediente();
-            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Ingrediente.Listar(), "Ingredientes");
-            //    }
-            //    else if (ComboTipo.SelectedItem.ToString() == "Bebida")
-            //    {
-            //        oBLL_Bebida = new BLL_Bebida();
-            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Bebida.Listar(), "Bebidas");
-            //    }
-            //    else
-            //    {
-            //        oBLL_Plato = new BLL_Plato();
-            //        Cálculos.DataSourceCombo(comboMaterial, oBLL_Plato.Listar(), "Platos");
-            //    }
-            //}
-            //catch {}
-        }
     }
 }

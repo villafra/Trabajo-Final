@@ -622,6 +622,7 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem7.Tag = "Comp34";
             this.listadoToolStripMenuItem7.Text = "Listado";
+            this.listadoToolStripMenuItem7.Click += new System.EventHandler(this.listadoToolStripMenuItem7_Click);
             // 
             // gestionarPedidosToolStripMenuItem
             // 

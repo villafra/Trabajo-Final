@@ -60,7 +60,7 @@ namespace Trabajo_Final
                         return;
                     }
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
-                    txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                    txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
                     Iniciar();
                 }
                 
@@ -548,7 +548,24 @@ namespace Trabajo_Final
             }
             else
             {
-                frm = new frmTomarPedido();
+                frm = new frmTomarPedido(UsuarioActivo);
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void listadoToolStripMenuItem7_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoPedidos);
+            if (frm != null)
+            {
+                ((frmListadoPedidos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoPedidos();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

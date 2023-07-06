@@ -106,9 +106,53 @@ namespace Mapper
             return ListaCompleta;
         }
 
-        internal List<BE_Bebida> Bebidas_Pedidos(BE_Pedido bE_Pedido, DataSet ds)
+        internal List<BE_Bebida> Bebidas_Pedidos(BE_Pedido pedido, DataSet ds=null)
         {
-            throw new NotImplementedException();
+            List<BE_Bebida> ListaCompleta = ds.Tables.Contains("Bebida") != false ?
+                (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
+                 join beb in ds.Tables["Bebida"].AsEnumerable()
+                 on Convert.ToInt32(obj[1]) equals pedido.Codigo
+                 select beb[2].ToString() == "Bebida" ?
+                new BE_Bebida
+                {
+                    Codigo = Convert.ToInt32(beb[0]),
+                    Nombre = beb[1].ToString(),
+                    Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[2].ToString()),
+                    Presentacion = Convert.ToDecimal(beb[4]),
+                    CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
+                    UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
+                    VidaUtil = Convert.ToInt32(beb[7]),
+                    GestionLote = Convert.ToBoolean(beb[8]),
+                    Activo = Convert.ToBoolean(beb[9])
+                } : beb[2].ToString() == "Bebida_Preparada" ?
+                (BE_Bebida)new BE_Bebida_Preparada
+                {
+                    Codigo = Convert.ToInt32(beb[0]),
+                    Nombre = beb[1].ToString(),
+                    Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
+                    Presentacion = Convert.ToDecimal(beb[4]),
+                    CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
+                    UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
+                    VidaUtil = Convert.ToInt32(beb[7]),
+                    GestionLote = Convert.ToBoolean(beb[8]),
+                    Activo = Convert.ToBoolean(beb[9]),
+                    ABV = Convert.ToDecimal(beb[10]),
+                    ListaIngredientes = MPP_Ingrediente.DevolverInstancia().Bebidas_Ingrediente(new BE_Bebida_Preparada { Codigo = Convert.ToInt32(beb[0]) })
+                } : new BE_Bebida_Alcoholica
+                {
+                    Codigo = Convert.ToInt32(beb[0]),
+                    Nombre = beb[1].ToString(),
+                    Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), beb[3].ToString()),
+                    Presentacion = Convert.ToDecimal(beb[4]),
+                    CostoUnitario = MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(beb[0]) }, 1, ds),
+                    UnidadMedida = (UM)Enum.Parse(typeof(UM), beb[6].ToString()),
+                    VidaUtil = Convert.ToInt32(beb[7]),
+                    GestionLote = Convert.ToBoolean(beb[8]),
+                    Activo = Convert.ToBoolean(beb[9]),
+                    ABV = Convert.ToDecimal(beb[10]),
+                }).ToList() : null;
+
+            return ListaCompleta;
         }
 
         public bool Existe(BE_Bebida bebida)

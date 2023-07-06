@@ -210,7 +210,7 @@ namespace Mapper
             nuevaTupla.NodoRoot = "Costos";
             nuevaTupla.NodoLeaf = "Costo";
             XElement nuevoCosto = new XElement("Costo",
-                new XElement("ID", Costo.Codigo.ToString()),
+                new XElement("ID", Cálculos.IDPadleft(Costo.Codigo)),
                 new XElement("Fecha_Costeo", Costo.DíaCosteo.ToString("dd/MM/yyyy")),
                 new XElement("Tamaño_Lote_Costeo", Costo.TamañoLoteCosteo.ToString()),
                 new XElement("Materia_Prima", Costo.MateriaPrima.ToString()),

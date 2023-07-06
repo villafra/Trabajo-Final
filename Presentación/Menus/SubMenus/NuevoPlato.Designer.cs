@@ -45,11 +45,15 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtPresentacion = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
+            this.grpNuevoLogin.Controls.Add(this.txtPresentacion);
+            this.grpNuevoLogin.Controls.Add(this.label1);
             this.grpNuevoLogin.Controls.Add(this.comboIngredientes);
             this.grpNuevoLogin.Controls.Add(this.lblIng);
             this.grpNuevoLogin.Controls.Add(this.ComboClas);
@@ -62,7 +66,7 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.lblCodigo);
             this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 377);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 417);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
@@ -70,7 +74,7 @@ namespace Trabajo_Final
             // comboIngredientes
             // 
             this.comboIngredientes.FormattingEnabled = true;
-            this.comboIngredientes.Location = new System.Drawing.Point(174, 308);
+            this.comboIngredientes.Location = new System.Drawing.Point(174, 369);
             this.comboIngredientes.Name = "comboIngredientes";
             this.comboIngredientes.Size = new System.Drawing.Size(257, 24);
             this.comboIngredientes.TabIndex = 37;
@@ -79,7 +83,7 @@ namespace Trabajo_Final
             // lblIng
             // 
             this.lblIng.AutoSize = true;
-            this.lblIng.Location = new System.Drawing.Point(20, 313);
+            this.lblIng.Location = new System.Drawing.Point(20, 374);
             this.lblIng.Name = "lblIng";
             this.lblIng.Size = new System.Drawing.Size(120, 17);
             this.lblIng.TabIndex = 36;
@@ -162,7 +166,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(322, 407);
+            this.btnCancelar.Location = new System.Drawing.Point(323, 447);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -186,7 +190,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(29, 407);
+            this.btnConfirmar.Location = new System.Drawing.Point(30, 447);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
             this.btnConfirmar.TabIndex = 3;
@@ -195,12 +199,28 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 313);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Clasificación";
+            // 
+            // txtPresentacion
+            // 
+            this.txtPresentacion.Location = new System.Drawing.Point(174, 308);
+            this.txtPresentacion.Name = "txtPresentacion";
+            this.txtPresentacion.Size = new System.Drawing.Size(257, 22);
+            this.txtPresentacion.TabIndex = 39;
+            // 
             // frmNuevoPlato
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 478);
+            this.ClientSize = new System.Drawing.Size(484, 506);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
@@ -231,5 +251,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label lblClas;
         private System.Windows.Forms.ComboBox comboIngredientes;
         private System.Windows.Forms.Label lblIng;
+        private System.Windows.Forms.TextBox txtPresentacion;
+        private System.Windows.Forms.Label label1;
     }
 }

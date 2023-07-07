@@ -16,21 +16,18 @@ namespace Trabajo_Final
 {
     public partial class frmConfirmarPedido : Form
     {
-
-        public BE_Mesa oBE_Mesa;
-        BLL_Mesa oBLL_Mesa;
-        private bool status;
+        public BE_Pedido oBE_Pedido;
         public frmConfirmarPedido()
         {
             InitializeComponent();
-            oBLL_Mesa = new BLL_Mesa();
-            Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
-            Cálculos.DataSourceCombo(comboUbicacion, Enum.GetNames(typeof(Ubicacion)), "Ubicación");
+            Aspecto.FormatearGRPPedido(grpNuevoLogin);
+            Aspecto.FormatearFLowPanel(flowBebidas);
+            Aspecto.FormatearFLowPanel(flowPlatos);
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Mesa != null ? Viejo() : Nuevo())
+            if (_ = oBE_Pedido != null ? Viejo() : Nuevo())
             {
                 Cálculos.MsgBox("Los datos se han guardado correctamente");
             }
@@ -43,36 +40,88 @@ namespace Trabajo_Final
 
         private bool Viejo()
         {
-            oBE_Mesa.Codigo = Convert.ToInt32(txtCodigo.Text);
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-            oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            oBE_Mesa.Activo = chkActivo.Checked;
-            return oBLL_Mesa.Modificar(oBE_Mesa);
+            return true;
         }
 
         private bool Nuevo()
         {
-            oBE_Mesa = new BE_Mesa();
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-            oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            return oBLL_Mesa.Guardar(oBE_Mesa);
-
+            return true;
         }
-        private void ImportarEmpleado()
+        private void ImportarPedido()
         {
-            if (oBE_Mesa != null)
+            if (oBE_Pedido != null)
             {
-                txtCodigo.Text = oBE_Mesa.Codigo.ToString();
-                txtCapacidad.Text = oBE_Mesa.Capacidad.ToString();
-                comboUbicacion.Text = oBE_Mesa.Ubicación.ToString();
-                status = oBE_Mesa.Activo;
-                chkActivo.Checked = status;
+                foreach(BE_Bebida beb in oBE_Pedido.ListadeBebida)
+                {
+                    Button botonBebida = CrearBotonBebida(beb);
+                    flowBebidas.Controls.Add(botonBebida);
+                }
+                Aspecto.CentrarPanel(grpNuevoLogin, flowBebidas,btnIzquierdaBebidas,btnDerechaBebidas);
+                foreach (BE_Plato pla in oBE_Pedido.ListadePlatos)
+                {
+                    Button botonPlato = CrearBotonPlato(pla);
+                    flowPlatos.Controls.Add(botonPlato);
+                }
+                Aspecto.CentrarPanel(grpNuevoLogin, flowPlatos,btnIzquierdaPlatos, btnDerechaPlatos);
+                lblCosto.Text = oBE_Pedido.Monto_Total.ToString("$0.00");
+                Aspecto.CentrarLabelenGRP(grpNuevoLogin,lblCosto);
+                Aspecto.CentrarLabelenGRP(grpNuevoLogin, lblMonto);
             }
         }
 
         private void frmNuevoLogin_Load(object sender, EventArgs e)
         {
-            ImportarEmpleado();
+            ImportarPedido();
         }
+        private Button CrearBotonBebida(BE_Bebida bebida)
+        {
+            Button botonBebida = new Button();
+            botonBebida.Text = bebida.Nombre;
+            botonBebida.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            botonBebida.TextAlign = ContentAlignment.BottomCenter;
+            botonBebida.TextImageRelation = TextImageRelation.ImageAboveText;
+            botonBebida.Width = 80;
+            botonBebida.Height = 80;
+            botonBebida.Tag = bebida;
+            botonBebida.Anchor = AnchorStyles.None;
+            return botonBebida;
+        }
+        private Button CrearBotonPlato(BE_Plato plato)
+        {
+            Button botonPlato = new Button();
+            botonPlato.Text = plato.Nombre;
+            botonPlato.Font = new Font("Nirmala UI", 10, FontStyle.Regular);
+            botonPlato.TextAlign = ContentAlignment.BottomCenter;
+            botonPlato.TextImageRelation = TextImageRelation.ImageAboveText;
+            botonPlato.Width = 80;
+            botonPlato.Height = 80;
+            botonPlato.Tag = plato;
+            botonPlato.Anchor = AnchorStyles.None;
+            return botonPlato;
+        }
+
+        private void btnDerechaPlatos_Click(object sender, EventArgs e)
+        {
+            int scroll = flowPlatos.HorizontalScroll.Value + (flowPlatos.HorizontalScroll.SmallChange*5);
+            flowPlatos.AutoScrollPosition = new Point(scroll, 0);      
+        }
+
+        private void btnDerechaBebidas_Click(object sender, EventArgs e)
+        {
+            int scroll = flowBebidas.HorizontalScroll.Value + (flowBebidas.HorizontalScroll.SmallChange * 5);
+            flowBebidas.AutoScrollPosition = new Point(scroll, 0);
+        }
+        private void btnIzquierdaPlatos_Click(object sender, EventArgs e)
+        {
+            int scroll = flowPlatos.HorizontalScroll.Value - (flowPlatos.HorizontalScroll.SmallChange * 5);
+            flowPlatos.AutoScrollPosition = new Point(scroll, 0);
+        }
+
+        private void btnIzquierdaBebidas_Click(object sender, EventArgs e)
+        {
+            int scroll = flowBebidas.HorizontalScroll.Value - (flowBebidas.HorizontalScroll.SmallChange * 5);
+            flowBebidas.AutoScrollPosition = new Point(scroll, 0);
+        }
+
     }
 }

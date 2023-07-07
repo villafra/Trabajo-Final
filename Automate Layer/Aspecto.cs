@@ -180,12 +180,23 @@ namespace Automate_Layer
                 c.ForeColor = Color.Black;
             }
         };
+        public static Action<GroupBox> FormatearGRPPedido = (grp) =>
+        {
+            grp.Font = new Font("Nirmala UI", 16, FontStyle.Regular);
+            grp.ForeColor = Color.Black;
+
+            foreach (Control c in grp.Controls)
+            {
+                c.ForeColor = Color.Black;
+            }
+        };
         public static Action<GroupBox> FormatearGRPAccion = (grp) =>
         {
             FormatearControlExterno(grp);
-            foreach (Button btn in grp.Controls)
+            foreach (Control btn in grp.Controls)
             {
-                FormatearBoton(btn);
+                if (btn is Button)
+                FormatearBoton(btn as Button);
             }
         };
         public static Action<GroupBox> FormatearGRPREcetas = (grp) =>
@@ -307,6 +318,8 @@ namespace Automate_Layer
             fp.AutoScroll = true;
             fp.BackColor = Color.Transparent;
             fp.BorderStyle = BorderStyle.None;
+            fp.Anchor = AnchorStyles.None;
+            fp.AutoSize = true;
         };
         public static Action<Chart> FormatearChartAsist = (chart) =>
         {
@@ -352,6 +365,50 @@ namespace Automate_Layer
             int x = (panel.Width - lbl.Width) / 2;
             int y = lbl.Location.Y;
             lbl.Location = new Point(x,y);
+        };
+        public static Action<GroupBox, Label> CentrarLabelenGRP = (grp, lbl) =>
+        {
+            int x = (grp.Width - lbl.Width) / 2;
+            int y = lbl.Location.Y;
+            lbl.Location = new Point(x, y);
+        };
+        public static Action<Panel, Button> CentrarBoton = (panel, btn) =>
+        {
+            int x = btn.Location.X;
+            //int y = (panel.Height - btn.Height) / 2;
+            //btn.Location = new Point(x, y);
+            int y = (panel.Height - btn.Height) / 2;
+            btn.Padding = new Padding(x, y, 0, 0);
+        };
+        public static Action<GroupBox, FlowLayoutPanel, Button, Button> CentrarPanel = (grp, panel, btnizq, btnder) =>
+        {
+            if (panel.Width > grp.Width) { DesplazarPanel(grp, panel,btnizq, btnder);return; }
+            panel.FlowDirection = FlowDirection.LeftToRight;
+            panel.WrapContents = false;
+            panel.Anchor = AnchorStyles.None;
+            panel.AutoScroll = true;
+            int x = (grp.Width - panel.Width) / 2;
+            int y = panel.Location.Y;
+            panel.Location = new Point(x, y);
+            btnizq.Visible = false;
+            btnder.Visible = false;
+        };
+        public static Action<GroupBox, FlowLayoutPanel,Button,Button> DesplazarPanel = (grp, panel, btnizq, btnder) =>
+        {
+            panel.FlowDirection = FlowDirection.LeftToRight;
+            panel.AutoSize = false;
+            panel.AutoScroll = true;
+            panel.WrapContents = false;
+            panel.Width = grp.Width - btnizq.Width - btnder.Width - btnder.Width;
+            panel.Location = new Point(grp.Location.X+btnizq.Width, panel.Location.Y);
+            panel.HorizontalScroll.Visible = false;
+            panel.HorizontalScroll.Value = panel.VerticalScroll.Maximum;
+            int horizontalScroll = SystemInformation.HorizontalScrollBarHeight;
+            btnder.Visible = true;
+            btnizq.Visible = true;
+            panel.Padding = new Padding(0,horizontalScroll, 0, 0);
+            CentrarBoton(panel, btnder);
+            CentrarBoton(panel, btnizq);
         };
 
     }

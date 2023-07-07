@@ -43,11 +43,13 @@ namespace Trabajo_Final
                 Button botonPlato = CrearBotonPlato(plato);
                 flowPlatos.Controls.Add(botonPlato);
             }
+            Aspecto.CentrarPanel(grpArmaPedido, flowPlatos,btnIzquierdaPlatos,btnDerechaPlatos);
             foreach(BE_Bebida_Stock bebida in oBLL_Bebida.ListarConStock())
             {
                 Button botonBebida = CrearBotonBebida(bebida);
                 flowBebidas.Controls.Add(botonBebida);
             }
+            Aspecto.CentrarPanel(grpArmaPedido, flowBebidas,btnIzquierdaBebidas,btnDerechaBebidas);
         }
         private void frmBienvenida_MouseDown(object sender, MouseEventArgs e)
         {
@@ -71,6 +73,7 @@ namespace Trabajo_Final
             botonPlato.Height = 250;
             botonPlato.Click += BotonPlato_Click;
             botonPlato.Tag = plato;
+            botonPlato.Anchor = AnchorStyles.None;
             return botonPlato;
         }
         private Button CrearBotonPedido(BE_Plato_Stock plato)
@@ -85,6 +88,7 @@ namespace Trabajo_Final
             botonPlato.Height = 250;
             botonPlato.MouseDown += BotonPedido_MouseDown;
             botonPlato.Tag = plato;
+            botonPlato.Anchor = AnchorStyles.None;
             return botonPlato;
         }
         private Button CrearBotonPedido(BE_Bebida_Stock bebida)
@@ -99,6 +103,7 @@ namespace Trabajo_Final
             botonBebida.Height = 250;
             botonBebida.MouseDown += BotonPedido_MouseDown;
             botonBebida.Tag = bebida;
+            botonBebida.Anchor = AnchorStyles.None;
             return botonBebida;
         }
         private void BotonPlato_Click(object sender, EventArgs e)
@@ -112,7 +117,7 @@ namespace Trabajo_Final
                 platos.Add(plato);
             }
             else{ Cálculos.MsgBox("Ya existe en pedido.");}
-            
+            Aspecto.CentrarPanel(grpArmaPedido, flowPedido,btnIzquierdaPedido,btnDerechaPedido);
         }
         private Button CrearBotonBebida(BE_Bebida_Stock bebida)
         {
@@ -125,6 +130,7 @@ namespace Trabajo_Final
             botonBebida.Height = 250;
             botonBebida.Click += BotonBebida_Click;
             botonBebida.Tag = bebida;
+            botonBebida.Anchor = AnchorStyles.None;
             return botonBebida;
         }
         private void BotonBebida_Click(object sender, EventArgs e)
@@ -138,7 +144,7 @@ namespace Trabajo_Final
                 bebidas.Add(bebida);
             }
             else { Cálculos.MsgBox("Ya existe en Pedido"); }
-            
+            Aspecto.CentrarPanel(grpArmaPedido, flowPedido,btnIzquierdaPedido,btnDerechaPedido);
            
         }
         private void BotonPedido_MouseDown(object sender, MouseEventArgs e)
@@ -203,7 +209,10 @@ namespace Trabajo_Final
             oBE_Pedido.Status = StatusPedido.Liberado;
             oBE_Pedido.FechaInicio = DateTime.Now;
             oBE_Pedido.ID_Empleado = usuario.Empleado;
-            oBLL_Pedido.Guardar(oBE_Pedido);
+            frmConfirmarPedido frm = new frmConfirmarPedido();
+            frm.oBE_Pedido = oBE_Pedido;
+            frm.ShowDialog();
+            
         }
 
         private void btnCrearOrden_Click(object sender, EventArgs e)

@@ -103,7 +103,7 @@ namespace Trabajo_Final
 
         private void menuPrincipalToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMenuGerente);
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBienvenida);
             if (frm != null)
             {
                 
@@ -112,7 +112,7 @@ namespace Trabajo_Final
             }
             else
             {
-                frm = new frmMenuGerente();
+                frm = new frmBienvenida();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
                

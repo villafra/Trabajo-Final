@@ -33,8 +33,6 @@
             this.flowPedido = new System.Windows.Forms.FlowLayoutPanel();
             this.btnPagar = new System.Windows.Forms.Button();
             this.btnCrearOrden = new System.Windows.Forms.Button();
-            this.picboxPrincipal = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPrincipal)).BeginInit();
             this.SuspendLayout();
             // 
             // flowPlatos
@@ -86,18 +84,6 @@
             this.btnCrearOrden.UseVisualStyleBackColor = true;
             this.btnCrearOrden.Click += new System.EventHandler(this.btnCrearOrden_Click);
             // 
-            // picboxPrincipal
-            // 
-            this.picboxPrincipal.Image = global::Trabajo_Final.Properties.Resources.Picture3;
-            this.picboxPrincipal.Location = new System.Drawing.Point(421, 232);
-            this.picboxPrincipal.Margin = new System.Windows.Forms.Padding(4);
-            this.picboxPrincipal.Name = "picboxPrincipal";
-            this.picboxPrincipal.Size = new System.Drawing.Size(500, 500);
-            this.picboxPrincipal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picboxPrincipal.TabIndex = 11;
-            this.picboxPrincipal.TabStop = false;
-            this.picboxPrincipal.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picboxPrincipal_MouseDown);
-            // 
             // frmTomarPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -109,7 +95,6 @@
             this.Controls.Add(this.flowPedido);
             this.Controls.Add(this.flowBebidas);
             this.Controls.Add(this.flowPlatos);
-            this.Controls.Add(this.picboxPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTomarPedido";
             this.ShowIcon = false;
@@ -119,14 +104,11 @@
             this.Text = "Bienvenida";
             this.Load += new System.EventHandler(this.frmTomarPedido_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmBienvenida_MouseDown);
-            ((System.ComponentModel.ISupportInitialize)(this.picboxPrincipal)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox picboxPrincipal;
         private System.Windows.Forms.FlowLayoutPanel flowPlatos;
         private System.Windows.Forms.FlowLayoutPanel flowBebidas;
         private System.Windows.Forms.FlowLayoutPanel flowPedido;

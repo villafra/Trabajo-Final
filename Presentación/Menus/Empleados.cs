@@ -103,6 +103,8 @@ namespace Trabajo_Final
             string Variable = comboFiltro.Text;
             List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(filtro)).ToList();
             Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
+            comboFiltro.Text = "";
+            txtFiltro.Text = "";
         }
 
         private void btnReset_Click(object sender, EventArgs e)

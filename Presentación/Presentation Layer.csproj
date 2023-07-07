@@ -106,6 +106,12 @@
     <Compile Include="Menus\ListadoPedidos.Designer.cs">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\ConfrmarPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\ConfrmarPedido.Designer.cs">
+      <DependentUpon>ConfrmarPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\TomarPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,12 +346,6 @@
     <Compile Include="Menus\Usuarios.Designer.cs">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\MenuGerente.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menus\MenuGerente.Designer.cs">
-      <DependentUpon>MenuGerente.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DashoardEmpleados.resx">
@@ -368,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoPedidos.resx">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\ConfrmarPedido.resx">
+      <DependentUpon>ConfrmarPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\TomarPedido.resx">
       <DependentUpon>TomarPedido.cs</DependentUpon>
@@ -416,9 +419,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\Rotacion.resx">
       <DependentUpon>Rotacion.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Menus\MenuGerente.resx">
-      <DependentUpon>MenuGerente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\ModificarAsistencias.resx">
       <DependentUpon>ModificarAsistencias.cs</DependentUpon>

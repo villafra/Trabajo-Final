@@ -204,7 +204,6 @@ namespace Trabajo_Final
             oBE_Pedido.FechaInicio = DateTime.Now;
             oBE_Pedido.ID_Empleado = usuario.Empleado;
             oBLL_Pedido.Guardar(oBE_Pedido);
-
         }
 
         private void btnCrearOrden_Click(object sender, EventArgs e)

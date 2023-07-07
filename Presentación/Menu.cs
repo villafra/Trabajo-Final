@@ -70,6 +70,7 @@ namespace Trabajo_Final
                 Cálculos.MsgBox(ex.Message);
             }
             Aspecto.FormatearForm(this, pnlMenu, this.Width, this.Height);
+            UIComposite.MostrarBotonesPanel(flowPanel, pnlMenu, UsuarioActivo.Permiso.ListaPermisos());
             frmBienvenida frm = new frmBienvenida();
             frm.Owner = this;
             Aspecto.AbrirNuevoForm(this, frm);
@@ -136,6 +137,7 @@ namespace Trabajo_Final
                 CambiarUsuario();
                 txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                 UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
+                UIComposite.MostrarBotonesPanel(flowPanel, pnlMenu, UsuarioActivo.Permiso.ListaPermisos());
             }
         }
 
@@ -571,12 +573,11 @@ namespace Trabajo_Final
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnDashEmpleados_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashEmpleados);
             if (frm != null)
             {
-                ((frmDashEmpleados)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }

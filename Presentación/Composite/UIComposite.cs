@@ -12,6 +12,7 @@ namespace Trabajo_Final
     {
         private static List<string> SubVisibles = new List<string>();
         private static List<string> MenusVisibles = new List<string>();
+        private static List<Button> botones = new List<Button>();
         public static void CambiarVisibilidadMenu(ToolStripItemCollection dropDownItems, IList<BE_Permiso> permiso)
         {
             CambiarVisibilidad(dropDownItems, permiso);
@@ -28,13 +29,13 @@ namespace Trabajo_Final
                 bool permisopadre;
                 bool permisohijo;
 
-                if (item.OwnerItem == null) { CambiarVisibilidad(item.DropDownItems, permisos); continue ; }
-                if (tag != null && tag.Equals("Gral")) { item.Visible = true;continue; }
+                if (item.OwnerItem == null) { CambiarVisibilidad(item.DropDownItems, permisos); continue; }
+                if (tag != null && tag.Equals("Gral")) { item.Visible = true; continue; }
                 if (item.HasDropDown) { CambiarVisibilidad(item.DropDownItems, permisos); }
-                
-                permisopadre = permisos.Any(p => p.Codigo.Equals(tag) & p.Otorgado==true);
+
+                permisopadre = permisos.Any(p => p.Codigo.Equals(tag) & p.Otorgado == true);
                 permisohijo = VerPermisosDesc(permisos, tag);
-                
+
                 if (!string.IsNullOrEmpty(tag) && (permisopadre || permisohijo))
                 {
                     item.Visible = true;
@@ -43,7 +44,7 @@ namespace Trabajo_Final
                         SubVisibles.Add(item.OwnerItem.Text);
                         MenusVisibles.Add(item.OwnerItem.OwnerItem.Text);
                     }
-                    else if(item.OwnerItem != null && item.OwnerItem.Tag != null && item.OwnerItem.Tag.Equals("SubSub"))
+                    else if (item.OwnerItem != null && item.OwnerItem.Tag != null && item.OwnerItem.Tag.Equals("SubSub"))
                     {
                         SubVisibles.Add(item.OwnerItem.Text);
                         SubVisibles.Add(item.OwnerItem.OwnerItem.Text);
@@ -62,15 +63,15 @@ namespace Trabajo_Final
         {
             foreach (ToolStripItem item in collection)
             {
-                if (SubVisibles.Find(x=> x == item.Text) != null ) item.Visible = true;
+                if (SubVisibles.Find(x => x == item.Text) != null) item.Visible = true;
                 if (item is ToolStripMenuItem dropDownItem) MostrarItems(dropDownItem.DropDownItems);
             }
         }
         private static void MostrarMenuPrincial(ToolStripItemCollection dropDownItems)
         {
-            foreach(ToolStripMenuItem item in dropDownItems)
+            foreach (ToolStripMenuItem item in dropDownItems)
             {
-                if(item.Text == "Menu Usuario") { item.Visible = true; continue; }
+                if (item.Text == "Menu Usuario") { item.Visible = true; continue; }
                 if (MenusVisibles.Find(x => x == item.Text) != null) item.Visible = true;
                 else item.Visible = false;
             }
@@ -80,8 +81,8 @@ namespace Trabajo_Final
         {
             foreach (BE_Permiso permiso in permisos)
             {
-                if (permisos.Any(p => p is BE_PermisoPadre ? ((BE_PermisoPadre)p)._permisos.Any(x => x.Codigo.Equals(tag) & x.Otorgado==true) : false))
-                { 
+                if (permisos.Any(p => p is BE_PermisoPadre ? ((BE_PermisoPadre)p)._permisos.Any(x => x.Codigo.Equals(tag) & x.Otorgado == true) : false))
+                {
                     return true;
                 }
                 if (permiso is BE_PermisoPadre padre)
@@ -91,5 +92,45 @@ namespace Trabajo_Final
             }
             return false;
         }
+
+        public static void MostrarBotonesPanel(FlowLayoutPanel flowpanel, Panel panel, IList<BE_Permiso> permiso)
+        {
+            foreach(Control control in panel.Controls)
+            {
+                if (control is Button)
+                {
+                    Button btn  = control as Button;
+                    botones.Add(btn);
+                }
+            }
+            AgregarAPanel(flowpanel, botones, permiso);
+        }
+
+        private static void AgregarAPanel(FlowLayoutPanel panel, List<Button> botones,IList<BE_Permiso> permiso)
+        {
+            foreach (Button btn in botones)
+            {
+                if(!panel.Controls.Contains(btn))
+                panel.Controls.Add(btn);
+            }
+            foreach(Button btn in panel.Controls)
+            {
+                if(permiso.Any(p => p.Codigo.Equals(btn.Tag.ToString()) & p.Otorgado == true)) 
+                {
+                    btn.Visible = true;
+                }
+                else
+                {
+                    if (VerPermisosDesc(permiso, btn.Tag.ToString()))
+                    {
+                        btn.Visible = true;
+                    }
+                    else { btn.Visible = false; }
+                    
+                }
+            }
+        }
+
+
     }
 }

@@ -85,22 +85,26 @@ namespace Mapper
         }
         public BE_Login ListarLogin(string user)
         {
-            DataSet ds = new DataSet();
-            ds = Xml_Database.DevolverInstancia().Listar();
-            BE_Login ObjetoEncontrado = (from log in ds.Tables["Login"].AsEnumerable()
-                                         where log[2].ToString() == user
-                                         select new BE_Login
-                                         {
-                                             Codigo = Convert.ToInt32(log[0]),
-                                             Empleado = Convert.ToString(log[2]) != "admin" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(log[1]) }) : null,
-                                             Usuario = Convert.ToString(log[2]),
-                                             Password = Convert.ToString(log[3]),
-                                             CantidadIntentos = Convert.ToInt32(log[4]),
-                                             Permiso = MPP_Permiso.DevolverInstancia().ListarObjeto(new BE_PermisoPadre { Codigo = log[5].ToString() },ds),
-                                             Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
-                                             Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
-                                         }).FirstOrDefault();
-            return ObjetoEncontrado;
+            try
+            {
+                DataSet ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+                BE_Login ObjetoEncontrado = (from log in ds.Tables["Login"].AsEnumerable()
+                                             where log[2].ToString() == user
+                                             select new BE_Login
+                                             {
+                                                 Codigo = Convert.ToInt32(log[0]),
+                                                 Empleado = Convert.ToString(log[2]) != "admin" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(log[1]) }) : null,
+                                                 Usuario = Convert.ToString(log[2]),
+                                                 Password = Convert.ToString(log[3]),
+                                                 CantidadIntentos = Convert.ToInt32(log[4]),
+                                                 Permiso = MPP_Permiso.DevolverInstancia().ListarObjeto(new BE_PermisoPadre { Codigo = log[5].ToString() }, ds),
+                                                 Activo = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[6]) : true,
+                                                 Bloqueado = Convert.ToString(log[2]) != "admin" ? Convert.ToBoolean(log[7]) : false
+                                             }).FirstOrDefault();
+                return ObjetoEncontrado!= null ?ObjetoEncontrado : throw new Exception("El Usuario es inexistente.");
+            }
+            catch(Exception ex) { throw ex; }
         }
 
         public bool Modificar(BE_Login user)

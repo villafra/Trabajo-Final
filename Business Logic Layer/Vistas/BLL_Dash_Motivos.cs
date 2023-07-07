@@ -10,27 +10,39 @@ namespace Business_Logic_Layer
 {
     public class BLL_Dash_Motivos
     {
-        public List<Dash_Motivos> Listar(DateTime inicio, DateTime fin)
+        public List<BE_Asistencia> RecolectarDatosAsistencia()
         {
             List<BE_Asistencia> lista = MPP_Asistencia.DevolverInstancia().Listar();
-            List<Dash_Motivos> motivos = new List<Dash_Motivos>();
-            var listaStrings = Enum.GetValues(typeof(Inasistencia))
+            return lista;
+
+        }
+        public List<Inasistencia> RecolectarDatosMotivos()
+        {
+            List<Inasistencia> MotivosInasistencia = Enum.GetValues(typeof(Inasistencia))
                        .Cast<Inasistencia>()
-                       .Select(e => e.ToString())
                        .ToList();
 
-            foreach (var asis in listaStrings)
+            return MotivosInasistencia;
+        }
+        public List<Dash_Motivos> Listar(List<BE_Asistencia> asistencias, List<Inasistencia> motivos, DateTime inicio, DateTime fin)
+        {
+            List<Dash_Motivos> DashMotivos = new List<Dash_Motivos>();
+            foreach (Inasistencia motivo in motivos)
             {
                 Dash_Motivos dash = new Dash_Motivos();
-                if (asis != Inasistencia.Asistencia.ToString())
+                if (motivo != Inasistencia.Asistencia)
                 {
-                    dash.Motivo = asis;
-                    dash.Cantidad = lista.Where(x=> x.Fecha >= inicio && x.Fecha <= fin).Count(x => x.Motivo.ToString() == dash.Motivo);
-                    motivos.Add(dash);
+                    dash.Motivo = motivo.ToString();
+                    dash.Cantidad = asistencias.Where(x => x.Fecha >= inicio && x.Fecha <= fin).Count(x => x.Motivo.ToString() == dash.Motivo);
+                    DashMotivos.Add(dash);
                 }
-                
             }
-           return motivos;
+            return DashMotivos;
+        }
+        public Dash_Motivos MotivoFrecuente(List<Dash_Motivos> lista)
+        {
+            Dash_Motivos motivo = lista.OrderByDescending(x => x.Cantidad).FirstOrDefault();
+            return motivo;
         }
     }
 }

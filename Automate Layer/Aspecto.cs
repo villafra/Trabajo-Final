@@ -345,6 +345,12 @@ namespace Automate_Layer
         {
             boton.BackColor = Color.FromArgb(24, 30, 54);
         };
+        public static Action<Panel, Label> CentrarLabel = (panel, lbl) =>
+        {
+            int x = (panel.Width - lbl.Width) / 2;
+            int y = lbl.Location.Y;
+            lbl.Location = new Point(x,y);
+        };
 
     }
 }

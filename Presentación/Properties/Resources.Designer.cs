@@ -63,6 +63,16 @@ namespace Trabajo_Final.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _365 {
+            get {
+                object obj = ResourceManager.GetObject("365", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap acceso {
             get {
                 object obj = ResourceManager.GetObject("acceso", resourceCulture);
@@ -96,6 +106,16 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap caja_registradora {
             get {
                 object obj = ResourceManager.GetObject("caja-registradora", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap calendario {
+            get {
+                object obj = ResourceManager.GetObject("calendario", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,6 +173,36 @@ namespace Trabajo_Final.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap numero_15 {
+            get {
+                object obj = ResourceManager.GetObject("numero-15", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap numero_30 {
+            get {
+                object obj = ResourceManager.GetObject("numero-30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap numero_7__1_ {
+            get {
+                object obj = ResourceManager.GetObject("numero-7 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pedido_en_linea__1_ {
             get {
                 object obj = ResourceManager.GetObject("pedido-en-linea (1)", resourceCulture);
@@ -196,6 +246,16 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap puerta_de_salida {
             get {
                 object obj = ResourceManager.GetObject("puerta-de-salida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap refresh {
+            get {
+                object obj = ResourceManager.GetObject("refresh", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

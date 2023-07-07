@@ -17,7 +17,7 @@ namespace Trabajo_Final
     {
         BE_Empleado oBE_Empleado;
         BLL_Empleado oBLL_Empleado;
-
+        private List<BE_Empleado> listado;
         public frmEmpleados()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace Trabajo_Final
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
             dgvEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            
+            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -95,6 +95,19 @@ namespace Trabajo_Final
                 oBLL_Empleado.Baja(oBE_Empleado);
             }
             ActualizarListado();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            string filtro = txtFiltro.Text;
+            string Variable = comboFiltro.Text;
+            List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(filtro)).ToList();
+            Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvEmpleados, listado);
         }
     }
 }

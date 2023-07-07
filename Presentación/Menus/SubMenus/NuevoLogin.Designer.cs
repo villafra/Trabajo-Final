@@ -32,6 +32,9 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoLogin));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.btnDesencriptar = new System.Windows.Forms.Button();
+            this.lblCodigo = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.comboPermiso = new System.Windows.Forms.ComboBox();
             this.lblPermiso = new System.Windows.Forms.Label();
             this.comboEmpleado = new System.Windows.Forms.ComboBox();
@@ -43,13 +46,12 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblCodigo = new System.Windows.Forms.Label();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
             // 
+            this.grpNuevoLogin.Controls.Add(this.btnDesencriptar);
             this.grpNuevoLogin.Controls.Add(this.lblCodigo);
             this.grpNuevoLogin.Controls.Add(this.txtCodigo);
             this.grpNuevoLogin.Controls.Add(this.comboPermiso);
@@ -60,12 +62,43 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.lblEmpleado);
             this.grpNuevoLogin.Controls.Add(this.txtPass);
             this.grpNuevoLogin.Controls.Add(this.txtUsuario);
-            this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
+            this.grpNuevoLogin.Location = new System.Drawing.Point(21, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(536, 280);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(577, 280);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // btnDesencriptar
+            // 
+            this.btnDesencriptar.BackgroundImage = global::Trabajo_Final.Properties.Resources.eye;
+            this.btnDesencriptar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDesencriptar.FlatAppearance.BorderSize = 0;
+            this.btnDesencriptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDesencriptar.Location = new System.Drawing.Point(515, 178);
+            this.btnDesencriptar.Name = "btnDesencriptar";
+            this.btnDesencriptar.Size = new System.Drawing.Size(47, 42);
+            this.btnDesencriptar.TabIndex = 11;
+            this.btnDesencriptar.UseVisualStyleBackColor = true;
+            this.btnDesencriptar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnDesencriptar_MouseDown);
+            this.btnDesencriptar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnDesencriptar_MouseUp);
+            // 
+            // lblCodigo
+            // 
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(22, 38);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(52, 17);
+            this.lblCodigo.TabIndex = 10;
+            this.lblCodigo.Text = "Codigo";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(149, 33);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(347, 22);
+            this.txtCodigo.TabIndex = 9;
             // 
             // comboPermiso
             // 
@@ -144,7 +177,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(422, 320);
+            this.btnCancelar.Location = new System.Drawing.Point(460, 320);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 2;
@@ -177,29 +210,12 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // lblCodigo
-            // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(22, 38);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 10;
-            this.lblCodigo.Text = "Codigo";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(149, 33);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(347, 22);
-            this.txtCodigo.TabIndex = 9;
-            // 
             // frmNuevoLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(572, 379);
+            this.ClientSize = new System.Drawing.Size(618, 379);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);
@@ -230,5 +246,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Button btnDesencriptar;
     }
 }

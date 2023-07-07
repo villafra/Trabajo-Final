@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Abstraction_Layer;
@@ -155,6 +156,12 @@ namespace Automate_Layer
             {
                 nodo.Expand();
             }
+        }
+  
+        public static object GetPropertyValue(object obj, string propertyName)
+        {
+            PropertyInfo propertyInfo = obj.GetType().GetProperty(propertyName);
+            return propertyInfo.GetValue(obj);
         }
         private static void RecursivaTreeView(TreeNodeCollection nodos)
         {

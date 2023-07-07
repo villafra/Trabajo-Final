@@ -28,7 +28,7 @@ namespace Trabajo_Final
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.Listar());
+            Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.ListarLibres());
             dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
     }

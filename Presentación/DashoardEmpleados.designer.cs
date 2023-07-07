@@ -38,24 +38,25 @@
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.grpDashBoard = new System.Windows.Forms.GroupBox();
             this.panelMotivo = new System.Windows.Forms.Panel();
+            this.lblNombreMotivo = new System.Windows.Forms.Label();
+            this.lblMasMotivo = new System.Windows.Forms.Label();
+            this.lblMotivo = new System.Windows.Forms.Label();
             this.panelMenos = new System.Windows.Forms.Panel();
+            this.lblNombreInasistencia = new System.Windows.Forms.Label();
+            this.lblMenosAsistencia = new System.Windows.Forms.Label();
+            this.lblInasistencia = new System.Windows.Forms.Label();
             this.panelMas = new System.Windows.Forms.Panel();
+            this.lblNombreAsistencia = new System.Windows.Forms.Label();
+            this.lblAsistencia = new System.Windows.Forms.Label();
+            this.lblMasAsistencia = new System.Windows.Forms.Label();
+            this.chartAsist = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartInasist = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnAño = new System.Windows.Forms.Button();
             this.btnMes = new System.Windows.Forms.Button();
             this.btn15 = new System.Windows.Forms.Button();
             this.btn7dias = new System.Windows.Forms.Button();
             this.btnRango = new System.Windows.Forms.Button();
-            this.chartAsist = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartInasist = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblMasAsistencia = new System.Windows.Forms.Label();
-            this.lblAsistencia = new System.Windows.Forms.Label();
-            this.lblNombreAsistencia = new System.Windows.Forms.Label();
-            this.lblNombreInasistencia = new System.Windows.Forms.Label();
-            this.lblInasistencia = new System.Windows.Forms.Label();
-            this.lblMenosAsistencia = new System.Windows.Forms.Label();
-            this.lblNombreMotivo = new System.Windows.Forms.Label();
-            this.lblMasMotivo = new System.Windows.Forms.Label();
-            this.lblMotivo = new System.Windows.Forms.Label();
             this.grpDashBoard.SuspendLayout();
             this.panelMotivo.SuspendLayout();
             this.panelMenos.SuspendLayout();
@@ -84,6 +85,7 @@
             // 
             // grpDashBoard
             // 
+            this.grpDashBoard.Controls.Add(this.btnRefresh);
             this.grpDashBoard.Controls.Add(this.panelMotivo);
             this.grpDashBoard.Controls.Add(this.panelMenos);
             this.grpDashBoard.Controls.Add(this.panelMas);
@@ -113,6 +115,35 @@
             this.panelMotivo.Size = new System.Drawing.Size(391, 161);
             this.panelMotivo.TabIndex = 8;
             // 
+            // lblNombreMotivo
+            // 
+            this.lblNombreMotivo.AutoSize = true;
+            this.lblNombreMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreMotivo.Location = new System.Drawing.Point(146, 46);
+            this.lblNombreMotivo.Name = "lblNombreMotivo";
+            this.lblNombreMotivo.Size = new System.Drawing.Size(99, 32);
+            this.lblNombreMotivo.TabIndex = 8;
+            this.lblNombreMotivo.Text = "Motivo";
+            // 
+            // lblMasMotivo
+            // 
+            this.lblMasMotivo.AutoSize = true;
+            this.lblMasMotivo.Location = new System.Drawing.Point(11, 10);
+            this.lblMasMotivo.Name = "lblMasMotivo";
+            this.lblMasMotivo.Size = new System.Drawing.Size(245, 17);
+            this.lblMasMotivo.TabIndex = 6;
+            this.lblMasMotivo.Text = "Motivo Más Frecuente de Inasistencia";
+            // 
+            // lblMotivo
+            // 
+            this.lblMotivo.AutoSize = true;
+            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMotivo.Location = new System.Drawing.Point(146, 108);
+            this.lblMotivo.Name = "lblMotivo";
+            this.lblMotivo.Size = new System.Drawing.Size(95, 32);
+            this.lblMotivo.TabIndex = 7;
+            this.lblMotivo.Text = "10000";
+            // 
             // panelMenos
             // 
             this.panelMenos.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -123,6 +154,35 @@
             this.panelMenos.Name = "panelMenos";
             this.panelMenos.Size = new System.Drawing.Size(391, 161);
             this.panelMenos.TabIndex = 8;
+            // 
+            // lblNombreInasistencia
+            // 
+            this.lblNombreInasistencia.AutoSize = true;
+            this.lblNombreInasistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreInasistencia.Location = new System.Drawing.Point(138, 46);
+            this.lblNombreInasistencia.Name = "lblNombreInasistencia";
+            this.lblNombreInasistencia.Size = new System.Drawing.Size(115, 32);
+            this.lblNombreInasistencia.TabIndex = 5;
+            this.lblNombreInasistencia.Text = "Nombre";
+            // 
+            // lblMenosAsistencia
+            // 
+            this.lblMenosAsistencia.AutoSize = true;
+            this.lblMenosAsistencia.Location = new System.Drawing.Point(9, 10);
+            this.lblMenosAsistencia.Name = "lblMenosAsistencia";
+            this.lblMenosAsistencia.Size = new System.Drawing.Size(219, 17);
+            this.lblMenosAsistencia.TabIndex = 3;
+            this.lblMenosAsistencia.Text = "Empleado con Mayor Inasistencia";
+            // 
+            // lblInasistencia
+            // 
+            this.lblInasistencia.AutoSize = true;
+            this.lblInasistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInasistencia.Location = new System.Drawing.Point(138, 108);
+            this.lblInasistencia.Name = "lblInasistencia";
+            this.lblInasistencia.Size = new System.Drawing.Size(95, 32);
+            this.lblInasistencia.TabIndex = 4;
+            this.lblInasistencia.Text = "10000";
             // 
             // panelMas
             // 
@@ -135,55 +195,34 @@
             this.panelMas.Size = new System.Drawing.Size(391, 161);
             this.panelMas.TabIndex = 7;
             // 
-            // btnAño
+            // lblNombreAsistencia
             // 
-            this.btnAño.Location = new System.Drawing.Point(1207, 21);
-            this.btnAño.Name = "btnAño";
-            this.btnAño.Size = new System.Drawing.Size(122, 70);
-            this.btnAño.TabIndex = 6;
-            this.btnAño.Text = "Ultimo Año";
-            this.btnAño.UseVisualStyleBackColor = true;
-            this.btnAño.Click += new System.EventHandler(this.btnAño_Click);
+            this.lblNombreAsistencia.AutoSize = true;
+            this.lblNombreAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreAsistencia.Location = new System.Drawing.Point(148, 46);
+            this.lblNombreAsistencia.Name = "lblNombreAsistencia";
+            this.lblNombreAsistencia.Size = new System.Drawing.Size(115, 32);
+            this.lblNombreAsistencia.TabIndex = 2;
+            this.lblNombreAsistencia.Text = "Nombre";
             // 
-            // btnMes
+            // lblAsistencia
             // 
-            this.btnMes.Location = new System.Drawing.Point(1053, 21);
-            this.btnMes.Name = "btnMes";
-            this.btnMes.Size = new System.Drawing.Size(122, 70);
-            this.btnMes.TabIndex = 5;
-            this.btnMes.Text = "Ultimo Mes";
-            this.btnMes.UseVisualStyleBackColor = true;
-            this.btnMes.Click += new System.EventHandler(this.btnMes_Click);
+            this.lblAsistencia.AutoSize = true;
+            this.lblAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAsistencia.Location = new System.Drawing.Point(148, 108);
+            this.lblAsistencia.Name = "lblAsistencia";
+            this.lblAsistencia.Size = new System.Drawing.Size(95, 32);
+            this.lblAsistencia.TabIndex = 1;
+            this.lblAsistencia.Text = "10000";
             // 
-            // btn15
+            // lblMasAsistencia
             // 
-            this.btn15.Location = new System.Drawing.Point(899, 21);
-            this.btn15.Name = "btn15";
-            this.btn15.Size = new System.Drawing.Size(122, 70);
-            this.btn15.TabIndex = 4;
-            this.btn15.Text = "Ultimos 15 días";
-            this.btn15.UseVisualStyleBackColor = true;
-            this.btn15.Click += new System.EventHandler(this.btn15_Click);
-            // 
-            // btn7dias
-            // 
-            this.btn7dias.Location = new System.Drawing.Point(745, 21);
-            this.btn7dias.Name = "btn7dias";
-            this.btn7dias.Size = new System.Drawing.Size(122, 70);
-            this.btn7dias.TabIndex = 3;
-            this.btn7dias.Text = "Ultimos 7 días";
-            this.btn7dias.UseVisualStyleBackColor = true;
-            this.btn7dias.Click += new System.EventHandler(this.btn7dias_Click);
-            // 
-            // btnRango
-            // 
-            this.btnRango.Location = new System.Drawing.Point(582, 21);
-            this.btnRango.Name = "btnRango";
-            this.btnRango.Size = new System.Drawing.Size(122, 70);
-            this.btnRango.TabIndex = 2;
-            this.btnRango.Text = "Rango de Fechas";
-            this.btnRango.UseVisualStyleBackColor = true;
-            this.btnRango.Click += new System.EventHandler(this.btnRango_Click);
+            this.lblMasAsistencia.AutoSize = true;
+            this.lblMasAsistencia.Location = new System.Drawing.Point(3, 10);
+            this.lblMasAsistencia.Name = "lblMasAsistencia";
+            this.lblMasAsistencia.Size = new System.Drawing.Size(219, 17);
+            this.lblMasAsistencia.TabIndex = 0;
+            this.lblMasAsistencia.Text = "Empleado con Mejor Presentismo";
             // 
             // chartAsist
             // 
@@ -224,92 +263,83 @@
             title2.Text = "Motivo Inasistencias";
             this.chartInasist.Titles.Add(title2);
             // 
-            // lblMasAsistencia
+            // btnRefresh
             // 
-            this.lblMasAsistencia.AutoSize = true;
-            this.lblMasAsistencia.Location = new System.Drawing.Point(3, 10);
-            this.lblMasAsistencia.Name = "lblMasAsistencia";
-            this.lblMasAsistencia.Size = new System.Drawing.Size(219, 17);
-            this.lblMasAsistencia.TabIndex = 0;
-            this.lblMasAsistencia.Text = "Empleado con Mejor Presentismo";
+            this.btnRefresh.BackgroundImage = global::Trabajo_Final.Properties.Resources.refresh;
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(12, 45);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(77, 70);
+            this.btnRefresh.TabIndex = 9;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // lblAsistencia
+            // btnAño
             // 
-            this.lblAsistencia.AutoSize = true;
-            this.lblAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAsistencia.Location = new System.Drawing.Point(148, 108);
-            this.lblAsistencia.Name = "lblAsistencia";
-            this.lblAsistencia.Size = new System.Drawing.Size(95, 32);
-            this.lblAsistencia.TabIndex = 1;
-            this.lblAsistencia.Text = "10000";
+            this.btnAño.BackgroundImage = global::Trabajo_Final.Properties.Resources._365;
+            this.btnAño.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAño.FlatAppearance.BorderSize = 0;
+            this.btnAño.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAño.Location = new System.Drawing.Point(1120, 21);
+            this.btnAño.Name = "btnAño";
+            this.btnAño.Size = new System.Drawing.Size(89, 70);
+            this.btnAño.TabIndex = 6;
+            this.btnAño.UseVisualStyleBackColor = true;
+            this.btnAño.Click += new System.EventHandler(this.btnAño_Click);
             // 
-            // lblNombreAsistencia
+            // btnMes
             // 
-            this.lblNombreAsistencia.AutoSize = true;
-            this.lblNombreAsistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreAsistencia.Location = new System.Drawing.Point(148, 46);
-            this.lblNombreAsistencia.Name = "lblNombreAsistencia";
-            this.lblNombreAsistencia.Size = new System.Drawing.Size(115, 32);
-            this.lblNombreAsistencia.TabIndex = 2;
-            this.lblNombreAsistencia.Text = "Nombre";
+            this.btnMes.BackgroundImage = global::Trabajo_Final.Properties.Resources.numero_30;
+            this.btnMes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMes.FlatAppearance.BorderSize = 0;
+            this.btnMes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMes.Location = new System.Drawing.Point(984, 21);
+            this.btnMes.Name = "btnMes";
+            this.btnMes.Size = new System.Drawing.Size(85, 70);
+            this.btnMes.TabIndex = 5;
+            this.btnMes.UseVisualStyleBackColor = true;
+            this.btnMes.Click += new System.EventHandler(this.btnMes_Click);
             // 
-            // lblNombreInasistencia
+            // btn15
             // 
-            this.lblNombreInasistencia.AutoSize = true;
-            this.lblNombreInasistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreInasistencia.Location = new System.Drawing.Point(138, 46);
-            this.lblNombreInasistencia.Name = "lblNombreInasistencia";
-            this.lblNombreInasistencia.Size = new System.Drawing.Size(115, 32);
-            this.lblNombreInasistencia.TabIndex = 5;
-            this.lblNombreInasistencia.Text = "Nombre";
+            this.btn15.BackgroundImage = global::Trabajo_Final.Properties.Resources.numero_15;
+            this.btn15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn15.FlatAppearance.BorderSize = 0;
+            this.btn15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn15.Location = new System.Drawing.Point(844, 21);
+            this.btn15.Name = "btn15";
+            this.btn15.Size = new System.Drawing.Size(89, 70);
+            this.btn15.TabIndex = 4;
+            this.btn15.UseVisualStyleBackColor = true;
+            this.btn15.Click += new System.EventHandler(this.btn15_Click);
             // 
-            // lblInasistencia
+            // btn7dias
             // 
-            this.lblInasistencia.AutoSize = true;
-            this.lblInasistencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInasistencia.Location = new System.Drawing.Point(138, 108);
-            this.lblInasistencia.Name = "lblInasistencia";
-            this.lblInasistencia.Size = new System.Drawing.Size(95, 32);
-            this.lblInasistencia.TabIndex = 4;
-            this.lblInasistencia.Text = "10000";
+            this.btn7dias.BackgroundImage = global::Trabajo_Final.Properties.Resources.numero_7__1_;
+            this.btn7dias.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn7dias.FlatAppearance.BorderSize = 0;
+            this.btn7dias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn7dias.Location = new System.Drawing.Point(720, 21);
+            this.btn7dias.Name = "btn7dias";
+            this.btn7dias.Size = new System.Drawing.Size(73, 70);
+            this.btn7dias.TabIndex = 3;
+            this.btn7dias.UseVisualStyleBackColor = true;
+            this.btn7dias.Click += new System.EventHandler(this.btn7dias_Click);
             // 
-            // lblMenosAsistencia
+            // btnRango
             // 
-            this.lblMenosAsistencia.AutoSize = true;
-            this.lblMenosAsistencia.Location = new System.Drawing.Point(9, 10);
-            this.lblMenosAsistencia.Name = "lblMenosAsistencia";
-            this.lblMenosAsistencia.Size = new System.Drawing.Size(219, 17);
-            this.lblMenosAsistencia.TabIndex = 3;
-            this.lblMenosAsistencia.Text = "Empleado con Mayor Inasistencia";
-            // 
-            // lblNombreMotivo
-            // 
-            this.lblNombreMotivo.AutoSize = true;
-            this.lblNombreMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreMotivo.Location = new System.Drawing.Point(146, 46);
-            this.lblNombreMotivo.Name = "lblNombreMotivo";
-            this.lblNombreMotivo.Size = new System.Drawing.Size(99, 32);
-            this.lblNombreMotivo.TabIndex = 8;
-            this.lblNombreMotivo.Text = "Motivo";
-            // 
-            // lblMasMotivo
-            // 
-            this.lblMasMotivo.AutoSize = true;
-            this.lblMasMotivo.Location = new System.Drawing.Point(11, 10);
-            this.lblMasMotivo.Name = "lblMasMotivo";
-            this.lblMasMotivo.Size = new System.Drawing.Size(245, 17);
-            this.lblMasMotivo.TabIndex = 6;
-            this.lblMasMotivo.Text = "Motivo Más Frecuente de Inasistencia";
-            // 
-            // lblMotivo
-            // 
-            this.lblMotivo.AutoSize = true;
-            this.lblMotivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMotivo.Location = new System.Drawing.Point(146, 108);
-            this.lblMotivo.Name = "lblMotivo";
-            this.lblMotivo.Size = new System.Drawing.Size(95, 32);
-            this.lblMotivo.TabIndex = 7;
-            this.lblMotivo.Text = "10000";
+            this.btnRango.BackgroundImage = global::Trabajo_Final.Properties.Resources.calendario;
+            this.btnRango.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRango.FlatAppearance.BorderSize = 0;
+            this.btnRango.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRango.Location = new System.Drawing.Point(582, 21);
+            this.btnRango.Name = "btnRango";
+            this.btnRango.Size = new System.Drawing.Size(87, 70);
+            this.btnRango.TabIndex = 2;
+            this.btnRango.UseVisualStyleBackColor = true;
+            this.btnRango.Click += new System.EventHandler(this.btnRango_Click);
             // 
             // frmDashEmpleados
             // 
@@ -366,5 +396,6 @@
         private System.Windows.Forms.Label lblNombreMotivo;
         private System.Windows.Forms.Label lblMasMotivo;
         private System.Windows.Forms.Label lblMotivo;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

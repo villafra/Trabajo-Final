@@ -148,6 +148,12 @@ namespace Trabajo_Final
             lblMotivo.Text = motivo.Cantidad.ToString();
             Aspecto.CentrarLabel(panelMotivo, lblMotivo);
         }
-        
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            RecolectarDatos();
+            Initialice();
+            ActualizarListado();
+        }
     }
 }

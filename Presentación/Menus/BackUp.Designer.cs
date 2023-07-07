@@ -74,7 +74,7 @@ namespace Trabajo_Final
             this.dgvBackUps.ReadOnly = true;
             this.dgvBackUps.RowHeadersWidth = 51;
             this.dgvBackUps.RowTemplate.Height = 24;
-            this.dgvBackUps.Size = new System.Drawing.Size(1120, 254);
+            this.dgvBackUps.Size = new System.Drawing.Size(1120, 513);
             this.dgvBackUps.TabIndex = 3;
             this.dgvBackUps.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
             this.dgvBackUps.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);

@@ -606,5 +606,26 @@
   <ItemGroup>
     <None Include="Resources\caja-registradora.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\numero-7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\numero-15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\numero-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\numero-7 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\365.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendario.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,20 +35,39 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            if (Cálculos.EstaSeguroBackUp("BackUp"))
+            try
             {
-                oBLL_BackUp.CrearBackUp(UsuarioActivo);
-                ActualizarListado();
+                if (Cálculos.EstaSeguroBackUp("BackUp"))
+                {
+                    if (oBLL_BackUp.CrearBackUp(UsuarioActivo))
+                    {
+                        ActualizarListado();
+                        Cálculos.MsgBox("BackUp Creado Correctamente");
+                    }
+                    else { throw new Exception("La creacion del BackUp ha fallado. Intente Nuevamente."); }
+                    
+                }
             }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+           
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            if (Cálculos.EstaSeguroBackUp("Restore"))
+            try
             {
-                oBLL_BackUp.RestaurarBackUp(UsuarioActivo, oBE_BackUp.NombreArchivo);
-                ActualizarListado();
+                if (Cálculos.EstaSeguroBackUp("Restore"))
+                {
+                    if(oBLL_BackUp.RestaurarBackUp(UsuarioActivo, oBE_BackUp.NombreArchivo))
+                    {
+                        Cálculos.MsgBox("El restore se ha efectuado correctamente");
+                        ActualizarListado();
+                    }
+                    else { throw new Exception("El restore ha fallado.Intente nuevamente"); }
+                    
+                }
             }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -68,11 +87,18 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (Cálculos.EstaSeguroBackUp("RollBack"))
+            try
             {
-                oBLL_BackUp.RollBack(UsuarioActivo);
-                ActualizarListado();
+                if (Cálculos.EstaSeguroBackUp("RollBack"))
+                {
+                    if (oBLL_BackUp.RollBack(UsuarioActivo))
+                    {
+                        Cálculos.MsgBox("Se ha hecho Rollback de la base de datos.");
+                        ActualizarListado();
+                    }
+                }
             }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
     }
 }

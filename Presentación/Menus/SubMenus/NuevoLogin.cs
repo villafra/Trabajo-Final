@@ -101,5 +101,15 @@ namespace Trabajo_Final
         {
             txtUsuario.Text = oBLL_Login.GenerarUsuario((BE_Empleado)comboEmpleado.SelectedItem);
         }
+
+        private void btnDesencriptar_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtPass.Text = Encriptacion.DesencriptarPass(txtPass.Text);
+        }
+
+        private void btnDesencriptar_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtPass.Text = Encriptacion.EncriptarPass(txtPass.Text);
+        }
     }
 }

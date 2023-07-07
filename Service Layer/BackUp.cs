@@ -36,6 +36,8 @@ namespace Service_Layer
         {
             try
             {
+                bool ok = false;
+
                 string path = ReferenciasBD.DirectorioBD;
                 string pathzip = Path.Combine(ReferenciasBD.CarpetaBackUps, nombreArchivo);
                 System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
@@ -55,13 +57,12 @@ namespace Service_Layer
                 oBE_BackUp.NombreUsuario = usuario.ToString();
                 oBE_BackUp.Accion = TipoBKP.Restore.ToString();
                 oBE_BackUp.FechaHora = DateTime.Now;
-                Guardar(oBE_BackUp);
+                if (Guardar(oBE_BackUp)) ok = true;
                 Restaurar(nombreArchivo);
-                return true;
+                return ok;
             }
             catch (Exception ex)
             {
-                return false;
                 throw ex;
             }
 
@@ -92,10 +93,10 @@ namespace Service_Layer
                     oBE_BackUp.FechaHora = DateTime.Now;
                     return Guardar(oBE_BackUp);
                 }
-                else { return false; }
+                else { throw new RestaurantException("No existe archivo para hacer Rollback"); }
                 
             }
-            catch (Exception ex) { return false; throw ex; }
+            catch (Exception ex) { throw ex; }
         } 
         public static List<BE_BackUp> ListarBackUps()
         {
@@ -151,7 +152,6 @@ namespace Service_Layer
             }
             catch (Exception ex)
             {
-                return false;
                 throw ex;
             }
 

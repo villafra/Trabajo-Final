@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Automate_Layer;
 using Business_Entities;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -210,14 +211,19 @@ namespace Trabajo_Final
             oBE_Pedido.FechaInicio = DateTime.Now;
             oBE_Pedido.ID_Empleado = usuario.Empleado;
             frmConfirmarPedido frm = new frmConfirmarPedido();
+            frm.Owner = this;
             frm.oBE_Pedido = oBE_Pedido;
-            frm.ShowDialog();
+            frm.Show();
             
         }
-
+        public void LimpiarPedido()
+        {
+            flowPedido.Controls.Clear();
+        }
         private void btnCrearOrden_Click(object sender, EventArgs e)
         {
-            ArmarPedido();
+            ArmarPedido(); 
         }
+
     }
 }

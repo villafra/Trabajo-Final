@@ -103,7 +103,7 @@ namespace Trabajo_Final
                     botones.Add(btn);
                 }
             }
-            AgregarAPanel(flowpanel, botones, permiso);
+            AgregarAPanel(flowpanel, botones.OrderBy(x=> x.Name).ToList(), permiso);
         }
 
         private static void AgregarAPanel(FlowLayoutPanel panel, List<Button> botones,IList<BE_Permiso> permiso)

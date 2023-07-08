@@ -23,6 +23,8 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
+            Notificaciones.IniciarFileWatcher();
+            Notificaciones.IniciarNotificaciones();
         }
         private void Iniciar()
         {
@@ -60,7 +62,8 @@ namespace Trabajo_Final
                         return;
                     }
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
-                    txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
+                    if (UsuarioActivo.Usuario == "admin") txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                    else txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
                     Iniciar();
                 }
                 
@@ -135,7 +138,8 @@ namespace Trabajo_Final
                 frm.ShowDialog();
 
                 CambiarUsuario();
-                txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                if (UsuarioActivo.Usuario == "admin") txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
+                else txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
                 UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
                 UIComposite.MostrarBotonesPanel(flowPanel, pnlMenu, UsuarioActivo.Permiso.ListaPermisos());
             }
@@ -635,6 +639,22 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmListadoPlatos();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+        private void métodosDePagoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMetodoPagos);
+            if (frm != null)
+            {
+                ((frmMetodoPagos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMetodoPagos();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

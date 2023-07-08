@@ -100,17 +100,53 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\MetodoPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\MetodoPagos.Designer.cs">
+      <DependentUpon>MetodoPagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoPedidos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menus\ListadoPedidos.Designer.cs">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoQR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoQR.Designer.cs">
+      <DependentUpon>frmPagoQR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoTransf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoTransf.Designer.cs">
+      <DependentUpon>frmPagoTransf.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoTarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\frmPagoTarjeta.Designer.cs">
+      <DependentUpon>frmPagoTarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\ConfrmarPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\ConfrmarPago.Designer.cs">
+      <DependentUpon>ConfrmarPago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\ConfrmarPedido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Menus\SubMenus\ConfrmarPedido.Designer.cs">
       <DependentUpon>ConfrmarPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoMetodoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\NuevoMetodoPago.Designer.cs">
+      <DependentUpon>NuevoMetodoPago.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\TomarPedido.cs">
       <SubType>Form</SubType>
@@ -366,11 +402,29 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\MetodoPagos.resx">
+      <DependentUpon>MetodoPagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoPedidos.resx">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\frmPagoQR.resx">
+      <DependentUpon>frmPagoQR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\frmPagoTransf.resx">
+      <DependentUpon>frmPagoTransf.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\frmPagoTarjeta.resx">
+      <DependentUpon>frmPagoTarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\ConfrmarPago.resx">
+      <DependentUpon>ConfrmarPago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\ConfrmarPedido.resx">
       <DependentUpon>ConfrmarPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\NuevoMetodoPago.resx">
+      <DependentUpon>NuevoMetodoPago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\TomarPedido.resx">
       <DependentUpon>TomarPedido.cs</DependentUpon>
@@ -632,6 +686,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Izquierda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tarjetas_aceptadas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

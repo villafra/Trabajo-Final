@@ -52,7 +52,8 @@ namespace Mapper
                  select new BE_Pago
                  {
                      Codigo = Convert.ToInt32(pag[0]),
-                     Tipo = Convert.ToString(pag[1])
+                     Tipo = Convert.ToString(pag[1]),
+                     Activo = Convert.ToBoolean(pag[2])
                  }).ToList() : null;
             return listadePagos;
 
@@ -71,7 +72,8 @@ namespace Mapper
                  select new BE_Pago
                  {
                      Codigo = Convert.ToInt32(pag[0]),
-                     Tipo = Convert.ToString(pag[1])
+                     Tipo = Convert.ToString(pag[1]),
+                     Activo = Convert.ToBoolean(pag[2])
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -90,7 +92,8 @@ namespace Mapper
             nuevaTupla.NodoLeaf = "Pago";
             XElement nuevoPago = new XElement("Pago",
                 new XElement("ID", Cálculos.IDPadleft(pago.Codigo)),
-                new XElement("Tipo", pago.Tipo)
+                new XElement("Tipo", pago.Tipo),
+                new XElement("Activo", pago.Activo.ToString())
                 );
             nuevaTupla.Xelement = nuevoPago;
             return nuevaTupla;

@@ -20,6 +20,7 @@ namespace Data_Access_Layer
         private static string RollBack = "Rollback.xml";
         private static string NodoRoot = "Restaurant";
         private static string NodoRootBKP = "BackUps";
+        private static string QRdir = "PagoQR.png";
         
         private static List<string> Leafs = new List<string>
         {
@@ -227,7 +228,18 @@ namespace Data_Access_Layer
                 else return BasedeDatos;
             }
         }
-
+        public static string QR
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(CarpetaBD))
+                {
+                    if (!Directory.Exists(CarpetaBD)) Directory.CreateDirectory(CarpetaBD);
+                    return Path.Combine(CarpetaBD, QRdir);
+                }
+                else return QRdir;
+            }
+        }
         public static string BaseDatosBackups
         {
             get

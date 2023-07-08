@@ -17,9 +17,12 @@ namespace Trabajo_Final
     public partial class frmConfirmarPedido : Form
     {
         public BE_Pedido oBE_Pedido;
+        BLL_Pedido oBLL_Pedido;
+        public bool PagoOK;
         public frmConfirmarPedido()
         {
             InitializeComponent();
+            oBLL_Pedido = new BLL_Pedido();
             Aspecto.FormatearGRPPedido(grpNuevoLogin);
             Aspecto.FormatearFLowPanel(flowBebidas);
             Aspecto.FormatearFLowPanel(flowPlatos);
@@ -27,26 +30,29 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Pedido != null ? Viejo() : Nuevo())
+            frmConfirmarPago frm = new frmConfirmarPago();
+            frm.Owner = this;
+            frm.oBE_Pedido = oBE_Pedido;
+            frm.ShowDialog();
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (Nuevo())
+                {
+                    Cálculos.MsgBox("El Pedido se encuentra liberado.");
+                    frmTomarPedido owner = this.Owner as frmTomarPedido;
+                    owner.LimpiarPedido();
+                }
+                else throw new RestaurantException("No se ha creado el pedido correctamente. Intente de nuevo");
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
-
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            this.Close();
         }
-
-        private bool Viejo()
-        {
-            return true;
-        }
-
         private bool Nuevo()
         {
-            return true;
+            return oBLL_Pedido.Guardar(oBE_Pedido);
         }
+
+       
         private void ImportarPedido()
         {
             if (oBE_Pedido != null)

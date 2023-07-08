@@ -73,6 +73,16 @@ namespace Trabajo_Final.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _7 {
+            get {
+                object obj = ResourceManager.GetObject("7", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap acceso {
             get {
                 object obj = ResourceManager.GetObject("acceso", resourceCulture);
@@ -286,6 +296,16 @@ namespace Trabajo_Final.Properties {
         internal static System.Drawing.Bitmap restablecer_la_contrasena {
             get {
                 object obj = ResourceManager.GetObject("restablecer-la-contrasena", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tarjetas_aceptadas {
+            get {
+                object obj = ResourceManager.GetObject("tarjetas_aceptadas", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

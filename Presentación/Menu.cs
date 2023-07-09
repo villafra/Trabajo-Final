@@ -23,8 +23,8 @@ namespace Trabajo_Final
         public frmMenu()
         {
             InitializeComponent();
-            Notificaciones.IniciarFileWatcher();
-            Notificaciones.IniciarNotificaciones();
+            //Notificaciones.IniciarFileWatcher();
+            //Notificaciones.IniciarNotificaciones();
         }
         private void Iniciar()
         {
@@ -571,7 +571,7 @@ namespace Trabajo_Final
             }
             else
             {
-                frm = new frmListadoPedidos();
+                frm = new frmListadoPedidos(UsuarioActivo);
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
@@ -655,6 +655,23 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmMetodoPagos();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void listadoToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenes);
+            if (frm != null)
+            {
+                ((frmListadoOrdenes)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoOrdenes();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

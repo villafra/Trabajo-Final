@@ -25,6 +25,7 @@ namespace Business_Entities
    public enum StatusPedido
     {
         Liberado,
+        Asignado,
         Terminado,
         Cancelado
     }

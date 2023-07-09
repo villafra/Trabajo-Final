@@ -47,7 +47,6 @@ namespace Business_Logic_Layer
             }
             return lista;
         }
-
         public List<BE_Bebida> AgregarBebidas(List<BE_Bebida_Stock> bebidas)
         {
             List<BE_Bebida> lista = new List<BE_Bebida>();
@@ -88,37 +87,27 @@ namespace Business_Logic_Layer
             return SubTotal;
 
         }
-
-        public bool modificarPedido()
+        public bool AsignarPedido (BE_Pedido pedido)
         {
-            throw new NotImplementedException();
+            StatusPedido status = pedido.Status;
+            pedido.Status = StatusPedido.Asignado;
+            if (Modificar(pedido)) return true;
+            else { pedido.Status = status; return false; }
         }
-
-        public bool confirmarPedido()
+        public bool FinalizarPedido (BE_Pedido pedido)
         {
-            throw new NotImplementedException();
+            StatusPedido status = pedido.Status;
+            pedido.Status = StatusPedido.Terminado;
+            if (Modificar(pedido)) return true;
+            else { pedido.Status = status; return false; }
         }
-
-        public bool guardarPlato()
+        public bool CancelarPedido (BE_Pedido pedido)
         {
-            throw new NotImplementedException();
+            StatusPedido status = pedido.Status;
+            pedido.Status = StatusPedido.Cancelado;
+            if (Modificar(pedido)) return true;
+            else { pedido.Status = status; return false; }
         }
-
-        public bool agendarPlato()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool sugerirPlato()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool abonarPedido(decimal monto)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Modificar(BE_Pedido pedido)
         {
             return MPP_Pedido.DevolverInstancia().Modificar(pedido);

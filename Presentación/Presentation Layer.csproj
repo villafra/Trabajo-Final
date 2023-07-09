@@ -100,6 +100,12 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\ListadoOrdenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenes.Designer.cs">
+      <DependentUpon>ListadoOrdenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\MetodoPagos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -401,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\ListadoOrdenes.resx">
+      <DependentUpon>ListadoOrdenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MetodoPagos.resx">
       <DependentUpon>MetodoPagos.cs</DependentUpon>

@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmListadoPedidos
+    partial class frmListadoOrdenes
     {
         /// <summary>
         /// Required designer variable.

@@ -53,14 +53,34 @@ namespace Mapper
                  {
                      Codigo = Convert.ToInt32(ord[0]),
                      Pasos_Orden = Convert.ToInt32(ord[1]),
-                     Status = Convert.ToString(ord[2]),
+                     Status = (StatusOrden)Enum.Parse(typeof(StatusOrden),Convert.ToString(ord[2])),
                      ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3])},ds),
                      ID_Mesa = MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4])},ds),
-                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5])},ds)
+                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5])},ds),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).ToList() : null;
             return listadeOrdenes;
         }
+        public List<BE_Orden> ListarEnEspera()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
 
+            List<BE_Orden> listadeOrdenes = ds.Tables.Contains("Orden") != false ?
+                (from ord in ds.Tables["Orden"].AsEnumerable()
+                 where ord[2].ToString() == StatusOrden.En_Espera.ToString() && Convert.ToBoolean(ord[6])
+                 select new BE_Orden
+                 {
+                     Codigo = Convert.ToInt32(ord[0]),
+                     Pasos_Orden = Convert.ToInt32(ord[1]),
+                     Status = (StatusOrden)Enum.Parse(typeof(StatusOrden), Convert.ToString(ord[2])),
+                     ID_Pedido = ord[3].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
+                     ID_Mesa = ord[4].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
+                     ID_Empleado = ord[5].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5]) }, ds) : null,
+                     Activo = Convert.ToBoolean(ord[6])
+                 }).ToList() : null;
+            return listadeOrdenes;
+        }
         public BE_Orden ListarObjeto(BE_Orden orden, DataSet ds=null)
         {
             if (ds is null)
@@ -75,10 +95,11 @@ namespace Mapper
                  {
                      Codigo = Convert.ToInt32(ord[0]),
                      Pasos_Orden = Convert.ToInt32(ord[1]),
-                     Status = Convert.ToString(ord[2]),
+                     Status = (StatusOrden)Enum.Parse(typeof(StatusOrden), Convert.ToString(ord[2])),
                      ID_Pedido = MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[3]) },ds),
                      ID_Mesa = MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[4]) },ds),
-                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5]) },ds)
+                     ID_Empleado = MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[5]) },ds),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -94,14 +115,15 @@ namespace Mapper
         {
             BE_TuplaXML nuevaTupla = new BE_TuplaXML();
             nuevaTupla.NodoRoot = "Ordenes";
-            nuevaTupla.NodoLeaf = "Ordene";
+            nuevaTupla.NodoLeaf = "Orden";
             XElement nuevaOrden = new XElement("Orden",
                 new XElement("ID", Cálculos.IDPadleft(orden.Codigo)),
-                new XElement("Pasos Orden", orden.Pasos_Orden.ToString()),
-                new XElement("Status", orden.Status),
-                new XElement("ID Pedido", orden.ID_Pedido.ToString()),
-                new XElement("ID Mesa", orden.ID_Mesa.ToString()),
-                new XElement("ID Empleado", orden.ID_Empleado.ToString())
+                new XElement("Pasos_Orden", orden.Pasos_Orden.ToString()),
+                new XElement("Status", orden.Status.ToString()),
+                new XElement("ID_Pedido", orden.ID_Pedido.Codigo.ToString()),
+                new XElement("ID_Mesa", orden.ID_Mesa != null ? orden.ID_Mesa.Codigo.ToString() : null),
+                new XElement("ID_Empleado", orden.ID_Empleado != null ? orden.ID_Empleado.Codigo.ToString() : null),
+                new XElement("Activo", orden.Activo.ToString())
                 );
             nuevaTupla.Xelement = nuevaOrden;
             return nuevaTupla;

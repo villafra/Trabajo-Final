@@ -14,19 +14,13 @@ using Service_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmListadoPedidos : Form
+    public partial class frmListadoOrdenes : Form
     {
-        BLL_Pedido oBLL_Pedido;
-        BE_Pedido oBE_Pedido;
         BLL_Orden oBLL_Orden;
         BE_Orden oBE_Orden;
-        private BE_Login usuario;
-        public frmListadoPedidos(BE_Login usuarioActivo)
+        public frmListadoOrdenes()
         {
             InitializeComponent();
-            usuario = usuarioActivo;
-            oBLL_Pedido = new BLL_Pedido();
-            oBE_Pedido = new BE_Pedido();
             oBLL_Orden = new BLL_Orden();
             Aspecto.FormatearGRP(grpPedidos);
             Aspecto.FormatearDGV(dgvPedidos);
@@ -35,7 +29,7 @@ namespace Trabajo_Final
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvPedidos, oBLL_Pedido.ListarLiberados());
+            Cálculos.RefreshGrilla(dgvPedidos, oBLL_Orden.ListarEnEspera());
             dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -43,18 +37,14 @@ namespace Trabajo_Final
         {
             try
             {
-                oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
+                oBE_Orden = (BE_Orden)dgvPedidos.SelectedRows[0].DataBoundItem;
             }
             catch { }
             
         }
         private bool Nuevo()
         {
-            oBE_Orden = new BE_Orden();
-            oBE_Orden.ID_Pedido = oBE_Pedido;
-            oBE_Orden.ID_Empleado = usuario.Empleado;
-            oBE_Orden.Pasos_Orden =  oBLL_Orden.CantidadPasos(oBE_Orden);
-            return oBLL_Orden.Guardar(oBE_Orden);
+            return true;
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

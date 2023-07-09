@@ -166,7 +166,7 @@ namespace Mapper
                 nuevaTupla.NodoLeaf = "Plato-Pedido";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
                     new XElement("ID", Cálculos.IDPadleft(0)),
-                    new XElement("ID_Pedido", Cálculos.IDPadleft(pedido.Codigo)),
+                    new XElement("ID_Pedido", Cálculos.IDPadleft(plato.Codigo)),
                     new XElement("ID_Plato", Cálculos.IDPadleft(plato.Codigo))
                     );
                 nuevaTupla.Xelement= nuevoPlatoPedido;

@@ -49,19 +49,17 @@ namespace Trabajo_Final
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(342, 120);
-            this.txtFiltro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
             this.txtFiltro.Name = "txtFiltro";
-            this.txtFiltro.Size = new System.Drawing.Size(529, 26);
+            this.txtFiltro.Size = new System.Drawing.Size(471, 22);
             this.txtFiltro.TabIndex = 0;
             // 
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
-            this.comboFiltro.Location = new System.Drawing.Point(24, 118);
-            this.comboFiltro.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
-            this.comboFiltro.Size = new System.Drawing.Size(262, 28);
+            this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
             // 
             // dgvPedidos
@@ -69,13 +67,12 @@ namespace Trabajo_Final
             this.dgvPedidos.AllowUserToAddRows = false;
             this.dgvPedidos.AllowUserToDeleteRows = false;
             this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidos.Location = new System.Drawing.Point(115, 311);
-            this.dgvPedidos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dgvPedidos.Location = new System.Drawing.Point(102, 249);
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.ReadOnly = true;
             this.dgvPedidos.RowHeadersWidth = 51;
             this.dgvPedidos.RowTemplate.Height = 24;
-            this.dgvPedidos.Size = new System.Drawing.Size(1260, 425);
+            this.dgvPedidos.Size = new System.Drawing.Size(1120, 340);
             this.dgvPedidos.TabIndex = 3;
             this.dgvPedidos.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
@@ -87,11 +84,9 @@ namespace Trabajo_Final
             this.grpPedidos.Controls.Add(this.txtFiltro);
             this.grpPedidos.Controls.Add(this.comboFiltro);
             this.grpPedidos.Controls.Add(this.btBuscar);
-            this.grpPedidos.Location = new System.Drawing.Point(115, 71);
-            this.grpPedidos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpPedidos.Location = new System.Drawing.Point(102, 57);
             this.grpPedidos.Name = "grpPedidos";
-            this.grpPedidos.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpPedidos.Size = new System.Drawing.Size(1260, 210);
+            this.grpPedidos.Size = new System.Drawing.Size(1120, 168);
             this.grpPedidos.TabIndex = 4;
             this.grpPedidos.TabStop = false;
             this.grpPedidos.Text = "Listado de Pedidos Liberados";
@@ -99,18 +94,18 @@ namespace Trabajo_Final
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(339, 89);
+            this.lbl2.Location = new System.Drawing.Point(301, 71);
             this.lbl2.Name = "lbl2";
-            this.lbl2.Size = new System.Drawing.Size(210, 20);
+            this.lbl2.Size = new System.Drawing.Size(178, 17);
             this.lbl2.TabIndex = 5;
             this.lbl2.Text = "Ingrese Filtro de Busqueda";
             // 
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(24, 89);
+            this.lbl1.Location = new System.Drawing.Point(21, 71);
             this.lbl1.Name = "lbl1";
-            this.lbl1.Size = new System.Drawing.Size(94, 20);
+            this.lbl1.Size = new System.Drawing.Size(78, 17);
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Buscar Por";
             // 
@@ -122,10 +117,9 @@ namespace Trabajo_Final
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.ImageIndex = 1;
             this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(1086, 102);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnReset.Location = new System.Drawing.Point(965, 82);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(168, 45);
+            this.btnReset.Size = new System.Drawing.Size(149, 36);
             this.btnReset.TabIndex = 3;
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -151,10 +145,9 @@ namespace Trabajo_Final
             this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btBuscar.ImageIndex = 0;
             this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(911, 102);
-            this.btBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btBuscar.Location = new System.Drawing.Point(810, 82);
             this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(168, 45);
+            this.btBuscar.Size = new System.Drawing.Size(149, 36);
             this.btBuscar.TabIndex = 2;
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -163,11 +156,9 @@ namespace Trabajo_Final
             // grpAcciones
             // 
             this.grpAcciones.Controls.Add(this.btnAgregar);
-            this.grpAcciones.Location = new System.Drawing.Point(115, 960);
-            this.grpAcciones.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.grpAcciones.Location = new System.Drawing.Point(102, 768);
             this.grpAcciones.Name = "grpAcciones";
-            this.grpAcciones.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpAcciones.Size = new System.Drawing.Size(1260, 125);
+            this.grpAcciones.Size = new System.Drawing.Size(1120, 100);
             this.grpAcciones.TabIndex = 11;
             this.grpAcciones.TabStop = false;
             this.grpAcciones.Text = "Elija Una Acción";
@@ -180,10 +171,9 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(546, 42);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAgregar.Location = new System.Drawing.Point(460, 34);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(168, 62);
+            this.btnAgregar.Size = new System.Drawing.Size(200, 50);
             this.btnAgregar.TabIndex = 5;
             this.btnAgregar.Text = "Tratar Pedido";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,14 +182,13 @@ namespace Trabajo_Final
             // 
             // frmListadoPedidos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1490, 1102);
+            this.ClientSize = new System.Drawing.Size(1324, 882);
             this.Controls.Add(this.grpAcciones);
             this.Controls.Add(this.grpPedidos);
             this.Controls.Add(this.dgvPedidos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmListadoPedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";

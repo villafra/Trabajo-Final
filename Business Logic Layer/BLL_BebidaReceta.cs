@@ -35,6 +35,14 @@ namespace Business_Logic_Layer
         {
             return MPP_BebidaReceta.DevolverInstancia().ListarAlternativasDataSource(bebida);
         }
+        public BE_BebidaReceta ListarAlternativaVigente(BE_Bebida bebida)
+        {
+            return MPP_BebidaReceta.DevolverInstancia().ListarAlternativaVigente(bebida);
+        }
+        public List<BE_BebidaReceta> BebidaEnOrden(BE_Bebida bebida)
+        {
+            return MPP_BebidaReceta.DevolverInstancia().BebidaEnOrden(bebida);
+        }
         public bool Modificar(List<BE_BebidaReceta> BebidaReceta)
         {
             return MPP_BebidaReceta.DevolverInstancia().Modificar(BebidaReceta);

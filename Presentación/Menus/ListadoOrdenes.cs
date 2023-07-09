@@ -49,15 +49,9 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (Nuevo())
-                {
-                    Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
-                }
-                else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");
-            }
-            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            frmBebidasEnOrden frm = new frmBebidasEnOrden(oBE_Orden);
+            frm.Owner = this;
+            frm.ShowDialog();
         }
     }
 }

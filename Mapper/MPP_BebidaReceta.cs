@@ -98,11 +98,13 @@ namespace Mapper
                  }).ToList() : null;
             return listado;
         }
-        public BE_BebidaReceta ListarAlternativaVigente(BE_Bebida bebida)
+        public BE_BebidaReceta ListarAlternativaVigente(BE_Bebida bebida, DataSet ds = null)
         {
-            DataSet ds = new DataSet();
-            ds = Xml_Database.DevolverInstancia().Listar();
-
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             List<BE_BebidaReceta> listado = ds.Tables.Contains("Bebida-Ingrediente") != false ?
                 (from bi in ds.Tables["Bebida-Ingrediente"].AsEnumerable()
                  where Convert.ToInt32(bi[1]) == bebida.Codigo && Convert.ToBoolean(bi[5])
@@ -113,6 +115,14 @@ namespace Mapper
                  }).ToList() : null;
             BE_BebidaReceta vigente =  listado != null ? listado.Distinct().OrderByDescending(x=> x.Codigo).FirstOrDefault(): null;
             return vigente;
+        }
+        public List<BE_BebidaReceta> BebidaEnOrden(BE_Bebida bebida)
+        {
+            DataSet ds;
+            ds = Xml_Database.DevolverInstancia().Listar();
+            BE_BebidaReceta receta = ListarAlternativaVigente(bebida,ds);
+            List<BE_BebidaReceta> listado = ListarObjeto(bebida, receta,ds);
+            return listado;
         }
 
         public bool Modificar(List<BE_BebidaReceta> BebidaReceta)

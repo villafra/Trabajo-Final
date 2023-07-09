@@ -148,6 +148,12 @@
     <Compile Include="Menus\SubMenus\ConfrmarPedido.Designer.cs">
       <DependentUpon>ConfrmarPedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\BebidasEnOrden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\BebidasEnOrden.Designer.cs">
+      <DependentUpon>BebidasEnOrden.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\NuevoMetodoPago.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\ConfrmarPedido.resx">
       <DependentUpon>ConfrmarPedido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\BebidasEnOrden.resx">
+      <DependentUpon>BebidasEnOrden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\NuevoMetodoPago.resx">
       <DependentUpon>NuevoMetodoPago.cs</DependentUpon>

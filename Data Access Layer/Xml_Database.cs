@@ -307,7 +307,7 @@ namespace Data_Access_Layer
                 CancelarConexion();
             }
         }
-        private void AutogenerarID(BE_TuplaXML tupla)
+        public void AutogenerarID(BE_TuplaXML tupla)
         {
             int ID;
             try
@@ -336,6 +336,39 @@ namespace Data_Access_Layer
             {
                 tupla.Xelement.Element("ID").Value = Cálculos.IDPadleft(1);
             }
+        }
+        public int DevolverID(BE_TuplaXML tupla)
+        {
+            AbrirConexion();
+            int ID;
+            try
+            {
+                if (tupla.NodoRoot != "Empleados")
+                {
+                    ID = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                             .Select(x => Convert.ToInt32(x.Element("ID")?.Value ?? "0001"))
+                                             .Max();
+                }
+                else
+                {
+                    ID = doc.Root.Element(tupla.NodoRoot)
+                                            .Descendants()
+                                            .Where(x => x.Name.LocalName == "ID")
+                                            .Select(x => Convert.ToInt32(x.Value))
+                                            .DefaultIfEmpty(0)
+                                            .Max();
+                }
+
+
+                ID += 1;
+                return ID;
+            }
+            catch
+            {
+                ID = 1;
+                return ID;
+            }
+            finally { CancelarConexion();  }
         }
         public bool EscribirPermiso(List<BE_TuplaXML> datos)
         {

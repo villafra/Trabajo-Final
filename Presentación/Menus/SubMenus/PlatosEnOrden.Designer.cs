@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmBebidasEnOrden
+    partial class frmPlatosEnOrden
     {
         /// <summary>
         /// Required designer variable.
@@ -30,8 +30,8 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBebidasEnOrden));
-            this.dgvBebidas = new System.Windows.Forms.DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlatosEnOrden));
+            this.dgvPlatos = new System.Windows.Forms.DataGridView();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -41,24 +41,24 @@ namespace Trabajo_Final
             this.dgvReceta = new System.Windows.Forms.DataGridView();
             this.lblCantiBeb = new System.Windows.Forms.Label();
             this.txtCantBebidas = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
             this.grpIngredientes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvBebidas
+            // dgvPlatos
             // 
-            this.dgvBebidas.AllowUserToAddRows = false;
-            this.dgvBebidas.AllowUserToDeleteRows = false;
-            this.dgvBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBebidas.Location = new System.Drawing.Point(6, 36);
-            this.dgvBebidas.Name = "dgvBebidas";
-            this.dgvBebidas.ReadOnly = true;
-            this.dgvBebidas.RowHeadersWidth = 51;
-            this.dgvBebidas.RowTemplate.Height = 24;
-            this.dgvBebidas.Size = new System.Drawing.Size(511, 263);
-            this.dgvBebidas.TabIndex = 3;
-            this.dgvBebidas.SelectionChanged += new System.EventHandler(this.dgvBebidas_SelectionChanged);
+            this.dgvPlatos.AllowUserToAddRows = false;
+            this.dgvPlatos.AllowUserToDeleteRows = false;
+            this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlatos.Location = new System.Drawing.Point(6, 36);
+            this.dgvPlatos.Name = "dgvPlatos";
+            this.dgvPlatos.ReadOnly = true;
+            this.dgvPlatos.RowHeadersWidth = 51;
+            this.dgvPlatos.RowTemplate.Height = 24;
+            this.dgvPlatos.Size = new System.Drawing.Size(511, 263);
+            this.dgvPlatos.TabIndex = 3;
+            this.dgvPlatos.SelectionChanged += new System.EventHandler(this.dgvBebidas_SelectionChanged);
             // 
             // Listado
             // 
@@ -83,7 +83,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(205, 47);
             this.btnConfirmar.TabIndex = 12;
-            this.btnConfirmar.Text = "Bebidas Listas";
+            this.btnConfirmar.Text = "Platos Listos";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
@@ -114,7 +114,7 @@ namespace Trabajo_Final
             this.grpIngredientes.Controls.Add(this.dgvReceta);
             this.grpIngredientes.Controls.Add(this.lblCantiBeb);
             this.grpIngredientes.Controls.Add(this.txtCantBebidas);
-            this.grpIngredientes.Controls.Add(this.dgvBebidas);
+            this.grpIngredientes.Controls.Add(this.dgvPlatos);
             this.grpIngredientes.Location = new System.Drawing.Point(27, 12);
             this.grpIngredientes.Name = "grpIngredientes";
             this.grpIngredientes.Size = new System.Drawing.Size(1059, 380);
@@ -171,7 +171,7 @@ namespace Trabajo_Final
             this.txtCantBebidas.TabIndex = 18;
             this.txtCantBebidas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // frmBebidasEnOrden
+            // frmPlatosEnOrden
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -180,10 +180,10 @@ namespace Trabajo_Final
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpIngredientes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmBebidasEnOrden";
+            this.Name = "frmPlatosEnOrden";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             this.grpIngredientes.ResumeLayout(false);
             this.grpIngredientes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).EndInit();
@@ -192,7 +192,7 @@ namespace Trabajo_Final
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvBebidas;
+        private System.Windows.Forms.DataGridView dgvPlatos;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button btnCancelar;

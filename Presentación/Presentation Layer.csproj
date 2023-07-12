@@ -100,11 +100,23 @@
     <Compile Include="Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\ListadoOrdenes.cs">
+    <Compile Include="Menus\ListadoOrdenesEntregar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menus\ListadoOrdenes.Designer.cs">
-      <DependentUpon>ListadoOrdenes.cs</DependentUpon>
+    <Compile Include="Menus\ListadoOrdenesEntregar.Designer.cs">
+      <DependentUpon>ListadoOrdenesEntregar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenesPlatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenesPlatos.Designer.cs">
+      <DependentUpon>ListadoOrdenesPlatos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenesBebidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenesBebidas.Designer.cs">
+      <DependentUpon>ListadoOrdenesBebidas.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\MetodoPagos.cs">
       <SubType>Form</SubType>
@@ -117,6 +129,12 @@
     </Compile>
     <Compile Include="Menus\ListadoPedidos.Designer.cs">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\PlatosEnOrden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\PlatosEnOrden.Designer.cs">
+      <DependentUpon>PlatosEnOrden.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\frmPagoQR.cs">
       <SubType>Form</SubType>
@@ -414,14 +432,23 @@
     <EmbeddedResource Include="Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menus\ListadoOrdenes.resx">
-      <DependentUpon>ListadoOrdenes.cs</DependentUpon>
+    <EmbeddedResource Include="Menus\ListadoOrdenesEntregar.resx">
+      <DependentUpon>ListadoOrdenesEntregar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\ListadoOrdenesPlatos.resx">
+      <DependentUpon>ListadoOrdenesPlatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\ListadoOrdenesBebidas.resx">
+      <DependentUpon>ListadoOrdenesBebidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MetodoPagos.resx">
       <DependentUpon>MetodoPagos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoPedidos.resx">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\PlatosEnOrden.resx">
+      <DependentUpon>PlatosEnOrden.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\frmPagoQR.resx">
       <DependentUpon>frmPagoQR.cs</DependentUpon>

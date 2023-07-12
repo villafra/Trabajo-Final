@@ -37,30 +37,25 @@ namespace Business_Logic_Layer
             return MPP_Orden.DevolverInstancia().Modificar(orden);
         }
 
-        public object ListarEnEspera()
+        public object ListarEnEntrega()
         {
-            return MPP_Orden.DevolverInstancia().ListarEnEspera();
+            return MPP_Orden.DevolverInstancia().ListarEnEntrega();
         }
 
-        public bool ActualizarStatus(BE_Orden orden)
+        public object ListarEnEsperaPlatos()
         {
-            if (orden.Status == StatusOrden.En_Espera)
-            {
-                orden.Status = (StatusOrden)((int)orden.Status + orden.Pasos_Orden);
-            }
-            if (Enum.IsDefined(typeof(StatusOrden), (StatusOrden)((int)orden.Status + 1)))
-            {
-                orden.Status = (StatusOrden)((int)orden.Status + 1);
-            }
-            else return false;
-            return Modificar(orden);
+            return MPP_Orden.DevolverInstancia().ListarEnEsperaPlatos();
         }
-        public int CantidadPasos(BE_Orden orden)
+
+        public object ListarEnEsperaBebidas()
         {
-            int pasos = 0;
-            if (orden.ID_Pedido.ListadeBebida.Count == 0) pasos += 3;
-            if (orden.ID_Pedido.ListadePlatos.Count == 0) pasos += 3;
-            return pasos;      
+            return MPP_Orden.DevolverInstancia().ListarEnEsperaBebidas();
         }
+        public void VerEnEspera (BE_Orden orden)
+        {
+            if (orden.ID_Pedido.ListadeBebida.Count == 0)
+                orden.Status = StatusOrden.En_Espera_Platos;
+        }
+
     }
 }

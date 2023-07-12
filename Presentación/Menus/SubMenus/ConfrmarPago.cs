@@ -37,28 +37,7 @@ namespace Trabajo_Final
             }
             Aspecto.CentrarPanel(grpNuevoLogin, flowPago, btnIzquierda, btnDerecha);
         }
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            if (_ = oBE_Pedido != null ? Viejo() : Nuevo())
-            {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
-            }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
-
-        }
-
-        private bool Viejo()
-        {
-            return true;
-        }
-
-        private bool Nuevo()
-        {
-            return true;
-        }
+       
         private void ImportarPedido()
         {
             if (oBE_Pedido != null)

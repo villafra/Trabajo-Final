@@ -98,10 +98,13 @@ namespace Mapper
                  }).ToList() : null;
             return listado;
         }
-        public BE_PlatoReceta ListarAlternativaVigente(BE_Plato Plato)
+        public BE_PlatoReceta ListarAlternativaVigente(BE_Plato Plato, DataSet ds = null)
         {
-            DataSet ds = new DataSet();
-            ds = Xml_Database.DevolverInstancia().Listar();
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
 
             List<BE_PlatoReceta> listado = ds.Tables.Contains("Plato-Ingrediente") != false ?
                 (from bi in ds.Tables["Plato-Ingrediente"].AsEnumerable()
@@ -114,7 +117,14 @@ namespace Mapper
             BE_PlatoReceta vigente =  listado != null ? listado.Distinct().OrderByDescending(x=> x.Codigo).FirstOrDefault(): null;
             return vigente;
         }
-
+        public List<BE_PlatoReceta> PlatoEnOrden(BE_Plato plato)
+        {
+            DataSet ds;
+            ds = Xml_Database.DevolverInstancia().Listar();
+            BE_PlatoReceta receta = ListarAlternativaVigente(plato, ds);
+            List<BE_PlatoReceta> listado = ListarObjeto(plato, receta, ds);
+            return listado;
+        }
         public bool Modificar(List<BE_PlatoReceta> PlatoReceta)
         {
             ListadoXML = new List<BE_TuplaXML>();

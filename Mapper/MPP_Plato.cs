@@ -100,7 +100,8 @@ namespace Mapper
             List<BE_Plato> listaPlatos = ds.Tables.Contains("Plato") != false ?
                     (from obj in ds.Tables["Plato-Pedido"].AsEnumerable()
                      join platos in ds.Tables["Plato"].AsEnumerable()
-                     on Convert.ToInt32(obj[1]) equals pedido.Codigo
+                     on new { Codigo = Convert.ToInt32(obj[1]), Plato = Convert.ToInt32(obj[2]) }
+                     equals new { Codigo = pedido.Codigo, Plato = Convert.ToInt32(platos[0]) }
                      select new BE_Plato
                      {
                          Codigo = Convert.ToInt32(platos[0]),

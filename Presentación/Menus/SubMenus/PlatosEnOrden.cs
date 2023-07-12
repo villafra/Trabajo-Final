@@ -15,30 +15,27 @@ using Microsoft.VisualBasic;
 
 namespace Trabajo_Final
 {
-    public partial class frmBebidasEnOrden : Form
+    public partial class frmPlatosEnOrden : Form
     {
         BE_Orden oBE_Orden;
         BLL_Orden oBLL_Orden;
-        BLL_BebidaReceta oBLL_BebidaReceta;
         BLL_PlatoReceta oBLL_PlatoReceta;
-        BE_Bebida_Preparada oBE_Bebida;
         BE_Plato oBE_Plato;
-        public frmBebidasEnOrden(BE_Orden orden)
+        public frmPlatosEnOrden(BE_Orden orden)
         {
             InitializeComponent();
             oBE_Orden = orden;
-            oBLL_BebidaReceta = new BLL_BebidaReceta();
             oBLL_PlatoReceta = new BLL_PlatoReceta();
             oBLL_Orden = new BLL_Orden();
             Aspecto.FormatearGRPSubMenu(grpIngredientes);
-            Aspecto.FormatearDGVRecetas(dgvBebidas);
+            Aspecto.FormatearDGVRecetas(dgvPlatos);
             Aspecto.FormatearDGVRecetas(dgvReceta);
             ActualizarListado();
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvBebidas, oBE_Orden.ID_Pedido.ListadeBebida);
-            txtCantBebidas.Text = oBE_Orden.ID_Pedido.ListadeBebida.Count().ToString();
+            Cálculos.RefreshGrilla(dgvPlatos, oBE_Orden.ID_Pedido.ListadePlatos);
+            txtCantBebidas.Text = oBE_Orden.ID_Pedido.ListadePlatos.Count().ToString();
         }
         
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -50,8 +47,8 @@ namespace Trabajo_Final
         {
             try
             {
-                oBE_Bebida = (BE_Bebida_Preparada)dgvBebidas.SelectedRows[0].DataBoundItem;
-                Cálculos.RefreshGrilla(dgvReceta, oBLL_BebidaReceta.BebidaEnOrden(oBE_Bebida));
+                oBE_Plato = (BE_Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
+                Cálculos.RefreshGrilla(dgvReceta, oBLL_PlatoReceta.PlatoEnOrden(oBE_Plato));
                 txtCantiIngred.Text =  dgvReceta.RowCount.ToString();
             }
             catch { Cálculos.GrillaEnBlanco(dgvReceta); txtCantiIngred.Text = ""; }
@@ -59,7 +56,7 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            oBE_Orden.Status = StatusOrden.Bebidas_Listas;
+            oBE_Orden.Status = StatusOrden.Platos_Listos;
             oBLL_Orden.Modificar(oBE_Orden);
         }
     }

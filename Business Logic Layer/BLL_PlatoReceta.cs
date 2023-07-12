@@ -35,6 +35,10 @@ namespace Business_Logic_Layer
         {
             return MPP_PlatoReceta.DevolverInstancia().ListarAlternativasDataSource(Plato);
         }
+        public List<BE_PlatoReceta> PlatoEnOrden(BE_Plato plato)
+        {
+            return MPP_PlatoReceta.DevolverInstancia().PlatoEnOrden(plato);
+        }
         public bool Modificar(List<BE_PlatoReceta> PlatoReceta)
         {
             return MPP_PlatoReceta.DevolverInstancia().Modificar(PlatoReceta);

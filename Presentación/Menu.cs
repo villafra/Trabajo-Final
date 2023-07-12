@@ -662,16 +662,55 @@ namespace Trabajo_Final
 
         private void listadoToolStripMenuItem6_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenes);
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenesBebidas);
             if (frm != null)
             {
-                ((frmListadoOrdenes)frm).ActualizarListado();
+                ((frmListadoOrdenesBebidas)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
             else
             {
-                frm = new frmListadoOrdenes();
+                frm = new frmListadoOrdenesBebidas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void prepararPlatosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenesPlatos);
+            if (frm != null)
+            {
+                ((frmListadoOrdenesPlatos)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoOrdenesPlatos();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void gestionarOrdenesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aEntregarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenesEntregar);
+            if (frm != null)
+            {
+                ((frmListadoOrdenesEntregar)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoOrdenesEntregar();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

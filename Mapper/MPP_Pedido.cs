@@ -39,6 +39,7 @@ namespace Mapper
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
+            pedido.Codigo = Xml_Database.DevolverInstancia().DevolverID(CrearPedidoXML(pedido));
             ListadoXML.AddRange(CrearPlatoPedido(pedido));
             ListadoXML.AddRange(CrearBebidaPedido(pedido));
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
@@ -120,7 +121,7 @@ namespace Mapper
             }
             BE_Pedido ObjetoEncontrado = ds.Tables.Contains("Pedido") != false ?
                (from ped in ds.Tables["Pedido"].AsEnumerable()
-                where ped[4].ToString() == StatusPedido.Liberado.ToString()
+                where Convert.ToInt32(ped[0]) == pedido.Codigo
                 select new BE_Pedido
                 {
                     Codigo = Convert.ToInt32(ped[0]),
@@ -166,7 +167,7 @@ namespace Mapper
                 nuevaTupla.NodoLeaf = "Plato-Pedido";
                 XElement nuevoPlatoPedido = new XElement("Plato-Pedido",
                     new XElement("ID", Cálculos.IDPadleft(0)),
-                    new XElement("ID_Pedido", Cálculos.IDPadleft(plato.Codigo)),
+                    new XElement("ID_Pedido", Cálculos.IDPadleft(pedido.Codigo)),
                     new XElement("ID_Plato", Cálculos.IDPadleft(plato.Codigo))
                     );
                 nuevaTupla.Xelement= nuevoPlatoPedido;
@@ -185,7 +186,7 @@ namespace Mapper
                 nuevaTupla.NodoLeaf = "Bebida-Pedido";
                 XElement nuevaBebidaPedido = new XElement("Bebida-Pedido",
                    new XElement("ID", Cálculos.IDPadleft(0)),
-                   new XElement("ID_Pedido", Cálculos.IDPadleft(bebida.Codigo)),
+                   new XElement("ID_Pedido", Cálculos.IDPadleft(pedido.Codigo)),
                    new XElement("ID_Bebida", Cálculos.IDPadleft(bebida.Codigo))
                     ); 
                 nuevaTupla.Xelement = nuevaBebidaPedido;

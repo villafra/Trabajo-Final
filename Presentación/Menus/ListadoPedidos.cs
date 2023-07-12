@@ -53,8 +53,9 @@ namespace Trabajo_Final
             oBE_Orden = new BE_Orden();
             oBE_Orden.ID_Pedido = oBE_Pedido;
             oBE_Orden.ID_Empleado = usuario.Empleado;
-            oBE_Orden.Pasos_Orden =  oBLL_Orden.CantidadPasos(oBE_Orden);
-            return oBLL_Orden.Guardar(oBE_Orden);
+            oBE_Orden.Status = oBE_Orden.DefinirStatusInicial();
+            oBE_Pedido.Status = StatusPedido.Asignado;
+            return oBLL_Orden.Guardar(oBE_Orden) & oBLL_Pedido.Modificar(oBE_Pedido);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -63,6 +64,7 @@ namespace Trabajo_Final
             {
                 if (Nuevo())
                 {
+                    ActualizarListado();
                     Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
                 }
                 else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");

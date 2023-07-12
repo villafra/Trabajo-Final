@@ -111,7 +111,8 @@ namespace Mapper
             List<BE_Bebida> ListaCompleta = ds.Tables.Contains("Bebida") != false ?
                 (from obj in ds.Tables["Bebida-Pedido"].AsEnumerable()
                  join beb in ds.Tables["Bebida"].AsEnumerable()
-                 on Convert.ToInt32(obj[1]) equals pedido.Codigo
+                 on new { Codigo = Convert.ToInt32(obj[1]), Bebida = Convert.ToInt32(obj[2]) } 
+                 equals new { Codigo = pedido.Codigo, Bebida = Convert.ToInt32(beb[0]) }
                  select beb[2].ToString() == "Bebida" ?
                 new BE_Bebida
                 {

@@ -1,7 +1,7 @@
 ﻿
 namespace Trabajo_Final
 {
-    partial class frmListadoOrdenes
+    partial class frmListadoOrdenesBebidas
     {
         /// <summary>
         /// Required designer variable.
@@ -30,10 +30,10 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoOrdenes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoOrdenesBebidas));
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
-            this.dgvPedidos = new System.Windows.Forms.DataGridView();
+            this.dgvOrdenes = new System.Windows.Forms.DataGridView();
             this.grpPedidos = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
@@ -42,8 +42,7 @@ namespace Trabajo_Final
             this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnModificar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).BeginInit();
             this.grpPedidos.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
@@ -63,19 +62,19 @@ namespace Trabajo_Final
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
             // 
-            // dgvPedidos
+            // dgvOrdenes
             // 
-            this.dgvPedidos.AllowUserToAddRows = false;
-            this.dgvPedidos.AllowUserToDeleteRows = false;
-            this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidos.Location = new System.Drawing.Point(102, 249);
-            this.dgvPedidos.Name = "dgvPedidos";
-            this.dgvPedidos.ReadOnly = true;
-            this.dgvPedidos.RowHeadersWidth = 51;
-            this.dgvPedidos.RowTemplate.Height = 24;
-            this.dgvPedidos.Size = new System.Drawing.Size(1120, 340);
-            this.dgvPedidos.TabIndex = 3;
-            this.dgvPedidos.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
+            this.dgvOrdenes.AllowUserToAddRows = false;
+            this.dgvOrdenes.AllowUserToDeleteRows = false;
+            this.dgvOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvOrdenes.Location = new System.Drawing.Point(102, 249);
+            this.dgvOrdenes.Name = "dgvOrdenes";
+            this.dgvOrdenes.ReadOnly = true;
+            this.dgvOrdenes.RowHeadersWidth = 51;
+            this.dgvOrdenes.RowTemplate.Height = 24;
+            this.dgvOrdenes.Size = new System.Drawing.Size(1120, 340);
+            this.dgvOrdenes.TabIndex = 3;
+            this.dgvOrdenes.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
             // grpPedidos
             // 
@@ -156,7 +155,6 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
-            this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnAgregar);
             this.grpAcciones.Location = new System.Drawing.Point(102, 768);
             this.grpAcciones.Name = "grpAcciones";
@@ -173,7 +171,7 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(312, 34);
+            this.btnAgregar.Location = new System.Drawing.Point(460, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(200, 50);
             this.btnAgregar.TabIndex = 5;
@@ -182,22 +180,6 @@ namespace Trabajo_Final
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnModificar
-            // 
-            this.btnModificar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.ImageIndex = 3;
-            this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(609, 34);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(200, 50);
-            this.btnModificar.TabIndex = 7;
-            this.btnModificar.Text = "Preparar Platos";
-            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnModificar.UseVisualStyleBackColor = true;
-            // 
             // frmListadoOrdenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -205,12 +187,12 @@ namespace Trabajo_Final
             this.ClientSize = new System.Drawing.Size(1324, 882);
             this.Controls.Add(this.grpAcciones);
             this.Controls.Add(this.grpPedidos);
-            this.Controls.Add(this.dgvPedidos);
+            this.Controls.Add(this.dgvOrdenes);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListadoOrdenes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).EndInit();
             this.grpPedidos.ResumeLayout(false);
             this.grpPedidos.PerformLayout();
             this.grpAcciones.ResumeLayout(false);
@@ -223,7 +205,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
-        private System.Windows.Forms.DataGridView dgvPedidos;
+        private System.Windows.Forms.DataGridView dgvOrdenes;
         private System.Windows.Forms.GroupBox grpPedidos;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnReset;
@@ -231,6 +213,5 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.GroupBox grpAcciones;
         private System.Windows.Forms.Button btnAgregar;
-        private System.Windows.Forms.Button btnModificar;
     }
 }

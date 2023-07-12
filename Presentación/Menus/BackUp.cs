@@ -30,6 +30,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBackUps, oBLL_BackUp.Listar());
+            VistasDGV.DGVLogs(dgvBackUps);
             dgvBackUps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 

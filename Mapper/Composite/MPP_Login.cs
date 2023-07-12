@@ -141,6 +141,36 @@ namespace Mapper
             nuevaTupla.Xelement = nuevoLogin;
             return nuevaTupla;
         }
+        private BE_TuplaXML CrearLogin (BE_Login user)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Transacciones";
+            nuevaTupla.NodoLeaf = "Transacción";
+            XElement nuevoLogin = new XElement("Transacción",
+                new XElement("ID", Cálculos.IDPadleft(0)),
+                new XElement("ID_Empleado", user.Usuario != "admin" ? user.Empleado.Codigo.ToString() : ""),
+                new XElement("Accion", "Ingreso al sistema"),
+                new XElement("Fecha", DateTime.Now.ToString("dd/MM/yyyy")),
+                new XElement("Hora", DateTime.Now.ToString("HH:mm"))
+                );
+            nuevaTupla.Xelement = nuevoLogin;
+            return nuevaTupla;
+        }
+        private BE_TuplaXML CrearLogOut(BE_Login user)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Transacciones";
+            nuevaTupla.NodoLeaf = "Transacción";
+            XElement nuevoLogin = new XElement("Transacción",
+                new XElement("ID", Cálculos.IDPadleft(0)),
+                new XElement("ID_Empleado", user.Usuario != "admin" ? user.Empleado.Codigo.ToString() : ""),
+                new XElement("Accion", "Salida del sistema"),
+                new XElement("Fecha", DateTime.Now.ToString("dd/MM/yyyy")),
+                new XElement("Hora", DateTime.Now.ToString("HH:mm"))
+                );
+            nuevaTupla.Xelement = nuevoLogin;
+            return nuevaTupla;
+        }
 
         public bool Existe(BE_Login login)
         {

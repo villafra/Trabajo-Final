@@ -59,7 +59,9 @@ namespace Mapper
                          Nombre = Convert.ToString(emp[2]),
                          Apellido = Convert.ToString(emp[3]),
                          FechaNacimiento = Convert.ToDateTime(emp[4]),
+                         Edad = new BE_GerenteSucursal { }.CalcularAños(Convert.ToDateTime(emp[4])),
                          FechaIngreso = Convert.ToDateTime(emp[5]),
+                         Antiguedad = new BE_GerenteSucursal { }.CalcularAños(Convert.ToDateTime(emp[5])),
                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
                          Activo = Convert.ToBoolean(emp[7]),
                          Contacto = Convert.ToString(emp[8])
@@ -71,7 +73,9 @@ namespace Mapper
                          Nombre = Convert.ToString(emp[2]),
                          Apellido = Convert.ToString(emp[3]),
                          FechaNacimiento = Convert.ToDateTime(emp[4]),
+                         Edad = new BE_ChefPrincipal { }.CalcularAños(Convert.ToDateTime(emp[4])),
                          FechaIngreso = Convert.ToDateTime(emp[5]),
+                         Antiguedad = new BE_ChefPrincipal { }.CalcularAños(Convert.ToDateTime(emp[5])),
                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
                          Activo = Convert.ToBoolean(emp[7]),
                          OrdenesPendientes = null
@@ -82,7 +86,9 @@ namespace Mapper
                          Nombre = Convert.ToString(emp[2]),
                          Apellido = Convert.ToString(emp[3]),
                          FechaNacimiento = Convert.ToDateTime(emp[4]),
+                         Edad = new BE_Mozo { }.CalcularAños(Convert.ToDateTime(emp[4])),
                          FechaIngreso = Convert.ToDateTime(emp[5]),
+                         Antiguedad = new BE_Mozo { }.CalcularAños(Convert.ToDateTime(emp[5])),
                          Categoria = (Category)Enum.Parse(typeof(Category), Convert.ToString(emp[6])),
                          Activo = Convert.ToBoolean(emp[7]),
                          PedidosTomados = null

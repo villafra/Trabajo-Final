@@ -28,7 +28,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBitacora, Bitacora.ListarBitacora(UsuarioActivo));
-            
+            VistasDGV.DGVBitacora(dgvBitacora);
         }
     }
 }

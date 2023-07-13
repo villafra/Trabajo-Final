@@ -30,7 +30,7 @@ namespace Trabajo_Final
         {
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
-            dgvEmpleados.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            VistasDGV.DGVEmpleados(dgvEmpleados);
             listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
 

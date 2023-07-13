@@ -20,7 +20,7 @@ namespace Trabajo_Final
         BE_Orden oBE_Orden;
         BLL_Orden oBLL_Orden;
         BLL_BebidaReceta oBLL_BebidaReceta;
-        BLL_PlatoReceta oBLL_PlatoReceta;
+        BLL_Bebida_Stock oBLL_BebidaStock;
         BE_Bebida_Preparada oBE_Bebida;
         BE_Plato oBE_Plato;
         public frmBebidasEnOrden(BE_Orden orden)
@@ -28,7 +28,7 @@ namespace Trabajo_Final
             InitializeComponent();
             oBE_Orden = orden;
             oBLL_BebidaReceta = new BLL_BebidaReceta();
-            oBLL_PlatoReceta = new BLL_PlatoReceta();
+            oBLL_BebidaStock = new BLL_Bebida_Stock();
             oBLL_Orden = new BLL_Orden();
             Aspecto.FormatearGRPSubMenu(grpIngredientes);
             Aspecto.FormatearDGVRecetas(dgvBebidas);
@@ -61,6 +61,26 @@ namespace Trabajo_Final
         {
             oBE_Orden.Status = StatusOrden.Bebidas_Listas;
             oBLL_Orden.Modificar(oBE_Orden);
+            Consumir();
+        }
+        private void Consumir()
+        {
+            List<BE_Bebida> distinct = oBE_Orden.ID_Pedido.ListadeBebida
+                .GroupBy(x => x.Codigo).Select(y => y.First()).ToList();
+            foreach (BE_Bebida bebida in distinct)
+            {
+                decimal cantidad = oBE_Orden.ID_Pedido.ListadeBebida.Count(x => x.Codigo == bebida.Codigo);
+                if (bebida is BE_Bebida_Preparada)
+                {
+
+                }
+                else
+                {
+                List<BE_Bebida_Stock> listado =  oBLL_BebidaStock.BuscarStock(bebida);
+                oBLL_BebidaStock.Consumir(listado, cantidad);
+                }
+            }
+            
         }
     }
 }

@@ -61,13 +61,39 @@ namespace Business_Logic_Layer
         {
             return MPP_Bebida_Stock.DevolverInstancia().BuscarXLote(compra, lote);
         }
+        public List<BE_Bebida_Stock> BuscarStock(BE_Bebida bebida)
+        {
+            return MPP_Bebida_Stock.DevolverInstancia().BuscarStock(bebida);
+        }
         public bool Modificar(BE_Bebida_Stock material)
         { 
+            return MPP_Bebida_Stock.DevolverInstancia().Modificar(material);
+        }
+        public bool Modificar(List<BE_Bebida_Stock> material)
+        {
             return MPP_Bebida_Stock.DevolverInstancia().Modificar(material);
         }
         public bool Existe(BE_Bebida_Stock bebida)
         {
             return MPP_Bebida_Stock.DevolverInstancia().Existe(bebida);
+        }
+        public bool Consumir(List<BE_Bebida_Stock> bebidas, decimal cantidad)
+        {
+            foreach (BE_Bebida_Stock bebida in bebidas)
+            {
+                if (cantidad <= 0) break;
+                if (bebida.Stock >= cantidad)
+                {
+                    bebida.Stock -= cantidad;
+                    cantidad = 0;
+                }
+                else
+                {
+                    cantidad -= bebida.Stock;
+                    bebida.Stock = 0;
+                }
+            }
+            return Modificar(bebidas);
         }
     }
 }

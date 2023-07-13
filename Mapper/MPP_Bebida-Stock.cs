@@ -39,7 +39,6 @@ namespace Mapper
                 return Guardar(material,compra);
             }
         }
-        
         public bool Baja(BE_Bebida_Stock material)
         {
             ListadoXML = new List<BE_TuplaXML>();
@@ -189,10 +188,39 @@ namespace Mapper
 
             return oBE_Bebida_Stock;
         }
+        public List<BE_Bebida_Stock> BuscarStock (BE_Bebida bebida, DataSet ds = null)
+        {
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
+            List<BE_Bebida_Stock> BebidasStock = ds.Tables.Contains("Bebida-Stock") != false ?
+                 (from mat in ds.Tables["Bebida-Stock"].AsEnumerable()
+                  where Convert.ToInt32(mat[1]) == bebida.Codigo
+                  select new BE_Bebida_Stock
+                  {
+                      Codigo = Convert.ToInt32(mat[0]),
+                      Material = MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(mat[1]) }, ds),
+                      Stock = Convert.ToDecimal(mat[2]),
+                      FechaCreacion = Convert.ToDateTime(mat[3]),
+                      Lote = Convert.ToString(mat[4]),
+                  }).OrderBy(x=> x.FechaCreacion).ToList() : null;
+            return BebidasStock;
+        }
         public bool Modificar(BE_Bebida_Stock material)
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearBebida_StockXML(material));
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
+        }
+        public bool Modificar(List<BE_Bebida_Stock> material)
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+            foreach(BE_Bebida_Stock bebida in material)
+            {
+                ListadoXML.Add(CrearBebida_StockXML(bebida));
+            }
             return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
         public bool ModificarMatLot(BE_Bebida_Stock material, BE_Compra compra)

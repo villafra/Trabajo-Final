@@ -363,24 +363,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
-
-        private void combinarMesaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCombinarMesas);
-            if (frm != null)
-            {
-                ((frmCombinarMesas)frm).ActualizarListado();
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new frmCombinarMesas();
-                formulariosHijos.Add(frm);
-                Aspecto.AbrirNuevoForm(this, frm);
-            }
-        }
-
         private void logsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBackUp);
@@ -712,23 +694,6 @@ namespace Trabajo_Final
             }
         }
 
-        private void gestionarMesasToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
-            if (frm != null)
-            {
-                ((frmMesas)frm).ActualizarListado();
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new frmMesas();
-                formulariosHijos.Add(frm);
-                Aspecto.AbrirNuevoForm(this, frm);
-            }
-        }
-
         private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             Bitacora.Logout(UsuarioActivo);
@@ -747,6 +712,40 @@ namespace Trabajo_Final
             {
                 frm = new frmBitacora(UsuarioActivo);
                 frm.Owner = this;
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void combinarMesaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmCombinarMesas);
+            if (frm != null)
+            {
+                ((frmCombinarMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmCombinarMesas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void gestionarMesasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
+            if (frm != null)
+            {
+                ((frmMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMesas();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

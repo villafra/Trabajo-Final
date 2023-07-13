@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BackUp.cs" />
+    <Compile Include="Bitacora.cs" />
     <Compile Include="Encriptación.cs" />
     <Compile Include="Excepciones\ExisteEnBDException.cs" />
     <Compile Include="Excepciones\RestaurantException.cs" />

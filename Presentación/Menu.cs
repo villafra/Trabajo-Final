@@ -64,6 +64,7 @@ namespace Trabajo_Final
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
                     if (UsuarioActivo.Usuario == "admin") txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                     else txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
+                    Bitacora.Login(UsuarioActivo);
                     Iniciar();
                 }
                 
@@ -723,6 +724,29 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmMesas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void frmMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Bitacora.Logout(UsuarioActivo);
+        }
+
+        private void transaccionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmBitacora);
+            if (frm != null)
+            {
+                ((frmBitacora)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmBitacora(UsuarioActivo);
+                frm.Owner = this;
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

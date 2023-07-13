@@ -398,23 +398,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
-
-        private void gestionarMesasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
-            if (frm != null)
-            {
-                ((frmMesas)frm).ActualizarListado();
-                frm.BringToFront();
-                return;
-            }
-            else
-            {
-                frm = new frmMesas();
-                formulariosHijos.Add(frm);
-                Aspecto.AbrirNuevoForm(this, frm);
-            }
-        }
         private void CambiarUsuario()
         {
             foreach (Form formulario in formulariosHijos)
@@ -696,7 +679,19 @@ namespace Trabajo_Final
 
         private void gestionarOrdenesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoOrdenesEntregadas);
+            if (frm != null)
+            {
+                ((frmListadoOrdenesEntregadas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmListadoOrdenesEntregadas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
         }
 
         private void aEntregarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -711,6 +706,23 @@ namespace Trabajo_Final
             else
             {
                 frm = new frmListadoOrdenesEntregar();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void gestionarMesasToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmMesas);
+            if (frm != null)
+            {
+                ((frmMesas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmMesas();
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }

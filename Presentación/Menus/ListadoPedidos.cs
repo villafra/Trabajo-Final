@@ -19,7 +19,7 @@ namespace Trabajo_Final
         BLL_Pedido oBLL_Pedido;
         BE_Pedido oBE_Pedido;
         BLL_Orden oBLL_Orden;
-        BE_Orden oBE_Orden;
+        public BE_Orden oBE_Orden;
         private BE_Login usuario;
         public frmListadoPedidos(BE_Login usuarioActivo)
         {
@@ -55,7 +55,13 @@ namespace Trabajo_Final
             oBE_Orden.ID_Empleado = usuario.Empleado;
             oBE_Orden.Status = oBE_Orden.DefinirStatusInicial();
             oBE_Pedido.Status = StatusPedido.Asignado;
-            return oBLL_Orden.Guardar(oBE_Orden) & oBLL_Pedido.Modificar(oBE_Pedido);
+            frmMesasLibres frm = new frmMesasLibres();
+            frm.Owner = this;
+            frm.ShowDialog();
+            if (oBE_Orden.ID_Mesa != null)
+                return oBLL_Orden.Guardar(oBE_Orden) & oBLL_Pedido.Modificar(oBE_Pedido);
+            else
+                throw new RestaurantException("No se puede crear una orden de cocina sin mesa asignada.");
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)

@@ -74,7 +74,7 @@ namespace Mapper
                      Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
-                     ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
+                     ID_Empleado = mes[5].ToString() != "" ?
                      MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5])},ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
 
@@ -85,7 +85,7 @@ namespace Mapper
                      Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
-                     ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
+                     ID_Empleado = mes[5].ToString() != "" ?
                      MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
                      Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) },ds),
@@ -131,6 +131,7 @@ namespace Mapper
         {
             BE_Mesa ObjetoEncontrado = ds.Tables.Contains("Mesa") != false ?
                 (from mes in ds.Tables["Mesa"].AsEnumerable()
+                 where Convert.ToInt32(mes[0]) == mesa.Codigo
                  select mes[7].ToString() != "Combinada" ? new BE_Mesa
                  {
                      Codigo = Convert.ToInt32(mes[0]),
@@ -138,7 +139,7 @@ namespace Mapper
                      Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
-                     ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
+                     ID_Empleado = mes[5].ToString() != "" ?
                      MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
 
@@ -149,7 +150,7 @@ namespace Mapper
                      Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), Convert.ToString(mes[2])),
                      OcupaciónActual = Convert.ToInt32(mes[3]),
                      Status = (StatusMesa)Enum.Parse(typeof(StatusMesa), Convert.ToString(mes[4])),
-                     ID_Empleado = Convert.ToString(mes[4]) == StatusMesa.Ocupada.ToString() ?
+                     ID_Empleado = mes[5].ToString() != "" ?
                      MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(mes[5]) },ds) : null,
                      Activo = Convert.ToBoolean(mes[6]),
                      Mesa1 = ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(mes[8]) },ds),

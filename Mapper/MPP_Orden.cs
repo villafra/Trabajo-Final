@@ -51,7 +51,7 @@ namespace Mapper
                 (from ord in ds.Tables["Orden"].AsEnumerable()
                  where ord[1].ToString() == StatusOrden.Bebidas_Listas.ToString() ||
                  ord[1].ToString() == StatusOrden.Platos_Listos.ToString()
-                 && Convert.ToBoolean(ord[5])
+                 && Convert.ToBoolean(ord[6])
                  select new BE_Orden
                  {
                      Codigo = Convert.ToInt32(ord[0]),
@@ -59,7 +59,8 @@ namespace Mapper
                      ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
                      ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
                      ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
-                     Activo = Convert.ToBoolean(ord[5])
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).ToList() : null;
             return listadeOrdenes;
         }
@@ -78,7 +79,8 @@ namespace Mapper
                      ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
                      ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
                      ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
-                     Activo = Convert.ToBoolean(ord[5])
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).ToList() : null;
             return listadeOrdenes;
         }
@@ -89,7 +91,7 @@ namespace Mapper
 
             List<BE_Orden> listadeOrdenes = ds.Tables.Contains("Orden") != false ?
                 (from ord in ds.Tables["Orden"].AsEnumerable()
-                 where ord[1].ToString() == StatusOrden.En_Espera_Bebidas.ToString() && Convert.ToBoolean(ord[5])
+                 where ord[1].ToString() == StatusOrden.En_Espera_Bebidas.ToString() && Convert.ToBoolean(ord[6])
                  select new BE_Orden
                  {
                      Codigo = Convert.ToInt32(ord[0]),
@@ -97,7 +99,8 @@ namespace Mapper
                      ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
                      ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
                      ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
-                     Activo = Convert.ToBoolean(ord[5])
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).ToList() : null;
             return listadeOrdenes;
         }
@@ -110,7 +113,7 @@ namespace Mapper
                 (from ord in ds.Tables["Orden"].AsEnumerable()
                  where ord[1].ToString() == StatusOrden.En_Espera_Platos.ToString() ||
                  ord[1].ToString() == StatusOrden.Bebidas_Entregadas.ToString()
-                 && Convert.ToBoolean(ord[5])
+                 && Convert.ToBoolean(ord[6])
                  select new BE_Orden
                  {
                      Codigo = Convert.ToInt32(ord[0]),
@@ -118,7 +121,29 @@ namespace Mapper
                      ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
                      ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
                      ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
-                     Activo = Convert.ToBoolean(ord[5])
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
+                 }).ToList() : null;
+            return listadeOrdenes;
+        }
+        public List<BE_Orden> ListarOrdenesEntregadas()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Orden> listadeOrdenes = ds.Tables.Contains("Orden") != false ?
+                (from ord in ds.Tables["Orden"].AsEnumerable()
+                 where ord[1].ToString() == StatusOrden.Orden_Entregada.ToString()
+                 && Convert.ToBoolean(ord[6]) && Convert.ToBoolean(ord[5]) == false
+                 select new BE_Orden
+                 {
+                     Codigo = Convert.ToInt32(ord[0]),
+                     Status = (StatusOrden)Enum.Parse(typeof(StatusOrden), Convert.ToString(ord[1])),
+                     ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
+                     ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
+                     ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).ToList() : null;
             return listadeOrdenes;
         }
@@ -139,7 +164,8 @@ namespace Mapper
                      ID_Pedido = ord[2].ToString() != "" ? MPP_Pedido.DevolverInstancia().ListarObjeto(new BE_Pedido { Codigo = Convert.ToInt32(ord[2]) }, ds) : null,
                      ID_Mesa = ord[3].ToString() != "" ? MPP_Mesa.DevolverInstancia().ListarObjeto(new BE_Mesa { Codigo = Convert.ToInt32(ord[3]) }, ds) : null,
                      ID_Empleado = ord[4].ToString() != "" ? MPP_Empleado.DevolverInstancia().ListarObjeto(new BE_Mozo { Codigo = Convert.ToInt32(ord[4]) }, ds) : null,
-                     Activo = Convert.ToBoolean(ord[5])
+                     Finalizada = Convert.ToBoolean(ord[5]),
+                     Activo = Convert.ToBoolean(ord[6])
                  }).FirstOrDefault() : null;
             return ObjetoEncontrado;
         }
@@ -162,6 +188,7 @@ namespace Mapper
                 new XElement("ID_Pedido", orden.ID_Pedido.Codigo.ToString()),
                 new XElement("ID_Mesa", orden.ID_Mesa != null ? orden.ID_Mesa.Codigo.ToString() : null),
                 new XElement("ID_Empleado", orden.ID_Empleado != null ? orden.ID_Empleado.Codigo.ToString() : null),
+                new XElement("Finalizada", orden.Finalizada.ToString()),
                 new XElement("Activo", orden.Activo.ToString())
                 );
             nuevaTupla.Xelement = nuevaOrden;

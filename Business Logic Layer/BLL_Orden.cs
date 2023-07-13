@@ -51,11 +51,9 @@ namespace Business_Logic_Layer
         {
             return MPP_Orden.DevolverInstancia().ListarEnEsperaBebidas();
         }
-        public void VerEnEspera (BE_Orden orden)
+        public List<BE_Orden> ListarOrdenesEntregadas()
         {
-            if (orden.ID_Pedido.ListadeBebida.Count == 0)
-                orden.Status = StatusOrden.En_Espera_Platos;
+            return MPP_Orden.DevolverInstancia().ListarOrdenesEntregadas();
         }
-
     }
 }

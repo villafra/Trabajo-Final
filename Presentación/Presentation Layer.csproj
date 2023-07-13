@@ -106,6 +106,12 @@
     <Compile Include="Menus\ListadoOrdenesEntregar.Designer.cs">
       <DependentUpon>ListadoOrdenesEntregar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\ListadoOrdenesEntregadas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\ListadoOrdenesEntregadas.Designer.cs">
+      <DependentUpon>ListadoOrdenesEntregadas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoOrdenesPlatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +135,12 @@
     </Compile>
     <Compile Include="Menus\ListadoPedidos.Designer.cs">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\MesasLibres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\MesasLibres.Designer.cs">
+      <DependentUpon>MesasLibres.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\SubMenus\PlatosEnOrden.cs">
       <SubType>Form</SubType>
@@ -435,6 +447,9 @@
     <EmbeddedResource Include="Menus\ListadoOrdenesEntregar.resx">
       <DependentUpon>ListadoOrdenesEntregar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\ListadoOrdenesEntregadas.resx">
+      <DependentUpon>ListadoOrdenesEntregadas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoOrdenesPlatos.resx">
       <DependentUpon>ListadoOrdenesPlatos.cs</DependentUpon>
     </EmbeddedResource>
@@ -446,6 +461,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoPedidos.resx">
       <DependentUpon>ListadoPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\MesasLibres.resx">
+      <DependentUpon>MesasLibres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\PlatosEnOrden.resx">
       <DependentUpon>PlatosEnOrden.cs</DependentUpon>

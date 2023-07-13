@@ -14,14 +14,17 @@ using Service_Layer;
 
 namespace Trabajo_Final
 {
-    public partial class frmListadoOrdenesPlatos : Form
+    public partial class frmListadoOrdenesEntregadas : Form
     {
         BLL_Orden oBLL_Orden;
         BE_Orden oBE_Orden;
-        public frmListadoOrdenesPlatos()
+        BLL_Mesa oBLL_Mesa;
+        BE_Mesa oBE_Mesa;
+        public frmListadoOrdenesEntregadas()
         {
             InitializeComponent();
             oBLL_Orden = new BLL_Orden();
+            oBLL_Mesa = new BLL_Mesa();
             Aspecto.FormatearGRP(grpPedidos);
             Aspecto.FormatearDGV(dgvOrdenes);
             Aspecto.FormatearGRPAccion(grpAcciones);
@@ -29,7 +32,7 @@ namespace Trabajo_Final
         }
         public void ActualizarListado()
         {
-            Cálculos.RefreshGrilla(dgvOrdenes, oBLL_Orden.ListarEnEsperaPlatos());
+            Cálculos.RefreshGrilla(dgvOrdenes, oBLL_Orden.ListarOrdenesEntregadas());
         }
 
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
@@ -37,25 +40,24 @@ namespace Trabajo_Final
             try
             {
                 oBE_Orden = (BE_Orden)dgvOrdenes.SelectedRows[0].DataBoundItem;
+                oBE_Mesa = oBE_Orden.ID_Mesa;
             }
             catch { }
             
         }
       
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
             {
-                oBE_Orden.Status = StatusOrden.Preparando_Platos;
-                if (oBLL_Orden.Modificar(oBE_Orden))
+                oBE_Mesa.Status = StatusMesa.Libre;
+                oBE_Orden.Finalizada = true;
+                if (oBLL_Mesa.Modificar(oBE_Mesa) & oBLL_Orden.Modificar(oBE_Orden))
                 {
-                    frmPlatosEnOrden frm = new frmPlatosEnOrden(oBE_Orden);
-                    frm.Owner = this;
-                    frm.ShowDialog();
+                    Cálculos.MsgBox("La orden se ha concluido y la mesa liberado.");
                     ActualizarListado();
                 }
-                else { throw new RestaurantException("La actualización del status falló, intente nuevamente."); }
+                else { throw new RestaurantException("El cierre de la orden fallo, por favor,  intente nuevamente."); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
             

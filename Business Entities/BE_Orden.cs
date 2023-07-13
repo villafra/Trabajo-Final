@@ -14,6 +14,7 @@ namespace Business_Entities
         public BE_Pedido ID_Pedido { get; set; }
         public BE_Mesa ID_Mesa { get; set; }
         public BE_Empleado ID_Empleado { get; set; }
+        public bool Finalizada { get; set; } = false;
         public bool Activo { get; set; } = true;
 
         public StatusOrden DefinirStatusInicial()

@@ -106,6 +106,18 @@
     <Compile Include="Menus\Bitacora.Designer.cs">
       <DependentUpon>Bitacora.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\HistóricosCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\HistóricosCompras.Designer.cs">
+      <DependentUpon>HistóricosCompras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\HistóricosOrdenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\HistóricosOrdenes.Designer.cs">
+      <DependentUpon>HistóricosOrdenes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\ListadoOrdenesEntregar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +141,12 @@
     </Compile>
     <Compile Include="Menus\ListadoOrdenesBebidas.Designer.cs">
       <DependentUpon>ListadoOrdenesBebidas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\HistoricoPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\HistoricoPedidos.Designer.cs">
+      <DependentUpon>HistoricoPedidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Menus\MetodoPagos.cs">
       <SubType>Form</SubType>
@@ -453,6 +471,12 @@
     <EmbeddedResource Include="Menus\Bitacora.resx">
       <DependentUpon>Bitacora.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Menus\HistóricosCompras.resx">
+      <DependentUpon>HistóricosCompras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\HistóricosOrdenes.resx">
+      <DependentUpon>HistóricosOrdenes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoOrdenesEntregar.resx">
       <DependentUpon>ListadoOrdenesEntregar.cs</DependentUpon>
     </EmbeddedResource>
@@ -464,6 +488,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\ListadoOrdenesBebidas.resx">
       <DependentUpon>ListadoOrdenesBebidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\HistoricoPedidos.resx">
+      <DependentUpon>HistoricoPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\MetodoPagos.resx">
       <DependentUpon>MetodoPagos.cs</DependentUpon>

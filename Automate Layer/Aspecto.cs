@@ -50,7 +50,7 @@ namespace Automate_Layer
                     c.Font = new Font("Nirmala UI", 8, FontStyle.Bold);
                     c.ForeColor = Color.FromArgb(0, 126, 249);
                     (c as TextBox).BorderStyle = BorderStyle.None;
-                    
+
                 }
                 if (c is Button) FormatearBoton(c as Button);
             }
@@ -105,7 +105,7 @@ namespace Automate_Layer
                 if (control is Button) FormatearBoton(control as Button);
             }
         };
-       
+
         public static Action<Button> FormatearBoton = (boton) =>
         {
             boton.BackColor = Color.FromArgb(24, 30, 54);
@@ -196,7 +196,7 @@ namespace Automate_Layer
             foreach (Control btn in grp.Controls)
             {
                 if (btn is Button)
-                FormatearBoton(btn as Button);
+                    FormatearBoton(btn as Button);
             }
         };
         public static Action<GroupBox> FormatearGRPREcetas = (grp) =>
@@ -276,6 +276,7 @@ namespace Automate_Layer
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
             dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AutoSize = true;
             // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
 
         };
@@ -364,7 +365,7 @@ namespace Automate_Layer
         {
             int x = (panel.Width - lbl.Width) / 2;
             int y = lbl.Location.Y;
-            lbl.Location = new Point(x,y);
+            lbl.Location = new Point(x, y);
         };
         public static Action<GroupBox, Label> CentrarLabelenGRP = (grp, lbl) =>
         {
@@ -379,6 +380,12 @@ namespace Automate_Layer
             //btn.Location = new Point(x, y);
             int y = (panel.Height - btn.Height) / 2;
             btn.Padding = new Padding(x, y, 0, 0);
+        };
+        public static Action<Form, DataGridView> CentrarDGV = (frm, dgv) =>
+        {
+            int x = (frm.Width - dgv.Width +258) / 2;
+            int y = dgv.Location.Y;
+            dgv.Location = new Point(x, y);
         };
         public static Action<GroupBox, FlowLayoutPanel, Button, Button> CentrarPanel = (grp, panel, btnizq, btnder) =>
         {

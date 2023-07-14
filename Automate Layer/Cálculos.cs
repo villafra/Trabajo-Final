@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using Abstraction_Layer;
+using System.Globalization;
 
 namespace Automate_Layer
 {
@@ -12,6 +12,12 @@ namespace Automate_Layer
         {
             return codigo.ToString().PadLeft(4, '0');
         }
+        public static string Capitalize (string texto)
+        {
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string Capitalizacion = textInfo.ToTitleCase(texto);
+            return Capitalizacion;
+        } 
         public static void ValidarNumeros(KeyPressEventArgs e)
         {
             string s = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;

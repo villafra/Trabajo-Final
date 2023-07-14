@@ -11,6 +11,7 @@ using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
 
+
 namespace Trabajo_Final
 {
     public partial class frmEmpleados : Form
@@ -31,6 +32,7 @@ namespace Trabajo_Final
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
             VistasDGV.DGVEmpleados(dgvEmpleados);
+            Aspecto.CentrarDGV(this, dgvEmpleados);
             listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
 
@@ -48,12 +50,6 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
         }
-
-        private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
-        }
-
         private void dgvEmpleados_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -99,10 +95,13 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
+            Cálculos.RefreshGrilla(dgvEmpleados, listado);
             string filtro = txtFiltro.Text;
             string Variable = comboFiltro.Text;
-            List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(filtro)).ToList();
+            List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
             Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
+            VistasDGV.DGVEmpleados(dgvEmpleados);
+            Aspecto.CentrarDGV(this, dgvEmpleados);
             comboFiltro.Text = "";
             txtFiltro.Text = "";
         }
@@ -110,6 +109,8 @@ namespace Trabajo_Final
         private void btnReset_Click(object sender, EventArgs e)
         {
             Cálculos.RefreshGrilla(dgvEmpleados, listado);
+            VistasDGV.DGVEmpleados(dgvEmpleados);
+            Aspecto.CentrarDGV(this, dgvEmpleados);
         }
     }
 }

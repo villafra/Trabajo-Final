@@ -37,6 +37,7 @@
             this.dtpInicio = new System.Windows.Forms.DateTimePicker();
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.grpDashBoard = new System.Windows.Forms.GroupBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panelMotivo = new System.Windows.Forms.Panel();
             this.lblNombreMotivo = new System.Windows.Forms.Label();
             this.lblMasMotivo = new System.Windows.Forms.Label();
@@ -49,14 +50,13 @@
             this.lblNombreAsistencia = new System.Windows.Forms.Label();
             this.lblAsistencia = new System.Windows.Forms.Label();
             this.lblMasAsistencia = new System.Windows.Forms.Label();
-            this.chartAsist = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chartInasist = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.btnAño = new System.Windows.Forms.Button();
             this.btnMes = new System.Windows.Forms.Button();
             this.btn15 = new System.Windows.Forms.Button();
             this.btn7dias = new System.Windows.Forms.Button();
             this.btnRango = new System.Windows.Forms.Button();
+            this.chartAsist = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartInasist = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpDashBoard.SuspendLayout();
             this.panelMotivo.SuspendLayout();
             this.panelMenos.SuspendLayout();
@@ -99,10 +99,23 @@
             this.grpDashBoard.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpDashBoard.Location = new System.Drawing.Point(0, 0);
             this.grpDashBoard.Name = "grpDashBoard";
-            this.grpDashBoard.Size = new System.Drawing.Size(1342, 312);
+            this.grpDashBoard.Size = new System.Drawing.Size(1342, 294);
             this.grpDashBoard.TabIndex = 2;
             this.grpDashBoard.TabStop = false;
             this.grpDashBoard.Text = "Dashboard";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackgroundImage = global::Trabajo_Final.Properties.Resources.refresh;
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Location = new System.Drawing.Point(12, 45);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(77, 70);
+            this.btnRefresh.TabIndex = 9;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panelMotivo
             // 
@@ -110,7 +123,7 @@
             this.panelMotivo.Controls.Add(this.lblNombreMotivo);
             this.panelMotivo.Controls.Add(this.lblMasMotivo);
             this.panelMotivo.Controls.Add(this.lblMotivo);
-            this.panelMotivo.Location = new System.Drawing.Point(945, 145);
+            this.panelMotivo.Location = new System.Drawing.Point(945, 125);
             this.panelMotivo.Name = "panelMotivo";
             this.panelMotivo.Size = new System.Drawing.Size(391, 161);
             this.panelMotivo.TabIndex = 8;
@@ -150,7 +163,7 @@
             this.panelMenos.Controls.Add(this.lblNombreInasistencia);
             this.panelMenos.Controls.Add(this.lblMenosAsistencia);
             this.panelMenos.Controls.Add(this.lblInasistencia);
-            this.panelMenos.Location = new System.Drawing.Point(476, 145);
+            this.panelMenos.Location = new System.Drawing.Point(476, 125);
             this.panelMenos.Name = "panelMenos";
             this.panelMenos.Size = new System.Drawing.Size(391, 161);
             this.panelMenos.TabIndex = 8;
@@ -190,7 +203,7 @@
             this.panelMas.Controls.Add(this.lblNombreAsistencia);
             this.panelMas.Controls.Add(this.lblAsistencia);
             this.panelMas.Controls.Add(this.lblMasAsistencia);
-            this.panelMas.Location = new System.Drawing.Point(12, 145);
+            this.panelMas.Location = new System.Drawing.Point(12, 125);
             this.panelMas.Name = "panelMas";
             this.panelMas.Size = new System.Drawing.Size(391, 161);
             this.panelMas.TabIndex = 7;
@@ -223,58 +236,6 @@
             this.lblMasAsistencia.Size = new System.Drawing.Size(219, 17);
             this.lblMasAsistencia.TabIndex = 0;
             this.lblMasAsistencia.Text = "Empleado con Mejor Presentismo";
-            // 
-            // chartAsist
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.chartAsist.ChartAreas.Add(chartArea1);
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend1.Name = "Legend1";
-            this.chartAsist.Legends.Add(legend1);
-            this.chartAsist.Location = new System.Drawing.Point(12, 318);
-            this.chartAsist.Name = "chartAsist";
-            this.chartAsist.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            this.chartAsist.Size = new System.Drawing.Size(863, 425);
-            this.chartAsist.TabIndex = 3;
-            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.ForeColor = System.Drawing.Color.White;
-            title1.Name = "Title1";
-            title1.Text = "Asistencias";
-            this.chartAsist.Titles.Add(title1);
-            // 
-            // chartInasist
-            // 
-            chartArea2.Name = "ChartArea1";
-            this.chartInasist.ChartAreas.Add(chartArea2);
-            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
-            legend2.Name = "Legend1";
-            this.chartInasist.Legends.Add(legend2);
-            this.chartInasist.Location = new System.Drawing.Point(899, 318);
-            this.chartInasist.Name = "chartInasist";
-            this.chartInasist.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            this.chartInasist.Size = new System.Drawing.Size(376, 553);
-            this.chartInasist.TabIndex = 4;
-            this.chartInasist.Text = "Asistencias";
-            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
-            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title2.ForeColor = System.Drawing.Color.White;
-            title2.Name = "Title1";
-            title2.Text = "Motivo Inasistencias";
-            this.chartInasist.Titles.Add(title2);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackgroundImage = global::Trabajo_Final.Properties.Resources.refresh;
-            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Location = new System.Drawing.Point(12, 45);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(77, 70);
-            this.btnRefresh.TabIndex = 9;
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnAño
             // 
@@ -340,6 +301,45 @@
             this.btnRango.TabIndex = 2;
             this.btnRango.UseVisualStyleBackColor = true;
             this.btnRango.Click += new System.EventHandler(this.btnRango_Click);
+            // 
+            // chartAsist
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chartAsist.ChartAreas.Add(chartArea1);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.chartAsist.Legends.Add(legend1);
+            this.chartAsist.Location = new System.Drawing.Point(12, 300);
+            this.chartAsist.Name = "chartAsist";
+            this.chartAsist.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chartAsist.Size = new System.Drawing.Size(830, 639);
+            this.chartAsist.TabIndex = 3;
+            title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.ForeColor = System.Drawing.Color.White;
+            title1.Name = "Title1";
+            title1.Text = "Asistencias";
+            this.chartAsist.Titles.Add(title1);
+            // 
+            // chartInasist
+            // 
+            chartArea2.Name = "ChartArea1";
+            this.chartInasist.ChartAreas.Add(chartArea2);
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.chartInasist.Legends.Add(legend2);
+            this.chartInasist.Location = new System.Drawing.Point(848, 300);
+            this.chartInasist.Name = "chartInasist";
+            this.chartInasist.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
+            this.chartInasist.Size = new System.Drawing.Size(482, 639);
+            this.chartInasist.TabIndex = 4;
+            this.chartInasist.Text = "Asistencias";
+            title2.Alignment = System.Drawing.ContentAlignment.TopCenter;
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.ForeColor = System.Drawing.Color.White;
+            title2.Name = "Title1";
+            title2.Text = "Motivo Inasistencias";
+            this.chartInasist.Titles.Add(title2);
             // 
             // frmDashEmpleados
             // 

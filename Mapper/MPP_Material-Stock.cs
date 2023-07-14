@@ -166,6 +166,28 @@ namespace Mapper
                  }).ToList() : null;
             return listaIngredientes;
         }
+        public List<BE_Material_Stock> ListarConStock(BE_Ingrediente ingrediente)
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Material_Stock> listaIngredientes = ds.Tables.Contains("Ingrediente") != false ?
+                (from mat in ds.Tables["Material-Stock"].AsEnumerable()
+                 join ing in ds.Tables["Ingrediente"].AsEnumerable()
+                 on Convert.ToInt32(mat[1]) equals Convert.ToInt32(ing[0])
+                 where Convert.ToInt32(ing[0]) == ingrediente.Codigo &&
+                 Convert.ToDecimal(mat[2]) > 0
+                 select new BE_Material_Stock
+                 {
+                     Codigo = Convert.ToInt32(mat[0]),
+                     Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) }, ds),
+                     Stock = Convert.ToDecimal(mat[2]),
+                     FechaCreacion = Convert.ToDateTime(mat[3]),
+                     Lote = Convert.ToString(mat[4])
+
+                 }).ToList() : null;
+            return listaIngredientes;
+        }
         public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote,DataSet ds=null)
         {
             if (ds is null)
@@ -194,6 +216,16 @@ namespace Mapper
             ListadoXML.Add(CrearMaterial_StockXML(material));
             return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
         }
+        public bool Modificar(List<BE_Material_Stock> material)
+        {
+            ListadoXML = new List<BE_TuplaXML>();
+            foreach(BE_Material_Stock mat in material)
+            {
+            ListadoXML.Add(CrearMaterial_StockXML(mat));
+            }
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
+        }
+
         public bool ModificarMatLot(BE_Material_Stock material, BE_Compra compra)
         {
             ListadoXML = new List<BE_TuplaXML>();

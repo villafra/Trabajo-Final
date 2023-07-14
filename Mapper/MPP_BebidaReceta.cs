@@ -113,7 +113,7 @@ namespace Mapper
                      Codigo = Convert.ToInt32(bi[0]),
                      Alternativa = bi[4].ToString(),
                  }).ToList() : null;
-            BE_BebidaReceta vigente =  listado != null ? listado.Distinct().OrderByDescending(x=> x.Codigo).FirstOrDefault(): null;
+            BE_BebidaReceta vigente = listado != null ? listado.Distinct().OrderByDescending(x=> x.Codigo).FirstOrDefault(): null;
             return vigente;
         }
         public List<BE_BebidaReceta> BebidaEnOrden(BE_Bebida bebida)

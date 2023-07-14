@@ -47,5 +47,29 @@ namespace Business_Logic_Layer
         {
             return MPP_BebidaReceta.DevolverInstancia().Modificar(BebidaReceta);
         }
+        public bool Consumir(List<BE_BebidaReceta> bebidas, decimal cantidad)
+        {
+            foreach (BE_BebidaReceta bebida in bebidas)
+            {
+                decimal descontar = cantidad * bebida.Cantidad / 100;
+                List<BE_Material_Stock> listado = MPP_Material_Stock.DevolverInstancia().ListarConStock(bebida.Ingrediente);
+                foreach (BE_Material_Stock ing in listado)
+                {
+                    if (descontar <= 0) break;
+                    if (ing.Stock >= descontar)
+                    {
+                        ing.Stock -= descontar;
+                        descontar = 0;
+                    }
+                    else
+                    {
+                        descontar -= ing.Stock;
+                        ing.Stock = 0;
+                    }
+                }
+                MPP_Material_Stock.DevolverInstancia().Modificar(listado);
+            }
+            return true;
+        }
     }
 }

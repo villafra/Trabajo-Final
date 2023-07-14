@@ -43,6 +43,8 @@ namespace Trabajo_Final
         
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            oBE_Orden.Status = StatusOrden.En_Espera_Bebidas;
+            oBLL_Orden.Modificar(oBE_Orden);
             this.Close();
         }
 
@@ -69,15 +71,16 @@ namespace Trabajo_Final
                 .GroupBy(x => x.Codigo).Select(y => y.First()).ToList();
             foreach (BE_Bebida bebida in distinct)
             {
-                decimal cantidad = oBE_Orden.ID_Pedido.ListadeBebida.Count(x => x.Codigo == bebida.Codigo);
+                decimal cantidad = oBE_Orden.ID_Pedido.ListadeBebida.Count(x => x.Codigo == bebida.Codigo) * bebida.Presentacion;
                 if (bebida is BE_Bebida_Preparada)
                 {
-
+                    List<BE_BebidaReceta> listado = oBLL_BebidaReceta.ListarObjeto(bebida, oBLL_BebidaReceta.ListarAlternativaVigente(bebida));
+                    oBLL_BebidaReceta.Consumir(listado, cantidad);
                 }
                 else
                 {
-                List<BE_Bebida_Stock> listado =  oBLL_BebidaStock.BuscarStock(bebida);
-                oBLL_BebidaStock.Consumir(listado, cantidad);
+                    List<BE_Bebida_Stock> listado = oBLL_BebidaStock.BuscarStock(bebida);
+                    oBLL_BebidaStock.Consumir(listado, cantidad);
                 }
             }
             

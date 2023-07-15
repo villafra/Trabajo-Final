@@ -18,6 +18,7 @@ namespace Trabajo_Final
         public BE_Login UsuarioActivo;
         BLL_BackUp oBLL_BackUp;
         BE_BackUp oBE_BackUp;
+        private List<BE_BackUp> listado;
         public frmBackUp()
         {
             InitializeComponent();
@@ -30,10 +31,12 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBackUps, oBLL_BackUp.Listar());
-            VistasDGV.DGVLogs(dgvBackUps);
-            dgvBackUps.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.DGVLogs(dgvBackUps);
+            Aspecto.CentrarDGV(this, dgvBackUps);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             try
@@ -43,6 +46,7 @@ namespace Trabajo_Final
                     if (oBLL_BackUp.CrearBackUp(UsuarioActivo))
                     {
                         ActualizarListado();
+                        Centrar();
                         Cálculos.MsgBox("BackUp Creado Correctamente");
                     }
                     else { throw new Exception("La creacion del BackUp ha fallado. Intente Nuevamente."); }
@@ -63,17 +67,13 @@ namespace Trabajo_Final
                     {
                         Cálculos.MsgBox("El restore se ha efectuado correctamente");
                         ActualizarListado();
+                        Centrar();
                     }
                     else { throw new Exception("El restore ha fallado.Intente nuevamente"); }
                     
                 }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
-        }
-
-        private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
         }
 
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -83,7 +83,6 @@ namespace Trabajo_Final
                 oBE_BackUp = (BE_BackUp)dgvBackUps.SelectedRows[0].DataBoundItem;
             }
             catch { }
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -96,10 +95,47 @@ namespace Trabajo_Final
                     {
                         Cálculos.MsgBox("Se ha hecho Rollback de la base de datos.");
                         ActualizarListado();
+                        Centrar();
                     }
                 }
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+
+        private void frmBackUp_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_BackUp>)dgvBackUps.DataSource;
+        }
+
+        private void frmBackUp_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmBackUp_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvBackUps, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_BackUp> filtrada = ((List<BE_BackUp>)dgvBackUps.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvBackUps, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvBackUps, listado);
+            Centrar();
         }
     }
 }

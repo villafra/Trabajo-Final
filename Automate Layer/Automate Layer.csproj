@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Aspecto.cs" />
     <Compile Include="Cálculos.cs" />
+    <Compile Include="Dicts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VistasDGV.cs" />
     <Compile Include="XMLceador.cs" />

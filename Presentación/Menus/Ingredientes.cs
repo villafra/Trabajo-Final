@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Ingrediente oBLL_Ingrediente;
         BE_Ingrediente oBE_Ingrediente;
+        private List<BE_Ingrediente> listado;
         public frmIngredientes()
         {
             InitializeComponent();
@@ -30,14 +31,18 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Ingrediente.Listar());
-            dgvIngredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvIngredientes(dgvIngredientes);
+            Aspecto.CentrarDGV(this, dgvIngredientes);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoIngrediente frm = new frmNuevoIngrediente();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -46,13 +51,8 @@ namespace Trabajo_Final
             frm.oBE_Ingrediente = oBE_Ingrediente;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
-
-        private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
-        }
-
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -66,11 +66,48 @@ namespace Trabajo_Final
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             oBLL_Ingrediente.Baja(oBE_Ingrediente);
+            Centrar();
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
         {
             MessageBox.Show(oBE_Ingrediente.DevolverNombre());
+        }
+
+        private void frmIngredientes_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Ingrediente>)dgvIngredientes.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvIngredientes, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Ingrediente> filtrada = ((List<BE_Ingrediente>)dgvIngredientes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvIngredientes, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvIngredientes, listado);
+            Centrar();
+        }
+
+        private void frmIngredientes_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmIngredientes_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

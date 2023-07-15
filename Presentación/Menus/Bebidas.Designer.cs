@@ -71,12 +71,12 @@ namespace Trabajo_Final
             this.dgvBebidas.AllowUserToAddRows = false;
             this.dgvBebidas.AllowUserToDeleteRows = false;
             this.dgvBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBebidas.Location = new System.Drawing.Point(102, 249);
+            this.dgvBebidas.Location = new System.Drawing.Point(640, 249);
             this.dgvBebidas.Name = "dgvBebidas";
             this.dgvBebidas.ReadOnly = true;
             this.dgvBebidas.RowHeadersWidth = 51;
             this.dgvBebidas.RowTemplate.Height = 24;
-            this.dgvBebidas.Size = new System.Drawing.Size(1120, 254);
+            this.dgvBebidas.Size = new System.Drawing.Size(45, 254);
             this.dgvBebidas.TabIndex = 3;
             this.dgvBebidas.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
@@ -128,6 +128,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -156,6 +157,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -255,7 +257,7 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // frmListadoBebidas
+            // frmBebidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -264,9 +266,12 @@ namespace Trabajo_Final
             this.Controls.Add(this.grpBebidas);
             this.Controls.Add(this.dgvBebidas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmListadoBebidas";
+            this.Name = "frmBebidas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmBebidas_Activated);
+            this.Load += new System.EventHandler(this.frmBebidas_Load);
+            this.Shown += new System.EventHandler(this.frmBebidas_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
             this.grpBebidas.ResumeLayout(false);
             this.grpBebidas.PerformLayout();

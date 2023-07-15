@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Bebida oBLL_Bebida;
         BE_Bebida oBE_Bebida;
+        private List<BE_Bebida> listado;
         public frmBebidas()
         {
             InitializeComponent();
@@ -30,14 +31,18 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBebidas, oBLL_Bebida.Listar());
-            dgvBebidas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvBebidas(dgvBebidas);
+            Aspecto.CentrarDGV(this, dgvBebidas);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevaBebida frm = new frmNuevaBebida();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -46,6 +51,7 @@ namespace Trabajo_Final
             frm.oBE_Bebida = oBE_Bebida;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -66,6 +72,42 @@ namespace Trabajo_Final
         private void btnResetPass_Click(object sender, EventArgs e)
         {
             MessageBox.Show(oBE_Bebida.DevolverNombre());
+        }
+
+        private void frmBebidas_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Bebida>)dgvBebidas.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvBebidas, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Bebida> filtrada = ((List<BE_Bebida>)dgvBebidas.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvBebidas, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvBebidas, listado);
+            Centrar();
+        }
+
+        private void frmBebidas_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmBebidas_Shown(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

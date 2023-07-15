@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Material_Stock oBLL_Material_Stock;
         BE_Material_Stock oBE_Material_Stock;
+        private List<BE_Material_Stock> listado;
         public frmListadoIngredientes()
         {
             InitializeComponent();
@@ -29,14 +30,12 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Material_Stock.ListarConStock());
-            dgvIngredientes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
-        private void dgvIngredientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public void Centrar()
         {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
+            VistasDGV.dgvIngStock(dgvIngredientes);
+            Aspecto.CentrarDGV(this, dgvIngredientes);
         }
-
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -47,5 +46,40 @@ namespace Trabajo_Final
 
         }
 
+        private void frmListadoIngredientes_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Material_Stock>)dgvIngredientes.DataSource;
+        }
+
+        private void frmListadoIngredientes_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmListadoIngredientes_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvIngredientes, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Material_Stock> filtrada = ((List<BE_Material_Stock>)dgvIngredientes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvIngredientes, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvIngredientes, listado);
+            Centrar();
+        }
     }
 }

@@ -71,7 +71,7 @@ namespace Trabajo_Final
         {
             try
             {
-                Nuevo();
+                Viejo();
                 if (Cálculos.EstaSeguroM(oBE_Padre.ToString()))
                 {
                     if (oBLL_Permiso.Modificar(oBE_Padre))
@@ -150,6 +150,10 @@ namespace Trabajo_Final
         private void Nuevo()
         {
             oBE_Padre.Codigo = txtCodigo.Text;
+            oBE_Padre.Descripción = txtDescripción.Text;
+        }
+        private void Viejo()
+        {
             oBE_Padre.Descripción = txtDescripción.Text;
         }
         private void tvPermisos_AfterSelect(object sender, TreeViewEventArgs e)

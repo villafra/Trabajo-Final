@@ -37,12 +37,12 @@ namespace Trabajo_Final
             this.grpMetPagos = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
+            this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMetPagos)).BeginInit();
             this.grpMetPagos.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -59,9 +59,7 @@ namespace Trabajo_Final
             // 
             this.comboFiltro.FormattingEnabled = true;
             this.comboFiltro.Items.AddRange(new object[] {
-            "Nombre",
-            "Apellido",
-            "Categoria"});
+            "Tipo"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
@@ -72,12 +70,12 @@ namespace Trabajo_Final
             this.dgvMetPagos.AllowUserToAddRows = false;
             this.dgvMetPagos.AllowUserToDeleteRows = false;
             this.dgvMetPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMetPagos.Location = new System.Drawing.Point(102, 249);
+            this.dgvMetPagos.Location = new System.Drawing.Point(630, 249);
             this.dgvMetPagos.Name = "dgvMetPagos";
             this.dgvMetPagos.ReadOnly = true;
             this.dgvMetPagos.RowHeadersWidth = 51;
             this.dgvMetPagos.RowTemplate.Height = 24;
-            this.dgvMetPagos.Size = new System.Drawing.Size(1120, 503);
+            this.dgvMetPagos.Size = new System.Drawing.Size(64, 503);
             this.dgvMetPagos.TabIndex = 3;
             this.dgvMetPagos.SelectionChanged += new System.EventHandler(this.dgvMetPagos_SelectionChanged);
             // 
@@ -114,6 +112,23 @@ namespace Trabajo_Final
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Buscar Por";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.ImageIndex = 1;
+            this.btnReset.ImageList = this.Listado;
+            this.btnReset.Location = new System.Drawing.Point(965, 82);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(149, 36);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Restablecer";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // Listado
             // 
             this.Listado.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Listado.ImageStream")));
@@ -125,6 +140,23 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            // 
+            // btBuscar
+            // 
+            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btBuscar.FlatAppearance.BorderSize = 0;
+            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBuscar.ImageIndex = 0;
+            this.btBuscar.ImageList = this.Listado;
+            this.btBuscar.Location = new System.Drawing.Point(810, 82);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(149, 36);
+            this.btBuscar.TabIndex = 2;
+            this.btBuscar.Text = "Buscar";
+            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -171,40 +203,6 @@ namespace Trabajo_Final
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.ImageIndex = 1;
-            this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Restablecer";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // btBuscar
-            // 
-            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btBuscar.FlatAppearance.BorderSize = 0;
-            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBuscar.ImageIndex = 0;
-            this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBuscar.UseVisualStyleBackColor = true;
-            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
-            // 
             // frmMetodoPagos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -217,6 +215,9 @@ namespace Trabajo_Final
             this.Name = "frmMetodoPagos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmMetodoPagos_Activated);
+            this.Load += new System.EventHandler(this.frmMetodoPagos_Load);
+            this.Shown += new System.EventHandler(this.frmMetodoPagos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMetPagos)).EndInit();
             this.grpMetPagos.ResumeLayout(false);
             this.grpMetPagos.PerformLayout();

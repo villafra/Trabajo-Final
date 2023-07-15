@@ -61,6 +61,10 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Nombre",
+            "Tipo",
+            "Status"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
@@ -71,14 +75,13 @@ namespace Trabajo_Final
             this.dgvIngredientes.AllowUserToAddRows = false;
             this.dgvIngredientes.AllowUserToDeleteRows = false;
             this.dgvIngredientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIngredientes.Location = new System.Drawing.Point(102, 249);
+            this.dgvIngredientes.Location = new System.Drawing.Point(632, 249);
             this.dgvIngredientes.Name = "dgvIngredientes";
             this.dgvIngredientes.ReadOnly = true;
             this.dgvIngredientes.RowHeadersWidth = 51;
             this.dgvIngredientes.RowTemplate.Height = 24;
-            this.dgvIngredientes.Size = new System.Drawing.Size(1120, 254);
+            this.dgvIngredientes.Size = new System.Drawing.Size(61, 254);
             this.dgvIngredientes.TabIndex = 3;
-            this.dgvIngredientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
             this.dgvIngredientes.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
             // grpIngredientes
@@ -129,6 +132,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -157,6 +161,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -268,6 +273,9 @@ namespace Trabajo_Final
             this.Name = "frmIngredientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmIngredientes_Activated);
+            this.Load += new System.EventHandler(this.frmIngredientes_Load);
+            this.Shown += new System.EventHandler(this.frmIngredientes_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredientes)).EndInit();
             this.grpIngredientes.ResumeLayout(false);
             this.grpIngredientes.PerformLayout();

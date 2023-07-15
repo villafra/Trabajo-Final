@@ -33,14 +33,14 @@ namespace Trabajo_Final
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoBebidas));
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
-            this.dgvPlatos = new System.Windows.Forms.DataGridView();
+            this.dgvBebidas = new System.Windows.Forms.DataGridView();
             this.grpBebidas = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btBuscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).BeginInit();
             this.grpBebidas.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,25 +54,27 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Material",
+            "Lote"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
             // 
-            // dgvPlatos
+            // dgvBebidas
             // 
-            this.dgvPlatos.AllowUserToAddRows = false;
-            this.dgvPlatos.AllowUserToDeleteRows = false;
-            this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatos.Location = new System.Drawing.Point(102, 249);
-            this.dgvPlatos.Name = "dgvPlatos";
-            this.dgvPlatos.ReadOnly = true;
-            this.dgvPlatos.RowHeadersWidth = 51;
-            this.dgvPlatos.RowTemplate.Height = 24;
-            this.dgvPlatos.Size = new System.Drawing.Size(1120, 254);
-            this.dgvPlatos.TabIndex = 3;
-            this.dgvPlatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
-            this.dgvPlatos.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
+            this.dgvBebidas.AllowUserToAddRows = false;
+            this.dgvBebidas.AllowUserToDeleteRows = false;
+            this.dgvBebidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBebidas.Location = new System.Drawing.Point(639, 249);
+            this.dgvBebidas.Name = "dgvBebidas";
+            this.dgvBebidas.ReadOnly = true;
+            this.dgvBebidas.RowHeadersWidth = 51;
+            this.dgvBebidas.RowTemplate.Height = 24;
+            this.dgvBebidas.Size = new System.Drawing.Size(46, 254);
+            this.dgvBebidas.TabIndex = 3;
+            this.dgvBebidas.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
             // grpBebidas
             // 
@@ -122,6 +124,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -150,6 +153,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // frmListadoBebidas
             // 
@@ -157,12 +161,15 @@ namespace Trabajo_Final
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 918);
             this.Controls.Add(this.grpBebidas);
-            this.Controls.Add(this.dgvPlatos);
+            this.Controls.Add(this.dgvBebidas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListadoBebidas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
+            this.Activated += new System.EventHandler(this.frmListadoBebidas_Activated);
+            this.Load += new System.EventHandler(this.frmListadoBebidas_Load);
+            this.Shown += new System.EventHandler(this.frmListadoBebidas_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBebidas)).EndInit();
             this.grpBebidas.ResumeLayout(false);
             this.grpBebidas.PerformLayout();
             this.ResumeLayout(false);
@@ -174,7 +181,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
-        private System.Windows.Forms.DataGridView dgvPlatos;
+        private System.Windows.Forms.DataGridView dgvBebidas;
         private System.Windows.Forms.GroupBox grpBebidas;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnReset;

@@ -16,6 +16,7 @@ namespace Automate_Layer
             dgv.Columns[2].HeaderText = "Usuario";
             dgv.Columns[3].HeaderText = "Tipo de Acción";
             dgv.Columns[4].HeaderText = "Fecha y Hora";
+            dgv.Columns[4].DisplayIndex = 0;
             foreach (DataGridViewColumn columns in dgv.Columns)
             {
                 columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -35,6 +36,100 @@ namespace Automate_Layer
                 columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             }
             
+        }
+
+        public static void dgvBebidas(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[2].HeaderText = "Tipo";
+            dgv.Columns[3].HeaderText = "Presentación";
+            dgv.Columns[4].HeaderText = "Costo Unitario";
+            dgv.Columns[4].DefaultCellStyle.Format = "$0.00";
+            dgv.Columns[5].HeaderText = "UM";
+            dgv.Columns[6].HeaderText = "Vida Util";
+            dgv.Columns[7].Visible = false;
+            dgv.Columns[8].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvBebStock(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Material";
+            dgv.Columns[2].HeaderText = "Stock";
+            dgv.Columns[3].HeaderText = "Fecha de Creación";
+            dgv.Columns[4].HeaderText = "Lote";
+            dgv.Columns[4].DisplayIndex = 2;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvIngredientes(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[2].HeaderText = "Tipo";
+            dgv.Columns[3].HeaderText = "Requiere Refrigeración";
+            dgv.Columns[4].HeaderText = "UM";
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].HeaderText = "Vida Util";
+            dgv.Columns[7].HeaderText = "Status";
+            dgv.Columns[8].HeaderText = "Costo Unitario";
+            dgv.Columns[8].DefaultCellStyle.Format = "$0.00";
+            dgv.Columns[9].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvIngStock(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Material";
+            dgv.Columns[2].HeaderText = "Stock";
+            dgv.Columns[3].HeaderText = "Fecha de Creación";
+            dgv.Columns[4].HeaderText = "Lote";
+            dgv.Columns[4].DisplayIndex = 2;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvBackUP(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Nombre de Archivo";
+            dgv.Columns[1].HeaderText = "Usuario";
+            dgv.Columns[2].HeaderText = "Tipo de Acción";
+            dgv.Columns[3].HeaderText = "Fecha y Hora";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvMetPagos(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Método de Pago";
+            dgv.Columns[2].HeaderText = "Activo";
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
         }
 
         public static void dgvHistOrdenes(DataGridView dgv)

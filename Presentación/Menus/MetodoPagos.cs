@@ -31,12 +31,17 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvMetPagos, oBLL_Pago.Listar());
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvMetPagos(dgvMetPagos);
+            Aspecto.CentrarDGV(this, dgvMetPagos);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoMetodoPago frm = new frmNuevoMetodoPago();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -45,6 +50,7 @@ namespace Trabajo_Final
             frm.oBE_Pago = oBE_Pago;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
 
@@ -52,21 +58,28 @@ namespace Trabajo_Final
         {
             
             ActualizarListado();
+            Centrar();
         }
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            string filtro = txtFiltro.Text;
-            string Variable = comboFiltro.Text;
-            List<BE_Pago> filtrada = ((List<BE_Pago>)dgvMetPagos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(filtro)).ToList();
-            Cálculos.RefreshGrilla(dgvMetPagos, filtrada);
-            comboFiltro.Text = "";
-            txtFiltro.Text = "";
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvMetPagos, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Pago> filtrada = ((List<BE_Pago>)dgvMetPagos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvMetPagos, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             Cálculos.RefreshGrilla(dgvMetPagos, listado);
+            Centrar();
         }
 
         private void dgvMetPagos_SelectionChanged(object sender, EventArgs e)
@@ -77,6 +90,21 @@ namespace Trabajo_Final
             }
             catch { }
             
+        }
+
+        private void frmMetodoPagos_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Pago>)dgvMetPagos.DataSource;
+        }
+
+        private void frmMetodoPagos_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmMetodoPagos_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

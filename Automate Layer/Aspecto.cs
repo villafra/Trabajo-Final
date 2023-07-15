@@ -234,7 +234,7 @@ namespace Automate_Layer
             tv.BackColor = Color.FromArgb(46, 51, 73);
             tv.Font = new Font("Nirmala UI", 10, FontStyle.Bold);
             tv.ForeColor = Color.FromArgb(0, 126, 249);
-            tv.Indent = 20;
+            tv.Indent = 35;
             tv.ItemHeight = 20;
         };
         public static Action<TreeView> FormatearTreeViewPermXUsu = (tv) =>

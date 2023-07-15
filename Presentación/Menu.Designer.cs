@@ -70,7 +70,6 @@ namespace Trabajo_Final
             this.pedidosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ordenesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.métodosDePagoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sistemaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -324,7 +323,6 @@ namespace Trabajo_Final
             this.materialesToolStripMenuItem1,
             this.salónToolStripMenuItem,
             this.históricosToolStripMenuItem,
-            this.proveedoresToolStripMenuItem,
             this.métodosDePagoToolStripMenuItem1,
             this.sistemaToolStripMenuItem});
             this.administraciónToolStripMenuItem.Name = "administraciónToolStripMenuItem";
@@ -511,13 +509,6 @@ namespace Trabajo_Final
             this.comprasToolStripMenuItem.Tag = "Comp39";
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.Click += new System.EventHandler(this.comprasToolStripMenuItem_Click);
-            // 
-            // proveedoresToolStripMenuItem
-            // 
-            this.proveedoresToolStripMenuItem.Name = "proveedoresToolStripMenuItem";
-            this.proveedoresToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.proveedoresToolStripMenuItem.Tag = "Comp12";
-            this.proveedoresToolStripMenuItem.Text = "Proveedores";
             // 
             // métodosDePagoToolStripMenuItem1
             // 
@@ -902,7 +893,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem compararStocksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ajustesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem proveedoresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem métodosDePagoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem sistemaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backUpToolStripMenuItem;

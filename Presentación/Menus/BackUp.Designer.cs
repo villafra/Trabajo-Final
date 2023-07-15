@@ -59,6 +59,10 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "NombreArchivo",
+            "NombreUsuario",
+            "Accion"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
@@ -69,14 +73,13 @@ namespace Trabajo_Final
             this.dgvBackUps.AllowUserToAddRows = false;
             this.dgvBackUps.AllowUserToDeleteRows = false;
             this.dgvBackUps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBackUps.Location = new System.Drawing.Point(102, 249);
+            this.dgvBackUps.Location = new System.Drawing.Point(614, 249);
             this.dgvBackUps.Name = "dgvBackUps";
             this.dgvBackUps.ReadOnly = true;
             this.dgvBackUps.RowHeadersWidth = 51;
             this.dgvBackUps.RowTemplate.Height = 24;
-            this.dgvBackUps.Size = new System.Drawing.Size(1120, 513);
+            this.dgvBackUps.Size = new System.Drawing.Size(96, 513);
             this.dgvBackUps.TabIndex = 3;
-            this.dgvBackUps.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
             this.dgvBackUps.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
             // grpBackUp
@@ -127,6 +130,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -155,6 +159,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -231,6 +236,9 @@ namespace Trabajo_Final
             this.Name = "frmBackUp";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmBackUp_Activated);
+            this.Load += new System.EventHandler(this.frmBackUp_Load);
+            this.Shown += new System.EventHandler(this.frmBackUp_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBackUps)).EndInit();
             this.grpBackUp.ResumeLayout(false);
             this.grpBackUp.PerformLayout();

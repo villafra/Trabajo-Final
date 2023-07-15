@@ -31,54 +31,55 @@ namespace Trabajo_Final
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCostos));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvCostos = new System.Windows.Forms.DataGridView();
             this.grpCostos = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
+            this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostos)).BeginInit();
             this.grpCostos.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtFiltro
             // 
-            this.textBox1.Location = new System.Drawing.Point(304, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(471, 22);
+            this.txtFiltro.TabIndex = 0;
             // 
-            // comboBox1
+            // comboFiltro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Tipo"});
+            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
+            this.comboFiltro.Name = "comboFiltro";
+            this.comboFiltro.Size = new System.Drawing.Size(233, 24);
+            this.comboFiltro.TabIndex = 1;
             // 
             // dgvCostos
             // 
             this.dgvCostos.AllowUserToAddRows = false;
             this.dgvCostos.AllowUserToDeleteRows = false;
             this.dgvCostos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCostos.Location = new System.Drawing.Point(102, 249);
+            this.dgvCostos.Location = new System.Drawing.Point(600, 249);
             this.dgvCostos.Name = "dgvCostos";
             this.dgvCostos.ReadOnly = true;
             this.dgvCostos.RowHeadersWidth = 51;
             this.dgvCostos.RowTemplate.Height = 24;
-            this.dgvCostos.Size = new System.Drawing.Size(1120, 254);
+            this.dgvCostos.Size = new System.Drawing.Size(124, 254);
             this.dgvCostos.TabIndex = 3;
-            this.dgvCostos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCostos_CellContentClick);
             this.dgvCostos.SelectionChanged += new System.EventHandler(this.dgvCostos_SelectionChanged);
             // 
             // grpCostos
@@ -86,8 +87,8 @@ namespace Trabajo_Final
             this.grpCostos.Controls.Add(this.lbl2);
             this.grpCostos.Controls.Add(this.lbl1);
             this.grpCostos.Controls.Add(this.btnReset);
-            this.grpCostos.Controls.Add(this.textBox1);
-            this.grpCostos.Controls.Add(this.comboBox1);
+            this.grpCostos.Controls.Add(this.txtFiltro);
+            this.grpCostos.Controls.Add(this.comboFiltro);
             this.grpCostos.Controls.Add(this.btBuscar);
             this.grpCostos.Location = new System.Drawing.Point(102, 57);
             this.grpCostos.Name = "grpCostos";
@@ -114,6 +115,23 @@ namespace Trabajo_Final
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Buscar Por";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.ImageIndex = 1;
+            this.btnReset.ImageList = this.Listado;
+            this.btnReset.Location = new System.Drawing.Point(965, 82);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(149, 36);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Restablecer";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // Listado
             // 
             this.Listado.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Listado.ImageStream")));
@@ -125,6 +143,23 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            // 
+            // btBuscar
+            // 
+            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btBuscar.FlatAppearance.BorderSize = 0;
+            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBuscar.ImageIndex = 0;
+            this.btBuscar.ImageList = this.Listado;
+            this.btBuscar.Location = new System.Drawing.Point(810, 82);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(149, 36);
+            this.btBuscar.TabIndex = 2;
+            this.btBuscar.Text = "Buscar";
+            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -223,38 +258,6 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.ImageIndex = 1;
-            this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Restablecer";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btBuscar
-            // 
-            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btBuscar.FlatAppearance.BorderSize = 0;
-            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBuscar.ImageIndex = 0;
-            this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBuscar.UseVisualStyleBackColor = true;
-            // 
             // frmCostos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -267,6 +270,9 @@ namespace Trabajo_Final
             this.Name = "frmCostos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmCostos_Activated);
+            this.Load += new System.EventHandler(this.frmCostos_Load);
+            this.Shown += new System.EventHandler(this.frmCostos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCostos)).EndInit();
             this.grpCostos.ResumeLayout(false);
             this.grpCostos.PerformLayout();
@@ -277,8 +283,8 @@ namespace Trabajo_Final
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.DataGridView dgvCostos;
         private System.Windows.Forms.GroupBox grpCostos;

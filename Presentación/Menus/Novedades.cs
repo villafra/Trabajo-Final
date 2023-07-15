@@ -19,6 +19,7 @@ namespace Trabajo_Final
         BLL_Novedad oBLL_Novedad;
         BE_Novedad oBE_Novedad;
         BE_Asistencia oBE_Asistencia;
+        private List<BE_Novedad> listado;
         public frmNovedades()
         {
             InitializeComponent();
@@ -31,11 +32,18 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             oBLL_Novedad = new BLL_Novedad();
-            Cálculos.RefreshGrilla(dgvNovedades, oBLL_Novedad.Listar());
-            dgvNovedades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            
+            Cálculos.RefreshGrilla(dgvNovedades, oBLL_Novedad.Listar());     
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvNovedades(dgvNovedades);
+            VistasDGV.dgvAsistencias(dgvAsistencias);
+        }
+        public void Novedades()
+        {
+            Cálculos.RefreshGrilla(dgvAsistencias, oBE_Novedad.listadoAsistencia);
+            VistasDGV.dgvAsistencias(dgvAsistencias);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmAsistencias frm = new frmAsistencias();
@@ -43,6 +51,7 @@ namespace Trabajo_Final
             frm.oBE_Novedad = oBE_Novedad;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -53,6 +62,7 @@ namespace Trabajo_Final
             frm.oBE_Asistencia = oBE_Asistencia;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
 
@@ -74,7 +84,7 @@ namespace Trabajo_Final
                 {
                     oBE_Empleado = (BE_Mozo)oBE_Novedad.Empleado;
                 }
-                Cálculos.RefreshGrilla(dgvAsistencias, oBE_Novedad.listadoAsistencia);
+                Novedades();
             }
             catch { }
 
@@ -84,6 +94,7 @@ namespace Trabajo_Final
         {
             oBLL_Novedad.AsignarVacacionesXLey(oBE_Novedad);
             ActualizarListado();
+            Centrar();
         }
 
         private void dgvAsistencias_SelectionChanged(object sender, EventArgs e)
@@ -93,6 +104,39 @@ namespace Trabajo_Final
                 oBE_Asistencia = (BE_Asistencia)dgvAsistencias.SelectedRows[0].DataBoundItem;
             }
             catch { }
+        }
+
+        private void frmNovedades_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Novedad>)dgvNovedades.DataSource;
+        }
+
+        private void frmNovedades_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmNovedades_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvNovedades, listado);
+            string filtro = txtFiltro.Text;
+            string Variable = comboFiltro.Text;
+            List<BE_Novedad> filtrada = ((List<BE_Novedad>)dgvNovedades.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+            Cálculos.RefreshGrilla(dgvNovedades, filtrada);
+            Centrar();
+            comboFiltro.Text = "";
+            txtFiltro.Text = "";
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvNovedades, listado);
+            Centrar();
         }
     }
 }

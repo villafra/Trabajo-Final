@@ -36,7 +36,12 @@ namespace Trabajo_Final
         {
             Cálculos.DataSourceCombo(comboPlato, oBLL_Plato.Listar(), "Platos");
         }
-
+        private void Centrar()
+        {
+            Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta));
+            VistasDGV.dgvReceta(dgvReceta);
+            Aspecto.CentrarDGV(this, dgvReceta);
+        }
         private void comboPlato_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -54,7 +59,7 @@ namespace Trabajo_Final
             {
                 oBE_Receta = (BE_PlatoReceta)comboAlt.SelectedItem;
                 if (oBE_Receta != null && comboAlt.Text != "")
-                Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta));
+                    Centrar();
                 else Cálculos.GrillaEnBlanco(dgvReceta);
             }   
             catch { }

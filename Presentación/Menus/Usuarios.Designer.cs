@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace Trabajo_Final
 {
     partial class frmUsuarios
@@ -31,8 +33,8 @@ namespace Trabajo_Final
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUsuarios));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.grpUsuarios = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -41,43 +43,46 @@ namespace Trabajo_Final
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
+            this.btnPermisos = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnPermisos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.grpUsuarios.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtFiltro
             // 
-            this.textBox1.Location = new System.Drawing.Point(304, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(471, 22);
+            this.txtFiltro.TabIndex = 0;
             // 
-            // comboBox1
+            // comboFiltro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Usuario",
+            "Permiso"});
+            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
+            this.comboFiltro.Name = "comboFiltro";
+            this.comboFiltro.Size = new System.Drawing.Size(233, 24);
+            this.comboFiltro.TabIndex = 1;
             // 
             // dgvUsuarios
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUsuarios.Location = new System.Drawing.Point(102, 249);
+            this.dgvUsuarios.Location = new System.Drawing.Point(473, 249);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersWidth = 51;
             this.dgvUsuarios.RowTemplate.Height = 24;
-            this.dgvUsuarios.Size = new System.Drawing.Size(1120, 254);
+            this.dgvUsuarios.Size = new System.Drawing.Size(378, 513);
             this.dgvUsuarios.TabIndex = 3;
             this.dgvUsuarios.SelectionChanged += new System.EventHandler(this.dgvUsuarios_SelectionChanged);
             // 
@@ -86,8 +91,8 @@ namespace Trabajo_Final
             this.grpUsuarios.Controls.Add(this.lbl2);
             this.grpUsuarios.Controls.Add(this.lbl1);
             this.grpUsuarios.Controls.Add(this.btnReset);
-            this.grpUsuarios.Controls.Add(this.textBox1);
-            this.grpUsuarios.Controls.Add(this.comboBox1);
+            this.grpUsuarios.Controls.Add(this.txtFiltro);
+            this.grpUsuarios.Controls.Add(this.comboFiltro);
             this.grpUsuarios.Controls.Add(this.btBuscar);
             this.grpUsuarios.Location = new System.Drawing.Point(102, 57);
             this.grpUsuarios.Name = "grpUsuarios";
@@ -129,6 +134,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -158,6 +164,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -173,6 +180,23 @@ namespace Trabajo_Final
             this.grpAcciones.TabIndex = 10;
             this.grpAcciones.TabStop = false;
             this.grpAcciones.Text = "Elija Una Acción";
+            // 
+            // btnPermisos
+            // 
+            this.btnPermisos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPermisos.FlatAppearance.BorderSize = 0;
+            this.btnPermisos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPermisos.ImageIndex = 7;
+            this.btnPermisos.ImageList = this.Listado;
+            this.btnPermisos.Location = new System.Drawing.Point(581, 34);
+            this.btnPermisos.Name = "btnPermisos";
+            this.btnPermisos.Size = new System.Drawing.Size(149, 50);
+            this.btnPermisos.TabIndex = 10;
+            this.btnPermisos.Text = "VerPermisos";
+            this.btnPermisos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPermisos.UseVisualStyleBackColor = true;
+            this.btnPermisos.Click += new System.EventHandler(this.btnPermisos_Click);
             // 
             // btnModificar
             // 
@@ -259,23 +283,6 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnPermisos
-            // 
-            this.btnPermisos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPermisos.FlatAppearance.BorderSize = 0;
-            this.btnPermisos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPermisos.ImageIndex = 7;
-            this.btnPermisos.ImageList = this.Listado;
-            this.btnPermisos.Location = new System.Drawing.Point(581, 34);
-            this.btnPermisos.Name = "btnPermisos";
-            this.btnPermisos.Size = new System.Drawing.Size(149, 50);
-            this.btnPermisos.TabIndex = 10;
-            this.btnPermisos.Text = "VerPermisos";
-            this.btnPermisos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPermisos.UseVisualStyleBackColor = true;
-            this.btnPermisos.Click += new System.EventHandler(this.btnPermisos_Click);
-            // 
             // frmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -288,6 +295,9 @@ namespace Trabajo_Final
             this.Name = "frmUsuarios";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmUsuarios_Activated);
+            this.Load += new System.EventHandler(this.frmUsuarios_Load);
+            this.Shown += new System.EventHandler(this.frmUsuarios_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.grpUsuarios.ResumeLayout(false);
             this.grpUsuarios.PerformLayout();
@@ -298,8 +308,8 @@ namespace Trabajo_Final
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.GroupBox grpUsuarios;

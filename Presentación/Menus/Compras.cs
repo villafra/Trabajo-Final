@@ -18,6 +18,7 @@ namespace Trabajo_Final
     {
         BLL_Compra oBLL_Compra;
         BE_Compra oBE_Compra;
+        private List<BE_Compra> listado;
         public frmCompras()
         {
             InitializeComponent();
@@ -30,7 +31,11 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar());
-            dgvCompras.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        public void Centrar()
+        {
+            VistasDGV.dgvCompras(dgvCompras);
+            Aspecto.CentrarDGV(this, dgvCompras);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -38,6 +43,7 @@ namespace Trabajo_Final
             frmNuevaCompra frm = new frmNuevaCompra();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -50,6 +56,7 @@ namespace Trabajo_Final
                     frm.oBE_Compra = oBE_Compra;
                     frm.ShowDialog();
                     ActualizarListado();
+                    Centrar();
                 }
                 else { throw new RestaurantException("No se puede modificar un pedido que ya se ha gestionado."); }
             }
@@ -58,12 +65,6 @@ namespace Trabajo_Final
                 Cálculos.MsgBox(ex.Message);
             }
         }
-
-        private void dgvCompras_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Login = (BE_Login)dgvUsuarios.SelectedRows[0].DataBoundItem;
-        }
-
         private void dgvCompras_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -73,7 +74,6 @@ namespace Trabajo_Final
             catch { }
 
         }
-
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
@@ -86,6 +86,7 @@ namespace Trabajo_Final
                     }
                     else { throw new Exception(); }
                     ActualizarListado();
+                    Centrar();
                 }
                 else { throw new RestaurantException("No se puede eliminar un pedido que ya se ha gestionado."); }
             }
@@ -93,6 +94,42 @@ namespace Trabajo_Final
             {
                 Cálculos.MsgBox(ex.Message);
             }
+        }
+
+        private void frmCompras_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Compra>)dgvCompras.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+            Cálculos.RefreshGrilla(dgvCompras, listado);
+            string filtro = txtFiltro.Text;
+            string Variable = comboFiltro.Text;
+            List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+            Cálculos.RefreshGrilla(dgvCompras, filtrada);
+            Centrar();
+            comboFiltro.Text = "";
+            txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvCompras, listado);
+            Centrar();
+        }
+
+        private void frmCompras_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmCompras_Shown(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

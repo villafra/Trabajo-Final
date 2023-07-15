@@ -275,9 +275,10 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgv.AutoSize = true;
-            // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
+            dgv.ScrollBars = ScrollBars.Vertical;
+            dgv.MaximumSize = new Size(1120, 495);
 
         };
         public static Action<DataGridView> FormatearDGVRecetas = (dgv) =>
@@ -309,8 +310,10 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowMode.None;
+            dgv.AutoSize = true;
+            dgv.ScrollBars = ScrollBars.Vertical;
+            dgv.MaximumSize = new Size(1120, 495);
+
 
         };
         public static Action<FlowLayoutPanel> FormatearFLowPanel = (fp) =>
@@ -383,7 +386,7 @@ namespace Automate_Layer
         };
         public static Action<Form, DataGridView> CentrarDGV = (frm, dgv) =>
         {
-            int x = (frm.Width - dgv.Width +258) / 2;
+            int x = (frm.Width - dgv.Width ) / 2;
             int y = dgv.Location.Y;
             dgv.Location = new Point(x, y);
         };

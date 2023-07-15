@@ -31,8 +31,8 @@ namespace Trabajo_Final
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNovedades));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvNovedades = new System.Windows.Forms.DataGridView();
             this.grpNovedades = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -51,32 +51,34 @@ namespace Trabajo_Final
             ((System.ComponentModel.ISupportInitialize)(this.dgvAsistencias)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtFiltro
             // 
-            this.textBox1.Location = new System.Drawing.Point(304, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(471, 22);
+            this.txtFiltro.TabIndex = 0;
             // 
-            // comboBox1
+            // comboFiltro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Empleado"});
+            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
+            this.comboFiltro.Name = "comboFiltro";
+            this.comboFiltro.Size = new System.Drawing.Size(233, 24);
+            this.comboFiltro.TabIndex = 1;
             // 
             // dgvNovedades
             // 
             this.dgvNovedades.AllowUserToAddRows = false;
             this.dgvNovedades.AllowUserToDeleteRows = false;
             this.dgvNovedades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNovedades.Location = new System.Drawing.Point(93, 249);
+            this.dgvNovedades.Location = new System.Drawing.Point(102, 249);
             this.dgvNovedades.Name = "dgvNovedades";
             this.dgvNovedades.ReadOnly = true;
             this.dgvNovedades.RowHeadersWidth = 51;
             this.dgvNovedades.RowTemplate.Height = 24;
-            this.dgvNovedades.Size = new System.Drawing.Size(560, 513);
+            this.dgvNovedades.Size = new System.Drawing.Size(349, 513);
             this.dgvNovedades.TabIndex = 3;
             this.dgvNovedades.SelectionChanged += new System.EventHandler(this.dgvNovedades_SelectionChanged);
             // 
@@ -85,8 +87,8 @@ namespace Trabajo_Final
             this.grpNovedades.Controls.Add(this.lbl2);
             this.grpNovedades.Controls.Add(this.lbl1);
             this.grpNovedades.Controls.Add(this.btnReset);
-            this.grpNovedades.Controls.Add(this.textBox1);
-            this.grpNovedades.Controls.Add(this.comboBox1);
+            this.grpNovedades.Controls.Add(this.txtFiltro);
+            this.grpNovedades.Controls.Add(this.comboFiltro);
             this.grpNovedades.Controls.Add(this.btBuscar);
             this.grpNovedades.Location = new System.Drawing.Point(102, 57);
             this.grpNovedades.Name = "grpNovedades";
@@ -128,6 +130,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -156,6 +159,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -225,12 +229,12 @@ namespace Trabajo_Final
             this.dgvAsistencias.AllowUserToAddRows = false;
             this.dgvAsistencias.AllowUserToDeleteRows = false;
             this.dgvAsistencias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAsistencias.Location = new System.Drawing.Point(671, 249);
+            this.dgvAsistencias.Location = new System.Drawing.Point(569, 249);
             this.dgvAsistencias.Name = "dgvAsistencias";
             this.dgvAsistencias.ReadOnly = true;
             this.dgvAsistencias.RowHeadersWidth = 51;
             this.dgvAsistencias.RowTemplate.Height = 24;
-            this.dgvAsistencias.Size = new System.Drawing.Size(560, 513);
+            this.dgvAsistencias.Size = new System.Drawing.Size(653, 513);
             this.dgvAsistencias.TabIndex = 11;
             this.dgvAsistencias.SelectionChanged += new System.EventHandler(this.dgvAsistencias_SelectionChanged);
             // 
@@ -247,6 +251,9 @@ namespace Trabajo_Final
             this.Name = "frmNovedades";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmNovedades_Activated);
+            this.Load += new System.EventHandler(this.frmNovedades_Load);
+            this.Shown += new System.EventHandler(this.frmNovedades_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNovedades)).EndInit();
             this.grpNovedades.ResumeLayout(false);
             this.grpNovedades.PerformLayout();
@@ -258,8 +265,8 @@ namespace Trabajo_Final
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.DataGridView dgvNovedades;
         private System.Windows.Forms.GroupBox grpNovedades;

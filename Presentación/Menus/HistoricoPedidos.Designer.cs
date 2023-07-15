@@ -57,6 +57,10 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Status",
+            "ID_Pago",
+            "ID_Empleado"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
@@ -67,12 +71,12 @@ namespace Trabajo_Final
             this.dgvPedidos.AllowUserToAddRows = false;
             this.dgvPedidos.AllowUserToDeleteRows = false;
             this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidos.Location = new System.Drawing.Point(102, 249);
+            this.dgvPedidos.Location = new System.Drawing.Point(631, 249);
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.ReadOnly = true;
             this.dgvPedidos.RowHeadersWidth = 51;
             this.dgvPedidos.RowTemplate.Height = 24;
-            this.dgvPedidos.Size = new System.Drawing.Size(1120, 499);
+            this.dgvPedidos.Size = new System.Drawing.Size(62, 499);
             this.dgvPedidos.TabIndex = 3;
             this.dgvPedidos.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
@@ -124,6 +128,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -152,6 +157,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -192,6 +198,9 @@ namespace Trabajo_Final
             this.Name = "frmHistoricoPedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmHistoricoPedidos_Activated);
+            this.Load += new System.EventHandler(this.frmHistoricoPedidos_Load);
+            this.Shown += new System.EventHandler(this.frmHistoricoPedidos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
             this.grpPedidos.ResumeLayout(false);
             this.grpPedidos.PerformLayout();

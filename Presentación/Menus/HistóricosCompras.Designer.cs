@@ -30,19 +30,19 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHistoricoOrdenes));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHistoricoCompras));
             this.txtFiltro = new System.Windows.Forms.TextBox();
             this.comboFiltro = new System.Windows.Forms.ComboBox();
-            this.dgvOrdenes = new System.Windows.Forms.DataGridView();
+            this.dgvCompras = new System.Windows.Forms.DataGridView();
             this.grpOrdenes = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
+            this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.btBuscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).BeginInit();
             this.grpOrdenes.SuspendLayout();
             this.grpAcciones.SuspendLayout();
             this.SuspendLayout();
@@ -57,24 +57,28 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Codigo",
+            "Material",
+            "Status"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
             // 
-            // dgvOrdenes
+            // dgvCompras
             // 
-            this.dgvOrdenes.AllowUserToAddRows = false;
-            this.dgvOrdenes.AllowUserToDeleteRows = false;
-            this.dgvOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrdenes.Location = new System.Drawing.Point(102, 249);
-            this.dgvOrdenes.Name = "dgvOrdenes";
-            this.dgvOrdenes.ReadOnly = true;
-            this.dgvOrdenes.RowHeadersWidth = 51;
-            this.dgvOrdenes.RowTemplate.Height = 24;
-            this.dgvOrdenes.Size = new System.Drawing.Size(1120, 499);
-            this.dgvOrdenes.TabIndex = 3;
-            this.dgvOrdenes.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
+            this.dgvCompras.AllowUserToAddRows = false;
+            this.dgvCompras.AllowUserToDeleteRows = false;
+            this.dgvCompras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCompras.Location = new System.Drawing.Point(645, 249);
+            this.dgvCompras.Name = "dgvCompras";
+            this.dgvCompras.ReadOnly = true;
+            this.dgvCompras.RowHeadersWidth = 51;
+            this.dgvCompras.RowTemplate.Height = 24;
+            this.dgvCompras.Size = new System.Drawing.Size(34, 499);
+            this.dgvCompras.TabIndex = 3;
+            this.dgvCompras.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
             // grpOrdenes
             // 
@@ -109,6 +113,23 @@ namespace Trabajo_Final
             this.lbl1.TabIndex = 4;
             this.lbl1.Text = "Buscar Por";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReset.ImageIndex = 1;
+            this.btnReset.ImageList = this.Listado;
+            this.btnReset.Location = new System.Drawing.Point(965, 82);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(149, 36);
+            this.btnReset.TabIndex = 3;
+            this.btnReset.Text = "Restablecer";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // Listado
             // 
             this.Listado.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("Listado.ImageStream")));
@@ -120,6 +141,23 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            // 
+            // btBuscar
+            // 
+            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btBuscar.FlatAppearance.BorderSize = 0;
+            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btBuscar.ImageIndex = 0;
+            this.btBuscar.ImageList = this.Listado;
+            this.btBuscar.Location = new System.Drawing.Point(810, 82);
+            this.btBuscar.Name = "btBuscar";
+            this.btBuscar.Size = new System.Drawing.Size(149, 36);
+            this.btBuscar.TabIndex = 2;
+            this.btBuscar.Text = "Buscar";
+            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -148,51 +186,22 @@ namespace Trabajo_Final
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // btnReset
-            // 
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.ImageIndex = 1;
-            this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
-            this.btnReset.Text = "Restablecer";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnReset.UseVisualStyleBackColor = true;
-            // 
-            // btBuscar
-            // 
-            this.btBuscar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btBuscar.FlatAppearance.BorderSize = 0;
-            this.btBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBuscar.ImageIndex = 0;
-            this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
-            this.btBuscar.Name = "btBuscar";
-            this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
-            this.btBuscar.Text = "Buscar";
-            this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btBuscar.UseVisualStyleBackColor = true;
-            // 
-            // frmHistoricoOrdenes
+            // frmHistoricoCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1324, 882);
             this.Controls.Add(this.grpAcciones);
             this.Controls.Add(this.grpOrdenes);
-            this.Controls.Add(this.dgvOrdenes);
+            this.Controls.Add(this.dgvCompras);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmHistoricoOrdenes";
+            this.Name = "frmHistoricoCompras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).EndInit();
+            this.Activated += new System.EventHandler(this.frmCompras_Activated);
+            this.Load += new System.EventHandler(this.frmCompras_Load);
+            this.Shown += new System.EventHandler(this.frmCompras_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCompras)).EndInit();
             this.grpOrdenes.ResumeLayout(false);
             this.grpOrdenes.PerformLayout();
             this.grpAcciones.ResumeLayout(false);
@@ -205,7 +214,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.TextBox txtFiltro;
         private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
-        private System.Windows.Forms.DataGridView dgvOrdenes;
+        private System.Windows.Forms.DataGridView dgvCompras;
         private System.Windows.Forms.GroupBox grpOrdenes;
         private System.Windows.Forms.ImageList Listado;
         private System.Windows.Forms.Button btnReset;

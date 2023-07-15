@@ -62,12 +62,12 @@ namespace Trabajo_Final
             this.dgvReceta.AllowUserToAddRows = false;
             this.dgvReceta.AllowUserToDeleteRows = false;
             this.dgvReceta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceta.Location = new System.Drawing.Point(102, 249);
+            this.dgvReceta.Location = new System.Drawing.Point(645, 249);
             this.dgvReceta.Name = "dgvReceta";
             this.dgvReceta.ReadOnly = true;
             this.dgvReceta.RowHeadersWidth = 51;
             this.dgvReceta.RowTemplate.Height = 24;
-            this.dgvReceta.Size = new System.Drawing.Size(1120, 494);
+            this.dgvReceta.Size = new System.Drawing.Size(35, 494);
             this.dgvReceta.TabIndex = 3;
             // 
             // grpBebidas

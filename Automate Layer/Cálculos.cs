@@ -17,7 +17,13 @@ namespace Automate_Layer
             TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
             string Capitalizacion = textInfo.ToTitleCase(texto);
             return Capitalizacion;
-        } 
+        }
+        public static string Descapitalize(string texto)
+        {
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string Capitalizacion = textInfo.ToLower(texto);
+            return Capitalizacion;
+        }
         public static void ValidarNumeros(KeyPressEventArgs e)
         {
             string s = System.Globalization.CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;

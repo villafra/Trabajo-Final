@@ -25,11 +25,14 @@ namespace Service_Layer
         }
         public static void Logout(BE_Login user)
         {
+            if (user != null)
+            {
             oBE_Bitacora.CodigoUsuario = user.Codigo;
             oBE_Bitacora.Empleado = user.Empleado != null ? user.Empleado.ToString() : null;
             oBE_Bitacora.Acción = Accion.Logout;
             oBE_Bitacora.FechaHora = DateTime.Now;
             Guardar(oBE_Bitacora);
+            }
         }
 
         private static void Guardar(BE_Bitacora bita)

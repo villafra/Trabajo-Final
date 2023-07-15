@@ -21,6 +21,11 @@ namespace Business_Entities
         public BE_Pago ID_Pago { get; set; }
         public BE_Empleado ID_Empleado { get; set; }
         public bool Activo { get; set; } = true;
+
+        public override string ToString()
+        {
+            return Codigo + "-" + FechaInicio.ToString("dd/MM/yyyy");
+        }
     }
    public enum StatusPedido
     {

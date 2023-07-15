@@ -31,11 +31,12 @@ namespace Trabajo_Final
         {
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
+        }
+        public void Centrar()
+        {
             VistasDGV.DGVEmpleados(dgvEmpleados);
             Aspecto.CentrarDGV(this, dgvEmpleados);
-            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoEmpleado frm = new frmNuevoEmpleado();
@@ -100,8 +101,7 @@ namespace Trabajo_Final
             string Variable = comboFiltro.Text;
             List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
             Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
-            VistasDGV.DGVEmpleados(dgvEmpleados);
-            Aspecto.CentrarDGV(this, dgvEmpleados);
+            Centrar();
             comboFiltro.Text = "";
             txtFiltro.Text = "";
         }
@@ -109,8 +109,22 @@ namespace Trabajo_Final
         private void btnReset_Click(object sender, EventArgs e)
         {
             Cálculos.RefreshGrilla(dgvEmpleados, listado);
-            VistasDGV.DGVEmpleados(dgvEmpleados);
-            Aspecto.CentrarDGV(this, dgvEmpleados);
+            Centrar();
+        }
+
+        private void frmEmpleados_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
+        }
+
+        private void frmEmpleados_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmEmpleados_Shown(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

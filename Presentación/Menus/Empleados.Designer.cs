@@ -75,12 +75,13 @@ namespace Trabajo_Final
             this.dgvEmpleados.AllowUserToAddRows = false;
             this.dgvEmpleados.AllowUserToDeleteRows = false;
             this.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmpleados.Location = new System.Drawing.Point(414, 249);
+            this.dgvEmpleados.Location = new System.Drawing.Point(478, 249);
+            this.dgvEmpleados.MaximumSize = new System.Drawing.Size(1000, 495);
             this.dgvEmpleados.Name = "dgvEmpleados";
             this.dgvEmpleados.ReadOnly = true;
             this.dgvEmpleados.RowHeadersWidth = 51;
             this.dgvEmpleados.RowTemplate.Height = 24;
-            this.dgvEmpleados.Size = new System.Drawing.Size(496, 492);
+            this.dgvEmpleados.Size = new System.Drawing.Size(75, 495);
             this.dgvEmpleados.TabIndex = 3;
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged);
             // 
@@ -272,6 +273,9 @@ namespace Trabajo_Final
             this.Name = "frmEmpleados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmEmpleados_Activated);
+            this.Load += new System.EventHandler(this.frmEmpleados_Load);
+            this.Shown += new System.EventHandler(this.frmEmpleados_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).EndInit();
             this.grpEmpleados.ResumeLayout(false);
             this.grpEmpleados.PerformLayout();

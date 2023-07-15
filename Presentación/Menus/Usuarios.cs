@@ -18,6 +18,7 @@ namespace Trabajo_Final
     {
         BLL_Login oBLL_Login;
         BE_Login oBE_Login;
+        private List<BE_Login> listado;
         public frmUsuarios()
         {
             InitializeComponent();
@@ -31,7 +32,11 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
-            dgvUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        public void Centrar()
+        {
+            VistasDGV.dgvUsuarios(dgvUsuarios);
+            Aspecto.CentrarDGV(this, dgvUsuarios);
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -39,6 +44,7 @@ namespace Trabajo_Final
             frmNuevoLogin frm = new frmNuevoLogin();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -47,6 +53,7 @@ namespace Trabajo_Final
             frm.oBE_Login = oBE_Login;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
@@ -94,6 +101,40 @@ namespace Trabajo_Final
             frmVerPermisos frm = new frmVerPermisos(oBE_Login.Permiso);
             frm.ActualizarListado();
             frm.ShowDialog();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvUsuarios, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Login> filtrada = ((List<BE_Login>)dgvUsuarios.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Descapitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvUsuarios, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvUsuarios, listado);
+            Centrar();
+        }
+        private void frmUsuarios_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Login>)dgvUsuarios.DataSource;
+        }
+        private void frmUsuarios_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmUsuarios_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

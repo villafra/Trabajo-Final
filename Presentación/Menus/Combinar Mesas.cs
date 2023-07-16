@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -49,11 +50,17 @@ namespace Trabajo_Final
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            frmNuevaCombMesa frm = new frmNuevaCombMesa();
-            frm.oBE_Mesa = oBE_Mesa;
-            frm.ShowDialog();
-            ActualizarListado();
-            Centrar();
+            try
+            {
+                if (oBLL_Mesa.DescombinarMesa(oBE_Mesa as BE_MesaCombinada))
+                {
+                    ActualizarListado();
+                    Centrar();
+                    Cálculos.MsgBox("Las mesas se han descombinado satisfactoriamente.");
+                }
+                else { throw new RestaurantException("La mesa seleccionada no es combinada."); }
+            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
@@ -70,14 +77,6 @@ namespace Trabajo_Final
             catch { }
 
         }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            oBLL_Mesa.DescombinarMesa(oBE_Mesa as BE_MesaCombinada);
-            ActualizarListado();
-            Centrar();
-        }
-
         private void frmCombinarMesas_Load(object sender, EventArgs e)
         {
             listado = (List<BE_Mesa>)dgvMesas.DataSource;

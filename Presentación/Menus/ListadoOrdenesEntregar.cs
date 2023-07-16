@@ -18,6 +18,7 @@ namespace Trabajo_Final
     {
         BLL_Orden oBLL_Orden;
         BE_Orden oBE_Orden;
+        private List<BE_Orden> listado;
         public frmListadoOrdenesEntregar()
         {
             InitializeComponent();
@@ -32,9 +33,21 @@ namespace Trabajo_Final
         {
             Cálculos.GrillaEnBlanco(dgvItems);
             Cálculos.RefreshGrilla(dgvOrdenes, oBLL_Orden.ListarEnEntrega());
-            dgvOrdenes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvOrdenResumen(dgvOrdenes);
+        }
+        public void CentrarBeb()
+        {
+            Cálculos.RefreshGrilla(dgvItems, oBE_Orden.ID_Pedido.ListadeBebida);
+            VistasDGV.dgvOrdenItem(dgvItems);
+        }
+        public void CentrarPla()
+        {
+            Cálculos.RefreshGrilla(dgvItems, oBE_Orden.ID_Pedido.ListadePlatos);
+            VistasDGV.dgvOrdenItem(dgvItems);
+        }
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -42,11 +55,11 @@ namespace Trabajo_Final
                 oBE_Orden = (BE_Orden)dgvOrdenes.SelectedRows[0].DataBoundItem;
                 if (oBE_Orden.Status == StatusOrden.Bebidas_Listas)
                 {
-                    Cálculos.RefreshGrilla(dgvItems, oBE_Orden.ID_Pedido.ListadeBebida);
+                    CentrarBeb();
                 }
                 else
                 {
-                    Cálculos.RefreshGrilla(dgvItems, oBE_Orden.ID_Pedido.ListadePlatos);
+                    CentrarPla();
                 }
             }
             catch { }
@@ -72,12 +85,49 @@ namespace Trabajo_Final
                 if (oBLL_Orden.Modificar(oBE_Orden))
                 {
                     ActualizarListado();
-                    Cálculos.MsgBox("La orden ha sido entregada por completo.");
+                    Centrar();
+                    Cálculos.MsgBox("La orden ha sido entregada.");
                 }
                 else { throw new RestaurantException("La actualización del status falló, intente nuevamente."); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
             
+        }
+
+        private void frmListadoOrdenesEntregar_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Orden>)dgvOrdenes.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvOrdenes, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Orden> filtrada = ((List<BE_Orden>)dgvOrdenes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvOrdenes, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvOrdenes, listado);
+            Centrar();
+        }
+
+        private void frmListadoOrdenesEntregar_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmListadoOrdenesEntregar_Shown(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

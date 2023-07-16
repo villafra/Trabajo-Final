@@ -76,6 +76,16 @@ namespace Business_Logic_Layer
 
             return MPP_Mesa.DevolverInstancia().CombinarMesa(lista) & MPP_Mesa.DevolverInstancia().Guardar(mesa3);
         }
+
+        public bool LiberarMesa(BE_Mesa oBE_Mesa)
+        {
+            if (oBE_Mesa is BE_MesaCombinada)
+            {
+                return DescombinarMesa(oBE_Mesa as BE_MesaCombinada);
+            }
+            else return Modificar(oBE_Mesa);
+        }
+
         public bool DescombinarMesa(BE_MesaCombinada mesa3)
         {
             BE_Mesa mesa1 = mesa3.Mesa1;

@@ -129,6 +129,11 @@ namespace Mapper
 
         public BE_Mesa ListarObjeto(BE_Mesa mesa, DataSet ds=null)
         {
+            if (ds is null)
+            {
+                ds = new DataSet();
+                ds = Xml_Database.DevolverInstancia().Listar();
+            }
             BE_Mesa ObjetoEncontrado = ds.Tables.Contains("Mesa") != false ?
                 (from mes in ds.Tables["Mesa"].AsEnumerable()
                  where Convert.ToInt32(mes[0]) == mesa.Codigo

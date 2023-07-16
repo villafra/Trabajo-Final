@@ -42,10 +42,7 @@ namespace Trabajo_Final
             this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
-            this.btnDesbloquear = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.btnResetPass = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMesas)).BeginInit();
             this.grpMesas.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -162,10 +159,7 @@ namespace Trabajo_Final
             // grpAcciones
             // 
             this.grpAcciones.Controls.Add(this.btnModificar);
-            this.grpAcciones.Controls.Add(this.btnDesbloquear);
             this.grpAcciones.Controls.Add(this.btnAgregar);
-            this.grpAcciones.Controls.Add(this.btnResetPass);
-            this.grpAcciones.Controls.Add(this.btnEliminar);
             this.grpAcciones.Location = new System.Drawing.Point(102, 768);
             this.grpAcciones.Name = "grpAcciones";
             this.grpAcciones.Size = new System.Drawing.Size(1120, 100);
@@ -181,30 +175,14 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(161, 34);
+            this.btnModificar.Location = new System.Drawing.Point(603, 34);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(149, 50);
+            this.btnModificar.Size = new System.Drawing.Size(194, 50);
             this.btnModificar.TabIndex = 6;
-            this.btnModificar.Text = "Modificar";
+            this.btnModificar.Text = "Descombinar Mesa";
             this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModificar.UseVisualStyleBackColor = true;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
-            // btnDesbloquear
-            // 
-            this.btnDesbloquear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDesbloquear.FlatAppearance.BorderSize = 0;
-            this.btnDesbloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDesbloquear.ImageIndex = 6;
-            this.btnDesbloquear.ImageList = this.Listado;
-            this.btnDesbloquear.Location = new System.Drawing.Point(965, 34);
-            this.btnDesbloquear.Name = "btnDesbloquear";
-            this.btnDesbloquear.Size = new System.Drawing.Size(149, 50);
-            this.btnDesbloquear.TabIndex = 9;
-            this.btnDesbloquear.Text = "Desbloquear";
-            this.btnDesbloquear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDesbloquear.UseVisualStyleBackColor = true;
             // 
             // btnAgregar
             // 
@@ -214,47 +192,14 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(6, 34);
+            this.btnAgregar.Location = new System.Drawing.Point(324, 34);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(149, 50);
+            this.btnAgregar.Size = new System.Drawing.Size(194, 50);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Combinar Mesa";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // btnResetPass
-            // 
-            this.btnResetPass.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnResetPass.FlatAppearance.BorderSize = 0;
-            this.btnResetPass.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnResetPass.ImageIndex = 5;
-            this.btnResetPass.ImageList = this.Listado;
-            this.btnResetPass.Location = new System.Drawing.Point(810, 34);
-            this.btnResetPass.Name = "btnResetPass";
-            this.btnResetPass.Size = new System.Drawing.Size(149, 50);
-            this.btnResetPass.TabIndex = 8;
-            this.btnResetPass.Text = "Reset Pass";
-            this.btnResetPass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnResetPass.UseVisualStyleBackColor = true;
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEliminar.ImageIndex = 4;
-            this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(316, 34);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(149, 50);
-            this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // frmCombinarMesas
             // 
@@ -292,9 +237,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnResetPass;
-        private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.GroupBox grpAcciones;
     }
 }

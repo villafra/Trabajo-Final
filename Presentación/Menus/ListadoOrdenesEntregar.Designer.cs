@@ -69,12 +69,12 @@ namespace Trabajo_Final
             this.dgvOrdenes.AllowUserToAddRows = false;
             this.dgvOrdenes.AllowUserToDeleteRows = false;
             this.dgvOrdenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrdenes.Location = new System.Drawing.Point(102, 249);
+            this.dgvOrdenes.Location = new System.Drawing.Point(208, 249);
             this.dgvOrdenes.Name = "dgvOrdenes";
             this.dgvOrdenes.ReadOnly = true;
             this.dgvOrdenes.RowHeadersWidth = 51;
             this.dgvOrdenes.RowTemplate.Height = 24;
-            this.dgvOrdenes.Size = new System.Drawing.Size(547, 340);
+            this.dgvOrdenes.Size = new System.Drawing.Size(418, 340);
             this.dgvOrdenes.TabIndex = 3;
             this.dgvOrdenes.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
@@ -126,6 +126,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -154,6 +155,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -187,12 +189,12 @@ namespace Trabajo_Final
             this.dgvItems.AllowUserToAddRows = false;
             this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Location = new System.Drawing.Point(675, 249);
+            this.dgvItems.Location = new System.Drawing.Point(781, 249);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
             this.dgvItems.RowHeadersWidth = 51;
             this.dgvItems.RowTemplate.Height = 24;
-            this.dgvItems.Size = new System.Drawing.Size(547, 340);
+            this.dgvItems.Size = new System.Drawing.Size(336, 340);
             this.dgvItems.TabIndex = 12;
             // 
             // frmListadoOrdenesEntregar
@@ -208,6 +210,9 @@ namespace Trabajo_Final
             this.Name = "frmListadoOrdenesEntregar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmListadoOrdenesEntregar_Activated);
+            this.Load += new System.EventHandler(this.frmListadoOrdenesEntregar_Load);
+            this.Shown += new System.EventHandler(this.frmListadoOrdenesEntregar_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).EndInit();
             this.grpPedidos.ResumeLayout(false);
             this.grpPedidos.PerformLayout();

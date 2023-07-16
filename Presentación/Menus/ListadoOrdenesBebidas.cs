@@ -34,7 +34,7 @@ namespace Trabajo_Final
         }
         public void Centrar()
         {
-            VistasDGV.dgvOrdenBebida(dgvOrdenes);
+            VistasDGV.dgvOrdenBebPla(dgvOrdenes);
             Aspecto.CentrarDGV(this, dgvOrdenes);
         }
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)

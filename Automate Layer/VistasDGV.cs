@@ -38,7 +38,41 @@ namespace Automate_Layer
             
         }
 
-        public static void dgvOrdenBebida(DataGridView dgv)
+        public static void dgvOrdenResumen(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[2].HeaderText = "Pedido";
+            dgv.Columns[3].HeaderText = "Mesa";
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvOrdenItem(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[2].Visible = false;
+            dgv.Columns[3].Visible = false;
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].Visible = false;
+            dgv.Columns[7].Visible = false;
+            dgv.Columns[8].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
+        public static void dgvOrdenBebPla(DataGridView dgv)
         {
             dgv.Columns[0].HeaderText = "Codigo";
             dgv.Columns[1].Visible = false;

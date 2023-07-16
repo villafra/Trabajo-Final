@@ -64,12 +64,12 @@ namespace Trabajo_Final
             this.dgvBitacora.AllowUserToAddRows = false;
             this.dgvBitacora.AllowUserToDeleteRows = false;
             this.dgvBitacora.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBitacora.Location = new System.Drawing.Point(102, 249);
+            this.dgvBitacora.Location = new System.Drawing.Point(626, 249);
             this.dgvBitacora.Name = "dgvBitacora";
             this.dgvBitacora.ReadOnly = true;
             this.dgvBitacora.RowHeadersWidth = 51;
             this.dgvBitacora.RowTemplate.Height = 24;
-            this.dgvBitacora.Size = new System.Drawing.Size(1120, 632);
+            this.dgvBitacora.Size = new System.Drawing.Size(72, 632);
             this.dgvBitacora.TabIndex = 3;
             // 
             // grpBitacora
@@ -108,6 +108,7 @@ namespace Trabajo_Final
             // btnReset
             // 
             this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -120,6 +121,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -148,11 +150,14 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // frmBitacora
             // 
+            this.AcceptButton = this.btBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnReset;
             this.ClientSize = new System.Drawing.Size(1324, 918);
             this.Controls.Add(this.grpBitacora);
             this.Controls.Add(this.dgvBitacora);
@@ -160,6 +165,9 @@ namespace Trabajo_Final
             this.Name = "frmBitacora";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmBitacora_Activated);
+            this.Load += new System.EventHandler(this.frmBitacora_Load);
+            this.Shown += new System.EventHandler(this.frmBitacora_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBitacora)).EndInit();
             this.grpBitacora.ResumeLayout(false);
             this.grpBitacora.PerformLayout();

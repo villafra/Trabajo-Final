@@ -19,7 +19,6 @@ namespace Trabajo_Final
 
         public BE_Plato oBE_Plato;
         BLL_Plato oBLL_Plato;
-        private bool status;
         public frmNuevoPlato()
         {
             InitializeComponent();
@@ -31,15 +30,15 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Plato != null ? Viejo() : Nuevo())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (_ = oBE_Plato != null ? Viejo() : Nuevo())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
-
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private bool Viejo()

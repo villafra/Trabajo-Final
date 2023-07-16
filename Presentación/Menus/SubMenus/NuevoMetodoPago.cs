@@ -29,13 +29,16 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Pago != null ? Viejo() : Nuevo())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
-            }
-            else
+                if (_ = oBE_Pago != null ? Viejo() : Nuevo())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else{ throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente");}
+            }catch(Exception ex)
             {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
+                Cálculos.MsgBox(ex.Message);
             }
 
         }

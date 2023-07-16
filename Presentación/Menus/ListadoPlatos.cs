@@ -18,6 +18,7 @@ namespace Trabajo_Final
         BLL_Plato_Stock oBLL_Plato_Stock;
         BE_Plato_Stock oBE_Plato_Stock;
         private List<BE_Plato_Stock> listado;
+        Reemplazos rm;
         public frmListadoPlatos()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Trabajo_Final
             oBE_Plato_Stock = new BE_Plato_Stock();
             Aspecto.FormatearGRP(grpPlatos);
             Aspecto.FormatearDGV(dgvPlatos);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -35,6 +37,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvPlatStock(dgvPlatos);
             Aspecto.CentrarDGV(this, dgvPlatos);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre del Plato", "Material"},
+                {"Lote", "Lote" },
+                {"Fecha de Creación", "FechaCreacion" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
         {
@@ -53,11 +66,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvPlatos, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Plato_Stock> filtrada = ((List<BE_Plato_Stock>)dgvPlatos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvPlatos, filtrada);
                 Centrar();

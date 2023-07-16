@@ -32,6 +32,11 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaBebida));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.txtVidaUtil = new System.Windows.Forms.TextBox();
+            this.comboIngredientes = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.numABV = new System.Windows.Forms.NumericUpDown();
+            this.lblABV = new System.Windows.Forms.Label();
             this.chkLote = new System.Windows.Forms.CheckBox();
             this.comboUM = new System.Windows.Forms.ComboBox();
             this.lblUM = new System.Windows.Forms.Label();
@@ -47,14 +52,9 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.numABV = new System.Windows.Forms.NumericUpDown();
-            this.lblABV = new System.Windows.Forms.Label();
-            this.comboIngredientes = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtVidaUtil = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPresentacion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numABV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPresentacion)).BeginInit();
             this.SuspendLayout();
             // 
             // grpNuevoLogin
@@ -82,6 +82,57 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // txtVidaUtil
+            // 
+            this.txtVidaUtil.Location = new System.Drawing.Point(174, 349);
+            this.txtVidaUtil.Name = "txtVidaUtil";
+            this.txtVidaUtil.Size = new System.Drawing.Size(257, 22);
+            this.txtVidaUtil.TabIndex = 38;
+            // 
+            // comboIngredientes
+            // 
+            this.comboIngredientes.FormattingEnabled = true;
+            this.comboIngredientes.Location = new System.Drawing.Point(175, 481);
+            this.comboIngredientes.Name = "comboIngredientes";
+            this.comboIngredientes.Size = new System.Drawing.Size(257, 24);
+            this.comboIngredientes.TabIndex = 37;
+            this.comboIngredientes.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 484);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(120, 17);
+            this.label1.TabIndex = 36;
+            this.label1.Text = "Lista Ingredientes";
+            this.label1.Visible = false;
+            // 
+            // numABV
+            // 
+            this.numABV.DecimalPlaces = 2;
+            this.numABV.Location = new System.Drawing.Point(174, 418);
+            this.numABV.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numABV.Name = "numABV";
+            this.numABV.Size = new System.Drawing.Size(257, 22);
+            this.numABV.TabIndex = 35;
+            this.numABV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.numABV.Visible = false;
+            // 
+            // lblABV
+            // 
+            this.lblABV.AutoSize = true;
+            this.lblABV.Location = new System.Drawing.Point(20, 421);
+            this.lblABV.Name = "lblABV";
+            this.lblABV.Size = new System.Drawing.Size(35, 17);
+            this.lblABV.TabIndex = 34;
+            this.lblABV.Text = "ABV";
+            this.lblABV.Visible = false;
             // 
             // chkLote
             // 
@@ -209,6 +260,7 @@ namespace Trabajo_Final
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Listado
             // 
@@ -235,59 +287,9 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // numABV
-            // 
-            this.numABV.DecimalPlaces = 2;
-            this.numABV.Location = new System.Drawing.Point(174, 418);
-            this.numABV.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.numABV.Name = "numABV";
-            this.numABV.Size = new System.Drawing.Size(257, 22);
-            this.numABV.TabIndex = 35;
-            this.numABV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.numABV.Visible = false;
-            // 
-            // lblABV
-            // 
-            this.lblABV.AutoSize = true;
-            this.lblABV.Location = new System.Drawing.Point(20, 421);
-            this.lblABV.Name = "lblABV";
-            this.lblABV.Size = new System.Drawing.Size(35, 17);
-            this.lblABV.TabIndex = 34;
-            this.lblABV.Text = "ABV";
-            this.lblABV.Visible = false;
-            // 
-            // comboIngredientes
-            // 
-            this.comboIngredientes.FormattingEnabled = true;
-            this.comboIngredientes.Location = new System.Drawing.Point(175, 481);
-            this.comboIngredientes.Name = "comboIngredientes";
-            this.comboIngredientes.Size = new System.Drawing.Size(257, 24);
-            this.comboIngredientes.TabIndex = 37;
-            this.comboIngredientes.Visible = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 484);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 17);
-            this.label1.TabIndex = 36;
-            this.label1.Text = "Lista Ingredientes";
-            this.label1.Visible = false;
-            // 
-            // txtVidaUtil
-            // 
-            this.txtVidaUtil.Location = new System.Drawing.Point(174, 349);
-            this.txtVidaUtil.Name = "txtVidaUtil";
-            this.txtVidaUtil.Size = new System.Drawing.Size(257, 22);
-            this.txtVidaUtil.TabIndex = 38;
-            // 
             // frmNuevaBebida
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
@@ -302,8 +304,8 @@ namespace Trabajo_Final
             this.Load += new System.EventHandler(this.frmNuevoLogin_Load);
             this.grpNuevoLogin.ResumeLayout(false);
             this.grpNuevoLogin.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numPresentacion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numABV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPresentacion)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,7 @@ namespace Trabajo_Final
         BLL_Compra oBLL_Compra;
         BE_Compra oBE_Compra;
         private List<BE_Compra> listado;
+        Reemplazos rm;
         public frmCompras()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpCompras);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvCompras);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -37,7 +39,17 @@ namespace Trabajo_Final
             VistasDGV.dgvCompras(dgvCompras);
             Aspecto.CentrarDGV(this, dgvCompras);
         }
-
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Tipo de Material", "Material"},
+                {"Status", "Status" },
+                {"Nro de Factura", "NroFactura" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevaCompra frm = new frmNuevaCompra();
@@ -78,24 +90,26 @@ namespace Trabajo_Final
         {
             try
             {
-                if (oBE_Compra.Status == StausComp.En_Curso)
+                if (Cálculos.EstaSeguroE(oBE_Compra.ToString()))
                 {
-                    if (oBLL_Compra.Baja(oBE_Compra))
+                    if (oBE_Compra.Status == StausComp.En_Curso)
                     {
-                        Cálculos.MsgBox("El pedido se ha borrado de la base de datos.");
+                        if (oBLL_Compra.Baja(oBE_Compra))
+                        {
+                            Cálculos.MsgBox("El pedido se ha borrado de la base de datos.");
+                        }
+                        else { throw new Exception(); }
+                        ActualizarListado();
+                        Centrar();
                     }
-                    else { throw new Exception(); }
-                    ActualizarListado();
-                    Centrar();
-                }
-                else { throw new RestaurantException("No se puede eliminar un pedido que ya se ha gestionado."); }
+                    else { throw new RestaurantException("No se puede eliminar un pedido que ya se ha gestionado."); }
+                } else { throw new RestaurantException("La acción de eliminar la compra ha sido cancelada"); }
             }
             catch (Exception ex)
             {
                 Cálculos.MsgBox(ex.Message);
             }
         }
-
         private void frmCompras_Load(object sender, EventArgs e)
         {
             listado = (List<BE_Compra>)dgvCompras.DataSource;
@@ -103,11 +117,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
             Cálculos.RefreshGrilla(dgvCompras, listado);
             string filtro = txtFiltro.Text;
-            string Variable = comboFiltro.Text;
+            string Variable = rm.Reemplazar(comboFiltro.Text);
             List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
             Cálculos.RefreshGrilla(dgvCompras, filtrada);
             Centrar();

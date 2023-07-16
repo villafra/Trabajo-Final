@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -18,6 +19,7 @@ namespace Trabajo_Final
         BLL_Bebida oBLL_Bebida;
         BE_Bebida oBE_Bebida;
         private List<BE_Bebida> listado;
+        Reemplazos rm;
         public frmBebidas()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpBebidas);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvBebidas);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -36,6 +39,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvBebidas(dgvBebidas);
             Aspecto.CentrarDGV(this, dgvBebidas);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre", "Nombre"},
+                {"Tipo de Bebida", "Tipo" },
+                {"Presentación", "Presentacion" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -66,14 +80,23 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Bebida.Baja(oBE_Bebida);
-        }
+            try
+            {
+                if (Cálculos.EstaSeguroE(oBE_Bebida.ToString()))
+                {
+                    if (oBLL_Bebida.Baja(oBE_Bebida))
+                    {
+                        ActualizarListado();
+                        Centrar();
+                        Cálculos.MsgBox("La baja se ha efectuado satisfactoriamente");
+                    }
+                    else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("La baja se ha cancelado."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
 
-        private void btnResetPass_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(oBE_Bebida.DevolverNombre());
         }
-
         private void frmBebidas_Load(object sender, EventArgs e)
         {
             listado = (List<BE_Bebida>)dgvBebidas.DataSource;
@@ -81,11 +104,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvBebidas, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Bebida> filtrada = ((List<BE_Bebida>)dgvBebidas.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvBebidas, filtrada);
                 Centrar();

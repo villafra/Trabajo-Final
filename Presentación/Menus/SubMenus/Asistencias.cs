@@ -23,7 +23,6 @@ namespace Trabajo_Final
         BLL_Empleado oBLL_Empleado;
         BLL_Asistencia oBLL_Asistencia;
         BLL_Novedad oBLL_Novedad;
-        private bool status;
         public frmAsistencias()
         {
             InitializeComponent();

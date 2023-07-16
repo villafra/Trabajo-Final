@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -18,6 +19,7 @@ namespace Trabajo_Final
         BLL_Ingrediente oBLL_Ingrediente;
         BE_Ingrediente oBE_Ingrediente;
         private List<BE_Ingrediente> listado;
+        Reemplazos rm;
         public frmIngredientes()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpIngredientes);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvIngredientes);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -36,6 +39,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvIngredientes(dgvIngredientes);
             Aspecto.CentrarDGV(this, dgvIngredientes);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre", "Nombre"},
+                {"Status", "Status" },
+                {"Tipo de Ingrediente", "Tipo" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -65,9 +79,26 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Ingrediente.Baja(oBE_Ingrediente);
-            ActualizarListado();
-            Centrar();
+            try
+            {
+                if (Cálculos.EstaSeguroE(oBE_Ingrediente.ToString()))
+                {
+                    if (oBLL_Ingrediente.Baja(oBE_Ingrediente))
+                    {
+                        Cálculos.MsgBox("Se ha efectuado la baja satisfactoriamente");
+                        ActualizarListado();
+                        Centrar();
+                    }
+                    else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("La baja se ha cancelado."); }
+                
+            }
+            catch (Exception ex)
+            {
+                Cálculos.MsgBox(ex.Message);
+            }
+           
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
@@ -82,11 +113,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvIngredientes, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Ingrediente> filtrada = ((List<BE_Ingrediente>)dgvIngredientes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvIngredientes, filtrada);
                 Centrar();

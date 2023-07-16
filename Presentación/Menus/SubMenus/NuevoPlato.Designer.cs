@@ -32,6 +32,8 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoPlato));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.txtPresentacion = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.comboIngredientes = new System.Windows.Forms.ComboBox();
             this.lblIng = new System.Windows.Forms.Label();
             this.ComboClas = new System.Windows.Forms.ComboBox();
@@ -45,8 +47,6 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtPresentacion = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +70,22 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // txtPresentacion
+            // 
+            this.txtPresentacion.Location = new System.Drawing.Point(174, 308);
+            this.txtPresentacion.Name = "txtPresentacion";
+            this.txtPresentacion.Size = new System.Drawing.Size(257, 22);
+            this.txtPresentacion.TabIndex = 39;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 313);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 17);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "Clasificación";
             // 
             // comboIngredientes
             // 
@@ -199,24 +215,9 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 313);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 17);
-            this.label1.TabIndex = 38;
-            this.label1.Text = "Clasificación";
-            // 
-            // txtPresentacion
-            // 
-            this.txtPresentacion.Location = new System.Drawing.Point(174, 308);
-            this.txtPresentacion.Name = "txtPresentacion";
-            this.txtPresentacion.Size = new System.Drawing.Size(257, 22);
-            this.txtPresentacion.TabIndex = 39;
-            // 
             // frmNuevoPlato
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -18,6 +19,7 @@ namespace Trabajo_Final
         BLL_Mesa oBLL_Mesa;
         BE_Mesa oBE_Mesa;
         private List<BE_Mesa> listado;
+        Reemplazos rm;
         public frmMesas()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpMesas);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvMesas);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -36,6 +39,18 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvMesas(dgvMesas);
             Aspecto.CentrarDGV(this, dgvMesas);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Capacidad", "Capacidad"},
+                {"Ubicación", "Ubicacion" },
+                {"Status", "Status" },
+                {"Empleado a Cargo", "ID_Empleado" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -64,9 +79,21 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Mesa.Baja(oBE_Mesa);
-            ActualizarListado();
-            Centrar();
+            try
+            {
+                if (Cálculos.EstaSeguroE(oBE_Mesa.ToString()))
+                {
+                    if (oBLL_Mesa.Baja(oBE_Mesa))
+                    {
+                        Cálculos.MsgBox("La baja se ha efectuado satisfactoriamente.");
+                        ActualizarListado();
+                        Centrar();
+                    }
+                    else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("La baja ha sido cancelada."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void frmMesas_Load(object sender, EventArgs e)
@@ -76,11 +103,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvMesas, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Mesa> filtrada = ((List<BE_Mesa>)dgvMesas.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvMesas, filtrada);
                 Centrar();

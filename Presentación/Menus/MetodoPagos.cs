@@ -18,6 +18,7 @@ namespace Trabajo_Final
         private List<BE_Pago> listado;
         BE_Pago oBE_Pago;
         BLL_Pago oBLL_Pago;
+        Reemplazos rm;
         public frmMetodoPagos()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpMetPagos);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvMetPagos);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -35,6 +37,16 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvMetPagos(dgvMetPagos);
             Aspecto.CentrarDGV(this, dgvMetPagos);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Código", "Codigo" },
+                {"Método de Pago", "Tipo"}
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -52,22 +64,13 @@ namespace Trabajo_Final
             ActualizarListado();
             Centrar();
         }
-
-
-        private void btnEliminar_Click(object sender, EventArgs e)
-        {
-            
-            ActualizarListado();
-            Centrar();
-        }
-
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvMetPagos, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Pago> filtrada = ((List<BE_Pago>)dgvMetPagos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvMetPagos, filtrada);
                 Centrar();

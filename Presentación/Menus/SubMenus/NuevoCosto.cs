@@ -26,7 +26,6 @@ namespace Trabajo_Final
         List<int> Ingrediente = new List<int> { 1 };
         List<int> Bebida = new List<int> { 2, 3 };
         List<int> Plato = new List<int> { 4 };
-        private bool status;
         public frmNuevoCosto()
         {
             InitializeComponent();
@@ -37,14 +36,16 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Costo != null ? Viejo() : Nuevo())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (_ = oBE_Costo != null ? Viejo() : Nuevo())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else{ throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            
 
         }
 

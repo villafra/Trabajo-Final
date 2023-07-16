@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -20,6 +21,7 @@ namespace Trabajo_Final
         BE_Novedad oBE_Novedad;
         BE_Asistencia oBE_Asistencia;
         private List<BE_Novedad> listado;
+        Reemplazos rm;
         public frmNovedades()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvNovedades);
             Aspecto.FormatearDGV(dgvAsistencias);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -38,6 +41,16 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvNovedades(dgvNovedades);
             VistasDGV.dgvAsistencias(dgvAsistencias);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre de Empleado", "Empleado"},
+                {"Cant. Días Vacaciones", "VacacionesDisponibles" },
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         public void Novedades()
         {
@@ -92,9 +105,18 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Novedad.AsignarVacacionesXLey(oBE_Novedad);
-            ActualizarListado();
-            Centrar();
+            try
+            {
+                if (oBLL_Novedad.AsignarVacacionesXLey(oBE_Novedad))
+                {
+                    ActualizarListado();
+                    Centrar();
+                    Cálculos.MsgBox("Se han asignado las vacaciones al empleado correctamente.");
+                }
+                else { throw new RestaurantException("La asignación ha fallado, por favor, intente nuevamente"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            
         }
 
         private void dgvAsistencias_SelectionChanged(object sender, EventArgs e)
@@ -123,14 +145,17 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            Cálculos.RefreshGrilla(dgvNovedades, listado);
-            string filtro = txtFiltro.Text;
-            string Variable = comboFiltro.Text;
-            List<BE_Novedad> filtrada = ((List<BE_Novedad>)dgvNovedades.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
-            Cálculos.RefreshGrilla(dgvNovedades, filtrada);
-            Centrar();
-            comboFiltro.Text = "";
-            txtFiltro.Text = "";
+            if (comboFiltro.SelectedIndex != -1 && txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvNovedades, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
+                List<BE_Novedad> filtrada = ((List<BE_Novedad>)dgvNovedades.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvNovedades, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
         }
 
         private void btnReset_Click(object sender, EventArgs e)

@@ -45,13 +45,13 @@ namespace Trabajo_Final
             this.btnConfirmar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.grpIngredientes = new System.Windows.Forms.GroupBox();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCantReceta = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnSacar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnModificar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceta)).BeginInit();
             this.grpReceta.SuspendLayout();
             this.grpIngredientes.SuspendLayout();
@@ -219,6 +219,24 @@ namespace Trabajo_Final
             this.grpIngredientes.TabStop = false;
             this.grpIngredientes.Text = "Ingredientes";
             // 
+            // btnModificar
+            // 
+            this.btnModificar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnModificar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnModificar.FlatAppearance.BorderSize = 0;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnModificar.ImageIndex = 4;
+            this.btnModificar.ImageList = this.Listado;
+            this.btnModificar.Location = new System.Drawing.Point(623, 34);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(43, 40);
+            this.btnModificar.TabIndex = 20;
+            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Visible = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -289,28 +307,12 @@ namespace Trabajo_Final
             this.label1.TabIndex = 10;
             this.label1.Text = "Lts";
             // 
-            // btnModificar
-            // 
-            this.btnModificar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnModificar.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnModificar.FlatAppearance.BorderSize = 0;
-            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnModificar.ImageIndex = 4;
-            this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(623, 34);
-            this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(43, 40);
-            this.btnModificar.TabIndex = 20;
-            this.btnModificar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnModificar.UseVisualStyleBackColor = true;
-            this.btnModificar.Visible = false;
-            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
-            // 
             // frmNuevaReceta
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(758, 661);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);

@@ -28,6 +28,7 @@ namespace Trabajo_Final
             InitializeComponent();
             oBLL_Compra = new BLL_Compra();
             oBLL_Material = new BLL_Material_Stock();
+            oBLL_Bebida = new BLL_Bebida_Stock();
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
         }
 
@@ -74,6 +75,7 @@ namespace Trabajo_Final
         {
             if (oBE_Compra != null)
             {
+                BE_Material_Stock ms = oBLL_Material.ListarXCompra(oBE_Compra);
                 if (oBE_Compra is BE_CompraIngrediente)
                 {
                     txtCodigo.Text = oBE_Compra.Codigo.ToString();
@@ -82,7 +84,7 @@ namespace Trabajo_Final
                     dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                     numCantidad.Value = oBE_Compra.CantidadRecibida;
                     txtNroFac.Text = oBE_Compra.NroFactura;
-                    txtLote.Text = oBLL_Material.ListarXCompra(oBE_Compra).Lote;
+                    txtLote.Text = ms != null ? oBLL_Material.ListarXCompra(oBE_Compra).Lote : "";
                     txtLote.Enabled = false;
                     dtpFechaArribo.Enabled = false;
                     dtpFechaLote.Enabled = false;
@@ -96,7 +98,7 @@ namespace Trabajo_Final
                     dtpFechaArribo.Value = oBE_Compra.Status != StausComp.En_Curso ? oBE_Compra.FechaIngreso.Value : DateTime.Now;
                     numCantidad.Value = oBE_Compra.CantidadRecibida;
                     txtNroFac.Text = oBE_Compra.NroFactura;
-                    txtLote.Text = oBLL_Material.ListarXCompra(oBE_Compra).Lote;
+                    txtLote.Text = ms != null ? oBLL_Material.ListarXCompra(oBE_Compra).Lote : "";
                     txtLote.Enabled = false;
                     dtpFechaArribo.Enabled = false;
                     dtpFechaLote.Enabled = false;

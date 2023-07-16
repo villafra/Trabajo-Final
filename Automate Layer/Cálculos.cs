@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Globalization;
+using System;
 
 namespace Automate_Layer
 {
@@ -195,6 +196,14 @@ namespace Automate_Layer
         {
             System.Windows.Forms.Application.Exit();
         }
+        public static bool EstaSeguroA(string v1, string v2)
+        {
+            DialogResult resultado;
+            resultado = MessageBox.Show(@"Esta seguro que desea modificar el status de la alternativa: " + v2 + "\npara " + v1 + "?" , "Modificar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
+
         public static bool EstaSeguroM(string objeto)
         {
             DialogResult resultado;

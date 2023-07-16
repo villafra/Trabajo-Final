@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -38,8 +39,8 @@ namespace Trabajo_Final
         }
         public void Centrar()
         {
-            Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta));
-            VistasDGV.dgvReceta(dgvReceta);
+            if (dgvReceta.RowCount > 0)
+                VistasDGV.dgvReceta(dgvReceta);
             Aspecto.CentrarDGV(this, dgvReceta);
         }
         private void comboPlato_SelectedIndexChanged(object sender, EventArgs e)
@@ -59,7 +60,10 @@ namespace Trabajo_Final
             {
                 oBE_Receta = (BE_PlatoReceta)comboAlt.SelectedItem;
                 if (oBE_Receta != null && comboAlt.Text != "")
+                {
+                    Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta));
                     Centrar();
+                }
                 else Cálculos.GrillaEnBlanco(dgvReceta);
             }   
             catch { }
@@ -93,24 +97,52 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            listado = oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta);
-            foreach (BE_PlatoReceta beb in listado)
+            try
             {
-                beb.Activo = false;
+                if (Cálculos.EstaSeguroA(oBE_Plato.ToString(), oBE_Receta.ToString()))
+                {
+                    listado = oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta);
+                    foreach (BE_PlatoReceta beb in listado)
+                    {
+                        beb.Activo = false;
+                    }
+                    if (oBLL_Receta.Modificar(listado))
+                    {
+                        ActualizarListado();
+                        Centrar();
+                        Cálculos.MsgBox("El cambio de status ha finalizado correctamente");
+                    }
+                    else { throw new RestaurantException("El cambio de status ha fallado, por favor, intenten nuevamente"); }
+                }
+                else { throw new RestaurantException("El cambio de status de la alternativa se ha cancelado"); }
+
             }
-            oBLL_Receta.Modificar(listado);
-            ActualizarListado();
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void btnDesbloquear_Click(object sender, EventArgs e)
         {
-            listado = oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta);
-            foreach (BE_PlatoReceta beb in listado)
+            try
             {
-                beb.Activo = true;
+                if (Cálculos.EstaSeguroA(oBE_Plato.ToString(), oBE_Receta.ToString()))
+                {
+                    listado = oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta);
+                    foreach (BE_PlatoReceta beb in listado)
+                    {
+                        beb.Activo = true;
+                    }
+                    if (oBLL_Receta.Modificar(listado))
+                    {
+                        ActualizarListado();
+                        Centrar();
+                        Cálculos.MsgBox("El cambio de status ha finalizado correctamente");
+                    }
+                    else { throw new RestaurantException("El cambio de status ha fallado, por favor, intenten nuevamente"); }
+                }
+                else { throw new RestaurantException("El cambio de status de la alternativa se ha cancelado"); }
+
             }
-            oBLL_Receta.Modificar(listado);
-            ActualizarListado();
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
     }
 }

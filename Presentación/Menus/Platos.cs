@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -18,6 +19,7 @@ namespace Trabajo_Final
         BLL_Plato oBLL_Plato;
         BE_Plato oBE_Plato;
         private List<BE_Plato> listado;
+        Reemplazos rm;
         public frmPlatos()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpPlatos);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvPlatos);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -36,6 +39,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvPlatos(dgvPlatos);
             Aspecto.CentrarDGV(this, dgvPlatos);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre del Plato", "Nombre"},
+                {"Tipo de Plato", "Tipo" },
+                {"Clase de Plato", "Clase" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -66,14 +80,22 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Plato.Baja(oBE_Plato);
-            ActualizarListado();
-            Centrar();
-        }
-
-        private void btnResetPass_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(oBE_Plato.DevolverNombre());
+            try
+            {
+                if (Cálculos.EstaSeguroE(oBE_Plato.ToString()))
+                {
+                    if (oBLL_Plato.Baja(oBE_Plato))
+                    {
+                        Cálculos.MsgBox("La baja se ha efectuado satisfactoriamente.");
+                        ActualizarListado();
+                        Centrar();
+                    }
+                    else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("La baja se ha cancelado."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+           
         }
 
         private void frmPlatos_Load(object sender, EventArgs e)
@@ -93,11 +115,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvPlatos, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Plato> filtrada = ((List<BE_Plato>)dgvPlatos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvPlatos, filtrada);
                 Centrar();

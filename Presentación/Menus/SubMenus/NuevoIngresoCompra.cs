@@ -34,7 +34,15 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            Nuevo();
+            try
+            {
+                if (Nuevo())
+                {
+                    Cálculos.MsgBox("La compra se ha ingresado satisfactoriamente");
+                }
+                else { throw new RestaurantException("El ingreso ha fallado, por favor, intente nuevamente"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
 
         }
 

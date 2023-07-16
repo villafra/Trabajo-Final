@@ -348,7 +348,6 @@ namespace Trabajo_Final
             this.empleadosToolStripMenuItem2.Size = new System.Drawing.Size(166, 26);
             this.empleadosToolStripMenuItem2.Tag = "SubSub";
             this.empleadosToolStripMenuItem2.Text = "Empleados";
-            this.empleadosToolStripMenuItem2.Click += new System.EventHandler(this.empleadosToolStripMenuItem2_Click);
             // 
             // listadoToolStripMenuItem
             // 
@@ -857,7 +856,6 @@ namespace Trabajo_Final
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMenu_FormClosing);
             this.Load += new System.EventHandler(this.frmMenu_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseMove);
             this.pnlMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).EndInit();
             this.menuStrip.ResumeLayout(false);

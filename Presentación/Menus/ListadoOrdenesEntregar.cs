@@ -19,6 +19,7 @@ namespace Trabajo_Final
         BLL_Orden oBLL_Orden;
         BE_Orden oBE_Orden;
         private List<BE_Orden> listado;
+        Reemplazos rm;
         public frmListadoOrdenesEntregar()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearDGV(dgvOrdenes);
             Aspecto.FormatearDGV(dgvItems);
             Aspecto.FormatearGRPAccion(grpAcciones);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -37,6 +39,18 @@ namespace Trabajo_Final
         public void Centrar()
         {
             VistasDGV.dgvOrdenResumen(dgvOrdenes);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nro de Orden", "Codigo"},
+                {"Status de Orden", "Status" },
+                {"Pedido", "ID_Pedido" },
+                {"Nro Mesa", "ID_Mesa" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         public void CentrarBeb()
         {
@@ -101,11 +115,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvOrdenes, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Orden> filtrada = ((List<BE_Orden>)dgvOrdenes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvOrdenes, filtrada);
                 Centrar();

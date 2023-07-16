@@ -33,8 +33,8 @@ namespace Trabajo_Final
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVerPermisos));
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.grpPermisos = new System.Windows.Forms.GroupBox();
-            this.btnConfirmar = new System.Windows.Forms.Button();
             this.tvPermisos = new System.Windows.Forms.TreeView();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.grpPermisos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,6 +59,13 @@ namespace Trabajo_Final
             this.grpPermisos.TabStop = false;
             this.grpPermisos.Text = "Permisos";
             // 
+            // tvPermisos
+            // 
+            this.tvPermisos.Location = new System.Drawing.Point(10, 30);
+            this.tvPermisos.Name = "tvPermisos";
+            this.tvPermisos.Size = new System.Drawing.Size(474, 549);
+            this.tvPermisos.TabIndex = 0;
+            // 
             // btnConfirmar
             // 
             this.btnConfirmar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -77,17 +84,12 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // tvPermisos
-            // 
-            this.tvPermisos.Location = new System.Drawing.Point(10, 30);
-            this.tvPermisos.Name = "tvPermisos";
-            this.tvPermisos.Size = new System.Drawing.Size(474, 549);
-            this.tvPermisos.TabIndex = 0;
-            // 
             // frmVerPermisos
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnConfirmar;
             this.ClientSize = new System.Drawing.Size(535, 661);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.grpPermisos);

@@ -19,7 +19,6 @@ namespace Trabajo_Final
 
         public BE_Bebida oBE_Bebida;
         BLL_Bebida oBLL_Bebida;
-        private bool status;
         List<int> BebidaAlcoholica = new List<int> { 5, 6, 7, 8 };
         List<int> BebidaAnalcoholica = new List<int> { 1, 2, 3, 4 };
         List<int> BebidaPreparada = new List<int> { 3, 7, 8};
@@ -34,20 +33,44 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Bebida != null ? Viejo() : Nuevo())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (_ = oBE_Bebida != null ? Viejo() : Nuevo())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
-
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private bool Viejo()
         {
-            return true;
+            int tipo = (int)(Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
+
+            if (BebidaPreparada.Contains(tipo))
+            {
+                oBE_Bebida = new BE_Bebida_Preparada();
+                if (BebidaAlcoholica.Contains(tipo)) ((BE_Bebida_Preparada)oBE_Bebida).ABV = numABV.Value;
+            }
+            else if (BebidaAnalcoholica.Contains(tipo))
+            {
+                oBE_Bebida = new BE_Bebida();
+            }
+            else
+            {
+                oBE_Bebida = new BE_Bebida_Alcoholica();
+                ((BE_Bebida_Alcoholica)oBE_Bebida).ABV = numABV.Value;
+            }
+            oBE_Bebida.Codigo = Convert.ToInt32(txtCodigo.Text);
+            oBE_Bebida.Nombre = txtNombre.Text;
+            oBE_Bebida.Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
+            oBE_Bebida.Presentacion = numPresentacion.Value;
+            oBE_Bebida.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
+            oBE_Bebida.VidaUtil = Convert.ToInt32(txtVidaUtil.Text);
+            oBE_Bebida.GestionLote = chkLote.Checked;
+
+            return oBLL_Bebida.Modificar(oBE_Bebida);
         }
 
         private bool Nuevo()
@@ -153,6 +176,11 @@ namespace Trabajo_Final
                 }
             }
             catch { }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -32,6 +32,8 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoIngresoCompra));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.lblNroFac = new System.Windows.Forms.Label();
+            this.txtNroFac = new System.Windows.Forms.TextBox();
             this.dtpFechaLote = new System.Windows.Forms.DateTimePicker();
             this.lblFechaCreacion = new System.Windows.Forms.Label();
             this.lblLote = new System.Windows.Forms.Label();
@@ -47,8 +49,6 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblNroFac = new System.Windows.Forms.Label();
-            this.txtNroFac = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             this.SuspendLayout();
@@ -75,6 +75,22 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // lblNroFac
+            // 
+            this.lblNroFac.AutoSize = true;
+            this.lblNroFac.Location = new System.Drawing.Point(20, 173);
+            this.lblNroFac.Name = "lblNroFac";
+            this.lblNroFac.Size = new System.Drawing.Size(83, 17);
+            this.lblNroFac.TabIndex = 39;
+            this.lblNroFac.Text = "Nro Factura";
+            // 
+            // txtNroFac
+            // 
+            this.txtNroFac.Location = new System.Drawing.Point(174, 170);
+            this.txtNroFac.Name = "txtNroFac";
+            this.txtNroFac.Size = new System.Drawing.Size(257, 22);
+            this.txtNroFac.TabIndex = 38;
             // 
             // dtpFechaLote
             // 
@@ -228,24 +244,9 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // lblNroFac
-            // 
-            this.lblNroFac.AutoSize = true;
-            this.lblNroFac.Location = new System.Drawing.Point(20, 173);
-            this.lblNroFac.Name = "lblNroFac";
-            this.lblNroFac.Size = new System.Drawing.Size(83, 17);
-            this.lblNroFac.TabIndex = 39;
-            this.lblNroFac.Text = "Nro Factura";
-            // 
-            // txtNroFac
-            // 
-            this.txtNroFac.Location = new System.Drawing.Point(174, 170);
-            this.txtNroFac.Name = "txtNroFac";
-            this.txtNroFac.Size = new System.Drawing.Size(257, 22);
-            this.txtNroFac.TabIndex = 38;
-            // 
             // frmNuevoIngresoCompra
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;

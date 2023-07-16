@@ -45,8 +45,7 @@ namespace Trabajo_Final
                     frmListadoPedidos frm = this.Owner as frmListadoPedidos;
                     frm.oBE_Orden.ID_Mesa = oBE_Mesa;
                 }
-                else { throw new RestaurantException("No se ha podido asignar la mesa. Por favor, intente nuevamente."); }
-                
+                else { throw new RestaurantException("No se ha podido asignar la mesa. Por favor, intente nuevamente."); }  
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
             

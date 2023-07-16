@@ -115,6 +115,7 @@ namespace Trabajo_Final
             // btnReset
             // 
             this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReset.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnReset.FlatAppearance.BorderSize = 0;
             this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -205,8 +206,10 @@ namespace Trabajo_Final
             // 
             // frmMetodoPagos
             // 
+            this.AcceptButton = this.btBuscar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnReset;
             this.ClientSize = new System.Drawing.Size(1324, 918);
             this.Controls.Add(this.grpAcciones);
             this.Controls.Add(this.grpMetPagos);

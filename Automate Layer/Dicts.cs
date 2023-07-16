@@ -2,32 +2,25 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-public class ReemplazoManager
+public class Reemplazos
 {
     private Dictionary<string, string> reemplazoDictionary;
 
-    public ReemplazoManager()
+    public Reemplazos(Dictionary<string, string> Diccionario)
     {
-        // Inicializar el diccionario de reemplazo con los valores correspondientes
-        reemplazoDictionary = new Dictionary<string, string>
-        {
-            { "Tipo de Acción", "Accion" },
-            { "Tipo de Objeto", "Objeto" },
-            { "Tipo de Elemento", "Elemento" }
-            // Agregar más pares clave-valor según sea necesario
-        };
+        reemplazoDictionary = Diccionario;
     }
 
-    public string ObtenerValorReemplazo(string selectedItem)
+    public string Reemplazar(string selectedItem)
     {
-        // Verificar si el valor seleccionado existe en el diccionario de reemplazo
         if (reemplazoDictionary.ContainsKey(selectedItem))
         {
-            // Devolver el valor correspondiente
             return reemplazoDictionary[selectedItem];
         }
-
-        // Si no se encuentra una correspondencia, devolver el valor seleccionado original
         return selectedItem;
+    }
+    public List<string> ListadoClaves()
+    {
+        return new List<string>(reemplazoDictionary.Keys);
     }
 }

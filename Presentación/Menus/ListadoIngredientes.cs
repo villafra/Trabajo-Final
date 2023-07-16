@@ -18,6 +18,7 @@ namespace Trabajo_Final
         BLL_Material_Stock oBLL_Material_Stock;
         BE_Material_Stock oBE_Material_Stock;
         private List<BE_Material_Stock> listado;
+        Reemplazos rm;
         public frmListadoIngredientes()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Trabajo_Final
             oBE_Material_Stock = new BE_Material_Stock();
             Aspecto.FormatearGRP(grpIngredientes);
             Aspecto.FormatearDGV(dgvIngredientes);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -35,6 +37,18 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvIngStock(dgvIngredientes);
             Aspecto.CentrarDGV(this, dgvIngredientes);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre del Ingrediente", "Material"},
+                {"Lote", "Lote" },
+                {"Stock", "Stock" },
+                {"Fecha de Creación", "FechaCreacion" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
         {
@@ -63,11 +77,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvIngredientes, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Material_Stock> filtrada = ((List<BE_Material_Stock>)dgvIngredientes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvIngredientes, filtrada);
                 Centrar();

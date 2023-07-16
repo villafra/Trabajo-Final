@@ -38,10 +38,26 @@ namespace Automate_Layer
             
         }
 
+        public static void dgvBitacora(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Empleado";
+            dgv.Columns[1].HeaderText = "Tipo de Acción";
+            dgv.Columns[2].HeaderText = "Pedido";
+            dgv.Columns[3].HeaderText = "Mesa";
+            dgv.Columns[4].Visible = false;
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
         public static void dgvOrdenResumen(DataGridView dgv)
         {
             dgv.Columns[0].HeaderText = "Codigo";
-            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[1].HeaderText = "Status Orden";
             dgv.Columns[2].HeaderText = "Pedido";
             dgv.Columns[3].HeaderText = "Mesa";
             dgv.Columns[4].Visible = false;

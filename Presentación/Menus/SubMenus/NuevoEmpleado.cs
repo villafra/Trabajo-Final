@@ -29,15 +29,18 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (_ = oBE_Empleado != null ? Viejo() : Nuevo())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (_ = oBE_Empleado != null ? Viejo() : Nuevo())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else
+                {
+                    Cálculos.MsgBox("La creación del nuevo empleado ha fallado. Por favor, intente nuevamente");
+                }
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
-
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private bool Viejo()

@@ -17,35 +17,10 @@ namespace Trabajo_Final
     public partial class frmMenu : Form
     {
         private List<Form> formulariosHijos = new List<Form>();
-        private static Timer inactivityTimer;
-        public Form Contenedor { get; set; }
         public BE_Login UsuarioActivo { get; set; }
         public frmMenu()
         {
             InitializeComponent();
-            //Notificaciones.IniciarFileWatcher();
-            //Notificaciones.IniciarNotificaciones();
-        }
-        private void Iniciar()
-        {
-            inactivityTimer = new Timer();
-            inactivityTimer.Interval = 300000;
-            inactivityTimer.Tick += InactivityTimer_Tick;
-
-            this.MouseMove += frmMenu_MouseMove;
-        }
-        private void ResetInactivityTimer()
-        {
-            MessageBox.Show(inactivityTimer.ToString());
-            inactivityTimer.Stop();
-            inactivityTimer.Start();
-
-        }
-        private void InactivityTimer_Tick(object sender, EventArgs e)
-        {
-            
-
-            inactivityTimer.Stop();
         }
         private void frmMenu_Load(object sender, EventArgs e)
         {
@@ -65,7 +40,6 @@ namespace Trabajo_Final
                     if (UsuarioActivo.Usuario == "admin") txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                     else txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
                     Bitacora.Login(UsuarioActivo);
-                    Iniciar();
                 }
                 
             }
@@ -167,12 +141,6 @@ namespace Trabajo_Final
             frm.Usuario(UsuarioActivo.Usuario);
             frm.ShowDialog();
         }
-
-        private void empleadosToolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmUsuarios);
@@ -349,12 +317,6 @@ namespace Trabajo_Final
                 Aspecto.AbrirNuevoForm(this, frm);
             }
         }
-
-        private void frmMenu_MouseMove(object sender, MouseEventArgs e)
-        {
-            ResetInactivityTimer();
-        }
-
         private void listadoToolStripMenuItem4_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmListadoMesas);
@@ -583,6 +545,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoMesas)frm).ActualizarListado();
+                ((frmListadoMesas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -653,6 +616,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoOrdenesBebidas)frm).ActualizarListado();
+                ((frmListadoOrdenesBebidas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -670,6 +634,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoOrdenesPlatos)frm).ActualizarListado();
+                ((frmListadoOrdenesPlatos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -687,6 +652,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoOrdenesEntregadas)frm).ActualizarListado();
+                ((frmListadoOrdenesEntregadas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -704,6 +670,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoOrdenesEntregar)frm).ActualizarListado();
+                ((frmListadoOrdenesEntregar)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -726,6 +693,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmBitacora)frm).ActualizarListado();
+                ((frmBitacora)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -744,6 +712,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmCombinarMesas)frm).ActualizarListado();
+                ((frmCombinarMesas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -761,6 +730,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmMesas)frm).ActualizarListado();
+                ((frmMesas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }

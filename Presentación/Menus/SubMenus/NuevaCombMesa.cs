@@ -21,7 +21,6 @@ namespace Trabajo_Final
         BE_Mesa oBE_Mesa1;
         BLL_Mesa oBLL_Mesa;
         private bool status;
-        List<BE_Mesa> lista;
         public frmNuevaCombMesa()
         {
             InitializeComponent();
@@ -33,14 +32,16 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            if (CombinarMesa())
+            try
             {
-                Cálculos.MsgBox("Los datos se han guardado correctamente");
+                if (CombinarMesa())
+                {
+                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                }
+                else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
+                
             }
-            else
-            {
-                Cálculos.MsgBox("Los datos no se han guardado correctamente. Por favor, intente nuevamente");
-            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
 
         }
         private bool CombinarMesa()
@@ -52,17 +53,6 @@ namespace Trabajo_Final
         {
             oBE_Mesa1 = new BE_Mesa();
             oBE_Mesa1 = (BE_Mesa)comboMesaComb.SelectedItem;
-        }
-
-        private void Nuevo()
-        {
-            
-            oBE_Mesa = new BE_Mesa();
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text) + Convert.ToInt32(txtCapacidad2.Text);
-            oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            lista.Add(oBE_Mesa);
-
-
         }
         private void ImportarMesa()
         {
@@ -82,12 +72,17 @@ namespace Trabajo_Final
 
         private void comboMesaComb_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                txtCapacidad2.Text = ((BE_Mesa)comboMesaComb.SelectedItem).Capacidad.ToString();
+            }
+            catch { }
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Trabajo_Final
         BLL_Login oBLL_Login;
         BE_Login oBE_Login;
         private List<BE_Login> listado;
+        Reemplazos rm;
         public frmUsuarios()
         {
             InitializeComponent();
@@ -27,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpUsuarios);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvUsuarios);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -38,7 +40,17 @@ namespace Trabajo_Final
             VistasDGV.dgvUsuarios(dgvUsuarios);
             Aspecto.CentrarDGV(this, dgvUsuarios);
         }
-
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nombre de Empleado", "Empleado"},
+                {"Nombre de Usuario", "Usuario" },
+                {"Tipo de Permiso", "Permiso" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoLogin frm = new frmNuevoLogin();
@@ -105,11 +117,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvUsuarios, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Login> filtrada = ((List<BE_Login>)dgvUsuarios.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Descapitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvUsuarios, filtrada);
                 Centrar();

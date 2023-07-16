@@ -37,7 +37,7 @@ namespace Trabajo_Final
             Cálculos.RefreshGrilla(dgvPlatos, oBE_Orden.ID_Pedido.ListadePlatos);
             txtCantBebidas.Text = oBE_Orden.ID_Pedido.ListadePlatos.Count().ToString();
         }
-        
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -49,7 +49,7 @@ namespace Trabajo_Final
             {
                 oBE_Plato = (BE_Plato)dgvPlatos.SelectedRows[0].DataBoundItem;
                 Cálculos.RefreshGrilla(dgvReceta, oBLL_PlatoReceta.PlatoEnOrden(oBE_Plato));
-                txtCantiIngred.Text =  dgvReceta.RowCount.ToString();
+                txtCantiIngred.Text = dgvReceta.RowCount.ToString();
             }
             catch { Cálculos.GrillaEnBlanco(dgvReceta); txtCantiIngred.Text = ""; }
         }
@@ -57,7 +57,28 @@ namespace Trabajo_Final
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             oBE_Orden.Status = StatusOrden.Platos_Listos;
-            oBLL_Orden.Modificar(oBE_Orden);
+            try
+            {
+                if (oBLL_Orden.Modificar(oBE_Orden))
+                {
+                    Consumir();
+                    Cálculos.MsgBox("Platos Listos! Acción confirmada.");
+                }
+                else { throw new RestaurantException("La confirmación ha fallado, por favor, intente nuevamente"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+        private void Consumir()
+        {
+            List<BE_Plato> distinct = oBE_Orden.ID_Pedido.ListadePlatos
+                .GroupBy(x => x.Codigo).Select(y => y.First()).ToList();
+            foreach (BE_Plato plato in distinct)
+            {
+                decimal cantidad = oBE_Orden.ID_Pedido.ListadePlatos.Count(x => x.Codigo == plato.Codigo) * plato.Presentación;
+                List<BE_PlatoReceta> listado = oBLL_PlatoReceta.ListarObjeto(plato, oBLL_PlatoReceta.ListarAlternativaVigente(plato));
+                oBLL_PlatoReceta.Consumir(listado, cantidad);
+
+            }
         }
     }
 }

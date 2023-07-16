@@ -18,6 +18,7 @@ namespace Trabajo_Final
         BLL_Compra oBLL_Compra;
         BE_Compra oBE_Compra;
         private List<BE_Compra> listado;
+        Reemplazos rm;
         public frmDevolverCompra()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpCompras);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvCompras);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -35,6 +37,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvOutCompras(dgvCompras);
             Aspecto.CentrarDGV(this, dgvCompras);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Tipo de Material", "Material"},
+                {"Status", "Status" },
+                {"Nro de Factura", "NroFactura" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
@@ -61,11 +74,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvCompras, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvCompras, filtrada);
                 Centrar();

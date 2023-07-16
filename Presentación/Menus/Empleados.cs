@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 
 namespace Trabajo_Final
@@ -19,12 +20,14 @@ namespace Trabajo_Final
         BE_Empleado oBE_Empleado;
         BLL_Empleado oBLL_Empleado;
         private List<BE_Empleado> listado;
+        Reemplazos rm;
         public frmEmpleados()
         {
             InitializeComponent();
             Aspecto.FormatearGRP(grpEmpleados);
             Aspecto.FormatearGRPAccion(grpAcciones);
             Aspecto.FormatearDGV(dgvEmpleados);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -37,11 +40,25 @@ namespace Trabajo_Final
             VistasDGV.DGVEmpleados(dgvEmpleados);
             Aspecto.CentrarDGV(this, dgvEmpleados);
         }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Documento de Identidad", "DNI"},
+                {"Nombres", "Nombre" },
+                {"Apellidos", "Apellido" },
+                {"Categoria", "Categoria" },
+                {"Fecha de Ingreso", "FechaIngreso" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoEmpleado frm = new frmNuevoEmpleado();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -50,6 +67,7 @@ namespace Trabajo_Final
             frm.oBE_Empleado = oBE_Empleado;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
         private void dgvEmpleados_SelectionChanged(object sender, EventArgs e)
         {
@@ -75,35 +93,65 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Category categoria = oBE_Empleado.Categoria;
-            if ((int)categoria == 1)
+            try
             {
-                oBLL_Empleado = new BLL_Gerente_Sucursal();
-                oBLL_Empleado.Baja(oBE_Empleado);
+                if (Cálculos.EstaSeguroE(oBE_Empleado.ToString()))
+                {
+                    Category categoria = oBE_Empleado.Categoria;
+                    if ((int)categoria == 1)
+                    {
+                        oBLL_Empleado = new BLL_Gerente_Sucursal();
+                        if (oBLL_Empleado.Baja(oBE_Empleado))
+                        {
+                            Cálculos.MsgBox("El empleado se ha borrado satisfactoriamente");
+                        }
+                        else { throw new RestaurantException("La baja ha fallado, por favor , intente nuevamente"); }
+                    }
+                    else if ((int)categoria > 1 && (int)categoria < 6)
+                    {
+                        oBLL_Empleado = new BLL_Chef_Principal();
+                        if (oBLL_Empleado.Baja(oBE_Empleado))
+                        {
+                            Cálculos.MsgBox("El empleado se ha borrado satisfactoriamente");
+                        }
+                        else
+                        {
+                            throw new RestaurantException("La baja ha fallado, por favor , intente nuevamente");
+                        }
+                    }
+                    else
+                    {
+                        oBLL_Empleado = new BLL_Mozo();
+                        if (oBLL_Empleado.Baja(oBE_Empleado))
+                        {
+                            Cálculos.MsgBox("El empleado se ha borrado satisfactoriamente");
+                        }
+                        else
+                        {
+                            throw new RestaurantException("La baja ha fallado, por favor , intente nuevamente");
+                        }
+                    }
+                    ActualizarListado();
+                    Centrar();
+                }
+                else { throw new RestaurantException("La baja del empleado se ha cancelado."); }
             }
-            else if ((int)categoria > 1 && (int)categoria < 6)
-            {
-                oBLL_Empleado = new BLL_Chef_Principal();
-                oBLL_Empleado.Baja(oBE_Empleado);
-            }
-            else
-            {
-                oBLL_Empleado = new BLL_Mozo();
-                oBLL_Empleado.Baja(oBE_Empleado);
-            }
-            ActualizarListado();
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            Cálculos.RefreshGrilla(dgvEmpleados, listado);
-            string filtro = txtFiltro.Text;
-            string Variable = comboFiltro.Text;
-            List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
-            Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
-            Centrar();
-            comboFiltro.Text = "";
-            txtFiltro.Text = "";
+            if (comboFiltro.SelectedIndex != -1 && txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvEmpleados, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
+                List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }  
         }
 
         private void btnReset_Click(object sender, EventArgs e)

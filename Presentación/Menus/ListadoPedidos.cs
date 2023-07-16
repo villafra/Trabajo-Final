@@ -22,6 +22,7 @@ namespace Trabajo_Final
         public BE_Orden oBE_Orden;
         private BE_Login usuario;
         private List<BE_Pedido> listado;
+        Reemplazos rm;
         public frmListadoPedidos(BE_Login usuarioActivo)
         {
             InitializeComponent();
@@ -32,6 +33,7 @@ namespace Trabajo_Final
             Aspecto.FormatearGRP(grpPedidos);
             Aspecto.FormatearDGV(dgvPedidos);
             Aspecto.FormatearGRPAccion(grpAcciones);
+            CargarComboFiltro();
             ActualizarListado();
         }
         public void ActualizarListado()
@@ -42,6 +44,17 @@ namespace Trabajo_Final
         {
             VistasDGV.dgvPedidosLib(dgvPedidos);
             Aspecto.CentrarDGV(this, dgvPedidos);
+        }
+        private void CargarComboFiltro()
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                {"Nro de Pedido", "Codigo"},
+                {"Horario", "FechaInicio" },
+                {"Status", "Status" }
+            };
+            rm = new Reemplazos(dict);
+            Cálculos.DataSourceCombo(comboFiltro, rm.ListadoClaves(), "Filtros");
         }
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
@@ -89,11 +102,11 @@ namespace Trabajo_Final
 
         private void btBuscar_Click(object sender, EventArgs e)
         {
-            if (txtFiltro.Text.Length > 0)
+            if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
                 Cálculos.RefreshGrilla(dgvPedidos, listado);
                 string filtro = txtFiltro.Text;
-                string Variable = comboFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
                 List<BE_Pedido> filtrada = ((List<BE_Pedido>)dgvPedidos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
                 Cálculos.RefreshGrilla(dgvPedidos, filtrada);
                 Centrar();

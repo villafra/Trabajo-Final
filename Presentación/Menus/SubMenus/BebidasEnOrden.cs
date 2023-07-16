@@ -22,7 +22,6 @@ namespace Trabajo_Final
         BLL_BebidaReceta oBLL_BebidaReceta;
         BLL_Bebida_Stock oBLL_BebidaStock;
         BE_Bebida_Preparada oBE_Bebida;
-        BE_Plato oBE_Plato;
         public frmBebidasEnOrden(BE_Orden orden)
         {
             InitializeComponent();
@@ -62,8 +61,18 @@ namespace Trabajo_Final
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             oBE_Orden.Status = StatusOrden.Bebidas_Listas;
-            oBLL_Orden.Modificar(oBE_Orden);
-            Consumir();
+            try
+            {
+                if (oBLL_Orden.Modificar(oBE_Orden))
+                {
+                    Consumir();
+                    Cálculos.MsgBox("Bebidas Listas! Acción confirmada.");
+                }
+                else { throw new RestaurantException("La confirmación ha fallado, por favor, intente nuevamente"); }
+                
+            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+            
         }
         private void Consumir()
         {

@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Mesa oBLL_Mesa;
         BE_Mesa oBE_Mesa;
+        private List<BE_Mesa> listado;
         public frmMesas()
         {
             InitializeComponent();
@@ -30,14 +31,18 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.Listar());
-            dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvMesas(dgvMesas);
+            Aspecto.CentrarDGV(this, dgvMesas);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevaMesa frm = new frmNuevaMesa();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -46,13 +51,8 @@ namespace Trabajo_Final
             frm.oBE_Mesa = oBE_Mesa;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
-
-        private void dgvUsuarios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //oBE_Mesa = (BE_Mesa)dgvUsuarios.SelectedRows[0].DataBoundItem;
-        }
-
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -60,12 +60,49 @@ namespace Trabajo_Final
                 oBE_Mesa = (BE_Mesa)dgvMesas.SelectedRows[0].DataBoundItem;
             }
             catch { }
-
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             oBLL_Mesa.Baja(oBE_Mesa);
+            ActualizarListado();
+            Centrar();
+        }
+
+        private void frmMesas_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Mesa>)dgvMesas.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvMesas, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Mesa> filtrada = ((List<BE_Mesa>)dgvMesas.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvMesas, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvMesas, listado);
+            Centrar();
+        }
+
+        private void frmMesas_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmMesas_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

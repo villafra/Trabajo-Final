@@ -28,7 +28,7 @@ namespace Business_Entities
         }
         public override string ToString()
         {
-            return Codigo + "-" + Nombre;
+            return Nombre;
         }
     }
     public enum Tipo_Bebida

@@ -18,6 +18,7 @@ namespace Trabajo_Final
     {
         BLL_Orden oBLL_Orden;
         BE_Orden oBE_Orden;
+        private List<BE_Orden> listado;
         public frmListadoOrdenesBebidas()
         {
             InitializeComponent();
@@ -30,9 +31,12 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvOrdenes, oBLL_Orden.ListarEnEsperaBebidas());
-            dgvOrdenes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvOrdenBebida(dgvOrdenes);
+            Aspecto.CentrarDGV(this, dgvOrdenes);
+        }
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -55,11 +59,48 @@ namespace Trabajo_Final
                     frm.Owner = this;
                     frm.ShowDialog();
                     ActualizarListado();
+                    Centrar();
                 }
                 else { throw new RestaurantException("La actualización del status falló, intente nuevamente."); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
             
+        }
+
+        private void frmListadoOrdenesBebidas_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Orden>)dgvOrdenes.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvOrdenes, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Orden> filtrada = ((List<BE_Orden>)dgvOrdenes.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvOrdenes, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvOrdenes, listado);
+            Centrar();
+        }
+
+        private void frmListadoOrdenesBebidas_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmListadoOrdenesBebidas_Shown(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

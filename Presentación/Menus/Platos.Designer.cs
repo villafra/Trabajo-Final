@@ -71,12 +71,12 @@ namespace Trabajo_Final
             this.dgvPlatos.AllowUserToAddRows = false;
             this.dgvPlatos.AllowUserToDeleteRows = false;
             this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatos.Location = new System.Drawing.Point(102, 249);
+            this.dgvPlatos.Location = new System.Drawing.Point(641, 249);
             this.dgvPlatos.Name = "dgvPlatos";
             this.dgvPlatos.ReadOnly = true;
             this.dgvPlatos.RowHeadersWidth = 51;
             this.dgvPlatos.RowTemplate.Height = 24;
-            this.dgvPlatos.Size = new System.Drawing.Size(1120, 254);
+            this.dgvPlatos.Size = new System.Drawing.Size(42, 254);
             this.dgvPlatos.TabIndex = 3;
             this.dgvPlatos.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
@@ -128,6 +128,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -156,6 +157,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -267,6 +269,9 @@ namespace Trabajo_Final
             this.Name = "frmPlatos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmPlatos_Activated);
+            this.Load += new System.EventHandler(this.frmPlatos_Load);
+            this.Shown += new System.EventHandler(this.frmPlatos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             this.grpPlatos.ResumeLayout(false);
             this.grpPlatos.PerformLayout();

@@ -31,8 +31,8 @@ namespace Trabajo_Final
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListadoMesas));
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtFiltro = new System.Windows.Forms.TextBox();
+            this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvMesas = new System.Windows.Forms.DataGridView();
             this.grpMesas = new System.Windows.Forms.GroupBox();
             this.lbl2 = new System.Windows.Forms.Label();
@@ -44,32 +44,32 @@ namespace Trabajo_Final
             this.grpMesas.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txtFiltro
             // 
-            this.textBox1.Location = new System.Drawing.Point(304, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(471, 22);
-            this.textBox1.TabIndex = 0;
+            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
+            this.txtFiltro.Name = "txtFiltro";
+            this.txtFiltro.Size = new System.Drawing.Size(471, 22);
+            this.txtFiltro.TabIndex = 0;
             // 
-            // comboBox1
+            // comboFiltro
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(21, 94);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(233, 24);
-            this.comboBox1.TabIndex = 1;
+            this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
+            this.comboFiltro.Name = "comboFiltro";
+            this.comboFiltro.Size = new System.Drawing.Size(233, 24);
+            this.comboFiltro.TabIndex = 1;
             // 
             // dgvMesas
             // 
             this.dgvMesas.AllowUserToAddRows = false;
             this.dgvMesas.AllowUserToDeleteRows = false;
             this.dgvMesas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMesas.Location = new System.Drawing.Point(102, 249);
+            this.dgvMesas.Location = new System.Drawing.Point(636, 249);
             this.dgvMesas.Name = "dgvMesas";
             this.dgvMesas.ReadOnly = true;
             this.dgvMesas.RowHeadersWidth = 51;
             this.dgvMesas.RowTemplate.Height = 24;
-            this.dgvMesas.Size = new System.Drawing.Size(1120, 254);
+            this.dgvMesas.Size = new System.Drawing.Size(53, 254);
             this.dgvMesas.TabIndex = 3;
             // 
             // grpMesas
@@ -77,8 +77,8 @@ namespace Trabajo_Final
             this.grpMesas.Controls.Add(this.lbl2);
             this.grpMesas.Controls.Add(this.lbl1);
             this.grpMesas.Controls.Add(this.btnReset);
-            this.grpMesas.Controls.Add(this.textBox1);
-            this.grpMesas.Controls.Add(this.comboBox1);
+            this.grpMesas.Controls.Add(this.txtFiltro);
+            this.grpMesas.Controls.Add(this.comboFiltro);
             this.grpMesas.Controls.Add(this.btBuscar);
             this.grpMesas.Location = new System.Drawing.Point(102, 57);
             this.grpMesas.Name = "grpMesas";
@@ -120,6 +120,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -148,6 +149,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // frmListadoMesas
             // 
@@ -160,6 +162,9 @@ namespace Trabajo_Final
             this.Name = "frmListadoMesas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmListadoMesas_Activated);
+            this.Load += new System.EventHandler(this.frmListadoMesas_Load);
+            this.Shown += new System.EventHandler(this.frmListadoMesas_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMesas)).EndInit();
             this.grpMesas.ResumeLayout(false);
             this.grpMesas.PerformLayout();
@@ -169,8 +174,8 @@ namespace Trabajo_Final
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtFiltro;
+        private System.Windows.Forms.ComboBox comboFiltro;
         private System.Windows.Forms.Button btBuscar;
         private System.Windows.Forms.DataGridView dgvMesas;
         private System.Windows.Forms.GroupBox grpMesas;

@@ -21,6 +21,7 @@ namespace Trabajo_Final
         BLL_Orden oBLL_Orden;
         public BE_Orden oBE_Orden;
         private BE_Login usuario;
+        private List<BE_Pedido> listado;
         public frmListadoPedidos(BE_Login usuarioActivo)
         {
             InitializeComponent();
@@ -36,17 +37,19 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvPedidos, oBLL_Pedido.ListarLiberados());
-            dgvPedidos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvPedidosLib(dgvPedidos);
+            Aspecto.CentrarDGV(this, dgvPedidos);
+        }
         private void dgvPedidos_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
                 oBE_Pedido = (BE_Pedido)dgvPedidos.SelectedRows[0].DataBoundItem;
             }
-            catch { }
-            
+            catch { }  
         }
         private bool Nuevo()
         {
@@ -71,11 +74,48 @@ namespace Trabajo_Final
                 if (Nuevo())
                 {
                     ActualizarListado();
+                    Centrar();
                     Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
                 }
                 else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+
+        private void frmListadoPedidos_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Pedido>)dgvPedidos.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvPedidos, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Pedido> filtrada = ((List<BE_Pedido>)dgvPedidos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvPedidos, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvPedidos, listado);
+            Centrar();
+        }
+
+        private void frmListadoPedidos_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmListadoPedidos_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

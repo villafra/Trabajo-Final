@@ -66,6 +66,7 @@ namespace Trabajo_Final
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             oBLL_Ingrediente.Baja(oBE_Ingrediente);
+            ActualizarListado();
             Centrar();
         }
 

@@ -32,6 +32,10 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaCombMesa));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.lblCapacidad = new System.Windows.Forms.Label();
+            this.txtCapacidad2 = new System.Windows.Forms.TextBox();
+            this.comboMesaComb = new System.Windows.Forms.ComboBox();
+            this.lblMesaComb = new System.Windows.Forms.Label();
             this.lblUbicacion = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.comboUbicacion = new System.Windows.Forms.ComboBox();
@@ -41,10 +45,6 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.lblMesaComb = new System.Windows.Forms.Label();
-            this.comboMesaComb = new System.Windows.Forms.ComboBox();
-            this.lblCapacidad = new System.Windows.Forms.Label();
-            this.txtCapacidad2 = new System.Windows.Forms.TextBox();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +66,40 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // lblCapacidad
+            // 
+            this.lblCapacidad.AutoSize = true;
+            this.lblCapacidad.Location = new System.Drawing.Point(20, 303);
+            this.lblCapacidad.Name = "lblCapacidad";
+            this.lblCapacidad.Size = new System.Drawing.Size(75, 17);
+            this.lblCapacidad.TabIndex = 16;
+            this.lblCapacidad.Text = "Capacidad";
+            // 
+            // txtCapacidad2
+            // 
+            this.txtCapacidad2.Location = new System.Drawing.Point(147, 300);
+            this.txtCapacidad2.Name = "txtCapacidad2";
+            this.txtCapacidad2.Size = new System.Drawing.Size(257, 22);
+            this.txtCapacidad2.TabIndex = 15;
+            // 
+            // comboMesaComb
+            // 
+            this.comboMesaComb.FormattingEnabled = true;
+            this.comboMesaComb.Location = new System.Drawing.Point(147, 231);
+            this.comboMesaComb.Name = "comboMesaComb";
+            this.comboMesaComb.Size = new System.Drawing.Size(257, 24);
+            this.comboMesaComb.TabIndex = 14;
+            this.comboMesaComb.SelectedIndexChanged += new System.EventHandler(this.comboMesaComb_SelectedIndexChanged);
+            // 
+            // lblMesaComb
+            // 
+            this.lblMesaComb.AutoSize = true;
+            this.lblMesaComb.Location = new System.Drawing.Point(20, 234);
+            this.lblMesaComb.Name = "lblMesaComb";
+            this.lblMesaComb.Size = new System.Drawing.Size(118, 17);
+            this.lblMesaComb.TabIndex = 13;
+            this.lblMesaComb.Text = "Mesa a Combinar";
             // 
             // lblUbicacion
             // 
@@ -133,6 +167,7 @@ namespace Trabajo_Final
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // Listado
             // 
@@ -158,40 +193,6 @@ namespace Trabajo_Final
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
-            // 
-            // lblMesaComb
-            // 
-            this.lblMesaComb.AutoSize = true;
-            this.lblMesaComb.Location = new System.Drawing.Point(20, 234);
-            this.lblMesaComb.Name = "lblMesaComb";
-            this.lblMesaComb.Size = new System.Drawing.Size(118, 17);
-            this.lblMesaComb.TabIndex = 13;
-            this.lblMesaComb.Text = "Mesa a Combinar";
-            // 
-            // comboMesaComb
-            // 
-            this.comboMesaComb.FormattingEnabled = true;
-            this.comboMesaComb.Location = new System.Drawing.Point(147, 231);
-            this.comboMesaComb.Name = "comboMesaComb";
-            this.comboMesaComb.Size = new System.Drawing.Size(257, 24);
-            this.comboMesaComb.TabIndex = 14;
-            this.comboMesaComb.SelectedIndexChanged += new System.EventHandler(this.comboMesaComb_SelectedIndexChanged);
-            // 
-            // lblCapacidad
-            // 
-            this.lblCapacidad.AutoSize = true;
-            this.lblCapacidad.Location = new System.Drawing.Point(20, 303);
-            this.lblCapacidad.Name = "lblCapacidad";
-            this.lblCapacidad.Size = new System.Drawing.Size(75, 17);
-            this.lblCapacidad.TabIndex = 16;
-            this.lblCapacidad.Text = "Capacidad";
-            // 
-            // txtCapacidad2
-            // 
-            this.txtCapacidad2.Location = new System.Drawing.Point(147, 300);
-            this.txtCapacidad2.Name = "txtCapacidad2";
-            this.txtCapacidad2.Size = new System.Drawing.Size(257, 22);
-            this.txtCapacidad2.TabIndex = 15;
             // 
             // frmNuevaCombMesa
             // 

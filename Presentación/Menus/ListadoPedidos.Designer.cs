@@ -67,12 +67,12 @@ namespace Trabajo_Final
             this.dgvPedidos.AllowUserToAddRows = false;
             this.dgvPedidos.AllowUserToDeleteRows = false;
             this.dgvPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPedidos.Location = new System.Drawing.Point(102, 249);
+            this.dgvPedidos.Location = new System.Drawing.Point(634, 249);
             this.dgvPedidos.Name = "dgvPedidos";
             this.dgvPedidos.ReadOnly = true;
             this.dgvPedidos.RowHeadersWidth = 51;
             this.dgvPedidos.RowTemplate.Height = 24;
-            this.dgvPedidos.Size = new System.Drawing.Size(1120, 340);
+            this.dgvPedidos.Size = new System.Drawing.Size(57, 340);
             this.dgvPedidos.TabIndex = 3;
             this.dgvPedidos.SelectionChanged += new System.EventHandler(this.dgvPedidos_SelectionChanged);
             // 
@@ -124,6 +124,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -152,6 +153,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // grpAcciones
             // 
@@ -192,6 +194,9 @@ namespace Trabajo_Final
             this.Name = "frmListadoPedidos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmListadoPedidos_Activated);
+            this.Load += new System.EventHandler(this.frmListadoPedidos_Load);
+            this.Shown += new System.EventHandler(this.frmListadoPedidos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPedidos)).EndInit();
             this.grpPedidos.ResumeLayout(false);
             this.grpPedidos.PerformLayout();

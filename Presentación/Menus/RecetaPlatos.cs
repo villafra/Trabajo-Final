@@ -36,7 +36,7 @@ namespace Trabajo_Final
         {
             Cálculos.DataSourceCombo(comboPlato, oBLL_Plato.Listar(), "Platos");
         }
-        private void Centrar()
+        public void Centrar()
         {
             Cálculos.RefreshGrilla(dgvReceta, oBLL_Receta.ListarObjeto(oBE_Plato, oBE_Receta));
             VistasDGV.dgvReceta(dgvReceta);

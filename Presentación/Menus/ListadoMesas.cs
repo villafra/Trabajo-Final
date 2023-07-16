@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Mesa oBLL_Mesa;
         BE_Mesa oBE_Mesa;
+        private List<BE_Mesa> listado;
         public frmListadoMesas()
         {
             InitializeComponent();
@@ -29,7 +30,48 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.ListarLibres());
-            dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        public void Centrar()
+        {
+            VistasDGV.dgvMesasLibres(dgvMesas);
+            Aspecto.CentrarDGV(this, dgvMesas);
+        }
+
+        private void frmListadoMesas_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Mesa>)dgvMesas.DataSource;
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvMesas, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Mesa> filtrada = ((List<BE_Mesa>)dgvMesas.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvMesas, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvMesas, listado);
+            Centrar();
+        }
+
+        private void frmListadoMesas_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmListadoMesas_Activated(object sender, EventArgs e)
+        {
+            Centrar();
         }
     }
 }

@@ -179,6 +179,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmUsuarios)frm).ActualizarListado();
+                ((frmUsuarios)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -196,6 +197,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmEmpleados)frm).ActualizarListado();
+                ((frmEmpleados)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -229,6 +231,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmCompras)frm).ActualizarListado();
+                ((frmCompras)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -246,6 +249,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmIngresarCompra)frm).ActualizarListado();
+                ((frmIngresarCompra)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -263,6 +267,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmDevolverCompra)frm).ActualizarListado();
+                ((frmDevolverCompra)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -297,6 +302,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmIngredientes)frm).ActualizarListado();
+                ((frmIngredientes)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -314,6 +320,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoIngredientes)frm).ActualizarListado();
+                ((frmListadoIngredientes)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -331,6 +338,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmCostos)frm).ActualizarListado();
+                ((frmCostos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -353,6 +361,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoMesas)frm).ActualizarListado();
+                ((frmListadoMesas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -370,6 +379,7 @@ namespace Trabajo_Final
             {
                 ((frmBackUp)frm).UsuarioActivo = UsuarioActivo;
                 ((frmBackUp)frm).ActualizarListado();
+                ((frmBackUp)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -396,6 +406,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmNovedades)frm).ActualizarListado();
+                ((frmNovedades)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -413,6 +424,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoBebidas)frm).ActualizarListado();
+                ((frmListadoBebidas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -430,6 +442,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoPlatos)frm).ActualizarListado();
+                ((frmListadoPlatos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -447,6 +460,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmBebidas)frm).ActualizarListado();
+                ((frmBebidas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -464,6 +478,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmRecetaBebidas)frm).ActualizarListado();
+                ((frmRecetaBebidas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -481,6 +496,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmRecetaPlatos)frm).ActualizarListado();
+                ((frmRecetaPlatos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -498,6 +514,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmPlatos)frm).ActualizarListado();
+                ((frmPlatos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -514,7 +531,7 @@ namespace Trabajo_Final
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmTomarPedido);
             if (frm != null)
             {
-                //((frmTomarPedido)frm).ActualizarListado();
+                ((frmTomarPedido)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -532,6 +549,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoPedidos)frm).ActualizarListado();
+                ((frmListadoPedidos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -582,6 +600,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoBebidas)frm).ActualizarListado();
+                ((frmListadoBebidas)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -599,6 +618,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmListadoPlatos)frm).ActualizarListado();
+                ((frmListadoPlatos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -615,6 +635,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmMetodoPagos)frm).ActualizarListado();
+                ((frmMetodoPagos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -757,6 +778,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmHistoricoPedidos)frm).ActualizarListado();
+                ((frmHistoricoPedidos)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -774,6 +796,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmHistoricoOrdenes)frm).ActualizarListado();
+                ((frmHistoricoOrdenes)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -791,6 +814,7 @@ namespace Trabajo_Final
             if (frm != null)
             {
                 ((frmHistoricoCompras)frm).ActualizarListado();
+                ((frmHistoricoCompras)frm).Centrar();
                 frm.BringToFront();
                 return;
             }
@@ -802,9 +826,5 @@ namespace Trabajo_Final
             }
         }
 
-        private void devolucionesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

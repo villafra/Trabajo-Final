@@ -17,6 +17,7 @@ namespace Trabajo_Final
     {
         BLL_Plato oBLL_Plato;
         BE_Plato oBE_Plato;
+        private List<BE_Plato> listado;
         public frmPlatos()
         {
             InitializeComponent();
@@ -30,14 +31,18 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvPlatos, oBLL_Plato.Listar());
-            dgvPlatos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
-
+        public void Centrar()
+        {
+            VistasDGV.dgvPlatos(dgvPlatos);
+            Aspecto.CentrarDGV(this, dgvPlatos);
+        }
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             frmNuevoPlato frm = new frmNuevoPlato();
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -46,6 +51,7 @@ namespace Trabajo_Final
             frm.oBE_Plato = oBE_Plato;
             frm.ShowDialog();
             ActualizarListado();
+            Centrar();
         }
 
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -61,11 +67,49 @@ namespace Trabajo_Final
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             oBLL_Plato.Baja(oBE_Plato);
+            ActualizarListado();
+            Centrar();
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
         {
             MessageBox.Show(oBE_Plato.DevolverNombre());
+        }
+
+        private void frmPlatos_Load(object sender, EventArgs e)
+        {
+            listado = (List<BE_Plato>)dgvPlatos.DataSource;
+        }
+
+        private void frmPlatos_Shown(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void frmPlatos_Activated(object sender, EventArgs e)
+        {
+            Centrar();
+        }
+
+        private void btBuscar_Click(object sender, EventArgs e)
+        {
+            if (txtFiltro.Text.Length > 0)
+            {
+                Cálculos.RefreshGrilla(dgvPlatos, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = comboFiltro.Text;
+                List<BE_Plato> filtrada = ((List<BE_Plato>)dgvPlatos.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvPlatos, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Cálculos.RefreshGrilla(dgvPlatos, listado);
+            Centrar();
         }
     }
 }

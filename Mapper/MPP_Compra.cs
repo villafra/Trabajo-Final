@@ -41,6 +41,48 @@ namespace Mapper
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
 
+        public object ListarFiltro(StausComp status)
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Compra> listadeCompras = ds.Tables.Contains("Compra") != false ?
+                (from comp in ds.Tables["Compra"].AsEnumerable()
+                 where comp[10].ToString() == status.ToString()
+                 select comp[1].ToString() == MaterialCompra.Ingrediente.ToString()?
+                 new BE_CompraIngrediente
+                 {
+                     Codigo = Convert.ToInt32(comp[0]),
+                     Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comp[1].ToString()),
+                     ID_Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[2]) }, ds),
+                     Cantidad = Convert.ToDecimal(comp[3]),
+                     FechaCompra = Convert.ToDateTime(comp[4]),
+                     FechaEntrega = Convert.ToDateTime(comp[5]),
+                     FechaIngreso = comp[10].ToString() != StausComp.En_Curso.ToString() ? Convert.ToDateTime(comp[6]) : (DateTime?)null,
+                     CantidadRecibida = Convert.ToDecimal(comp[7]),
+                     NroFactura = comp[8].ToString(),
+                     Costo = comp[10].ToString() == StausComp.En_Curso.ToString() ? MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Ingrediente { Codigo = Convert.ToInt32(comp[2]) }, Convert.ToDecimal(comp[3])) : Convert.ToDecimal(comp[9]),
+                     Status = (StausComp)Enum.Parse(typeof(StausComp), comp[10].ToString()),
+                     Activo = Convert.ToBoolean(comp[11])
+
+                 } : (BE_Compra)new BE_CompraBebida
+                 {
+                     Codigo = Convert.ToInt32(comp[0]),
+                     Material = (MaterialCompra)Enum.Parse(typeof(MaterialCompra), comp[1].ToString()),
+                     ID_Material = MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(comp[2]) }, ds),
+                     Cantidad = Convert.ToDecimal(comp[3]),
+                     FechaCompra = Convert.ToDateTime(comp[4]),
+                     FechaEntrega = Convert.ToDateTime(comp[5]),
+                     FechaIngreso = comp[10].ToString() != StausComp.En_Curso.ToString() ? Convert.ToDateTime(comp[6]) : (DateTime?)null,
+                     CantidadRecibida = Convert.ToDecimal(comp[7]),
+                     NroFactura = comp[8].ToString(),
+                     Costo = comp[10].ToString() == StausComp.En_Curso.ToString() ? MPP_Costo.DevolverInstancia().DevolverCosto(new BE_Bebida { Codigo = Convert.ToInt32(comp[2]) }, Convert.ToDecimal(comp[3])) : Convert.ToDecimal(comp[9]),
+                     Status = (StausComp)Enum.Parse(typeof(StausComp), comp[10].ToString()),
+                     Activo = Convert.ToBoolean(comp[11])
+                 }).ToList() : null;
+            return listadeCompras;
+        }
+
         public List<BE_Compra> Listar()
         {
             DataSet ds = new DataSet();

@@ -54,6 +54,9 @@ namespace Trabajo_Final
             // comboFiltro
             // 
             this.comboFiltro.FormattingEnabled = true;
+            this.comboFiltro.Items.AddRange(new object[] {
+            "Nombre",
+            "Lote"});
             this.comboFiltro.Location = new System.Drawing.Point(21, 94);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
@@ -64,14 +67,13 @@ namespace Trabajo_Final
             this.dgvPlatos.AllowUserToAddRows = false;
             this.dgvPlatos.AllowUserToDeleteRows = false;
             this.dgvPlatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlatos.Location = new System.Drawing.Point(102, 249);
+            this.dgvPlatos.Location = new System.Drawing.Point(641, 249);
             this.dgvPlatos.Name = "dgvPlatos";
             this.dgvPlatos.ReadOnly = true;
             this.dgvPlatos.RowHeadersWidth = 51;
             this.dgvPlatos.RowTemplate.Height = 24;
-            this.dgvPlatos.Size = new System.Drawing.Size(1120, 254);
+            this.dgvPlatos.Size = new System.Drawing.Size(42, 254);
             this.dgvPlatos.TabIndex = 3;
-            this.dgvPlatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredientes_CellContentClick);
             this.dgvPlatos.SelectionChanged += new System.EventHandler(this.dgvIngredientes_SelectionChanged);
             // 
             // grpPlatos
@@ -122,6 +124,7 @@ namespace Trabajo_Final
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Listado
             // 
@@ -150,6 +153,7 @@ namespace Trabajo_Final
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;
+            this.btBuscar.Click += new System.EventHandler(this.btBuscar_Click);
             // 
             // frmListadoPlatos
             // 
@@ -162,6 +166,9 @@ namespace Trabajo_Final
             this.Name = "frmListadoPlatos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUsuarios";
+            this.Activated += new System.EventHandler(this.frmListadoPlatos_Activated);
+            this.Load += new System.EventHandler(this.frmListadoPlatos_Load);
+            this.Shown += new System.EventHandler(this.frmListadoPlatos_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).EndInit();
             this.grpPlatos.ResumeLayout(false);
             this.grpPlatos.PerformLayout();

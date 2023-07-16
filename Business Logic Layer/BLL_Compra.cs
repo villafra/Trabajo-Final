@@ -38,6 +38,11 @@ namespace Business_Logic_Layer
             throw new NotImplementedException();
         }
 
+        public object ListarFiltro(StausComp status)
+        {
+            return MPP_Compra.DevolverInstancia().ListarFiltro(status);
+        }
+
         public BE_Compra devolverCompra(long nroCompra)
         {
             throw new NotImplementedException();

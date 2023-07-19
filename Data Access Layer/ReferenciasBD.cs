@@ -247,7 +247,20 @@ namespace Data_Access_Layer
                 new XElement("Hijo", "Comp18"),
                 new XElement("Activo", true))
         };
-
+        private static XElement Admin()
+        {
+            XElement Admin = new XElement("Login",
+                new XElement("ID", "0001"),
+                new XElement("ID_Empleado", ""),
+                new XElement("Usuario", "admin"),
+                new XElement("Password", "ys/ihoA4NkE="),
+                new XElement("Cantidad_Intentos", 0),
+                new XElement("Permiso", "ADMIN"),
+                new XElement("Activo", true.ToString()),
+                new XElement("Bloqueado", false.ToString())
+                );
+            return Admin;
+        }
         public static string BaseDatosRestaurant
         {
             get
@@ -336,5 +349,6 @@ namespace Data_Access_Layer
         public static List<XElement> ArmarPermisos { get { return Permisos; } }
         public static List<XElement> ArmaPadreHijo { get { return PadreHijo; } }
         public static string NombreBD { get { return BasedeDatos; } }
+        public static XElement CrearAdmin { get { return Admin(); } }
     }
 }

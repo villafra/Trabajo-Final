@@ -30,6 +30,8 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.ListarLibres());
+            VistasDGV.dgvMesasPedido(dgvMesas);
+            Aspecto.CentrarDGVSubMenu(grpMesas, dgvMesas);
         }
         private bool Nuevo()
         {

@@ -85,7 +85,7 @@ namespace Trabajo_Final
             this.comboMotivo.Location = new System.Drawing.Point(147, 331);
             this.comboMotivo.Name = "comboMotivo";
             this.comboMotivo.Size = new System.Drawing.Size(257, 24);
-            this.comboMotivo.TabIndex = 24;
+            this.comboMotivo.TabIndex = 6;
             this.comboMotivo.Visible = false;
             // 
             // rdInasistencia
@@ -94,7 +94,8 @@ namespace Trabajo_Final
             this.rdInasistencia.Location = new System.Drawing.Point(262, 268);
             this.rdInasistencia.Name = "rdInasistencia";
             this.rdInasistencia.Size = new System.Drawing.Size(103, 21);
-            this.rdInasistencia.TabIndex = 23;
+            this.rdInasistencia.TabIndex = 5;
+            this.rdInasistencia.TabStop = true;
             this.rdInasistencia.Text = "Inasistencia";
             this.rdInasistencia.UseVisualStyleBackColor = true;
             this.rdInasistencia.CheckedChanged += new System.EventHandler(this.rdInasistencia_CheckedChanged);
@@ -106,7 +107,7 @@ namespace Trabajo_Final
             this.rdAsistencia.Location = new System.Drawing.Point(71, 269);
             this.rdAsistencia.Name = "rdAsistencia";
             this.rdAsistencia.Size = new System.Drawing.Size(93, 21);
-            this.rdAsistencia.TabIndex = 22;
+            this.rdAsistencia.TabIndex = 4;
             this.rdAsistencia.TabStop = true;
             this.rdAsistencia.Text = "Asistencia";
             this.rdAsistencia.UseVisualStyleBackColor = true;
@@ -119,7 +120,7 @@ namespace Trabajo_Final
             this.dtpHoraIngreso.Name = "dtpHoraIngreso";
             this.dtpHoraIngreso.ShowUpDown = true;
             this.dtpHoraIngreso.Size = new System.Drawing.Size(257, 22);
-            this.dtpHoraIngreso.TabIndex = 21;
+            this.dtpHoraIngreso.TabIndex = 7;
             this.dtpHoraIngreso.Value = new System.DateTime(2023, 7, 2, 8, 0, 0, 0);
             // 
             // lblHoraIngreso
@@ -127,9 +128,9 @@ namespace Trabajo_Final
             this.lblHoraIngreso.AutoSize = true;
             this.lblHoraIngreso.Location = new System.Drawing.Point(20, 362);
             this.lblHoraIngreso.Name = "lblHoraIngreso";
-            this.lblHoraIngreso.Size = new System.Drawing.Size(98, 17);
-            this.lblHoraIngreso.TabIndex = 20;
-            this.lblHoraIngreso.Text = "Fecha Ingreso";
+            this.lblHoraIngreso.Size = new System.Drawing.Size(90, 17);
+            this.lblHoraIngreso.TabIndex = 0;
+            this.lblHoraIngreso.Text = "Hora Ingreso";
             // 
             // dtpFechaInicio
             // 
@@ -138,7 +139,7 @@ namespace Trabajo_Final
             this.dtpFechaInicio.Location = new System.Drawing.Point(147, 158);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaInicio.TabIndex = 19;
+            this.dtpFechaInicio.TabIndex = 2;
             this.dtpFechaInicio.ValueChanged += new System.EventHandler(this.dtpFechaInicio_ValueChanged);
             // 
             // lblFechaInicio
@@ -147,7 +148,7 @@ namespace Trabajo_Final
             this.lblFechaInicio.Location = new System.Drawing.Point(20, 159);
             this.lblFechaInicio.Name = "lblFechaInicio";
             this.lblFechaInicio.Size = new System.Drawing.Size(83, 17);
-            this.lblFechaInicio.TabIndex = 18;
+            this.lblFechaInicio.TabIndex = 0;
             this.lblFechaInicio.Text = "Fecha Inicio";
             // 
             // dtpHoraEgreso
@@ -157,7 +158,7 @@ namespace Trabajo_Final
             this.dtpHoraEgreso.Name = "dtpHoraEgreso";
             this.dtpHoraEgreso.ShowUpDown = true;
             this.dtpHoraEgreso.Size = new System.Drawing.Size(257, 22);
-            this.dtpHoraEgreso.TabIndex = 17;
+            this.dtpHoraEgreso.TabIndex = 8;
             this.dtpHoraEgreso.Value = new System.DateTime(2023, 7, 2, 17, 0, 0, 0);
             // 
             // dtpFechaFin
@@ -167,7 +168,7 @@ namespace Trabajo_Final
             this.dtpFechaFin.Location = new System.Drawing.Point(147, 213);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaFin.TabIndex = 16;
+            this.dtpFechaFin.TabIndex = 3;
             // 
             // lblMotivo
             // 
@@ -175,7 +176,7 @@ namespace Trabajo_Final
             this.lblMotivo.Location = new System.Drawing.Point(20, 334);
             this.lblMotivo.Name = "lblMotivo";
             this.lblMotivo.Size = new System.Drawing.Size(49, 17);
-            this.lblMotivo.TabIndex = 14;
+            this.lblMotivo.TabIndex = 0;
             this.lblMotivo.Text = "Motivo";
             this.lblMotivo.Visible = false;
             // 
@@ -185,7 +186,7 @@ namespace Trabajo_Final
             this.lblEmpleado.Location = new System.Drawing.Point(20, 104);
             this.lblEmpleado.Name = "lblEmpleado";
             this.lblEmpleado.Size = new System.Drawing.Size(71, 17);
-            this.lblEmpleado.TabIndex = 12;
+            this.lblEmpleado.TabIndex = 0;
             this.lblEmpleado.Text = "Empleado";
             // 
             // lblHoraFin
@@ -193,9 +194,9 @@ namespace Trabajo_Final
             this.lblHoraFin.AutoSize = true;
             this.lblHoraFin.Location = new System.Drawing.Point(20, 413);
             this.lblHoraFin.Name = "lblHoraFin";
-            this.lblHoraFin.Size = new System.Drawing.Size(98, 17);
-            this.lblHoraFin.TabIndex = 11;
-            this.lblHoraFin.Text = "Fecha Ingreso";
+            this.lblHoraFin.Size = new System.Drawing.Size(88, 17);
+            this.lblHoraFin.TabIndex = 0;
+            this.lblHoraFin.Text = "Hora Egreso";
             // 
             // lblFechaFin
             // 
@@ -203,7 +204,7 @@ namespace Trabajo_Final
             this.lblFechaFin.Location = new System.Drawing.Point(20, 214);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(70, 17);
-            this.lblFechaFin.TabIndex = 10;
+            this.lblFechaFin.TabIndex = 0;
             this.lblFechaFin.Text = "Fecha Fin";
             // 
             // txtCodigo
@@ -212,7 +213,8 @@ namespace Trabajo_Final
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
-            this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabIndex = 0;
+            this.txtCodigo.TabStop = false;
             // 
             // comboEmpleado
             // 
@@ -220,7 +222,7 @@ namespace Trabajo_Final
             this.comboEmpleado.Location = new System.Drawing.Point(147, 101);
             this.comboEmpleado.Name = "comboEmpleado";
             this.comboEmpleado.Size = new System.Drawing.Size(257, 24);
-            this.comboEmpleado.TabIndex = 8;
+            this.comboEmpleado.TabIndex = 1;
             // 
             // lblCodigo
             // 
@@ -228,7 +230,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // Listado
@@ -275,6 +277,7 @@ namespace Trabajo_Final
             // 
             // frmAsistencias
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;

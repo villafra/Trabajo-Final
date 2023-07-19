@@ -40,36 +40,40 @@ namespace Trabajo_Final
 
         private bool Nuevo()
         {
-            if (oBE_Compra is BE_CompraIngrediente)
+            if (Cálculos.Camposvacios(grpNuevoLogin))
             {
-                oBE_Material = new BE_Material_Stock();
-                oBE_Material.Material = ((BE_CompraIngrediente)oBE_Compra).ID_Material;
-                oBE_Material.Stock = numCantidad.Value;
-                oBLL_Material.RestarStock(oBE_Material);
-                oBE_Material.FechaCreacion = dtpFechaLote.Value;
-                oBE_Material.Lote = txtLote.Text;
-                oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-                oBE_Compra.CantidadRecibida += oBE_Material.Stock;
-                oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
-                oBE_Compra.NroFactura = txtNroFac.Text;
-                oBE_Compra.Status = StausComp.Devolucion;
-                return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Material.AgregarStock(oBE_Material, oBE_Compra);
+                if (oBE_Compra is BE_CompraIngrediente)
+                {
+                    oBE_Material = new BE_Material_Stock();
+                    oBE_Material.Material = ((BE_CompraIngrediente)oBE_Compra).ID_Material;
+                    oBE_Material.Stock = numCantidad.Value;
+                    oBLL_Material.RestarStock(oBE_Material);
+                    oBE_Material.FechaCreacion = dtpFechaLote.Value;
+                    oBE_Material.Lote = txtLote.Text;
+                    oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
+                    oBE_Compra.CantidadRecibida += oBE_Material.Stock;
+                    oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
+                    oBE_Compra.NroFactura = txtNroFac.Text;
+                    oBE_Compra.Status = StausComp.Devolucion;
+                    return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Material.AgregarStock(oBE_Material, oBE_Compra);
+                }
+                else
+                {
+                    oBE_Bebida = new BE_Bebida_Stock();
+                    oBE_Bebida.Material = ((BE_CompraBebida)oBE_Compra).ID_Material;
+                    oBE_Bebida.Stock = numCantidad.Value;
+                    oBLL_Bebida.RestarStock(oBE_Bebida);
+                    oBE_Bebida.FechaCreacion = dtpFechaLote.Value;
+                    oBE_Bebida.Lote = txtLote.Text;
+                    oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
+                    oBE_Compra.CantidadRecibida += oBE_Material.Stock;
+                    oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
+                    oBE_Compra.NroFactura = txtNroFac.Text;
+                    oBE_Compra.Status = StausComp.Devolucion;
+                    return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Bebida.AgregarStock(oBE_Bebida, oBE_Compra);
+                }
             }
-            else
-            {
-                oBE_Bebida = new BE_Bebida_Stock();
-                oBE_Bebida.Material = ((BE_CompraBebida)oBE_Compra).ID_Material;
-                oBE_Bebida.Stock = numCantidad.Value;
-                oBLL_Bebida.RestarStock(oBE_Bebida);
-                oBE_Bebida.FechaCreacion = dtpFechaLote.Value;
-                oBE_Bebida.Lote = txtLote.Text;
-                oBE_Compra.FechaIngreso = dtpFechaArribo.Value;
-                oBE_Compra.CantidadRecibida += oBE_Material.Stock;
-                oBE_Compra.Costo = oBLL_Compra.CalcularCostoNeto(oBE_Compra);
-                oBE_Compra.NroFactura = txtNroFac.Text;
-                oBE_Compra.Status = StausComp.Devolucion;
-                return oBLL_Compra.Modificar(oBE_Compra) & oBLL_Bebida.AgregarStock(oBE_Bebida, oBE_Compra);
-            }
+            else throw new RestaurantException("Por favor, complete los campos obligatorios.");
         }
         private void ImportarCompra()
         {

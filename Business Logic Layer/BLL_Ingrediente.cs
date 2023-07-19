@@ -46,5 +46,10 @@ namespace Business_Logic_Layer
         {
             return MPP_Ingrediente.DevolverInstancia().Modificar(ingrediente);
         }
+
+        public bool Existe(BE_Ingrediente ingrediente)
+        {
+            return MPP_Ingrediente.DevolverInstancia().Existe(ingrediente);
+        }
     }
 }

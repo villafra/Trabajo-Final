@@ -38,8 +38,12 @@ namespace Trabajo_Final
         {
             try
             {
-                if (Nuevo()) Cálculos.MsgBox("Los datos se han guardado correctamente");
-                else throw new RestaurantException("La carga de datos ha fallado. Intente Nuevamente.");
+                if (Validaciones())
+                {
+                    if (Nuevo()) Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    else throw new RestaurantException("La carga de datos ha fallado. Intente Nuevamente.");
+                }
+                else { throw new RestaurantException("La fecha o hora de inicio es mayor que la fecha o hora de fin."); }
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
@@ -128,10 +132,17 @@ namespace Trabajo_Final
                 comboMotivo.Visible = true;
             }
         }
-
         private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
         {
             dtpFechaFin.Value = dtpFechaInicio.Value;
+        }
+        private bool Validaciones()
+        {
+            bool pass;
+            pass = dtpFechaInicio.Value <= dtpFechaFin.Value;
+            if (!pass) return false; 
+            pass = dtpHoraIngreso.Value <= dtpHoraEgreso.Value;
+            return pass;
         }
     }
 }

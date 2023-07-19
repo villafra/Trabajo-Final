@@ -31,18 +31,22 @@ namespace Trabajo_Final
         {
             try
             {
-                if (_ = oBE_Pago != null ? Viejo() : Nuevo())
+                if (Cálculos.Camposvacios(grpNuevoLogin))
                 {
-                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    if (_ = oBE_Pago != null ? Viejo() : Nuevo())
+                    {
+                        Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    }
+                    else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
                 }
-                else{ throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente");}
-            }catch(Exception ex)
+                else
+                { throw new RestaurantException("Por favor, complete los campos obligatorios"); }
+            }
+            catch (Exception ex)
             {
                 Cálculos.MsgBox(ex.Message);
             }
-
         }
-
         private bool Viejo()
         {
             oBE_Pago.Codigo = Convert.ToInt32(txtCodigo.Text);
@@ -53,9 +57,11 @@ namespace Trabajo_Final
 
         private bool Nuevo()
         {
-            oBE_Pago = new BE_Pago();
-            oBE_Pago.Tipo = txtDescripcion.Text;
-            return oBLL_Pago.Guardar(oBE_Pago);
+
+                oBE_Pago = new BE_Pago();
+                oBE_Pago.Tipo = txtDescripcion.Text;
+                return oBLL_Pago.Guardar(oBE_Pago);
+           
         }
         private void ImportarPago()
         {

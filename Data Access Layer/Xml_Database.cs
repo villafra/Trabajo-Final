@@ -231,7 +231,7 @@ namespace Data_Access_Layer
                 XDocument Restaurant = new XDocument();
                 XElement Root = new XElement(ReferenciasBD.Root);
                 XElement Leaf = new XElement("Logins");
-                Leaf.Add(CrearAdmin());
+                Leaf.Add(ReferenciasBD.CrearAdmin);
                 Root.Add(Leaf);
                 Leaf = new XElement("Permisos");
                 foreach (XElement perm in ReferenciasBD.ArmarPermisos)
@@ -255,21 +255,6 @@ namespace Data_Access_Layer
                 throw ex;
             }
             
-        }
-
-        private XElement CrearAdmin()
-        {
-            XElement Admin = new XElement("Login",
-                new XElement("ID", "0001"),
-                new XElement("ID_Empleado", ""),
-                new XElement("Usuario", "admin"),
-                new XElement("Password", "ys/ihoA4NkE="),
-                new XElement("Cantidad_Intentos", 0),
-                new XElement("Permiso", "ADMIN"),
-                new XElement("Activo",true.ToString()),
-                new XElement("Bloqueado", false.ToString())
-                );
-            return Admin;
         }
         public bool Existe (BE_TuplaXML tupla, string element)
         {

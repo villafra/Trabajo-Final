@@ -52,19 +52,38 @@ namespace Trabajo_Final
             oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
             oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
             oBE_Ingrediente.Activo = status;
-            return oBLL_Ingrediente.Modificar(oBE_Ingrediente);
+            if (Cálculos.EstaSeguroM(oBE_Ingrediente.Nombre))
+            {
+                if (Cálculos.Camposvacios(grpNuevoLogin))
+                {
+                    return oBLL_Ingrediente.Modificar(oBE_Ingrediente);
+                }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios."); }
+
+            }
+            else { throw new RestaurantException("Se ha cancelado la modificación"); }
         }
 
         private bool Nuevo()
         {
-            oBE_Ingrediente = new BE_Ingrediente();
-            oBE_Ingrediente.Nombre = txtNombre.Text;
-            oBE_Ingrediente.Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), comboTipo.SelectedItem.ToString());
-            oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
-            oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
-            oBE_Ingrediente.Refrigeracion = chkRefri.Checked;
-            oBE_Ingrediente.GestionLote = chkLote.Checked;
-            return oBLL_Ingrediente.Guardar(oBE_Ingrediente);
+            if (Cálculos.Camposvacios(grpNuevoLogin))
+            {
+                oBE_Ingrediente = new BE_Ingrediente();
+                oBE_Ingrediente.Nombre = txtNombre.Text;
+                oBE_Ingrediente.Tipo = (TipoIng)Enum.Parse(typeof(TipoIng), comboTipo.SelectedItem.ToString());
+                oBE_Ingrediente.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
+                oBE_Ingrediente.VidaUtil = Convert.ToInt32(numDias.Value);
+                oBE_Ingrediente.Refrigeracion = chkRefri.Checked;
+                oBE_Ingrediente.GestionLote = chkLote.Checked;
+                if (oBLL_Ingrediente.Existe(oBE_Ingrediente))
+                {   
+                    return oBLL_Ingrediente.Guardar(oBE_Ingrediente);
+                }
+                else throw new RestaurantException("Ya existe el ingrediente en base de datos.");
+
+            }
+            else { throw new RestaurantException("Por favor, complete los campos obligatorios"); }
+
         }
         private void ImportarEmpleado()
         {

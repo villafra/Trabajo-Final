@@ -310,12 +310,6 @@
     <Compile Include="Menus\Combinar Mesas.Designer.cs">
       <DependentUpon>Combinar Mesas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Menus\Rotacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Menus\Rotacion.Designer.cs">
-      <DependentUpon>Rotacion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Menus\SubMenus\ModificarAsistencias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -576,9 +570,6 @@
     <EmbeddedResource Include="Menus\Combinar Mesas.resx">
       <DependentUpon>Combinar Mesas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menus\Rotacion.resx">
-      <DependentUpon>Rotacion.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\ModificarAsistencias.resx">
       <DependentUpon>ModificarAsistencias.cs</DependentUpon>
     </EmbeddedResource>
@@ -800,6 +791,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <None Include="Resources\Picture31.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

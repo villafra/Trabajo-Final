@@ -63,7 +63,7 @@ namespace Trabajo_Final
             this.chkActivo.Location = new System.Drawing.Point(336, 162);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(68, 21);
-            this.chkActivo.TabIndex = 13;
+            this.chkActivo.TabIndex = 2;
             this.chkActivo.Text = "Activo";
             this.chkActivo.UseVisualStyleBackColor = true;
             this.chkActivo.Visible = false;
@@ -75,6 +75,7 @@ namespace Trabajo_Final
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
             this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
             // 
             // lblMetodo
             // 
@@ -82,7 +83,7 @@ namespace Trabajo_Final
             this.lblMetodo.Location = new System.Drawing.Point(20, 105);
             this.lblMetodo.Name = "lblMetodo";
             this.lblMetodo.Size = new System.Drawing.Size(92, 17);
-            this.lblMetodo.TabIndex = 4;
+            this.lblMetodo.TabIndex = 0;
             this.lblMetodo.Text = "Método Pago";
             // 
             // lblCodigo
@@ -91,7 +92,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // txtDescripcion
@@ -113,7 +114,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(323, 240);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;

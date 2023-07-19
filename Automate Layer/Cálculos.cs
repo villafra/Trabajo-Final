@@ -72,15 +72,23 @@ namespace Automate_Layer
         }
         public static bool LargoDNI(string dni)
         {
-            return Regex.IsMatch(dni, "^([0-9]{8,8})");
+            return Regex.IsMatch(dni, "^([0-9]{8})");
         }
         public static bool ValidarNombrePersonal(string nombre)
         {
-            return Regex.IsMatch(nombre, "([a-zA-Z]|[0-9])$");
+            return Regex.IsMatch(nombre, @"^[a-zA-Z0-9 ]+$");
         }
         public static bool ValidarApellido(string apellido)
         {
-            return Regex.IsMatch(apellido, "([\\w0-9'°\\s])$");
+            return Regex.IsMatch(apellido, @"^[\w\d°]+$");
+
+        }
+        public static bool ValidarEdad(DateTime nac)
+        {
+            DateTime fechaActual = DateTime.Today;
+            DateTime fechaMayorEdad = nac.AddYears(18);
+
+            return fechaMayorEdad <= fechaActual;
         }
         public static void BorrarCampos(Control grp)
         {
@@ -113,31 +121,39 @@ namespace Automate_Layer
             int sino = 0;
             foreach (Control c in grp.Controls)
             {
-                if (c is TextBox)
+                if (c.Visible)
                 {
-                    TextBox text = c as TextBox;
-                    if (text.Name != "txtCodigo")
+
+                    if (c is TextBox)
                     {
-                        if (text.Text == "")
+                        TextBox text = c as TextBox;
+                        if (text.Name != "txtCodigo")
+                        {
+                            if (text.Text == "")
+                            {
+                                sino = 1;
+                            }
+                        }
+                    }
+                    else if (c is NumericUpDown)
+                    {
+                        NumericUpDown num = c as NumericUpDown;
+                        if (num.Name != "numABV")
+                        {
+                            if (num.Value == 0)
+                            {
+                                sino = 1;
+                            }
+                        }
+
+                    }
+                    else if (c is ComboBox)
+                    {
+                        ComboBox combo = c as ComboBox;
+                        if (combo.Text == "")
                         {
                             sino = 1;
                         }
-                    }
-                }
-                else if (c is NumericUpDown)
-                {
-                    NumericUpDown num = c as NumericUpDown;
-                    if (num.Value == 0)
-                    {
-                        sino = 1;
-                    }
-                }
-                else if (c is ComboBox)
-                {
-                    ComboBox combo = c as ComboBox;
-                    if (combo.Text == "")
-                    {
-                        sino = 1;
                     }
                 }
             }

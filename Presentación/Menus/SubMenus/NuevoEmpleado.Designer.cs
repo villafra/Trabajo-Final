@@ -32,6 +32,15 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoEmpleado));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.dtpFechaIng = new System.Windows.Forms.DateTimePicker();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
+            this.txtApellido = new System.Windows.Forms.TextBox();
+            this.lblContacto = new System.Windows.Forms.Label();
+            this.txtContacto = new System.Windows.Forms.TextBox();
+            this.lblCategoria = new System.Windows.Forms.Label();
+            this.lblFechaIng = new System.Windows.Forms.Label();
+            this.lblFechaNac = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.comboCategoria = new System.Windows.Forms.ComboBox();
             this.lblApellido = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
@@ -42,15 +51,6 @@ namespace Trabajo_Final
             this.btnCancelar = new System.Windows.Forms.Button();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
-            this.lblFechaNac = new System.Windows.Forms.Label();
-            this.lblFechaIng = new System.Windows.Forms.Label();
-            this.lblCategoria = new System.Windows.Forms.Label();
-            this.lblContacto = new System.Windows.Forms.Label();
-            this.txtContacto = new System.Windows.Forms.TextBox();
-            this.txtApellido = new System.Windows.Forms.TextBox();
-            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
-            this.dtpFechaIng = new System.Windows.Forms.DateTimePicker();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,20 +72,100 @@ namespace Trabajo_Final
             this.grpNuevoLogin.Controls.Add(this.lblCodigo);
             this.grpNuevoLogin.Controls.Add(this.txtNombre);
             this.grpNuevoLogin.Controls.Add(this.txtDNI);
-            this.grpNuevoLogin.Location = new System.Drawing.Point(24, 24);
+            this.grpNuevoLogin.Location = new System.Drawing.Point(23, 24);
             this.grpNuevoLogin.Name = "grpNuevoLogin";
-            this.grpNuevoLogin.Size = new System.Drawing.Size(437, 502);
+            this.grpNuevoLogin.Size = new System.Drawing.Size(498, 502);
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
             // 
+            // dtpFechaIng
+            // 
+            this.dtpFechaIng.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaIng.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaIng.Location = new System.Drawing.Point(186, 326);
+            this.dtpFechaIng.Name = "dtpFechaIng";
+            this.dtpFechaIng.Size = new System.Drawing.Size(257, 22);
+            this.dtpFechaIng.TabIndex = 5;
+            // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.CustomFormat = "dd/MM/yyyy";
+            this.dtpFechaNac.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaNac.Location = new System.Drawing.Point(186, 270);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(257, 22);
+            this.dtpFechaNac.TabIndex = 4;
+            // 
+            // txtApellido
+            // 
+            this.txtApellido.Location = new System.Drawing.Point(186, 214);
+            this.txtApellido.Name = "txtApellido";
+            this.txtApellido.Size = new System.Drawing.Size(257, 22);
+            this.txtApellido.TabIndex = 3;
+            // 
+            // lblContacto
+            // 
+            this.lblContacto.AutoSize = true;
+            this.lblContacto.Location = new System.Drawing.Point(20, 441);
+            this.lblContacto.Name = "lblContacto";
+            this.lblContacto.Size = new System.Drawing.Size(64, 17);
+            this.lblContacto.TabIndex = 0;
+            this.lblContacto.Text = "Contacto";
+            this.lblContacto.Visible = false;
+            // 
+            // txtContacto
+            // 
+            this.txtContacto.Location = new System.Drawing.Point(186, 440);
+            this.txtContacto.Name = "txtContacto";
+            this.txtContacto.Size = new System.Drawing.Size(257, 22);
+            this.txtContacto.TabIndex = 7;
+            this.txtContacto.Visible = false;
+            this.txtContacto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtContacto_KeyPress);
+            // 
+            // lblCategoria
+            // 
+            this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Location = new System.Drawing.Point(20, 385);
+            this.lblCategoria.Name = "lblCategoria";
+            this.lblCategoria.Size = new System.Drawing.Size(69, 17);
+            this.lblCategoria.TabIndex = 0;
+            this.lblCategoria.Text = "Categoria";
+            // 
+            // lblFechaIng
+            // 
+            this.lblFechaIng.AutoSize = true;
+            this.lblFechaIng.Location = new System.Drawing.Point(20, 329);
+            this.lblFechaIng.Name = "lblFechaIng";
+            this.lblFechaIng.Size = new System.Drawing.Size(98, 17);
+            this.lblFechaIng.TabIndex = 0;
+            this.lblFechaIng.Text = "Fecha Ingreso";
+            // 
+            // lblFechaNac
+            // 
+            this.lblFechaNac.AutoSize = true;
+            this.lblFechaNac.Location = new System.Drawing.Point(20, 273);
+            this.lblFechaNac.Name = "lblFechaNac";
+            this.lblFechaNac.Size = new System.Drawing.Size(121, 17);
+            this.lblFechaNac.TabIndex = 0;
+            this.lblFechaNac.Text = "Fecha Nacimiento";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Location = new System.Drawing.Point(186, 46);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.ReadOnly = true;
+            this.txtCodigo.Size = new System.Drawing.Size(257, 22);
+            this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
+            // 
             // comboCategoria
             // 
             this.comboCategoria.FormattingEnabled = true;
-            this.comboCategoria.Location = new System.Drawing.Point(147, 382);
+            this.comboCategoria.Location = new System.Drawing.Point(186, 382);
             this.comboCategoria.Name = "comboCategoria";
             this.comboCategoria.Size = new System.Drawing.Size(257, 24);
-            this.comboCategoria.TabIndex = 8;
+            this.comboCategoria.TabIndex = 6;
             // 
             // lblApellido
             // 
@@ -93,7 +173,7 @@ namespace Trabajo_Final
             this.lblApellido.Location = new System.Drawing.Point(20, 217);
             this.lblApellido.Name = "lblApellido";
             this.lblApellido.Size = new System.Drawing.Size(58, 17);
-            this.lblApellido.TabIndex = 7;
+            this.lblApellido.TabIndex = 0;
             this.lblApellido.Text = "Apellido";
             // 
             // lblNombre
@@ -102,7 +182,7 @@ namespace Trabajo_Final
             this.lblNombre.Location = new System.Drawing.Point(20, 161);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(58, 17);
-            this.lblNombre.TabIndex = 5;
+            this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
             // lblDNI
@@ -111,7 +191,7 @@ namespace Trabajo_Final
             this.lblDNI.Location = new System.Drawing.Point(20, 105);
             this.lblDNI.Name = "lblDNI";
             this.lblDNI.Size = new System.Drawing.Size(31, 17);
-            this.lblDNI.TabIndex = 4;
+            this.lblDNI.TabIndex = 0;
             this.lblDNI.Text = "DNI";
             // 
             // lblCodigo
@@ -120,22 +200,23 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(147, 158);
+            this.txtNombre.Location = new System.Drawing.Point(186, 158);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(257, 22);
             this.txtNombre.TabIndex = 2;
             // 
             // txtDNI
             // 
-            this.txtDNI.Location = new System.Drawing.Point(147, 102);
+            this.txtDNI.Location = new System.Drawing.Point(186, 102);
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(257, 22);
             this.txtDNI.TabIndex = 1;
+            this.txtDNI.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDNI_KeyPress);
             // 
             // btnCancelar
             // 
@@ -146,10 +227,10 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(323, 541);
+            this.btnCancelar.Location = new System.Drawing.Point(383, 541);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -173,92 +254,19 @@ namespace Trabajo_Final
             this.btnConfirmar.Location = new System.Drawing.Point(24, 541);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
-            this.btnConfirmar.TabIndex = 3;
+            this.btnConfirmar.TabIndex = 8;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Location = new System.Drawing.Point(147, 46);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.ReadOnly = true;
-            this.txtCodigo.Size = new System.Drawing.Size(257, 22);
-            this.txtCodigo.TabIndex = 9;
-            // 
-            // lblFechaNac
-            // 
-            this.lblFechaNac.AutoSize = true;
-            this.lblFechaNac.Location = new System.Drawing.Point(20, 273);
-            this.lblFechaNac.Name = "lblFechaNac";
-            this.lblFechaNac.Size = new System.Drawing.Size(121, 17);
-            this.lblFechaNac.TabIndex = 10;
-            this.lblFechaNac.Text = "Fecha Nacimiento";
-            // 
-            // lblFechaIng
-            // 
-            this.lblFechaIng.AutoSize = true;
-            this.lblFechaIng.Location = new System.Drawing.Point(20, 329);
-            this.lblFechaIng.Name = "lblFechaIng";
-            this.lblFechaIng.Size = new System.Drawing.Size(98, 17);
-            this.lblFechaIng.TabIndex = 11;
-            this.lblFechaIng.Text = "Fecha Ingreso";
-            // 
-            // lblCategoria
-            // 
-            this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(20, 385);
-            this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(69, 17);
-            this.lblCategoria.TabIndex = 12;
-            this.lblCategoria.Text = "Categoria";
-            // 
-            // lblContacto
-            // 
-            this.lblContacto.AutoSize = true;
-            this.lblContacto.Location = new System.Drawing.Point(20, 441);
-            this.lblContacto.Name = "lblContacto";
-            this.lblContacto.Size = new System.Drawing.Size(58, 17);
-            this.lblContacto.TabIndex = 14;
-            this.lblContacto.Text = "Nombre";
-            this.lblContacto.Visible = false;
-            // 
-            // txtContacto
-            // 
-            this.txtContacto.Location = new System.Drawing.Point(147, 440);
-            this.txtContacto.Name = "txtContacto";
-            this.txtContacto.Size = new System.Drawing.Size(257, 22);
-            this.txtContacto.TabIndex = 13;
-            this.txtContacto.Visible = false;
-            // 
-            // txtApellido
-            // 
-            this.txtApellido.Location = new System.Drawing.Point(147, 214);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(257, 22);
-            this.txtApellido.TabIndex = 15;
-            // 
-            // dtpFechaNac
-            // 
-            this.dtpFechaNac.Location = new System.Drawing.Point(147, 270);
-            this.dtpFechaNac.Name = "dtpFechaNac";
-            this.dtpFechaNac.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaNac.TabIndex = 16;
-            // 
-            // dtpFechaIng
-            // 
-            this.dtpFechaIng.Location = new System.Drawing.Point(147, 326);
-            this.dtpFechaIng.Name = "dtpFechaIng";
-            this.dtpFechaIng.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaIng.TabIndex = 17;
-            // 
             // frmNuevoEmpleado
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(484, 611);
+            this.ClientSize = new System.Drawing.Size(545, 611);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpNuevoLogin);

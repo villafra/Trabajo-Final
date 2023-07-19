@@ -48,18 +48,34 @@ namespace Trabajo_Final
             oBE_Plato.Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), comboTipo.SelectedItem.ToString());
             oBE_Plato.Clase = (Clasificación)Enum.Parse(typeof(Clasificación), ComboClas.SelectedItem.ToString());
             oBE_Plato.Presentación = Convert.ToDecimal(txtPresentacion.Text);
-            return oBLL_Plato.Modificar(oBE_Plato);
+            if (Cálculos.EstaSeguroM(oBE_Plato.Nombre))
+            {
+                if (Cálculos.Camposvacios(grpNuevoLogin))
+                {
+                    return oBLL_Plato.Modificar(oBE_Plato);
+                }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios."); }
+
+            }
+            else { throw new RestaurantException("Se ha cancelado la modificación"); }
         }
 
         private bool Nuevo()
         {
-            oBE_Plato = new BE_Plato();
-            oBE_Plato.Nombre = txtNombre.Text;
-            oBE_Plato.Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), comboTipo.SelectedItem.ToString());
-            oBE_Plato.Clase = (Clasificación)Enum.Parse(typeof(Clasificación), ComboClas.SelectedItem.ToString());
-            oBE_Plato.Presentación = Convert.ToDecimal(txtPresentacion.Text);
-            return oBLL_Plato.Guardar(oBE_Plato);
-
+            if (Cálculos.Camposvacios(grpNuevoLogin))
+            {
+                oBE_Plato = new BE_Plato();
+                oBE_Plato.Nombre = txtNombre.Text;
+                oBE_Plato.Tipo = (Tipo_Plato)Enum.Parse(typeof(Tipo_Plato), comboTipo.SelectedItem.ToString());
+                oBE_Plato.Clase = (Clasificación)Enum.Parse(typeof(Clasificación), ComboClas.SelectedItem.ToString());
+                oBE_Plato.Presentación = Convert.ToDecimal(txtPresentacion.Text);
+                if (oBLL_Plato.Existe(oBE_Plato))
+                {
+                    return oBLL_Plato.Guardar(oBE_Plato);
+                }
+                else throw new RestaurantException("El plato ya existe en la base de datos.");
+            }
+            else throw new RestaurantException("Por favor, complete los campos obligatorios.");
         }
         private void ImportarPlato()
         {
@@ -79,6 +95,11 @@ namespace Trabajo_Final
         private void frmNuevoLogin_Load(object sender, EventArgs e)
         {
             ImportarPlato();
+        }
+
+        private void txtPresentacion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Cálculos.ValidarNumeros(e);
         }
     }
 }

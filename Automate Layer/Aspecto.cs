@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -58,6 +59,7 @@ namespace Automate_Layer
             FormatearMenuStrip(formulario);
         };
 
+
         public static Action<Form, GroupBox, int, int> FormatearLogin = (formulario, grp, Width, Height) =>
         {
             formulario.FormBorderStyle = new FormBorderStyle();
@@ -71,6 +73,7 @@ namespace Automate_Layer
         {
             formulario.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             formulario.AutoScroll = true;
+            formulario.Text = "Restó";
             FormatearGRPSubMenu(grp);
 
         };
@@ -178,6 +181,7 @@ namespace Automate_Layer
             foreach (Control c in grp.Controls)
             {
                 c.ForeColor = Color.Black;
+                if (c is DateTimePicker && c.Name != "dtpHoraIngreso" && c.Name != "dtpHoraEgreso") (c as DateTimePicker).Value = DateTime.Now;
             }
         };
         public static Action<GroupBox> FormatearGRPPedido = (grp) =>
@@ -228,6 +232,7 @@ namespace Automate_Layer
         {
             obj.BackColor = Color.FromArgb(46, 51, 73);
             obj.ForeColor = Color.White;
+            if (obj is TextBox) (obj as TextBox).TextAlign = HorizontalAlignment.Center;
         };
         public static Action<TreeView> FormatearTreeView = (tv) =>
         {
@@ -275,7 +280,7 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgv.AutoSize = true;
             dgv.ScrollBars = ScrollBars.Vertical;
             dgv.MaximumSize = new Size(1120, 495);
@@ -310,6 +315,7 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgv.AutoSize = true;
             dgv.ScrollBars = ScrollBars.Vertical;
             dgv.MaximumSize = new Size(1120, 495);
@@ -390,6 +396,22 @@ namespace Automate_Layer
             int y = dgv.Location.Y;
             dgv.Location = new Point(x, y);
         };
+
+        public static void CentrarDGVSubMenu(GroupBox grp, DataGridView dgv)
+        {
+            int anchoTotal = 0;
+            foreach (DataGridViewColumn columna in dgv.Columns)
+            {
+                if (columna.Visible)
+                {
+                    anchoTotal += columna.Width;
+                }
+            }
+            dgv.Width = anchoTotal;
+            int x = (grp.Width - dgv.Width) / 2;
+            int y = dgv.Location.Y;
+            dgv.Location = new Point(x, y);
+        }
         public static Action<GroupBox, FlowLayoutPanel, Button, Button> CentrarPanel = (grp, panel, btnizq, btnder) =>
         {
             if (panel.Width > grp.Width) { DesplazarPanel(grp, panel,btnizq, btnder);return; }

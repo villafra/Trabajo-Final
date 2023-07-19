@@ -56,7 +56,7 @@ namespace Trabajo_Final
             this.txtFiltro.Location = new System.Drawing.Point(304, 96);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(471, 22);
-            this.txtFiltro.TabIndex = 0;
+            this.txtFiltro.TabIndex = 2;
             // 
             // comboFiltro
             // 
@@ -83,6 +83,7 @@ namespace Trabajo_Final
             this.dgvEmpleados.RowTemplate.Height = 24;
             this.dgvEmpleados.Size = new System.Drawing.Size(75, 495);
             this.dgvEmpleados.TabIndex = 3;
+            this.dgvEmpleados.TabStop = false;
             this.dgvEmpleados.SelectionChanged += new System.EventHandler(this.dgvEmpleados_SelectionChanged);
             // 
             // grpEmpleados
@@ -96,7 +97,7 @@ namespace Trabajo_Final
             this.grpEmpleados.Location = new System.Drawing.Point(102, 57);
             this.grpEmpleados.Name = "grpEmpleados";
             this.grpEmpleados.Size = new System.Drawing.Size(1120, 168);
-            this.grpEmpleados.TabIndex = 4;
+            this.grpEmpleados.TabIndex = 0;
             this.grpEmpleados.TabStop = false;
             this.grpEmpleados.Text = "Listado de Empleados";
             // 
@@ -106,7 +107,7 @@ namespace Trabajo_Final
             this.lbl2.Location = new System.Drawing.Point(301, 71);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(178, 17);
-            this.lbl2.TabIndex = 5;
+            this.lbl2.TabIndex = 0;
             this.lbl2.Text = "Ingrese Filtro de Busqueda";
             // 
             // lbl1
@@ -115,7 +116,7 @@ namespace Trabajo_Final
             this.lbl1.Location = new System.Drawing.Point(21, 71);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(78, 17);
-            this.lbl1.TabIndex = 4;
+            this.lbl1.TabIndex = 0;
             this.lbl1.Text = "Buscar Por";
             // 
             // btnReset
@@ -130,7 +131,7 @@ namespace Trabajo_Final
             this.btnReset.Location = new System.Drawing.Point(965, 82);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(149, 36);
-            this.btnReset.TabIndex = 3;
+            this.btnReset.TabIndex = 4;
             this.btnReset.Text = "Restablecer";
             this.btnReset.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReset.UseVisualStyleBackColor = true;
@@ -159,7 +160,7 @@ namespace Trabajo_Final
             this.btBuscar.Location = new System.Drawing.Point(810, 82);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(149, 36);
-            this.btBuscar.TabIndex = 2;
+            this.btBuscar.TabIndex = 3;
             this.btBuscar.Text = "Buscar";
             this.btBuscar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btBuscar.UseVisualStyleBackColor = true;

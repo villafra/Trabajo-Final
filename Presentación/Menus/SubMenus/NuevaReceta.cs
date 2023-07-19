@@ -50,6 +50,8 @@ namespace Trabajo_Final
         public void ActualizarRecetario()
         {
             Cálculos.RefreshGrilla(dgvReceta, listado);
+            VistasDGV.dgvSubReceta(dgvReceta);
+            Aspecto.CentrarDGVSubMenu(grpIngredientes, dgvReceta);
             Sumar();
         }
         private bool Nuevo()

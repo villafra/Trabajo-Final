@@ -47,16 +47,28 @@ namespace Trabajo_Final
             oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
             oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
             oBE_Mesa.Activo = chkActivo.Checked;
-            return oBLL_Mesa.Modificar(oBE_Mesa);
+            if (Cálculos.EstaSeguroM(oBE_Mesa.ToString()))
+            {
+                if (Cálculos.Camposvacios(grpNuevoLogin))
+                {
+                    return oBLL_Mesa.Modificar(oBE_Mesa);
+                }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios."); }
+
+            }
+            else { throw new RestaurantException("Se ha cancelado la modificación"); }
         }
 
         private bool Nuevo()
         {
-            oBE_Mesa = new BE_Mesa();
-            oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
-            oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
-            return oBLL_Mesa.Guardar(oBE_Mesa);
-
+            if (Cálculos.Camposvacios(grpNuevoLogin))
+            {
+                oBE_Mesa = new BE_Mesa();
+                oBE_Mesa.Capacidad = Convert.ToInt32(txtCapacidad.Text);
+                oBE_Mesa.Ubicación = (Ubicacion)Enum.Parse(typeof(Ubicacion), comboUbicacion.SelectedItem.ToString());
+                return oBLL_Mesa.Guardar(oBE_Mesa);
+            }
+            else throw new RestaurantException("Por favor, complete los campos obligatorios.");
         }
         private void ImportarEmpleado()
         {

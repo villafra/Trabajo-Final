@@ -158,7 +158,7 @@ namespace Mapper
 
         public bool Existe(BE_Bebida bebida)
         {
-            return Xml_Database.DevolverInstancia().Existe(CrearBebidaXML(bebida), "ID");
+            return Xml_Database.DevolverInstancia().Existe(CrearBebidaXML(bebida), "Nombre");
         }
 
         public List<BE_Bebida_Preparada> ListarPreparadas()

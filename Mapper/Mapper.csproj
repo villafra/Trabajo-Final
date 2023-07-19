@@ -54,7 +54,6 @@
     <Compile Include="MPP_Horario.cs" />
     <Compile Include="MPP_Ingrediente.cs" />
     <Compile Include="Composite\MPP_Login.cs" />
-    <Compile Include="MPP_Inventario.cs" />
     <Compile Include="MPP_Bebida-Stock.cs" />
     <Compile Include="MPP_Material-Stock.cs" />
     <Compile Include="MPP_Mesa.cs" />

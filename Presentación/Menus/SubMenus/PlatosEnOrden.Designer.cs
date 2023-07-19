@@ -56,7 +56,7 @@ namespace Trabajo_Final
             this.dgvPlatos.ReadOnly = true;
             this.dgvPlatos.RowHeadersWidth = 51;
             this.dgvPlatos.RowTemplate.Height = 24;
-            this.dgvPlatos.Size = new System.Drawing.Size(511, 263);
+            this.dgvPlatos.Size = new System.Drawing.Size(374, 263);
             this.dgvPlatos.TabIndex = 3;
             this.dgvPlatos.SelectionChanged += new System.EventHandler(this.dgvBebidas_SelectionChanged);
             // 
@@ -79,7 +79,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(341, 418);
+            this.btnConfirmar.Location = new System.Drawing.Point(408, 398);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(205, 47);
             this.btnConfirmar.TabIndex = 12;
@@ -97,7 +97,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(552, 418);
+            this.btnCancelar.Location = new System.Drawing.Point(619, 398);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(205, 47);
             this.btnCancelar.TabIndex = 11;
@@ -115,17 +115,17 @@ namespace Trabajo_Final
             this.grpIngredientes.Controls.Add(this.lblCantiBeb);
             this.grpIngredientes.Controls.Add(this.txtCantBebidas);
             this.grpIngredientes.Controls.Add(this.dgvPlatos);
-            this.grpIngredientes.Location = new System.Drawing.Point(27, 12);
+            this.grpIngredientes.Location = new System.Drawing.Point(18, 12);
             this.grpIngredientes.Name = "grpIngredientes";
-            this.grpIngredientes.Size = new System.Drawing.Size(1059, 380);
+            this.grpIngredientes.Size = new System.Drawing.Size(806, 380);
             this.grpIngredientes.TabIndex = 14;
             this.grpIngredientes.TabStop = false;
-            this.grpIngredientes.Text = "Ingredientes";
+            this.grpIngredientes.Text = "Listado de Platos En Orden";
             // 
             // lblCantIngred
             // 
             this.lblCantIngred.AutoSize = true;
-            this.lblCantIngred.Location = new System.Drawing.Point(539, 311);
+            this.lblCantIngred.Location = new System.Drawing.Point(409, 311);
             this.lblCantIngred.Name = "lblCantIngred";
             this.lblCantIngred.Size = new System.Drawing.Size(166, 17);
             this.lblCantIngred.TabIndex = 22;
@@ -133,7 +133,7 @@ namespace Trabajo_Final
             // 
             // txtCantiIngred
             // 
-            this.txtCantiIngred.Location = new System.Drawing.Point(764, 306);
+            this.txtCantiIngred.Location = new System.Drawing.Point(634, 306);
             this.txtCantiIngred.Name = "txtCantiIngred";
             this.txtCantiIngred.ReadOnly = true;
             this.txtCantiIngred.Size = new System.Drawing.Size(149, 22);
@@ -145,12 +145,12 @@ namespace Trabajo_Final
             this.dgvReceta.AllowUserToAddRows = false;
             this.dgvReceta.AllowUserToDeleteRows = false;
             this.dgvReceta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceta.Location = new System.Drawing.Point(542, 36);
+            this.dgvReceta.Location = new System.Drawing.Point(414, 36);
             this.dgvReceta.Name = "dgvReceta";
             this.dgvReceta.ReadOnly = true;
             this.dgvReceta.RowHeadersWidth = 51;
             this.dgvReceta.RowTemplate.Height = 24;
-            this.dgvReceta.Size = new System.Drawing.Size(511, 263);
+            this.dgvReceta.Size = new System.Drawing.Size(371, 263);
             this.dgvReceta.TabIndex = 20;
             // 
             // lblCantiBeb
@@ -158,9 +158,9 @@ namespace Trabajo_Final
             this.lblCantiBeb.AutoSize = true;
             this.lblCantiBeb.Location = new System.Drawing.Point(6, 316);
             this.lblCantiBeb.Name = "lblCantiBeb";
-            this.lblCantiBeb.Size = new System.Drawing.Size(155, 17);
+            this.lblCantiBeb.Size = new System.Drawing.Size(143, 17);
             this.lblCantiBeb.TabIndex = 19;
-            this.lblCantiBeb.Text = "Cantidad Total Bebidas";
+            this.lblCantiBeb.Text = "Cantidad Total Platos";
             // 
             // txtCantBebidas
             // 
@@ -177,10 +177,10 @@ namespace Trabajo_Final
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1098, 478);
+            this.ClientSize = new System.Drawing.Size(843, 459);
             this.Controls.Add(this.btnConfirmar);
-            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpIngredientes);
+            this.Controls.Add(this.btnCancelar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmPlatosEnOrden";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

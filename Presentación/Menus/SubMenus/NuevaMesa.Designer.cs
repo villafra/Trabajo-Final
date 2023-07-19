@@ -67,7 +67,7 @@ namespace Trabajo_Final
             this.chkActivo.Location = new System.Drawing.Point(306, 222);
             this.chkActivo.Name = "chkActivo";
             this.chkActivo.Size = new System.Drawing.Size(68, 21);
-            this.chkActivo.TabIndex = 13;
+            this.chkActivo.TabIndex = 3;
             this.chkActivo.Text = "Activo";
             this.chkActivo.UseVisualStyleBackColor = true;
             // 
@@ -77,7 +77,7 @@ namespace Trabajo_Final
             this.lblUbicacion.Location = new System.Drawing.Point(20, 169);
             this.lblUbicacion.Name = "lblUbicacion";
             this.lblUbicacion.Size = new System.Drawing.Size(70, 17);
-            this.lblUbicacion.TabIndex = 12;
+            this.lblUbicacion.TabIndex = 0;
             this.lblUbicacion.Text = "Ubicación";
             // 
             // txtCodigo
@@ -87,6 +87,7 @@ namespace Trabajo_Final
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
             this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
             // 
             // comboUbicacion
             // 
@@ -94,7 +95,7 @@ namespace Trabajo_Final
             this.comboUbicacion.Location = new System.Drawing.Point(147, 166);
             this.comboUbicacion.Name = "comboUbicacion";
             this.comboUbicacion.Size = new System.Drawing.Size(257, 24);
-            this.comboUbicacion.TabIndex = 8;
+            this.comboUbicacion.TabIndex = 2;
             // 
             // lblCantidad
             // 
@@ -102,7 +103,7 @@ namespace Trabajo_Final
             this.lblCantidad.Location = new System.Drawing.Point(20, 105);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(75, 17);
-            this.lblCantidad.TabIndex = 4;
+            this.lblCantidad.TabIndex = 0;
             this.lblCantidad.Text = "Capacidad";
             // 
             // lblCodigo
@@ -111,7 +112,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // txtCapacidad
@@ -133,7 +134,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(323, 315);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 4;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;

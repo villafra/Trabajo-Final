@@ -82,7 +82,7 @@ namespace Trabajo_Final
             this.lblNroFac.Location = new System.Drawing.Point(20, 173);
             this.lblNroFac.Name = "lblNroFac";
             this.lblNroFac.Size = new System.Drawing.Size(83, 17);
-            this.lblNroFac.TabIndex = 39;
+            this.lblNroFac.TabIndex = 0;
             this.lblNroFac.Text = "Nro Factura";
             // 
             // txtNroFac
@@ -90,7 +90,7 @@ namespace Trabajo_Final
             this.txtNroFac.Location = new System.Drawing.Point(174, 170);
             this.txtNroFac.Name = "txtNroFac";
             this.txtNroFac.Size = new System.Drawing.Size(257, 22);
-            this.txtNroFac.TabIndex = 38;
+            this.txtNroFac.TabIndex = 1;
             // 
             // dtpFechaLote
             // 
@@ -99,7 +99,7 @@ namespace Trabajo_Final
             this.dtpFechaLote.Location = new System.Drawing.Point(174, 422);
             this.dtpFechaLote.Name = "dtpFechaLote";
             this.dtpFechaLote.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaLote.TabIndex = 37;
+            this.dtpFechaLote.TabIndex = 5;
             // 
             // lblFechaCreacion
             // 
@@ -107,7 +107,7 @@ namespace Trabajo_Final
             this.lblFechaCreacion.Location = new System.Drawing.Point(20, 421);
             this.lblFechaCreacion.Name = "lblFechaCreacion";
             this.lblFechaCreacion.Size = new System.Drawing.Size(127, 17);
-            this.lblFechaCreacion.TabIndex = 36;
+            this.lblFechaCreacion.TabIndex = 0;
             this.lblFechaCreacion.Text = "Fecha de Creación";
             // 
             // lblLote
@@ -116,7 +116,7 @@ namespace Trabajo_Final
             this.lblLote.Location = new System.Drawing.Point(20, 359);
             this.lblLote.Name = "lblLote";
             this.lblLote.Size = new System.Drawing.Size(36, 17);
-            this.lblLote.TabIndex = 35;
+            this.lblLote.TabIndex = 0;
             this.lblLote.Text = "Lote";
             // 
             // txtLote
@@ -124,7 +124,7 @@ namespace Trabajo_Final
             this.txtLote.Location = new System.Drawing.Point(174, 359);
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(257, 22);
-            this.txtLote.TabIndex = 34;
+            this.txtLote.TabIndex = 4;
             this.txtLote.Leave += new System.EventHandler(this.txtLote_Leave);
             // 
             // txtIngrediente
@@ -134,6 +134,7 @@ namespace Trabajo_Final
             this.txtIngrediente.ReadOnly = true;
             this.txtIngrediente.Size = new System.Drawing.Size(257, 22);
             this.txtIngrediente.TabIndex = 33;
+            this.txtIngrediente.TabStop = false;
             // 
             // dtpFechaArribo
             // 
@@ -142,7 +143,7 @@ namespace Trabajo_Final
             this.dtpFechaArribo.Location = new System.Drawing.Point(174, 296);
             this.dtpFechaArribo.Name = "dtpFechaArribo";
             this.dtpFechaArribo.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaArribo.TabIndex = 32;
+            this.dtpFechaArribo.TabIndex = 3;
             // 
             // lblFechaArribo
             // 
@@ -150,7 +151,7 @@ namespace Trabajo_Final
             this.lblFechaArribo.Location = new System.Drawing.Point(20, 297);
             this.lblFechaArribo.Name = "lblFechaArribo";
             this.lblFechaArribo.Size = new System.Drawing.Size(118, 17);
-            this.lblFechaArribo.TabIndex = 31;
+            this.lblFechaArribo.TabIndex = 0;
             this.lblFechaArribo.Text = "Fecha de Ingreso";
             // 
             // lblIngrediente
@@ -159,7 +160,7 @@ namespace Trabajo_Final
             this.lblIngrediente.Location = new System.Drawing.Point(20, 111);
             this.lblIngrediente.Name = "lblIngrediente";
             this.lblIngrediente.Size = new System.Drawing.Size(79, 17);
-            this.lblIngrediente.TabIndex = 24;
+            this.lblIngrediente.TabIndex = 0;
             this.lblIngrediente.Text = "Ingrediente";
             // 
             // numCantidad
@@ -173,7 +174,7 @@ namespace Trabajo_Final
             0});
             this.numCantidad.Name = "numCantidad";
             this.numCantidad.Size = new System.Drawing.Size(257, 22);
-            this.numCantidad.TabIndex = 20;
+            this.numCantidad.TabIndex = 2;
             this.numCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCodigo
@@ -183,6 +184,7 @@ namespace Trabajo_Final
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
             this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
             // 
             // lblCantidad
             // 
@@ -190,7 +192,7 @@ namespace Trabajo_Final
             this.lblCantidad.Location = new System.Drawing.Point(20, 235);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(64, 17);
-            this.lblCantidad.TabIndex = 7;
+            this.lblCantidad.TabIndex = 0;
             this.lblCantidad.Text = "Cantidad";
             // 
             // lblCodigo
@@ -199,7 +201,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // btnCancelar
@@ -214,7 +216,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(323, 516);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -238,7 +240,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Location = new System.Drawing.Point(24, 516);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
-            this.btnConfirmar.TabIndex = 3;
+            this.btnConfirmar.TabIndex = 6;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;

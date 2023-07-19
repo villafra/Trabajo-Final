@@ -36,11 +36,16 @@ namespace Trabajo_Final
         {
             try
             {
-                if (_ = oBE_Compra != null ? Viejo() : Nuevo())
+                if (Cálculos.Camposvacios(grpNuevoLogin))
                 {
-                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    if (_ = oBE_Compra != null ? Viejo() : Nuevo())
+                    {
+                        Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    }
+                    else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
                 }
-                else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios"); }
+               
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
 

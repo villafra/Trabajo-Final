@@ -131,10 +131,9 @@ namespace Trabajo_Final
             // flowPanel
             // 
             this.flowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.flowPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowPanel.Location = new System.Drawing.Point(0, 246);
+            this.flowPanel.Location = new System.Drawing.Point(14, 234);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(258, 719);
+            this.flowPanel.Size = new System.Drawing.Size(244, 731);
             this.flowPanel.TabIndex = 12;
             // 
             // picboxPanel
@@ -157,7 +156,7 @@ namespace Trabajo_Final
             this.BbtnBebidas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BbtnBebidas.Name = "BbtnBebidas";
             this.BbtnBebidas.Size = new System.Drawing.Size(230, 84);
-            this.BbtnBebidas.TabIndex = 16;
+            this.BbtnBebidas.TabIndex = 5;
             this.BbtnBebidas.Tag = "Comp22";
             this.BbtnBebidas.Text = "Bebidas";
             this.BbtnBebidas.UseVisualStyleBackColor = true;
@@ -182,7 +181,7 @@ namespace Trabajo_Final
             this.AbtnMesasLibres.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AbtnMesasLibres.Name = "AbtnMesasLibres";
             this.AbtnMesasLibres.Size = new System.Drawing.Size(230, 84);
-            this.AbtnMesasLibres.TabIndex = 15;
+            this.AbtnMesasLibres.TabIndex = 4;
             this.AbtnMesasLibres.Tag = "Comp28";
             this.AbtnMesasLibres.Text = "Mesas Libres";
             this.AbtnMesasLibres.UseVisualStyleBackColor = true;
@@ -197,7 +196,7 @@ namespace Trabajo_Final
             this.DbtnDashEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DbtnDashEmpleados.Name = "DbtnDashEmpleados";
             this.DbtnDashEmpleados.Size = new System.Drawing.Size(230, 84);
-            this.DbtnDashEmpleados.TabIndex = 13;
+            this.DbtnDashEmpleados.TabIndex = 7;
             this.DbtnDashEmpleados.Tag = "Comp3";
             this.DbtnDashEmpleados.Text = "Asistencia";
             this.DbtnDashEmpleados.UseVisualStyleBackColor = true;
@@ -212,7 +211,7 @@ namespace Trabajo_Final
             this.EbtnInformes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.EbtnInformes.Name = "EbtnInformes";
             this.EbtnInformes.Size = new System.Drawing.Size(230, 84);
-            this.EbtnInformes.TabIndex = 14;
+            this.EbtnInformes.TabIndex = 8;
             this.EbtnInformes.Tag = "Comp5";
             this.EbtnInformes.Text = "Dashboard";
             this.EbtnInformes.UseVisualStyleBackColor = true;
@@ -226,7 +225,7 @@ namespace Trabajo_Final
             this.CbtnPlatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CbtnPlatos.Name = "CbtnPlatos";
             this.CbtnPlatos.Size = new System.Drawing.Size(230, 84);
-            this.CbtnPlatos.TabIndex = 17;
+            this.CbtnPlatos.TabIndex = 6;
             this.CbtnPlatos.Tag = "Comp24";
             this.CbtnPlatos.Text = "Platos";
             this.CbtnPlatos.UseVisualStyleBackColor = true;
@@ -239,7 +238,8 @@ namespace Trabajo_Final
             this.txtUsuarioActivo.Name = "txtUsuarioActivo";
             this.txtUsuarioActivo.ReadOnly = true;
             this.txtUsuarioActivo.Size = new System.Drawing.Size(258, 22);
-            this.txtUsuarioActivo.TabIndex = 12;
+            this.txtUsuarioActivo.TabIndex = 0;
+            this.txtUsuarioActivo.TabStop = false;
             this.txtUsuarioActivo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // menuStrip
@@ -261,6 +261,7 @@ namespace Trabajo_Final
             this.menuStrip.Padding = new System.Windows.Forms.Padding(255, 2, 0, 2);
             this.menuStrip.Size = new System.Drawing.Size(1640, 35);
             this.menuStrip.TabIndex = 1;
+            this.menuStrip.TabStop = true;
             this.menuStrip.Text = "menuStrip1";
             this.menuStrip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStrip_MouseDown);
             // 
@@ -820,7 +821,7 @@ namespace Trabajo_Final
             this.btnMinimizar.Location = new System.Drawing.Point(1500, 0);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Size = new System.Drawing.Size(47, 34);
-            this.btnMinimizar.TabIndex = 14;
+            this.btnMinimizar.TabIndex = 2;
             this.btnMinimizar.UseVisualStyleBackColor = false;
             this.btnMinimizar.Click += new System.EventHandler(this.btnMinimizar_Click);
             // 
@@ -834,7 +835,7 @@ namespace Trabajo_Final
             this.btnCerrar.Location = new System.Drawing.Point(1553, 0);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(47, 34);
-            this.btnCerrar.TabIndex = 13;
+            this.btnCerrar.TabIndex = 3;
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 

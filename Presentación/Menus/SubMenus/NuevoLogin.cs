@@ -37,19 +37,19 @@ namespace Trabajo_Final
             {
                 if (_ = oBE_Login != null ? Viejo() : Nuevo()) Cálculos.MsgBox("Los datos se han guardado correctamente");
                 else throw new RestaurantException("La carga de datos ha fallado. Intente Nuevamente.");
-                
-            }catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         
         }
 
         private bool Viejo()
         {
-           
-                oBE_Login.Codigo = Convert.ToInt32(txtCodigo.Text);
-                oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
-                oBE_Login.Usuario = txtUsuario.Text;
-                oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
-                oBE_Login.Permiso = (BE_Permiso)comboPermiso.SelectedItem;
+
+            oBE_Login.Codigo = Convert.ToInt32(txtCodigo.Text);
+            oBE_Login.Empleado = (BE_Empleado)comboEmpleado.SelectedItem;
+            oBE_Login.Usuario = txtUsuario.Text;
+            oBE_Login.Password = Encriptacion.EncriptarPass(txtPass.Text);
+            oBE_Login.Permiso = (BE_Permiso)comboPermiso.SelectedItem;
             if (Cálculos.EstaSeguroM(oBE_Login.Usuario))
             {
                 if (Cálculos.Camposvacios(grpNuevoLogin))
@@ -57,10 +57,10 @@ namespace Trabajo_Final
                     return oBLL_Login.Modificar(oBE_Login);
                 }
                 else { throw new RestaurantException("Por favor, complete los campos obligatorios."); }
-                
+
             }
             else { throw new RestaurantException("Se ha cancelado la modificación"); }
-  
+
         }
 
         private bool Nuevo()
@@ -104,12 +104,14 @@ namespace Trabajo_Final
 
         private void btnDesencriptar_MouseDown(object sender, MouseEventArgs e)
         {
-            txtPass.Text = Encriptacion.DesencriptarPass(txtPass.Text);
+            if (txtPass.Text.Length > 0 )
+                txtPass.Text = Encriptacion.DesencriptarPass(txtPass.Text);
         }
 
         private void btnDesencriptar_MouseUp(object sender, MouseEventArgs e)
         {
             txtPass.Text = Encriptacion.EncriptarPass(txtPass.Text);
         }
+
     }
 }

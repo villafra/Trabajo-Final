@@ -31,14 +31,19 @@ namespace Trabajo_Final
         {
             try
             {
-                if (_ = oBE_Empleado != null ? Viejo() : Nuevo())
+                if (Cálculos.Camposvacios(grpNuevoLogin))
                 {
-                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    if (Validaciones())
+                    {
+                        if (_ = oBE_Empleado != null ? Viejo() : Nuevo())
+                        {
+                            Cálculos.MsgBox("Los datos se han guardado correctamente");
+                        }
+                        else { throw new RestaurantException("La creación del nuevo empleado ha fallado. Por favor, intente nuevamente"); }
+                    }
                 }
-                else
-                {
-                    Cálculos.MsgBox("La creación del nuevo empleado ha fallado. Por favor, intente nuevamente");
-                }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios"); }
+                
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
@@ -99,8 +104,12 @@ namespace Trabajo_Final
             oBE_Empleado.FechaNacimiento = dtpFechaNac.Value;
             oBE_Empleado.FechaIngreso = dtpFechaIng.Value;
             oBE_Empleado.Categoria = (Category)Enum.Parse(typeof(Category), comboCategoria.SelectedItem.ToString());
-            return oBLL_Empleado.Guardar(oBE_Empleado);
-
+            
+            if (oBLL_Empleado.Existe(oBE_Empleado))
+            {
+                return oBLL_Empleado.Guardar(oBE_Empleado);
+            }
+            else { throw new RestaurantException("El empleado que intenta agregar, ya existe en base de datos."); }
         }
         private void ImportarEmpleado()
         {
@@ -124,6 +133,25 @@ namespace Trabajo_Final
         private void frmNuevoLogin_Load(object sender, EventArgs e)
         {
             ImportarEmpleado();
+        }
+
+        private void txtDNI_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Cálculos.ValidarEntero(e);
+        }
+
+        private void txtContacto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Cálculos.ValidarEntero(e);
+        }
+        private bool Validaciones()
+        {
+            bool pass = true;
+            if(!Cálculos.LargoDNI(txtDNI.Text)) { pass = false; throw new RestaurantException("El campo DNI no tiene el formato correcto"); }
+            if (!Cálculos.ValidarNombrePersonal(txtNombre.Text)) { pass = false; throw new RestaurantException("El campo de Nombre no tiene el formato correcto"); }
+            if (!Cálculos.ValidarApellido(txtApellido.Text)) { pass = false; throw new RestaurantException("El campo Apellido no tiene el formato correcto"); }
+            if (!Cálculos.ValidarEdad(dtpFechaNac.Value)) { pass = false; throw new RestaurantException("El empleado es menor de edad."); }
+            return pass;
         }
     }
 }

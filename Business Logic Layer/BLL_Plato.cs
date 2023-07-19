@@ -61,5 +61,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+
+        public bool Existe(BE_Plato plato)
+        {
+            return MPP_Plato.DevolverInstancia().Existe(plato);
+        }
     }
 }

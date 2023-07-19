@@ -69,37 +69,50 @@ namespace Trabajo_Final
             oBE_Bebida.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
             oBE_Bebida.VidaUtil = Convert.ToInt32(txtVidaUtil.Text);
             oBE_Bebida.GestionLote = chkLote.Checked;
-
-            return oBLL_Bebida.Modificar(oBE_Bebida);
+            if (Cálculos.EstaSeguroM(oBE_Bebida.Nombre))
+            {
+                if (Cálculos.Camposvacios(grpNuevoLogin))
+                {
+                    return oBLL_Bebida.Modificar(oBE_Bebida);
+                }
+                else { throw new RestaurantException("Por favor, complete los campos obligatorios."); }
+            }
+            else { throw new RestaurantException("Se ha cancelado la modificación"); }
         }
 
         private bool Nuevo()
         {
-            int tipo = (int)(Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
-
-            if (BebidaPreparada.Contains(tipo))
+            
+            if (Cálculos.Camposvacios(grpNuevoLogin))
             {
-                oBE_Bebida = new BE_Bebida_Preparada();
-                if (BebidaAlcoholica.Contains(tipo)) ((BE_Bebida_Preparada)oBE_Bebida).ABV = numABV.Value;
+                int tipo = (int)(Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
+                if (BebidaPreparada.Contains(tipo))
+                {
+                    oBE_Bebida = new BE_Bebida_Preparada();
+                    if (BebidaAlcoholica.Contains(tipo)) ((BE_Bebida_Preparada)oBE_Bebida).ABV = numABV.Value;
+                }
+                else if (BebidaAnalcoholica.Contains(tipo))
+                {
+                    oBE_Bebida = new BE_Bebida();
+                }
+                else
+                {
+                    oBE_Bebida = new BE_Bebida_Alcoholica();
+                    ((BE_Bebida_Alcoholica)oBE_Bebida).ABV = numABV.Value;
+                }
+                oBE_Bebida.Nombre = txtNombre.Text;
+                oBE_Bebida.Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
+                oBE_Bebida.Presentacion = numPresentacion.Value;
+                oBE_Bebida.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
+                oBE_Bebida.VidaUtil = Convert.ToInt32(txtVidaUtil.Text);
+                oBE_Bebida.GestionLote = chkLote.Checked;
+                if (oBLL_Bebida.Existe(oBE_Bebida))
+                {
+                    return oBLL_Bebida.Guardar(oBE_Bebida);
+                }
+                else throw new RestaurantException("El Empleado ya tiene un usuario designado.");
             }
-            else if (BebidaAnalcoholica.Contains(tipo))
-            {
-                oBE_Bebida = new BE_Bebida();
-            }
-            else
-            {
-                oBE_Bebida = new BE_Bebida_Alcoholica();
-                ((BE_Bebida_Alcoholica)oBE_Bebida).ABV = numABV.Value;
-            }
-            oBE_Bebida.Nombre = txtNombre.Text;
-            oBE_Bebida.Tipo = (Tipo_Bebida)Enum.Parse(typeof(Tipo_Bebida), comboTipo.SelectedItem.ToString());
-            oBE_Bebida.Presentacion = numPresentacion.Value;
-            oBE_Bebida.UnidadMedida = (UM)Enum.Parse(typeof(UM), comboUM.SelectedItem.ToString());
-            oBE_Bebida.VidaUtil = Convert.ToInt32(txtVidaUtil.Text);
-            oBE_Bebida.GestionLote = chkLote.Checked;
-
-            return oBLL_Bebida.Guardar(oBE_Bebida);
-
+            else throw new RestaurantException("Por favor, complete los campos obligatorios.");
         }
         private void ImportarBebida()
         {

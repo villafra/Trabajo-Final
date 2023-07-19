@@ -28,6 +28,7 @@ namespace Trabajo_Final
             Aspecto.FormatearSubMenu(this, grpNuevoLogin, this.Width, this.Height);
             Cálculos.DataSourceCombo(comboUbicacion, Enum.GetNames(typeof(Ubicacion)), "Ubicación");
             Cálculos.DataSourceCombo(comboMesaComb, oBLL_Mesa.ListarLibres(), "Mesas Libres");
+            txtCapacidad2.Text = "";
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -74,7 +75,11 @@ namespace Trabajo_Final
         {
             try
             {
-                txtCapacidad2.Text = ((BE_Mesa)comboMesaComb.SelectedItem).Capacidad.ToString();
+                if (comboMesaComb.Text != "")
+                {
+                    txtCapacidad2.Text = ((BE_Mesa)comboMesaComb.SelectedItem).Capacidad.ToString();
+                }
+                
             }
             catch { }
             

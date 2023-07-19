@@ -41,7 +41,10 @@ namespace Mapper
             ListadoXML.Add(CrearEmpleadoXML(empleado));
             return Xml_Database.DevolverInstancia().Escribir(ListadoXML);
         }
-
+        public bool Existe (BE_Empleado empleado)
+        {
+            return Xml_Database.DevolverInstancia().Existe(CrearEmpleadoXML(empleado), "DNI");
+        }
         public List<BE_Empleado> Listar()
         {
             DataSet ds = new DataSet();

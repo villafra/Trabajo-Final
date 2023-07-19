@@ -88,7 +88,7 @@ namespace Trabajo_Final
             this.txtVidaUtil.Location = new System.Drawing.Point(174, 349);
             this.txtVidaUtil.Name = "txtVidaUtil";
             this.txtVidaUtil.Size = new System.Drawing.Size(257, 22);
-            this.txtVidaUtil.TabIndex = 38;
+            this.txtVidaUtil.TabIndex = 5;
             // 
             // comboIngredientes
             // 
@@ -96,7 +96,7 @@ namespace Trabajo_Final
             this.comboIngredientes.Location = new System.Drawing.Point(175, 481);
             this.comboIngredientes.Name = "comboIngredientes";
             this.comboIngredientes.Size = new System.Drawing.Size(257, 24);
-            this.comboIngredientes.TabIndex = 37;
+            this.comboIngredientes.TabIndex = 7;
             this.comboIngredientes.Visible = false;
             // 
             // label1
@@ -105,7 +105,7 @@ namespace Trabajo_Final
             this.label1.Location = new System.Drawing.Point(21, 484);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 17);
-            this.label1.TabIndex = 36;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Lista Ingredientes";
             this.label1.Visible = false;
             // 
@@ -120,7 +120,7 @@ namespace Trabajo_Final
             0});
             this.numABV.Name = "numABV";
             this.numABV.Size = new System.Drawing.Size(257, 22);
-            this.numABV.TabIndex = 35;
+            this.numABV.TabIndex = 6;
             this.numABV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numABV.Visible = false;
             // 
@@ -130,7 +130,7 @@ namespace Trabajo_Final
             this.lblABV.Location = new System.Drawing.Point(20, 421);
             this.lblABV.Name = "lblABV";
             this.lblABV.Size = new System.Drawing.Size(35, 17);
-            this.lblABV.TabIndex = 34;
+            this.lblABV.TabIndex = 0;
             this.lblABV.Text = "ABV";
             this.lblABV.Visible = false;
             // 
@@ -140,7 +140,7 @@ namespace Trabajo_Final
             this.chkLote.Location = new System.Drawing.Point(246, 534);
             this.chkLote.Name = "chkLote";
             this.chkLote.Size = new System.Drawing.Size(135, 21);
-            this.chkLote.TabIndex = 33;
+            this.chkLote.TabIndex = 7;
             this.chkLote.Text = "Gestionado Lote";
             this.chkLote.UseVisualStyleBackColor = true;
             // 
@@ -150,7 +150,7 @@ namespace Trabajo_Final
             this.comboUM.Location = new System.Drawing.Point(174, 290);
             this.comboUM.Name = "comboUM";
             this.comboUM.Size = new System.Drawing.Size(257, 24);
-            this.comboUM.TabIndex = 32;
+            this.comboUM.TabIndex = 4;
             // 
             // lblUM
             // 
@@ -158,7 +158,7 @@ namespace Trabajo_Final
             this.lblUM.Location = new System.Drawing.Point(20, 293);
             this.lblUM.Name = "lblUM";
             this.lblUM.Size = new System.Drawing.Size(123, 17);
-            this.lblUM.TabIndex = 31;
+            this.lblUM.TabIndex = 0;
             this.lblUM.Text = "Unidad de Medida";
             // 
             // txtNombre
@@ -166,7 +166,7 @@ namespace Trabajo_Final
             this.txtNombre.Location = new System.Drawing.Point(174, 105);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(257, 22);
-            this.txtNombre.TabIndex = 30;
+            this.txtNombre.TabIndex = 1;
             // 
             // lblNombre
             // 
@@ -174,7 +174,7 @@ namespace Trabajo_Final
             this.lblNombre.Location = new System.Drawing.Point(20, 110);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(58, 17);
-            this.lblNombre.TabIndex = 29;
+            this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
             // comboTipo
@@ -183,7 +183,7 @@ namespace Trabajo_Final
             this.comboTipo.Location = new System.Drawing.Point(174, 166);
             this.comboTipo.Name = "comboTipo";
             this.comboTipo.Size = new System.Drawing.Size(257, 24);
-            this.comboTipo.TabIndex = 25;
+            this.comboTipo.TabIndex = 2;
             this.comboTipo.SelectedIndexChanged += new System.EventHandler(this.comboTipo_SelectedIndexChanged);
             // 
             // lblTipo
@@ -192,7 +192,7 @@ namespace Trabajo_Final
             this.lblTipo.Location = new System.Drawing.Point(20, 171);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(84, 17);
-            this.lblTipo.TabIndex = 24;
+            this.lblTipo.TabIndex = 0;
             this.lblTipo.Text = "Tipo Bebida";
             // 
             // numPresentacion
@@ -206,7 +206,7 @@ namespace Trabajo_Final
             0});
             this.numPresentacion.Name = "numPresentacion";
             this.numPresentacion.Size = new System.Drawing.Size(257, 22);
-            this.numPresentacion.TabIndex = 20;
+            this.numPresentacion.TabIndex = 3;
             this.numPresentacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblVidaUtil
@@ -215,7 +215,7 @@ namespace Trabajo_Final
             this.lblVidaUtil.Location = new System.Drawing.Point(20, 354);
             this.lblVidaUtil.Name = "lblVidaUtil";
             this.lblVidaUtil.Size = new System.Drawing.Size(60, 17);
-            this.lblVidaUtil.TabIndex = 19;
+            this.lblVidaUtil.TabIndex = 0;
             this.lblVidaUtil.Text = "Vida Util";
             // 
             // txtCodigo
@@ -225,6 +225,7 @@ namespace Trabajo_Final
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
             this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
             // 
             // lblPresentación
             // 
@@ -232,7 +233,7 @@ namespace Trabajo_Final
             this.lblPresentación.Location = new System.Drawing.Point(20, 232);
             this.lblPresentación.Name = "lblPresentación";
             this.lblPresentación.Size = new System.Drawing.Size(91, 17);
-            this.lblPresentación.TabIndex = 7;
+            this.lblPresentación.TabIndex = 0;
             this.lblPresentación.Text = "Presentación";
             // 
             // lblCodigo
@@ -241,7 +242,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 49);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // btnCancelar
@@ -256,7 +257,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(323, 602);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -281,7 +282,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Location = new System.Drawing.Point(30, 602);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
-            this.btnConfirmar.TabIndex = 3;
+            this.btnConfirmar.TabIndex = 8;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;

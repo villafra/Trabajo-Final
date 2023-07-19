@@ -37,14 +37,17 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBebidas, oBE_Orden.ID_Pedido.ListadeBebida);
+            VistasDGV.dgvBebidasOrden(dgvBebidas);
             txtCantBebidas.Text = oBE_Orden.ID_Pedido.ListadeBebida.Count().ToString();
         }
         
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             oBE_Orden.Status = StatusOrden.En_Espera_Bebidas;
-            oBLL_Orden.Modificar(oBE_Orden);
-            this.Close();
+            if (oBLL_Orden.Modificar(oBE_Orden))
+            {
+                this.Close();
+            }
         }
 
         private void dgvBebidas_SelectionChanged(object sender, EventArgs e)
@@ -53,6 +56,7 @@ namespace Trabajo_Final
             {
                 oBE_Bebida = (BE_Bebida_Preparada)dgvBebidas.SelectedRows[0].DataBoundItem;
                 Cálculos.RefreshGrilla(dgvReceta, oBLL_BebidaReceta.BebidaEnOrden(oBE_Bebida));
+                VistasDGV.dgvIngEnBeb(dgvReceta);
                 txtCantiIngred.Text =  dgvReceta.RowCount.ToString();
             }
             catch { Cálculos.GrillaEnBlanco(dgvReceta); txtCantiIngred.Text = ""; }
@@ -94,5 +98,6 @@ namespace Trabajo_Final
             }
             
         }
+
     }
 }

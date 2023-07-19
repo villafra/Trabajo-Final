@@ -31,21 +31,21 @@
             this.flowPlatos = new System.Windows.Forms.FlowLayoutPanel();
             this.flowBebidas = new System.Windows.Forms.FlowLayoutPanel();
             this.grpArmaPedido = new System.Windows.Forms.GroupBox();
-            this.flowPedido = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnCrearOrden = new System.Windows.Forms.Button();
             this.btnIzquierdaPedido = new System.Windows.Forms.Button();
             this.btnIzquierdaPlatos = new System.Windows.Forms.Button();
             this.btnIzquierdaBebidas = new System.Windows.Forms.Button();
             this.btnDerechaPedido = new System.Windows.Forms.Button();
             this.btnDerechaPlatos = new System.Windows.Forms.Button();
             this.btnDerechaBebidas = new System.Windows.Forms.Button();
+            this.flowPedido = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCrearOrden = new System.Windows.Forms.Button();
             this.grpArmaPedido.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowPlatos
             // 
             this.flowPlatos.BackColor = System.Drawing.SystemColors.Control;
-            this.flowPlatos.Location = new System.Drawing.Point(600, 290);
+            this.flowPlatos.Location = new System.Drawing.Point(611, 290);
             this.flowPlatos.Name = "flowPlatos";
             this.flowPlatos.Size = new System.Drawing.Size(54, 260);
             this.flowPlatos.TabIndex = 14;
@@ -53,9 +53,9 @@
             // flowBebidas
             // 
             this.flowBebidas.BackColor = System.Drawing.SystemColors.Control;
-            this.flowBebidas.Location = new System.Drawing.Point(605, 21);
+            this.flowBebidas.Location = new System.Drawing.Point(611, 21);
             this.flowBebidas.Name = "flowBebidas";
-            this.flowBebidas.Size = new System.Drawing.Size(49, 260);
+            this.flowBebidas.Size = new System.Drawing.Size(54, 260);
             this.flowBebidas.TabIndex = 12;
             // 
             // grpArmaPedido
@@ -75,27 +75,6 @@
             this.grpArmaPedido.TabIndex = 17;
             this.grpArmaPedido.TabStop = false;
             this.grpArmaPedido.Text = "Armar Pedido";
-            // 
-            // flowPedido
-            // 
-            this.flowPedido.BackColor = System.Drawing.SystemColors.Control;
-            this.flowPedido.Location = new System.Drawing.Point(600, 559);
-            this.flowPedido.Name = "flowPedido";
-            this.flowPedido.Size = new System.Drawing.Size(54, 260);
-            this.flowPedido.TabIndex = 18;
-            // 
-            // btnCrearOrden
-            // 
-            this.btnCrearOrden.BackgroundImage = global::Trabajo_Final.Properties.Resources.pedido_en_linea__1_;
-            this.btnCrearOrden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnCrearOrden.FlatAppearance.BorderSize = 0;
-            this.btnCrearOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCrearOrden.Location = new System.Drawing.Point(1167, 843);
-            this.btnCrearOrden.Name = "btnCrearOrden";
-            this.btnCrearOrden.Size = new System.Drawing.Size(120, 110);
-            this.btnCrearOrden.TabIndex = 15;
-            this.btnCrearOrden.UseVisualStyleBackColor = true;
-            this.btnCrearOrden.Click += new System.EventHandler(this.btnCrearOrden_Click);
             // 
             // btnIzquierdaPedido
             // 
@@ -180,6 +159,27 @@
             this.btnDerechaBebidas.TabIndex = 19;
             this.btnDerechaBebidas.UseVisualStyleBackColor = false;
             this.btnDerechaBebidas.Visible = false;
+            // 
+            // flowPedido
+            // 
+            this.flowPedido.BackColor = System.Drawing.SystemColors.Control;
+            this.flowPedido.Location = new System.Drawing.Point(600, 559);
+            this.flowPedido.Name = "flowPedido";
+            this.flowPedido.Size = new System.Drawing.Size(54, 260);
+            this.flowPedido.TabIndex = 18;
+            // 
+            // btnCrearOrden
+            // 
+            this.btnCrearOrden.BackgroundImage = global::Trabajo_Final.Properties.Resources.pedido_en_linea__1_;
+            this.btnCrearOrden.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCrearOrden.FlatAppearance.BorderSize = 0;
+            this.btnCrearOrden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCrearOrden.Location = new System.Drawing.Point(1167, 843);
+            this.btnCrearOrden.Name = "btnCrearOrden";
+            this.btnCrearOrden.Size = new System.Drawing.Size(120, 110);
+            this.btnCrearOrden.TabIndex = 15;
+            this.btnCrearOrden.UseVisualStyleBackColor = true;
+            this.btnCrearOrden.Click += new System.EventHandler(this.btnCrearOrden_Click);
             // 
             // frmTomarPedido
             // 

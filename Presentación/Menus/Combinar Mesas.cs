@@ -34,7 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMesas, oBLL_Mesa.ListarLibres());
-            dgvMesas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            
         }
         public void Centrar()
         {
@@ -64,13 +64,17 @@ namespace Trabajo_Final
         {
             try
             {
-                if (oBLL_Mesa.DescombinarMesa(oBE_Mesa as BE_MesaCombinada))
+                if (oBE_Mesa is BE_MesaCombinada)
                 {
-                    ActualizarListado();
-                    Centrar();
-                    Cálculos.MsgBox("Las mesas se han descombinado satisfactoriamente.");
+                    if (oBLL_Mesa.DescombinarMesa(oBE_Mesa as BE_MesaCombinada))
+                    {
+                        ActualizarListado();
+                        Centrar();
+                        Cálculos.MsgBox("Las mesas se han descombinado satisfactoriamente.");
+                    }
+                    else { throw new RestaurantException("La descombinación de la mesa ha fallado, por favor, intente nuevmanente."); }
                 }
-                else { throw new RestaurantException("La mesa seleccionada no es combinada."); }
+                else { throw new RestaurantException("La mesa seleccionada no es combinada"); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
         }

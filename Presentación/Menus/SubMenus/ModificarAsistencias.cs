@@ -38,11 +38,23 @@ namespace Trabajo_Final
         {
             try
             {
+                if (Validaciones())
+                {
                 if (Nuevo()) Cálculos.MsgBox("Los datos se han guardado correctamente");
                 else throw new RestaurantException("La carga de datos ha fallado. Intente Nuevamente.");
+                }
+                else { throw new RestaurantException("La hora de ingreso es posterior a la hora de egreso."); }
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
+
+        private bool Validaciones()
+        {
+            bool pass;
+            pass = dtpHoraIngreso.Value <= dtpHoraEgreso.Value;
+            return pass;
+        }
+
         private bool Nuevo()
         {
             oBE_Asistencia.Asistencia = rdAsistencia.Checked;

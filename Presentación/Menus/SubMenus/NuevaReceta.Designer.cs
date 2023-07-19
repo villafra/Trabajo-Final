@@ -62,13 +62,14 @@ namespace Trabajo_Final
             this.dgvReceta.AllowUserToAddRows = false;
             this.dgvReceta.AllowUserToDeleteRows = false;
             this.dgvReceta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceta.Location = new System.Drawing.Point(13, 90);
+            this.dgvReceta.Location = new System.Drawing.Point(344, 90);
             this.dgvReceta.Name = "dgvReceta";
             this.dgvReceta.ReadOnly = true;
             this.dgvReceta.RowHeadersWidth = 51;
             this.dgvReceta.RowTemplate.Height = 24;
-            this.dgvReceta.Size = new System.Drawing.Size(677, 263);
+            this.dgvReceta.Size = new System.Drawing.Size(49, 263);
             this.dgvReceta.TabIndex = 3;
+            this.dgvReceta.TabStop = false;
             // 
             // grpReceta
             // 
@@ -81,7 +82,7 @@ namespace Trabajo_Final
             this.grpReceta.Location = new System.Drawing.Point(26, 12);
             this.grpReceta.Name = "grpReceta";
             this.grpReceta.Size = new System.Drawing.Size(706, 168);
-            this.grpReceta.TabIndex = 4;
+            this.grpReceta.TabIndex = 0;
             this.grpReceta.TabStop = false;
             this.grpReceta.Text = "Datos de La Receta";
             // 
@@ -91,6 +92,7 @@ namespace Trabajo_Final
             this.txtLote.Name = "txtLote";
             this.txtLote.Size = new System.Drawing.Size(216, 22);
             this.txtLote.TabIndex = 9;
+            this.txtLote.TabStop = false;
             this.txtLote.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblLote
@@ -99,7 +101,7 @@ namespace Trabajo_Final
             this.lblLote.Location = new System.Drawing.Point(431, 27);
             this.lblLote.Name = "lblLote";
             this.lblLote.Size = new System.Drawing.Size(169, 17);
-            this.lblLote.TabIndex = 8;
+            this.lblLote.TabIndex = 0;
             this.lblLote.Text = "Tamaño Lote Por defecto";
             // 
             // txtBebida
@@ -108,6 +110,7 @@ namespace Trabajo_Final
             this.txtBebida.Name = "txtBebida";
             this.txtBebida.Size = new System.Drawing.Size(216, 22);
             this.txtBebida.TabIndex = 7;
+            this.txtBebida.TabStop = false;
             this.txtBebida.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtAlternativa
@@ -115,7 +118,7 @@ namespace Trabajo_Final
             this.txtAlternativa.Location = new System.Drawing.Point(19, 120);
             this.txtAlternativa.Name = "txtAlternativa";
             this.txtAlternativa.Size = new System.Drawing.Size(393, 22);
-            this.txtAlternativa.TabIndex = 6;
+            this.txtAlternativa.TabIndex = 1;
             this.txtAlternativa.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lbl2
@@ -124,7 +127,7 @@ namespace Trabajo_Final
             this.lbl2.Location = new System.Drawing.Point(16, 96);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(75, 17);
-            this.lbl2.TabIndex = 5;
+            this.lbl2.TabIndex = 0;
             this.lbl2.Text = "Alternativa";
             // 
             // lbl1
@@ -133,7 +136,7 @@ namespace Trabajo_Final
             this.lbl1.Location = new System.Drawing.Point(16, 27);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(52, 17);
-            this.lbl1.TabIndex = 4;
+            this.lbl1.TabIndex = 0;
             this.lbl1.Text = "Bebida";
             // 
             // Listado
@@ -152,7 +155,7 @@ namespace Trabajo_Final
             this.comboIngrediente.Location = new System.Drawing.Point(13, 50);
             this.comboIngrediente.Name = "comboIngrediente";
             this.comboIngrediente.Size = new System.Drawing.Size(353, 24);
-            this.comboIngrediente.TabIndex = 5;
+            this.comboIngrediente.TabIndex = 2;
             // 
             // txtCantidad
             // 
@@ -160,6 +163,7 @@ namespace Trabajo_Final
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(149, 22);
             this.txtCantidad.TabIndex = 10;
+            this.txtCantidad.Text = "3";
             this.txtCantidad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
@@ -175,7 +179,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Location = new System.Drawing.Point(450, 603);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
-            this.btnConfirmar.TabIndex = 12;
+            this.btnConfirmar.TabIndex = 6;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -193,7 +197,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(594, 603);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -215,7 +219,7 @@ namespace Trabajo_Final
             this.grpIngredientes.Location = new System.Drawing.Point(27, 186);
             this.grpIngredientes.Name = "grpIngredientes";
             this.grpIngredientes.Size = new System.Drawing.Size(705, 411);
-            this.grpIngredientes.TabIndex = 14;
+            this.grpIngredientes.TabIndex = 0;
             this.grpIngredientes.TabStop = false;
             this.grpIngredientes.Text = "Ingredientes";
             // 
@@ -243,7 +247,7 @@ namespace Trabajo_Final
             this.label3.Location = new System.Drawing.Point(15, 362);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 17);
-            this.label3.TabIndex = 19;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Total Ingredientes";
             // 
             // label2
@@ -252,7 +256,7 @@ namespace Trabajo_Final
             this.label2.Location = new System.Drawing.Point(320, 360);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 17);
-            this.label2.TabIndex = 17;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Lts";
             // 
             // txtCantReceta
@@ -262,6 +266,7 @@ namespace Trabajo_Final
             this.txtCantReceta.ReadOnly = true;
             this.txtCantReceta.Size = new System.Drawing.Size(149, 22);
             this.txtCantReceta.TabIndex = 18;
+            this.txtCantReceta.TabStop = false;
             this.txtCantReceta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // btnAgregar
@@ -276,7 +281,7 @@ namespace Trabajo_Final
             this.btnAgregar.Location = new System.Drawing.Point(604, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(40, 40);
-            this.btnAgregar.TabIndex = 16;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -293,7 +298,7 @@ namespace Trabajo_Final
             this.btnSacar.Location = new System.Drawing.Point(650, 34);
             this.btnSacar.Name = "btnSacar";
             this.btnSacar.Size = new System.Drawing.Size(40, 40);
-            this.btnSacar.TabIndex = 15;
+            this.btnSacar.TabIndex = 5;
             this.btnSacar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSacar.UseVisualStyleBackColor = true;
             this.btnSacar.Click += new System.EventHandler(this.btnSacar_Click);
@@ -304,7 +309,7 @@ namespace Trabajo_Final
             this.label1.Location = new System.Drawing.Point(540, 53);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 17);
-            this.label1.TabIndex = 10;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Lts";
             // 
             // frmNuevaReceta

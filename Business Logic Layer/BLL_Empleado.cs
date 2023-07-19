@@ -46,6 +46,10 @@ namespace Business_Logic_Layer
         {
             throw new NotImplementedException();
         }
+        public bool Existe(BE_Empleado empleado)
+        {
+            return MPP_Empleado.DevolverInstancia().Existe(empleado);
+        }
         
     }
 }

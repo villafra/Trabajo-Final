@@ -45,12 +45,12 @@ namespace Trabajo_Final
             this.dgvMesas.AllowUserToAddRows = false;
             this.dgvMesas.AllowUserToDeleteRows = false;
             this.dgvMesas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMesas.Location = new System.Drawing.Point(13, 90);
+            this.dgvMesas.Location = new System.Drawing.Point(195, 55);
             this.dgvMesas.Name = "dgvMesas";
             this.dgvMesas.ReadOnly = true;
             this.dgvMesas.RowHeadersWidth = 51;
             this.dgvMesas.RowTemplate.Height = 24;
-            this.dgvMesas.Size = new System.Drawing.Size(677, 299);
+            this.dgvMesas.Size = new System.Drawing.Size(45, 299);
             this.dgvMesas.TabIndex = 3;
             this.dgvMesas.SelectionChanged += new System.EventHandler(this.dgvMesas_SelectionChanged);
             // 
@@ -73,7 +73,7 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(450, 429);
+            this.btnConfirmar.Location = new System.Drawing.Point(179, 429);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
             this.btnConfirmar.TabIndex = 12;
@@ -91,7 +91,7 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(594, 429);
+            this.btnCancelar.Location = new System.Drawing.Point(323, 429);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
             this.btnCancelar.TabIndex = 11;
@@ -104,9 +104,9 @@ namespace Trabajo_Final
             // 
             this.grpMesas.BackColor = System.Drawing.SystemColors.Control;
             this.grpMesas.Controls.Add(this.dgvMesas);
-            this.grpMesas.Location = new System.Drawing.Point(27, 12);
+            this.grpMesas.Location = new System.Drawing.Point(23, 12);
             this.grpMesas.Name = "grpMesas";
-            this.grpMesas.Size = new System.Drawing.Size(705, 411);
+            this.grpMesas.Size = new System.Drawing.Size(434, 411);
             this.grpMesas.TabIndex = 14;
             this.grpMesas.TabStop = false;
             this.grpMesas.Text = "Mesas Libres";
@@ -117,7 +117,7 @@ namespace Trabajo_Final
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(758, 493);
+            this.ClientSize = new System.Drawing.Size(480, 493);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpMesas);

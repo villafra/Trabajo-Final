@@ -64,6 +64,11 @@ namespace Mapper
             return listaPlatos;
         }
 
+        public bool Existe(BE_Plato plato)
+        {
+            return Xml_Database.DevolverInstancia().Existe(CrearPlatoXML(plato), "Nombre");
+        }
+
         public BE_Plato ListarObjeto(BE_Plato plato, DataSet ds = null)
         {
             if (ds is null)

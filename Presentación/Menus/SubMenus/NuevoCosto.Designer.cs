@@ -99,7 +99,7 @@ namespace Trabajo_Final
             0});
             this.numOtros.Name = "numOtros";
             this.numOtros.Size = new System.Drawing.Size(257, 22);
-            this.numOtros.TabIndex = 38;
+            this.numOtros.TabIndex = 8;
             this.numOtros.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // numNRG
@@ -113,7 +113,7 @@ namespace Trabajo_Final
             0});
             this.numNRG.Name = "numNRG";
             this.numNRG.Size = new System.Drawing.Size(257, 22);
-            this.numNRG.TabIndex = 37;
+            this.numNRG.TabIndex = 7;
             this.numNRG.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblOtros
@@ -136,7 +136,7 @@ namespace Trabajo_Final
             0});
             this.numHH.Name = "numHH";
             this.numHH.Size = new System.Drawing.Size(257, 22);
-            this.numHH.TabIndex = 35;
+            this.numHH.TabIndex = 6;
             this.numHH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblHH
@@ -145,7 +145,7 @@ namespace Trabajo_Final
             this.lblHH.Location = new System.Drawing.Point(20, 390);
             this.lblHH.Name = "lblHH";
             this.lblHH.Size = new System.Drawing.Size(100, 17);
-            this.lblHH.TabIndex = 34;
+            this.lblHH.TabIndex = 0;
             this.lblHH.Text = "Horas Hombre";
             // 
             // comboMaterial
@@ -154,7 +154,7 @@ namespace Trabajo_Final
             this.comboMaterial.Location = new System.Drawing.Point(174, 163);
             this.comboMaterial.Name = "comboMaterial";
             this.comboMaterial.Size = new System.Drawing.Size(257, 24);
-            this.comboMaterial.TabIndex = 33;
+            this.comboMaterial.TabIndex = 2;
             // 
             // numMP
             // 
@@ -167,7 +167,7 @@ namespace Trabajo_Final
             0});
             this.numMP.Name = "numMP";
             this.numMP.Size = new System.Drawing.Size(257, 22);
-            this.numMP.TabIndex = 30;
+            this.numMP.TabIndex = 5;
             this.numMP.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblNRG
@@ -176,7 +176,7 @@ namespace Trabajo_Final
             this.lblNRG.Location = new System.Drawing.Point(20, 446);
             this.lblNRG.Name = "lblNRG";
             this.lblNRG.Size = new System.Drawing.Size(57, 17);
-            this.lblNRG.TabIndex = 29;
+            this.lblNRG.TabIndex = 0;
             this.lblNRG.Text = "Energia";
             // 
             // numTamaño
@@ -190,7 +190,7 @@ namespace Trabajo_Final
             0});
             this.numTamaño.Name = "numTamaño";
             this.numTamaño.Size = new System.Drawing.Size(257, 22);
-            this.numTamaño.TabIndex = 27;
+            this.numTamaño.TabIndex = 4;
             this.numTamaño.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dtpFechaCosteo
@@ -200,7 +200,7 @@ namespace Trabajo_Final
             this.dtpFechaCosteo.Location = new System.Drawing.Point(174, 221);
             this.dtpFechaCosteo.Name = "dtpFechaCosteo";
             this.dtpFechaCosteo.Size = new System.Drawing.Size(257, 22);
-            this.dtpFechaCosteo.TabIndex = 26;
+            this.dtpFechaCosteo.TabIndex = 3;
             // 
             // ComboTipo
             // 
@@ -208,7 +208,7 @@ namespace Trabajo_Final
             this.ComboTipo.Location = new System.Drawing.Point(174, 105);
             this.ComboTipo.Name = "ComboTipo";
             this.ComboTipo.Size = new System.Drawing.Size(257, 24);
-            this.ComboTipo.TabIndex = 25;
+            this.ComboTipo.TabIndex = 1;
             this.ComboTipo.SelectedIndexChanged += new System.EventHandler(this.ComboTipo_SelectedIndexChanged);
             // 
             // lblTipo
@@ -217,7 +217,7 @@ namespace Trabajo_Final
             this.lblTipo.Location = new System.Drawing.Point(20, 110);
             this.lblTipo.Name = "lblTipo";
             this.lblTipo.Size = new System.Drawing.Size(90, 17);
-            this.lblTipo.TabIndex = 24;
+            this.lblTipo.TabIndex = 0;
             this.lblTipo.Text = "Tipo Material";
             // 
             // lblTamaño
@@ -226,7 +226,7 @@ namespace Trabajo_Final
             this.lblTamaño.Location = new System.Drawing.Point(20, 278);
             this.lblTamaño.Name = "lblTamaño";
             this.lblTamaño.Size = new System.Drawing.Size(140, 17);
-            this.lblTamaño.TabIndex = 19;
+            this.lblTamaño.TabIndex = 0;
             this.lblTamaño.Text = "Tamaño Lote Costeo";
             // 
             // txtCodigo
@@ -236,6 +236,7 @@ namespace Trabajo_Final
             this.txtCodigo.ReadOnly = true;
             this.txtCodigo.Size = new System.Drawing.Size(257, 22);
             this.txtCodigo.TabIndex = 9;
+            this.txtCodigo.TabStop = false;
             // 
             // lblMaterial
             // 
@@ -243,7 +244,7 @@ namespace Trabajo_Final
             this.lblMaterial.Location = new System.Drawing.Point(20, 166);
             this.lblMaterial.Name = "lblMaterial";
             this.lblMaterial.Size = new System.Drawing.Size(58, 17);
-            this.lblMaterial.TabIndex = 7;
+            this.lblMaterial.TabIndex = 0;
             this.lblMaterial.Text = "Material";
             // 
             // lblMP
@@ -252,7 +253,7 @@ namespace Trabajo_Final
             this.lblMP.Location = new System.Drawing.Point(20, 334);
             this.lblMP.Name = "lblMP";
             this.lblMP.Size = new System.Drawing.Size(109, 17);
-            this.lblMP.TabIndex = 5;
+            this.lblMP.TabIndex = 0;
             this.lblMP.Text = "Materias Primas";
             // 
             // blFechaCosteo
@@ -261,7 +262,7 @@ namespace Trabajo_Final
             this.blFechaCosteo.Location = new System.Drawing.Point(20, 222);
             this.blFechaCosteo.Name = "blFechaCosteo";
             this.blFechaCosteo.Size = new System.Drawing.Size(115, 17);
-            this.blFechaCosteo.TabIndex = 4;
+            this.blFechaCosteo.TabIndex = 0;
             this.blFechaCosteo.Text = "Fecha de Costeo";
             // 
             // lblCodigo
@@ -270,7 +271,7 @@ namespace Trabajo_Final
             this.lblCodigo.Location = new System.Drawing.Point(20, 54);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(52, 17);
-            this.lblCodigo.TabIndex = 3;
+            this.lblCodigo.TabIndex = 0;
             this.lblCodigo.Text = "Código";
             // 
             // btnCancelar
@@ -285,7 +286,7 @@ namespace Trabajo_Final
             this.btnCancelar.Location = new System.Drawing.Point(317, 600);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(138, 47);
-            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -309,7 +310,7 @@ namespace Trabajo_Final
             this.btnConfirmar.Location = new System.Drawing.Point(24, 600);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(138, 47);
-            this.btnConfirmar.TabIndex = 3;
+            this.btnConfirmar.TabIndex = 9;
             this.btnConfirmar.Text = "Confirmar";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -317,6 +318,7 @@ namespace Trabajo_Final
             // 
             // frmNuevoCosto
             // 
+            this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;

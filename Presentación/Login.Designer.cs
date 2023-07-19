@@ -47,7 +47,7 @@ namespace Trabajo_Final
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(310, 22);
-            this.txtPass.TabIndex = 1;
+            this.txtPass.TabIndex = 2;
             this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPass.UseSystemPasswordChar = true;
             // 
@@ -56,7 +56,7 @@ namespace Trabajo_Final
             this.txtUsuario.Location = new System.Drawing.Point(20, 65);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(310, 22);
-            this.txtUsuario.TabIndex = 0;
+            this.txtUsuario.TabIndex = 1;
             this.txtUsuario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // grpLogin
@@ -66,7 +66,7 @@ namespace Trabajo_Final
             this.grpLogin.Location = new System.Drawing.Point(385, 49);
             this.grpLogin.Name = "grpLogin";
             this.grpLogin.Size = new System.Drawing.Size(344, 199);
-            this.grpLogin.TabIndex = 10;
+            this.grpLogin.TabIndex = 0;
             this.grpLogin.TabStop = false;
             this.grpLogin.Text = "Login";
             // 
@@ -79,7 +79,7 @@ namespace Trabajo_Final
             this.btnLogin.Location = new System.Drawing.Point(385, 272);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(90, 70);
-            this.btnLogin.TabIndex = 8;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -93,7 +93,7 @@ namespace Trabajo_Final
             this.btnExit.Location = new System.Drawing.Point(10, 272);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(90, 70);
-            this.btnExit.TabIndex = 9;
+            this.btnExit.TabIndex = 5;
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -106,7 +106,7 @@ namespace Trabajo_Final
             this.btnCambiarPass.Location = new System.Drawing.Point(639, 272);
             this.btnCambiarPass.Name = "btnCambiarPass";
             this.btnCambiarPass.Size = new System.Drawing.Size(90, 70);
-            this.btnCambiarPass.TabIndex = 11;
+            this.btnCambiarPass.TabIndex = 4;
             this.btnCambiarPass.UseVisualStyleBackColor = true;
             this.btnCambiarPass.Click += new System.EventHandler(this.btnCambiarPass_Click);
             // 

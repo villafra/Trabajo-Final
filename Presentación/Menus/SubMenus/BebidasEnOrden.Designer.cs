@@ -56,8 +56,9 @@ namespace Trabajo_Final
             this.dgvBebidas.ReadOnly = true;
             this.dgvBebidas.RowHeadersWidth = 51;
             this.dgvBebidas.RowTemplate.Height = 24;
-            this.dgvBebidas.Size = new System.Drawing.Size(511, 263);
+            this.dgvBebidas.Size = new System.Drawing.Size(374, 263);
             this.dgvBebidas.TabIndex = 3;
+            this.dgvBebidas.TabStop = false;
             this.dgvBebidas.SelectionChanged += new System.EventHandler(this.dgvBebidas_SelectionChanged);
             // 
             // Listado
@@ -79,10 +80,10 @@ namespace Trabajo_Final
             this.btnConfirmar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfirmar.ImageIndex = 0;
             this.btnConfirmar.ImageList = this.Listado;
-            this.btnConfirmar.Location = new System.Drawing.Point(341, 418);
+            this.btnConfirmar.Location = new System.Drawing.Point(408, 398);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.Size = new System.Drawing.Size(205, 47);
-            this.btnConfirmar.TabIndex = 12;
+            this.btnConfirmar.TabIndex = 1;
             this.btnConfirmar.Text = "Bebidas Listas";
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
@@ -97,10 +98,10 @@ namespace Trabajo_Final
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCancelar.ImageIndex = 1;
             this.btnCancelar.ImageList = this.Listado;
-            this.btnCancelar.Location = new System.Drawing.Point(552, 418);
+            this.btnCancelar.Location = new System.Drawing.Point(619, 398);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(205, 47);
-            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.TabIndex = 2;
             this.btnCancelar.Text = "Cancelar Transacción";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -115,29 +116,30 @@ namespace Trabajo_Final
             this.grpIngredientes.Controls.Add(this.lblCantiBeb);
             this.grpIngredientes.Controls.Add(this.txtCantBebidas);
             this.grpIngredientes.Controls.Add(this.dgvBebidas);
-            this.grpIngredientes.Location = new System.Drawing.Point(27, 12);
+            this.grpIngredientes.Location = new System.Drawing.Point(18, 12);
             this.grpIngredientes.Name = "grpIngredientes";
-            this.grpIngredientes.Size = new System.Drawing.Size(1059, 380);
-            this.grpIngredientes.TabIndex = 14;
+            this.grpIngredientes.Size = new System.Drawing.Size(806, 380);
+            this.grpIngredientes.TabIndex = 0;
             this.grpIngredientes.TabStop = false;
             this.grpIngredientes.Text = "Ingredientes";
             // 
             // lblCantIngred
             // 
             this.lblCantIngred.AutoSize = true;
-            this.lblCantIngred.Location = new System.Drawing.Point(539, 311);
+            this.lblCantIngred.Location = new System.Drawing.Point(411, 311);
             this.lblCantIngred.Name = "lblCantIngred";
             this.lblCantIngred.Size = new System.Drawing.Size(166, 17);
-            this.lblCantIngred.TabIndex = 22;
+            this.lblCantIngred.TabIndex = 0;
             this.lblCantIngred.Text = "Cantidad de Ingredientes";
             // 
             // txtCantiIngred
             // 
-            this.txtCantiIngred.Location = new System.Drawing.Point(764, 306);
+            this.txtCantiIngred.Location = new System.Drawing.Point(636, 306);
             this.txtCantiIngred.Name = "txtCantiIngred";
             this.txtCantiIngred.ReadOnly = true;
             this.txtCantiIngred.Size = new System.Drawing.Size(149, 22);
             this.txtCantiIngred.TabIndex = 21;
+            this.txtCantiIngred.TabStop = false;
             this.txtCantiIngred.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // dgvReceta
@@ -145,13 +147,14 @@ namespace Trabajo_Final
             this.dgvReceta.AllowUserToAddRows = false;
             this.dgvReceta.AllowUserToDeleteRows = false;
             this.dgvReceta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReceta.Location = new System.Drawing.Point(542, 36);
+            this.dgvReceta.Location = new System.Drawing.Point(414, 36);
             this.dgvReceta.Name = "dgvReceta";
             this.dgvReceta.ReadOnly = true;
             this.dgvReceta.RowHeadersWidth = 51;
             this.dgvReceta.RowTemplate.Height = 24;
-            this.dgvReceta.Size = new System.Drawing.Size(511, 263);
+            this.dgvReceta.Size = new System.Drawing.Size(371, 263);
             this.dgvReceta.TabIndex = 20;
+            this.dgvReceta.TabStop = false;
             // 
             // lblCantiBeb
             // 
@@ -159,7 +162,7 @@ namespace Trabajo_Final
             this.lblCantiBeb.Location = new System.Drawing.Point(6, 316);
             this.lblCantiBeb.Name = "lblCantiBeb";
             this.lblCantiBeb.Size = new System.Drawing.Size(155, 17);
-            this.lblCantiBeb.TabIndex = 19;
+            this.lblCantiBeb.TabIndex = 0;
             this.lblCantiBeb.Text = "Cantidad Total Bebidas";
             // 
             // txtCantBebidas
@@ -169,6 +172,7 @@ namespace Trabajo_Final
             this.txtCantBebidas.ReadOnly = true;
             this.txtCantBebidas.Size = new System.Drawing.Size(149, 22);
             this.txtCantBebidas.TabIndex = 18;
+            this.txtCantBebidas.TabStop = false;
             this.txtCantBebidas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // frmBebidasEnOrden
@@ -177,7 +181,7 @@ namespace Trabajo_Final
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancelar;
-            this.ClientSize = new System.Drawing.Size(1098, 478);
+            this.ClientSize = new System.Drawing.Size(843, 459);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grpIngredientes);

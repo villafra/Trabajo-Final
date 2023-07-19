@@ -66,6 +66,12 @@ namespace Mapper
             return listaIngredientes;
             
         }
+
+        public bool Existe(BE_Ingrediente ingrediente)
+        {
+            return Xml_Database.DevolverInstancia().Existe(CrearIngredienteXML(ingrediente), "Nombre");
+        }
+
         public BE_Ingrediente ListarObjeto(BE_Ingrediente ingrediente, DataSet ds=null)
         {
             if (ds is null)

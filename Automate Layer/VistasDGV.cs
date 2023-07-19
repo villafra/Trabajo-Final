@@ -38,6 +38,22 @@ namespace Automate_Layer
             
         }
 
+        public static void dgvPlatosOrden(DataGridView dgv)
+        {
+            dgv.Columns[0].HeaderText = "Codigo";
+            dgv.Columns[1].HeaderText = "Nombre";
+            dgv.Columns[2].HeaderText = "Tipo";
+            dgv.Columns[3].HeaderText = "Clase";
+            dgv.Columns[4].HeaderText = "Presentación";
+            dgv.Columns[5].Visible = false;
+            dgv.Columns[6].Visible = false;
+            foreach (DataGridViewColumn columns in dgv.Columns)
+            {
+                columns.SortMode = DataGridViewColumnSortMode.NotSortable;
+                columns.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+        }
+
         public static void dgvIngEnBeb(DataGridView dgv)
         {
             dgv.Columns[0].Visible = false;

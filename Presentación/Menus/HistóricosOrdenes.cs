@@ -70,17 +70,13 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            if (oBE_Orden != null)
             {
-                if (Nuevo())
-                {
-                    ActualizarListado();
-                    Centrar();
-                    Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
-                }
-                else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");
+                frmVerOrden frm = new frmVerOrden();
+                frm.Owner = this;
+                frm.oBE_Orden = oBE_Orden;
+                frm.ShowDialog();
             }
-            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void frmHistoricoOrdenes_Load(object sender, EventArgs e)

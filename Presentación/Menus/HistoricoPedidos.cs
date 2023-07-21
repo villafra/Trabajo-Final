@@ -18,8 +18,6 @@ namespace Trabajo_Final
     {
         BLL_Pedido oBLL_Pedido;
         BE_Pedido oBE_Pedido;
-        BLL_Orden oBLL_Orden;
-        public BE_Orden oBE_Orden;
         private List<BE_Pedido> listado;
         Reemplazos rm;
         public frmHistoricoPedidos()
@@ -27,7 +25,6 @@ namespace Trabajo_Final
             InitializeComponent();
             oBLL_Pedido = new BLL_Pedido();
             oBE_Pedido = new BE_Pedido();
-            oBLL_Orden = new BLL_Orden();
             Aspecto.FormatearGRP(grpPedidos);
             Aspecto.FormatearDGV(dgvPedidos);
             Aspecto.FormatearGRPAccion(grpAcciones);
@@ -63,24 +60,16 @@ namespace Trabajo_Final
             catch { }
             
         }
-        private bool Nuevo()
-        {
-            return true;
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
+           if(oBE_Pedido != null)
             {
-                if (Nuevo())
-                {
-                    ActualizarListado();
-                    Centrar();
-                    Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
-                }
-                else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");
+                frmVerPedido frm = new frmVerPedido();
+                frm.Owner = this;
+                frm.oBE_Pedido = oBE_Pedido;
+                frm.ShowDialog();
             }
-            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void frmHistoricoPedidos_Load(object sender, EventArgs e)

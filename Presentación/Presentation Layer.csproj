@@ -172,6 +172,24 @@
     <Compile Include="Menus\SubMenus\MesasLibres.Designer.cs">
       <DependentUpon>MesasLibres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Menus\SubMenus\VerOrden.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\VerOrden.Designer.cs">
+      <DependentUpon>VerOrden.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\VerCompra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\VerCompra.Designer.cs">
+      <DependentUpon>VerCompra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Menus\SubMenus\VerPedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menus\SubMenus\VerPedido.Designer.cs">
+      <DependentUpon>VerPedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Menus\SubMenus\PlatosEnOrden.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -494,6 +512,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\MesasLibres.resx">
       <DependentUpon>MesasLibres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\VerOrden.resx">
+      <DependentUpon>VerOrden.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\VerCompra.resx">
+      <DependentUpon>VerCompra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Menus\SubMenus\VerPedido.resx">
+      <DependentUpon>VerPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Menus\SubMenus\PlatosEnOrden.resx">
       <DependentUpon>PlatosEnOrden.cs</DependentUpon>

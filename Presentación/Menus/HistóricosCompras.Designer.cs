@@ -182,7 +182,7 @@ namespace Trabajo_Final
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(200, 50);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Tratar Pedido";
+            this.btnAgregar.Text = "Ver Detalle";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);

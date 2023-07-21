@@ -182,6 +182,7 @@ namespace Automate_Layer
             {
                 c.ForeColor = Color.Black;
                 if (c is DateTimePicker && c.Name != "dtpHoraIngreso" && c.Name != "dtpHoraEgreso") (c as DateTimePicker).Value = DateTime.Now;
+                if (c is TextBox) (c as TextBox).TextAlign = HorizontalAlignment.Center;
             }
         };
         public static Action<GroupBox> FormatearGRPPedido = (grp) =>
@@ -280,7 +281,7 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgv.AutoSize = true;
             dgv.ScrollBars = ScrollBars.Vertical;
             dgv.MaximumSize = new Size(1120, 495);
@@ -315,7 +316,7 @@ namespace Automate_Layer
             dgv.EnableHeadersVisualStyles = false;
             dgv.GridColor = Color.FromArgb(44, 68, 101);
             dgv.RowHeadersVisible = false;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dgv.AutoSize = true;
             dgv.ScrollBars = ScrollBars.Vertical;
             dgv.MaximumSize = new Size(1120, 495);

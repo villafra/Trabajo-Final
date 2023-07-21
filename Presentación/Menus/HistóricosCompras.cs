@@ -68,16 +68,13 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            try
+            if(oBE_Compra != null)
             {
-                if (Nuevo())
-                {
-                    ActualizarListado();
-                    Cálculos.MsgBox("Se ha generado una nueva orden de cocina.");
-                }
-                else throw new RestaurantException("No se ha creado la orden correctamente. Intente de nuevo");
+                frmVerCompra frm = new frmVerCompra();
+                frm.Owner = this;
+                frm.oBE_Compra = oBE_Compra;
+                frm.ShowDialog();
             }
-            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
         private void frmCompras_Load(object sender, EventArgs e)
         {

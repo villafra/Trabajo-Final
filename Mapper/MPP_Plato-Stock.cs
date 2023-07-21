@@ -171,6 +171,27 @@ namespace Mapper
                  }).ToList() : null;
             return listaIngredientes;
         }
+        public List<BE_Plato_Stock> ListarParaVenta()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Plato_Stock> listaPlatos = ds.Tables.Contains("Plato") != false && ds.Tables.Contains("Plato-Stock") != false ?
+                (from mat in ds.Tables["Plato-Stock"].AsEnumerable()
+                 join ing in ds.Tables["Bebida"].AsEnumerable()
+                 on Convert.ToInt32(mat[1]) equals Convert.ToInt32(ing[0])
+                 where Convert.ToDecimal(mat[2]) > 0
+                 select new BE_Plato_Stock
+                 {
+                     Codigo = Convert.ToInt32(mat[0]),
+                     Material = MPP_Plato.DevolverInstancia().ListarObjeto(new BE_Plato { Codigo = Convert.ToInt32(mat[1]) }, ds),
+                     Stock = Convert.ToDecimal(mat[2]),
+                     FechaCreacion = Convert.ToDateTime(mat[3]),
+                     Lote = Convert.ToString(mat[4])
+
+                 }).GroupBy(x => x.Material.Codigo).Select(y => y.First()).ToList() : null;
+            return listaPlatos;
+        }
         public BE_Plato_Stock BuscarXLote(BE_Compra compra, string lote,DataSet ds=null)
         {
             if (ds is null)

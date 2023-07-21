@@ -30,6 +30,10 @@ namespace Business_Logic_Layer
         {
             return BackUp.ListarBackUps();
         }
+        public bool ImportarArchivo(BE_Login UsuarioActivo)
+        {
+            return BackUp.ImportarArchivo(UsuarioActivo);
+        }
 
     }
 }

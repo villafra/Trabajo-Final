@@ -53,6 +53,12 @@ namespace Business_Logic_Layer
         {
             return MPP_Bebida_Stock.DevolverInstancia().ListarXCompra(compra);
         }
+
+        public List<BE_Bebida_Stock> ListarParaVenta()
+        {
+            return MPP_Bebida_Stock.DevolverInstancia().ListarParaVenta();
+        }
+
         public List<BE_Bebida_Stock> ListarConStock()
         {
             return MPP_Bebida_Stock.DevolverInstancia().ListarConStock();

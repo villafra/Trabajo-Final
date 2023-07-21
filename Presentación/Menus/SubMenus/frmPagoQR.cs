@@ -81,6 +81,7 @@ namespace Trabajo_Final
         private void CrearOrden()
         {
             frmConfirmarPago owner = this.Owner as frmConfirmarPago;
+            owner.PagoOK = true;
             owner.oBE_Pedido.Status = StatusPedido.Liberado;
             this.Close();
         }

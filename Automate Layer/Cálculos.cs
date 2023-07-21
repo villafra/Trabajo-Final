@@ -189,7 +189,15 @@ namespace Automate_Layer
   
         public static object GetPropertyValue(object obj, string propertyName)
         {
-            PropertyInfo propertyInfo = obj.GetType().GetProperty(propertyName);
+            PropertyInfo propertyInfo;
+            if (propertyName != "")
+            {
+                propertyInfo = obj.GetType().GetProperty(propertyName);
+            }
+            else
+            {
+                propertyInfo = obj.GetType().GetProperty("Codigo");
+            }
             return propertyInfo.GetValue(obj);
         }
         private static void RecursivaTreeView(TreeNodeCollection nodos)
@@ -240,9 +248,21 @@ namespace Automate_Layer
             if (resultado == DialogResult.Yes) return true;
             else return false;
         }
+        public static bool EstaSeguroBackUp()
+        {
+            DialogResult resultado = MessageBox.Show(@"Esta seguro que desea importar una base de datos?", "Gestion BackUp", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
         public static bool CambiarPass(string pass)
         {
             DialogResult resultado = MessageBox.Show(@"La nueva contraseña será: " + pass + ". Tome nota.", "Restó", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (resultado == DialogResult.OK) return true;
+            else return false;
+        }
+        public static bool CargarFoto(string nombre)
+        {
+            DialogResult resultado = MessageBox.Show(@"Esta seguro de agregar una imágen a " + nombre +"?", "Restó", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (resultado == DialogResult.OK) return true;
             else return false;
         }

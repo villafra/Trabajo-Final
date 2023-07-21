@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -150,6 +151,23 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvBackUps, listado);
             Centrar();
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.EstaSeguroBackUp())
+                {
+                    if (oBLL_BackUp.ImportarArchivo(UsuarioActivo))
+                    {
+                        Cálculos.MsgBox("Se ha importado una base de datos.");
+                    }
+                    else { throw new RestaurantException("La importación ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la importación de la base de datos."); }
+            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
     }
 }

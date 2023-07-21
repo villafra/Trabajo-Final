@@ -30,12 +30,13 @@ namespace Trabajo_Final
         private void InitializeComponent()
         {
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
-            this.btnIzquierda = new System.Windows.Forms.Button();
-            this.btnDerecha = new System.Windows.Forms.Button();
             this.lblCosto = new System.Windows.Forms.Label();
             this.lblMonto = new System.Windows.Forms.Label();
             this.flowPago = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnPagar = new System.Windows.Forms.Button();
+            this.btnIzquierda = new System.Windows.Forms.Button();
+            this.btnDerecha = new System.Windows.Forms.Button();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,60 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Resumen de Pedido";
+            // 
+            // lblCosto
+            // 
+            this.lblCosto.AutoSize = true;
+            this.lblCosto.Location = new System.Drawing.Point(426, 251);
+            this.lblCosto.Name = "lblCosto";
+            this.lblCosto.Size = new System.Drawing.Size(48, 17);
+            this.lblCosto.TabIndex = 3;
+            this.lblCosto.Text = "$1000";
+            // 
+            // lblMonto
+            // 
+            this.lblMonto.AutoSize = true;
+            this.lblMonto.Location = new System.Drawing.Point(407, 214);
+            this.lblMonto.Name = "lblMonto";
+            this.lblMonto.Size = new System.Drawing.Size(87, 17);
+            this.lblMonto.TabIndex = 2;
+            this.lblMonto.Text = "Monto Total:";
+            // 
+            // flowPago
+            // 
+            this.flowPago.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.flowPago.AutoScroll = true;
+            this.flowPago.AutoSize = true;
+            this.flowPago.Location = new System.Drawing.Point(445, 39);
+            this.flowPago.Name = "flowPago";
+            this.flowPago.Size = new System.Drawing.Size(10, 152);
+            this.flowPago.TabIndex = 0;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackgroundImage = global::Trabajo_Final.Properties.Resources.cerrar;
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Location = new System.Drawing.Point(490, 339);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(85, 63);
+            this.btnCancelar.TabIndex = 2;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnPagar
+            // 
+            this.btnPagar.BackgroundImage = global::Trabajo_Final.Properties.Resources.caja_registradora;
+            this.btnPagar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnPagar.FlatAppearance.BorderSize = 0;
+            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPagar.Location = new System.Drawing.Point(362, 339);
+            this.btnPagar.Name = "btnPagar";
+            this.btnPagar.Size = new System.Drawing.Size(85, 63);
+            this.btnPagar.TabIndex = 1;
+            this.btnPagar.UseVisualStyleBackColor = true;
+            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
             // btnIzquierda
             // 
@@ -83,52 +138,12 @@ namespace Trabajo_Final
             this.btnDerecha.Visible = false;
             this.btnDerecha.Click += new System.EventHandler(this.btnDerechaBebidas_Click);
             // 
-            // lblCosto
-            // 
-            this.lblCosto.AutoSize = true;
-            this.lblCosto.Location = new System.Drawing.Point(426, 251);
-            this.lblCosto.Name = "lblCosto";
-            this.lblCosto.Size = new System.Drawing.Size(48, 17);
-            this.lblCosto.TabIndex = 3;
-            this.lblCosto.Text = "$1000";
-            // 
-            // lblMonto
-            // 
-            this.lblMonto.AutoSize = true;
-            this.lblMonto.Location = new System.Drawing.Point(407, 214);
-            this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(87, 17);
-            this.lblMonto.TabIndex = 2;
-            this.lblMonto.Text = "Monto Total:";
-            // 
-            // flowPago
-            // 
-            this.flowPago.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.flowPago.AutoScroll = true;
-            this.flowPago.AutoSize = true;
-            this.flowPago.Location = new System.Drawing.Point(445, 39);
-            this.flowPago.Name = "flowPago";
-            this.flowPago.Size = new System.Drawing.Size(10, 152);
-            this.flowPago.TabIndex = 0;
-            // 
-            // btnPagar
-            // 
-            this.btnPagar.BackgroundImage = global::Trabajo_Final.Properties.Resources.caja_registradora;
-            this.btnPagar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnPagar.FlatAppearance.BorderSize = 0;
-            this.btnPagar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPagar.Location = new System.Drawing.Point(426, 339);
-            this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(85, 63);
-            this.btnPagar.TabIndex = 1;
-            this.btnPagar.UseVisualStyleBackColor = true;
-            this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
-            // 
             // frmConfirmarPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(936, 414);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnPagar);
             this.Controls.Add(this.grpNuevoLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -151,5 +166,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnDerecha;
         private System.Windows.Forms.Button btnIzquierda;
         private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

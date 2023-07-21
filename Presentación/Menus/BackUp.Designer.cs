@@ -44,6 +44,7 @@ namespace Trabajo_Final
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnOpenFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBackUps)).BeginInit();
             this.grpBackUp.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -140,6 +141,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            this.Listado.Images.SetKeyName(7, "carpeta.png");
             // 
             // btBuscar
             // 
@@ -160,6 +162,7 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
+            this.grpAcciones.Controls.Add(this.btnOpenFolder);
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnAgregar);
             this.grpAcciones.Controls.Add(this.btnEliminar);
@@ -178,7 +181,7 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(458, 34);
+            this.btnModificar.Location = new System.Drawing.Point(319, 34);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(204, 50);
             this.btnModificar.TabIndex = 6;
@@ -195,7 +198,7 @@ namespace Trabajo_Final
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregar.ImageIndex = 2;
             this.btnAgregar.ImageList = this.Listado;
-            this.btnAgregar.Location = new System.Drawing.Point(176, 34);
+            this.btnAgregar.Location = new System.Drawing.Point(41, 34);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(204, 50);
             this.btnAgregar.TabIndex = 5;
@@ -212,7 +215,7 @@ namespace Trabajo_Final
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.ImageIndex = 4;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(740, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(597, 34);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(204, 50);
             this.btnEliminar.TabIndex = 7;
@@ -220,6 +223,23 @@ namespace Trabajo_Final
             this.btnEliminar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnOpenFolder
+            // 
+            this.btnOpenFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenFolder.FlatAppearance.BorderSize = 0;
+            this.btnOpenFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenFolder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenFolder.ImageIndex = 7;
+            this.btnOpenFolder.ImageList = this.Listado;
+            this.btnOpenFolder.Location = new System.Drawing.Point(875, 34);
+            this.btnOpenFolder.Name = "btnOpenFolder";
+            this.btnOpenFolder.Size = new System.Drawing.Size(204, 50);
+            this.btnOpenFolder.TabIndex = 8;
+            this.btnOpenFolder.Text = "Importar Archivo";
+            this.btnOpenFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenFolder.UseVisualStyleBackColor = true;
+            this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
             // frmBackUp
             // 
@@ -261,5 +281,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.GroupBox grpAcciones;
+        private System.Windows.Forms.Button btnOpenFolder;
     }
 }

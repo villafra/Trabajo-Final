@@ -32,6 +32,10 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConfirmarPedido));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.btnIzquierdaPlatos = new System.Windows.Forms.Button();
+            this.btnIzquierdaBebidas = new System.Windows.Forms.Button();
+            this.btnDerechaPlatos = new System.Windows.Forms.Button();
+            this.btnDerechaBebidas = new System.Windows.Forms.Button();
             this.lblCosto = new System.Windows.Forms.Label();
             this.lblMonto = new System.Windows.Forms.Label();
             this.flowPlatos = new System.Windows.Forms.FlowLayoutPanel();
@@ -39,10 +43,6 @@ namespace Trabajo_Final
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.btnIzquierdaPlatos = new System.Windows.Forms.Button();
-            this.btnIzquierdaBebidas = new System.Windows.Forms.Button();
-            this.btnDerechaPlatos = new System.Windows.Forms.Button();
-            this.btnDerechaBebidas = new System.Windows.Forms.Button();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,66 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Resumen de Pedido";
+            // 
+            // btnIzquierdaPlatos
+            // 
+            this.btnIzquierdaPlatos.BackColor = System.Drawing.Color.Transparent;
+            this.btnIzquierdaPlatos.BackgroundImage = global::Trabajo_Final.Properties.Resources.Izquierda;
+            this.btnIzquierdaPlatos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnIzquierdaPlatos.FlatAppearance.BorderSize = 0;
+            this.btnIzquierdaPlatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzquierdaPlatos.Location = new System.Drawing.Point(6, 235);
+            this.btnIzquierdaPlatos.Name = "btnIzquierdaPlatos";
+            this.btnIzquierdaPlatos.Size = new System.Drawing.Size(45, 64);
+            this.btnIzquierdaPlatos.TabIndex = 7;
+            this.btnIzquierdaPlatos.UseVisualStyleBackColor = false;
+            this.btnIzquierdaPlatos.Visible = false;
+            this.btnIzquierdaPlatos.Click += new System.EventHandler(this.btnIzquierdaPlatos_Click);
+            // 
+            // btnIzquierdaBebidas
+            // 
+            this.btnIzquierdaBebidas.BackColor = System.Drawing.Color.Transparent;
+            this.btnIzquierdaBebidas.BackgroundImage = global::Trabajo_Final.Properties.Resources.Izquierda;
+            this.btnIzquierdaBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnIzquierdaBebidas.FlatAppearance.BorderSize = 0;
+            this.btnIzquierdaBebidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIzquierdaBebidas.Location = new System.Drawing.Point(6, 68);
+            this.btnIzquierdaBebidas.Name = "btnIzquierdaBebidas";
+            this.btnIzquierdaBebidas.Size = new System.Drawing.Size(45, 64);
+            this.btnIzquierdaBebidas.TabIndex = 6;
+            this.btnIzquierdaBebidas.UseVisualStyleBackColor = false;
+            this.btnIzquierdaBebidas.Visible = false;
+            this.btnIzquierdaBebidas.Click += new System.EventHandler(this.btnIzquierdaBebidas_Click);
+            // 
+            // btnDerechaPlatos
+            // 
+            this.btnDerechaPlatos.BackColor = System.Drawing.Color.Transparent;
+            this.btnDerechaPlatos.BackgroundImage = global::Trabajo_Final.Properties.Resources.derecha;
+            this.btnDerechaPlatos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDerechaPlatos.FlatAppearance.BorderSize = 0;
+            this.btnDerechaPlatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDerechaPlatos.Location = new System.Drawing.Point(855, 235);
+            this.btnDerechaPlatos.Name = "btnDerechaPlatos";
+            this.btnDerechaPlatos.Size = new System.Drawing.Size(45, 64);
+            this.btnDerechaPlatos.TabIndex = 5;
+            this.btnDerechaPlatos.UseVisualStyleBackColor = false;
+            this.btnDerechaPlatos.Visible = false;
+            this.btnDerechaPlatos.Click += new System.EventHandler(this.btnDerechaPlatos_Click);
+            // 
+            // btnDerechaBebidas
+            // 
+            this.btnDerechaBebidas.BackColor = System.Drawing.Color.Transparent;
+            this.btnDerechaBebidas.BackgroundImage = global::Trabajo_Final.Properties.Resources.derecha;
+            this.btnDerechaBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDerechaBebidas.FlatAppearance.BorderSize = 0;
+            this.btnDerechaBebidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDerechaBebidas.Location = new System.Drawing.Point(855, 68);
+            this.btnDerechaBebidas.Name = "btnDerechaBebidas";
+            this.btnDerechaBebidas.Size = new System.Drawing.Size(45, 64);
+            this.btnDerechaBebidas.TabIndex = 4;
+            this.btnDerechaBebidas.UseVisualStyleBackColor = false;
+            this.btnDerechaBebidas.Visible = false;
+            this.btnDerechaBebidas.Click += new System.EventHandler(this.btnDerechaBebidas_Click);
             // 
             // lblCosto
             // 
@@ -123,6 +183,7 @@ namespace Trabajo_Final
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
@@ -141,66 +202,6 @@ namespace Trabajo_Final
             this.btnConfirmar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
-            // 
-            // btnIzquierdaPlatos
-            // 
-            this.btnIzquierdaPlatos.BackColor = System.Drawing.Color.Transparent;
-            this.btnIzquierdaPlatos.BackgroundImage = global::Trabajo_Final.Properties.Resources.Izquierda;
-            this.btnIzquierdaPlatos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnIzquierdaPlatos.FlatAppearance.BorderSize = 0;
-            this.btnIzquierdaPlatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzquierdaPlatos.Location = new System.Drawing.Point(6, 235);
-            this.btnIzquierdaPlatos.Name = "btnIzquierdaPlatos";
-            this.btnIzquierdaPlatos.Size = new System.Drawing.Size(45, 64);
-            this.btnIzquierdaPlatos.TabIndex = 7;
-            this.btnIzquierdaPlatos.UseVisualStyleBackColor = false;
-            this.btnIzquierdaPlatos.Visible = false;
-            this.btnIzquierdaPlatos.Click += new System.EventHandler(this.btnIzquierdaPlatos_Click);
-            // 
-            // btnIzquierdaBebidas
-            // 
-            this.btnIzquierdaBebidas.BackColor = System.Drawing.Color.Transparent;
-            this.btnIzquierdaBebidas.BackgroundImage = global::Trabajo_Final.Properties.Resources.Izquierda;
-            this.btnIzquierdaBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnIzquierdaBebidas.FlatAppearance.BorderSize = 0;
-            this.btnIzquierdaBebidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIzquierdaBebidas.Location = new System.Drawing.Point(6, 68);
-            this.btnIzquierdaBebidas.Name = "btnIzquierdaBebidas";
-            this.btnIzquierdaBebidas.Size = new System.Drawing.Size(45, 64);
-            this.btnIzquierdaBebidas.TabIndex = 6;
-            this.btnIzquierdaBebidas.UseVisualStyleBackColor = false;
-            this.btnIzquierdaBebidas.Visible = false;
-            this.btnIzquierdaBebidas.Click += new System.EventHandler(this.btnIzquierdaBebidas_Click);
-            // 
-            // btnDerechaPlatos
-            // 
-            this.btnDerechaPlatos.BackColor = System.Drawing.Color.Transparent;
-            this.btnDerechaPlatos.BackgroundImage = global::Trabajo_Final.Properties.Resources.derecha;
-            this.btnDerechaPlatos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDerechaPlatos.FlatAppearance.BorderSize = 0;
-            this.btnDerechaPlatos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDerechaPlatos.Location = new System.Drawing.Point(855, 235);
-            this.btnDerechaPlatos.Name = "btnDerechaPlatos";
-            this.btnDerechaPlatos.Size = new System.Drawing.Size(45, 64);
-            this.btnDerechaPlatos.TabIndex = 5;
-            this.btnDerechaPlatos.UseVisualStyleBackColor = false;
-            this.btnDerechaPlatos.Visible = false;
-            this.btnDerechaPlatos.Click += new System.EventHandler(this.btnDerechaPlatos_Click);
-            // 
-            // btnDerechaBebidas
-            // 
-            this.btnDerechaBebidas.BackColor = System.Drawing.Color.Transparent;
-            this.btnDerechaBebidas.BackgroundImage = global::Trabajo_Final.Properties.Resources.derecha;
-            this.btnDerechaBebidas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnDerechaBebidas.FlatAppearance.BorderSize = 0;
-            this.btnDerechaBebidas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDerechaBebidas.Location = new System.Drawing.Point(855, 68);
-            this.btnDerechaBebidas.Name = "btnDerechaBebidas";
-            this.btnDerechaBebidas.Size = new System.Drawing.Size(45, 64);
-            this.btnDerechaBebidas.TabIndex = 4;
-            this.btnDerechaBebidas.UseVisualStyleBackColor = false;
-            this.btnDerechaBebidas.Visible = false;
-            this.btnDerechaBebidas.Click += new System.EventHandler(this.btnDerechaBebidas_Click);
             // 
             // frmConfirmarPedido
             // 

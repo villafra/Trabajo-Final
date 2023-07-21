@@ -163,7 +163,29 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
 
-                 }).ToList() : null;
+                 }).Distinct().ToList() : null;
+            return listaBebidas;
+        }
+        public List<BE_Bebida_Stock> ListarParaVenta()
+        {
+            DataSet ds = new DataSet();
+            ds = Xml_Database.DevolverInstancia().Listar();
+
+            List<BE_Bebida_Stock> listaBebidas = ds.Tables.Contains("Bebida") != false
+                && ds.Tables.Contains("Bebida-Stock") ?
+                (from mat in ds.Tables["Bebida-Stock"].AsEnumerable()
+                 join ing in ds.Tables["Bebida"].AsEnumerable()
+                 on Convert.ToInt32(mat[1]) equals Convert.ToInt32(ing[0])
+                 where Convert.ToDecimal(mat[2]) > 0
+                 select new BE_Bebida_Stock
+                 {
+                     Codigo = Convert.ToInt32(mat[0]),
+                     Material = MPP_Bebida.DevolverInstancia().ListarObjeto(new BE_Bebida { Codigo = Convert.ToInt32(mat[1]) }, ds),
+                     Stock = Convert.ToDecimal(mat[2]),
+                     FechaCreacion = Convert.ToDateTime(mat[3]),
+                     Lote = Convert.ToString(mat[4])
+
+                 }).GroupBy(x => x.Material.Codigo).Select(y => y.First()).ToList() : null;
             return listaBebidas;
         }
         public BE_Bebida_Stock BuscarXLote(BE_Compra compra, string lote,DataSet ds=null)

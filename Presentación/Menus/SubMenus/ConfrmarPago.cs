@@ -63,6 +63,8 @@ namespace Trabajo_Final
             botonPago.Height = 80;
             botonPago.Tag = pago;
             botonPago.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(pago.ToString(), botonPago);
+            botonPago.BackgroundImageLayout = ImageLayout.Stretch;
             botonPago.Click += BotonPago_Click;
             return botonPago;
         }
@@ -72,47 +74,53 @@ namespace Trabajo_Final
             
         }
 
-        private void AbrirVentanaPago(BE_Pago oBE_Pago)
+        private bool AbrirVentanaPago(BE_Pago oBE_Pago)
         {
-            switch (oBE_Pago.Tipo)
+            if (oBE_Pago != null)
             {
-                case "Tarjeta de Crédito":
-                    oBE_Pedido.ID_Pago = oBE_Pago;
-                    frmPagoTarjeta frm = new frmPagoTarjeta();
-                    frm.Owner = this;
-                    frm.oBE_Pedido = oBE_Pedido;
-                    frm.ShowDialog();
-                    break;
 
-                case "QR":
-                    oBE_Pedido.ID_Pago = oBE_Pago;
-                    frmPagoQR frmQR = new frmPagoQR();
-                    frmQR.Owner = this;
-                    frmQR.oBE_Pedido = oBE_Pedido;
-                    frmQR.ShowDialog();
-                    break;
+                switch (oBE_Pago.Tipo)
+                {
+                    case "Tarjeta de Crédito":
+                        oBE_Pedido.ID_Pago = oBE_Pago;
+                        frmPagoTarjeta frm = new frmPagoTarjeta();
+                        frm.Owner = this;
+                        frm.oBE_Pedido = oBE_Pedido;
+                        frm.ShowDialog();
+                        break;
 
-                //case "Efectivo":
-                //    frmPagoEfectivo formularioEfectivo = new frmPagoEfectivo();
-                //    formularioEfectivo.ShowDialog();
-                //    break;
+                    case "QR":
+                        oBE_Pedido.ID_Pago = oBE_Pago;
+                        frmPagoQR frmQR = new frmPagoQR();
+                        frmQR.Owner = this;
+                        frmQR.oBE_Pedido = oBE_Pedido;
+                        frmQR.ShowDialog();
+                        break;
 
-                //case "Cheque":
-                //    frmPagoCheque formularioCheque = new frmPagoCheque();
-                //    formularioCheque.ShowDialog();
-                //    break;
+                    //case "Efectivo":
+                    //    frmPagoEfectivo formularioEfectivo = new frmPagoEfectivo();
+                    //    formularioEfectivo.ShowDialog();
+                    //    break;
 
-                case "Transferencia Bancaria":
-                    oBE_Pedido.ID_Pago = oBE_Pago;
-                    frmPagoTrans frmTrans = new frmPagoTrans();
-                    frmTrans.Owner = this;
-                    frmTrans.oBE_Pedido = oBE_Pedido;
-                    frmTrans.ShowDialog();
-                    break;
+                    //case "Cheque":
+                    //    frmPagoCheque formularioCheque = new frmPagoCheque();
+                    //    formularioCheque.ShowDialog();
+                    //    break;
 
-                default:
-                    break;
+                    case "Transferencia Bancaria":
+                        oBE_Pedido.ID_Pago = oBE_Pago;
+                        frmPagoTrans frmTrans = new frmPagoTrans();
+                        frmTrans.Owner = this;
+                        frmTrans.oBE_Pedido = oBE_Pedido;
+                        frmTrans.ShowDialog();
+                        break;
+
+                    default:
+                        break;
+                }
+                return PagoOK;
             }
+            else { return false; }
         }
 
         private void btnDerechaBebidas_Click(object sender, EventArgs e)
@@ -128,8 +136,17 @@ namespace Trabajo_Final
 
         private void btnPagar_Click(object sender, EventArgs e)
         {
-            AbrirVentanaPago(oBE_Pago);
             frmConfirmarPedido owner = this.Owner as frmConfirmarPedido;
+            owner.PagoOK = AbrirVentanaPago(oBE_Pago);
+            owner.oBE_Pedido = oBE_Pedido;
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
+            frmConfirmarPedido owner = this.Owner as frmConfirmarPedido;
+            owner.PagoOK = false;
             owner.oBE_Pedido = oBE_Pedido;
             this.Close();
         }

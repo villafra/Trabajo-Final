@@ -34,18 +34,22 @@ namespace Trabajo_Final
             frm.Owner = this;
             frm.oBE_Pedido = oBE_Pedido;
             frm.ShowDialog();
-            try
+            if (PagoOK)
             {
-                if (Nuevo())
+                try
                 {
-                    Cálculos.MsgBox("El Pedido se encuentra liberado.");
-                    frmTomarPedido owner = this.Owner as frmTomarPedido;
-                    owner.LimpiarPedido();
+                    if (Nuevo())
+                    {
+                        Cálculos.MsgBox("El Pedido se encuentra liberado.");
+                        frmTomarPedido owner = this.Owner as frmTomarPedido;
+                        owner.LimpiarPedido();
+                    }
+                    else throw new RestaurantException("No se ha creado el pedido correctamente. Intente de nuevo");
                 }
-                else throw new RestaurantException("No se ha creado el pedido correctamente. Intente de nuevo");
+                catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+                this.Close();
             }
-            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
-            this.Close();
+           
         }
         private bool Nuevo()
         {
@@ -90,6 +94,8 @@ namespace Trabajo_Final
             botonBebida.Height = 80;
             botonBebida.Tag = bebida;
             botonBebida.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(bebida.ToString(), botonBebida);
+            botonBebida.BackgroundImageLayout = ImageLayout.Stretch;
             return botonBebida;
         }
         private Button CrearBotonPlato(BE_Plato plato)
@@ -103,6 +109,8 @@ namespace Trabajo_Final
             botonPlato.Height = 80;
             botonPlato.Tag = plato;
             botonPlato.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(plato.ToString(), botonPlato);
+            botonPlato.BackgroundImageLayout = ImageLayout.Stretch;
             return botonPlato;
         }
 
@@ -129,5 +137,11 @@ namespace Trabajo_Final
             flowBebidas.AutoScrollPosition = new Point(scroll, 0);
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            frmTomarPedido owner = this.Owner as frmTomarPedido;
+            owner.LimpiarPedido();
+            this.Close();
+        }
     }
 }

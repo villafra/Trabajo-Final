@@ -39,13 +39,16 @@ namespace Trabajo_Final
         }
         public void ActualizarListado()
         {
+            flowBebidas.Controls.Clear();
+            flowPlatos.Controls.Clear();
+            flowPedido.Controls.Clear();
             foreach (BE_Plato_Stock plato in oBLL_Plato.ListarConStock())
             {
                 Button botonPlato = CrearBotonPlato(plato);
                 flowPlatos.Controls.Add(botonPlato);
             }
             Aspecto.CentrarPanel(grpArmaPedido, flowPlatos,btnIzquierdaPlatos,btnDerechaPlatos);
-            foreach(BE_Bebida_Stock bebida in oBLL_Bebida.ListarConStock())
+            foreach(BE_Bebida_Stock bebida in oBLL_Bebida.ListarParaVenta())
             {
                 Button botonBebida = CrearBotonBebida(bebida);
                 flowBebidas.Controls.Add(botonBebida);
@@ -75,6 +78,8 @@ namespace Trabajo_Final
             botonPlato.Click += BotonPlato_Click;
             botonPlato.Tag = plato;
             botonPlato.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(plato.Material.ToString(), botonPlato);
+            botonPlato.BackgroundImageLayout = ImageLayout.Stretch;
             return botonPlato;
         }
         private Button CrearBotonPedido(BE_Plato_Stock plato)
@@ -90,6 +95,8 @@ namespace Trabajo_Final
             botonPlato.MouseDown += BotonPedido_MouseDown;
             botonPlato.Tag = plato;
             botonPlato.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(plato.Material.ToString(), botonPlato);
+            botonPlato.BackgroundImageLayout = ImageLayout.Stretch;
             return botonPlato;
         }
         private Button CrearBotonPedido(BE_Bebida_Stock bebida)
@@ -105,6 +112,8 @@ namespace Trabajo_Final
             botonBebida.MouseDown += BotonPedido_MouseDown;
             botonBebida.Tag = bebida;
             botonBebida.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(bebida.Material.ToString(), botonBebida);
+            botonBebida.BackgroundImageLayout = ImageLayout.Stretch;
             return botonBebida;
         }
         private void BotonPlato_Click(object sender, EventArgs e)
@@ -132,6 +141,8 @@ namespace Trabajo_Final
             botonBebida.Click += BotonBebida_Click;
             botonBebida.Tag = bebida;
             botonBebida.Anchor = AnchorStyles.None;
+            GuardaFotos.CargarImagen(bebida.Material.ToString(), botonBebida);
+            botonBebida.BackgroundImageLayout = ImageLayout.Stretch;
             return botonBebida;
         }
         private void BotonBebida_Click(object sender, EventArgs e)
@@ -219,6 +230,8 @@ namespace Trabajo_Final
         public void LimpiarPedido()
         {
             flowPedido.Controls.Clear();
+            bebidas.Clear();
+            platos.Clear();
         }
         private void btnCrearOrden_Click(object sender, EventArgs e)
         {

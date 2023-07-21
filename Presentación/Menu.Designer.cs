@@ -738,8 +738,8 @@ namespace Trabajo_Final
             // pedidosToolStripMenuItem
             // 
             this.pedidosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.listadoToolStripMenuItem7,
-            this.gestionarPedidosToolStripMenuItem});
+            this.gestionarPedidosToolStripMenuItem,
+            this.listadoToolStripMenuItem7});
             this.pedidosToolStripMenuItem.Name = "pedidosToolStripMenuItem";
             this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(75, 31);
             this.pedidosToolStripMenuItem.Text = "Pedidos";
@@ -747,7 +747,7 @@ namespace Trabajo_Final
             // listadoToolStripMenuItem7
             // 
             this.listadoToolStripMenuItem7.Name = "listadoToolStripMenuItem7";
-            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(211, 26);
+            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
             this.listadoToolStripMenuItem7.Tag = "Comp34";
             this.listadoToolStripMenuItem7.Text = "Listado";
             this.listadoToolStripMenuItem7.Click += new System.EventHandler(this.listadoToolStripMenuItem7_Click);
@@ -755,7 +755,7 @@ namespace Trabajo_Final
             // gestionarPedidosToolStripMenuItem
             // 
             this.gestionarPedidosToolStripMenuItem.Name = "gestionarPedidosToolStripMenuItem";
-            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
+            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.gestionarPedidosToolStripMenuItem.Tag = "Comp35";
             this.gestionarPedidosToolStripMenuItem.Text = "Gestionar Pedidos";
             this.gestionarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gestionarPedidosToolStripMenuItem_Click);

@@ -21,6 +21,7 @@ namespace Data_Access_Layer
         private static string NodoRoot = "Restaurant";
         private static string NodoRootBKP = "BackUps";
         private static string QRdir = "PagoQR.png";
+        private static string CarpetaFotosProd = "Fotos Productos";
         
         private static List<string> Leafs = new List<string>
         {
@@ -304,6 +305,14 @@ namespace Data_Access_Layer
             {
                 if (!Directory.Exists(CarpetaBackUp)) Directory.CreateDirectory(CarpetaBackUp);
                 return CarpetaBackUp;
+            }
+        }
+        public static string CarpetaFotos
+        {
+            get
+            {
+                if (!Directory.Exists(CarpetaFotosProd)) Directory.CreateDirectory(CarpetaFotosProd);
+                return CarpetaFotosProd;
             }
         }
         public static string DirectorioBD

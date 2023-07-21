@@ -392,6 +392,15 @@ namespace Automate_Layer
         };
         public static Action<Form, DataGridView> CentrarDGV = (frm, dgv) =>
         {
+            int anchoTotal = 0;
+            foreach (DataGridViewColumn columna in dgv.Columns)
+            {
+                if (columna.Visible)
+                {
+                    anchoTotal += columna.Width;
+                }
+            }
+            dgv.Width = anchoTotal;
             int x = (frm.Width - dgv.Width ) / 2;
             int y = dgv.Location.Y;
             dgv.Location = new Point(x, y);

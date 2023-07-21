@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Business_Entities;
 using Automate_Layer;
 using Business_Logic_Layer;
+using Service_Layer;
 
 namespace Trabajo_Final
 {
@@ -108,6 +109,23 @@ namespace Trabajo_Final
         private void frmMetodoPagos_Activated(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void btnCargarImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.CargarFoto(oBE_Pago.ToString()))
+                {
+                    if (oBLL_Pago.CargarImágen(oBE_Pago))
+                    {
+                        Cálculos.MsgBox("Se ha añadido la imágen satisfactoriamente.");
+                    }
+                    else { throw new RestaurantException("La carga de la imágen ha fallado, por favor, intente nuevamente."); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la carga de la imágen."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
     }
 }

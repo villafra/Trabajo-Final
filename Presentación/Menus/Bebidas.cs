@@ -132,5 +132,22 @@ namespace Trabajo_Final
         {
             Centrar();
         }
+
+        private void btnCargarImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.CargarFoto(oBE_Bebida.Nombre))
+                {
+                    if (oBLL_Bebida.CargarImágen(oBE_Bebida))
+                    {
+                        Cálculos.MsgBox("Se ha añadido la imágen satisfactoriamente.");
+                    }
+                    else { throw new RestaurantException("La carga de la imáge ha fallado, por favor, intente nuevamente."); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la carga de la imágen."); }
+            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

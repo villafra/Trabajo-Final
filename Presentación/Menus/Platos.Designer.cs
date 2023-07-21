@@ -44,6 +44,7 @@ namespace Trabajo_Final
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnCargarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlatos)).BeginInit();
             this.grpPlatos.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -140,6 +141,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            this.Listado.Images.SetKeyName(7, "agregar (1).png");
             // 
             // btBuscar
             // 
@@ -160,6 +162,7 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
+            this.grpAcciones.Controls.Add(this.btnCargarImagen);
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnAgregar);
             this.grpAcciones.Controls.Add(this.btnEliminar);
@@ -221,6 +224,23 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnCargarImagen
+            // 
+            this.btnCargarImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCargarImagen.FlatAppearance.BorderSize = 0;
+            this.btnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarImagen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCargarImagen.ImageIndex = 7;
+            this.btnCargarImagen.ImageList = this.Listado;
+            this.btnCargarImagen.Location = new System.Drawing.Point(906, 34);
+            this.btnCargarImagen.Name = "btnCargarImagen";
+            this.btnCargarImagen.Size = new System.Drawing.Size(208, 50);
+            this.btnCargarImagen.TabIndex = 8;
+            this.btnCargarImagen.Text = "Cargar Imágen";
+            this.btnCargarImagen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCargarImagen.UseVisualStyleBackColor = true;
+            this.btnCargarImagen.Click += new System.EventHandler(this.btnCargarImagen_Click);
+            // 
             // frmPlatos
             // 
             this.AcceptButton = this.btBuscar;
@@ -261,5 +281,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.GroupBox grpAcciones;
+        private System.Windows.Forms.Button btnCargarImagen;
     }
 }

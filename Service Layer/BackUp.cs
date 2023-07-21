@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -97,7 +98,49 @@ namespace Service_Layer
                 
             }
             catch (Exception ex) { throw ex; }
-        } 
+        }
+        public static bool ImportarArchivo(BE_Login usuario)
+        {
+            string pathzip = null;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Archivos ZIP (*.zip)|*.zip";
+                openFileDialog.Title = "Seleccionar archivo de respaldo";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    pathzip = openFileDialog.FileName;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(pathzip))
+            {
+                using (ZipArchive archive = ZipFile.OpenRead(pathzip))
+                {
+                    foreach (ZipArchiveEntry entry in archive.Entries)
+                    {
+                        if (entry.Name.Equals("Restaurant.xml", StringComparison.OrdinalIgnoreCase))
+                        {
+                            DialogResult resultado = MessageBox.Show("Quiere importar esta base de datos?", "Restó", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (resultado.Equals(DialogResult.Yes))
+                            {
+                                string path = ReferenciasBD.DirectorioBD;
+                                ZipFile.ExtractToDirectory(pathzip, path);
+                                BE_BackUp oBE_BackUp = new BE_BackUp();
+                                oBE_BackUp.Codigo = usuario.ToString() + " " + DateTime.Now.ToString("dd-MM-yyy HH-mm-ss");
+                                oBE_BackUp.NombreArchivo = "Archivo Importado";
+                                oBE_BackUp.NombreUsuario = usuario.ToString();
+                                oBE_BackUp.Accion = TipoBKP.Restore.ToString();
+                                oBE_BackUp.FechaHora = DateTime.Now;
+                                return Guardar(oBE_BackUp);
+                            }
+                            else { throw new Exception("Se ha cancelado la importación"); }
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
         public static List<BE_BackUp> ListarBackUps()
         {
             DataSet ds = Listar();

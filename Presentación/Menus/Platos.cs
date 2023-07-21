@@ -95,7 +95,7 @@ namespace Trabajo_Final
                 else { throw new RestaurantException("La baja se ha cancelado."); }
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
-           
+
         }
 
         private void frmPlatos_Load(object sender, EventArgs e)
@@ -133,5 +133,23 @@ namespace Trabajo_Final
             Cálculos.RefreshGrilla(dgvPlatos, listado);
             Centrar();
         }
+
+        private void btnCargarImagen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.CargarFoto(oBE_Plato.Nombre))
+                {
+                    if (oBLL_Plato.CargarImágen(oBE_Plato))
+                    {
+                        Cálculos.MsgBox("Se ha añadido la imágen satisfactoriamente.");
+                    }
+                    else { throw new RestaurantException("La carga de la imáge ha fallado, por favor, intente nuevamente."); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la carga de la imágen."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+        
     }
 }

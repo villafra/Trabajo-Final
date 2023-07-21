@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Abstraction_Layer;
 using Business_Entities;
 using Mapper;
+using Service_Layer;
 
 namespace Business_Logic_Layer
 {
@@ -65,6 +66,11 @@ namespace Business_Logic_Layer
         public bool Existe(BE_Plato plato)
         {
             return MPP_Plato.DevolverInstancia().Existe(plato);
+        }
+
+        public bool CargarImágen(BE_Plato oBE_Plato)
+        {
+            return GuardaFotos.GuardarImagen(GuardaFotos.AbrirImágen(), oBE_Plato.ToString());
         }
     }
 }

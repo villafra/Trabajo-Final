@@ -43,6 +43,7 @@ namespace Trabajo_Final
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
+            this.btnCargarImagen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMetPagos)).BeginInit();
             this.grpMetPagos.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -141,6 +142,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(4, "basura.png");
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
+            this.Listado.Images.SetKeyName(7, "agregar (1).png");
             // 
             // btBuscar
             // 
@@ -161,6 +163,7 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
+            this.grpAcciones.Controls.Add(this.btnCargarImagen);
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnAgregar);
             this.grpAcciones.Location = new System.Drawing.Point(102, 768);
@@ -204,6 +207,23 @@ namespace Trabajo_Final
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
+            // btnCargarImagen
+            // 
+            this.btnCargarImagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCargarImagen.FlatAppearance.BorderSize = 0;
+            this.btnCargarImagen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarImagen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCargarImagen.ImageIndex = 7;
+            this.btnCargarImagen.ImageList = this.Listado;
+            this.btnCargarImagen.Location = new System.Drawing.Point(906, 34);
+            this.btnCargarImagen.Name = "btnCargarImagen";
+            this.btnCargarImagen.Size = new System.Drawing.Size(208, 50);
+            this.btnCargarImagen.TabIndex = 9;
+            this.btnCargarImagen.Text = "Cargar Imágen";
+            this.btnCargarImagen.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCargarImagen.UseVisualStyleBackColor = true;
+            this.btnCargarImagen.Click += new System.EventHandler(this.btnCargarImagen_Click);
+            // 
             // frmMetodoPagos
             // 
             this.AcceptButton = this.btBuscar;
@@ -243,5 +263,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.GroupBox grpAcciones;
+        private System.Windows.Forms.Button btnCargarImagen;
     }
 }

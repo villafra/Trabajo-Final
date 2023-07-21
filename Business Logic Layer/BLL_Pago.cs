@@ -7,6 +7,7 @@ using Business_Entities;
 using Abstraction_Layer;
 using Mapper;
 using System.Data;
+using Service_Layer;
 
 namespace Business_Logic_Layer
 {
@@ -36,6 +37,11 @@ namespace Business_Logic_Layer
         public bool Modificar(BE_Pago pago)
         {
             return MPP_Pago.DevolverInstancia().Modificar(pago);
+        }
+
+        public bool CargarImágen(BE_Pago oBE_Pago)
+        {
+            return GuardaFotos.GuardarImagen(GuardaFotos.AbrirImágen(), oBE_Pago.ToString());
         }
     }
 }

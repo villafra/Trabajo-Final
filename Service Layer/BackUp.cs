@@ -23,7 +23,17 @@ namespace Service_Layer
             DateTime fecha = DateTime.Now;
             string path = ReferenciasBD.DirectorioBD;
             string pathzip = Path.Combine(ReferenciasBD.CarpetaBackUps, DateTime.Now.ToString("dd-MM-yyy HH-mm-ss") + ".zip");
-            ZipFile.CreateFromDirectory(path, pathzip);
+            string[] XMLDB = BuscarXML();
+            if (XMLDB.Length > 0)
+            {
+                using (ZipArchive zip = ZipFile.Open(pathzip, ZipArchiveMode.Create))
+                {
+                    foreach (string archivo in XMLDB)
+                    {
+                        zip.CreateEntryFromFile(archivo, Path.GetFileName(archivo));
+                    }
+                }
+            }
             BE_BackUp oBE_BackUp = new BE_BackUp();
             oBE_BackUp.Codigo = usuario.ToString() + " " + DateTime.Now.ToString("dd-MM-yyy HH-mm-ss");
             oBE_BackUp.NombreArchivo = pathzip.Substring(7);
@@ -49,7 +59,6 @@ namespace Service_Layer
                         file.CopyTo(ReferenciasBD.ArchivoRollBack, true);
                         file.Delete();
                     }
-                    
                 }
                 ZipFile.ExtractToDirectory(pathzip, path);
                 BE_BackUp oBE_BackUp = new BE_BackUp();
@@ -124,6 +133,12 @@ namespace Service_Layer
                             if (resultado.Equals(DialogResult.Yes))
                             {
                                 string path = ReferenciasBD.DirectorioBD;
+                                System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
+                                foreach (System.IO.FileInfo file in directory.GetFiles("RollBack.xml"))
+                                {
+                                    file.CopyTo(ReferenciasBD.BaseDatosRestaurant, true);
+                                    file.Delete();
+                                }
                                 ZipFile.ExtractToDirectory(pathzip, path);
                                 BE_BackUp oBE_BackUp = new BE_BackUp();
                                 oBE_BackUp.Codigo = usuario.ToString() + " " + DateTime.Now.ToString("dd-MM-yyy HH-mm-ss");
@@ -147,7 +162,7 @@ namespace Service_Layer
             List<BE_BackUp> listado;
             if (ds != null)
             {
-                listado = (from bk in ds.Tables["BackUp"].AsEnumerable()
+                listado = ds.Tables.Contains("BackUp") != false ? (from bk in ds.Tables["BackUp"].AsEnumerable()
                            select new BE_BackUp
                            {
                                Codigo = bk[0].ToString(),
@@ -156,7 +171,7 @@ namespace Service_Layer
                                Accion = bk[3].ToString(),
                                FechaHora = Convert.ToDateTime(bk[4])
                            }
-                           ).ToList();
+                           ).ToList(): null ;
             }
             else { listado = null; }
             return listado;
@@ -222,6 +237,11 @@ namespace Service_Layer
         {
             return File.Exists(ReferenciasBD.BaseDatosBackups);
            
+        }
+        private static string[] BuscarXML()
+        {
+            string[] archivos = Directory.GetFiles(ReferenciasBD.DirectorioBD, "Restaurant.xml", SearchOption.TopDirectoryOnly);
+            return archivos;
         }
         private enum TipoBKP
         {

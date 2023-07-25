@@ -97,8 +97,8 @@ namespace Trabajo_Final
             this.listadoToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarReservasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listadoToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoToolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this.ordenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.prepararPlatosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -216,6 +216,7 @@ namespace Trabajo_Final
             this.EbtnInformes.Text = "Dashboard";
             this.EbtnInformes.UseVisualStyleBackColor = true;
             this.EbtnInformes.Visible = false;
+            this.EbtnInformes.Click += new System.EventHandler(this.EbtnInformes_Click);
             // 
             // CbtnPlatos
             // 
@@ -744,21 +745,21 @@ namespace Trabajo_Final
             this.pedidosToolStripMenuItem.Size = new System.Drawing.Size(75, 31);
             this.pedidosToolStripMenuItem.Text = "Pedidos";
             // 
-            // listadoToolStripMenuItem7
-            // 
-            this.listadoToolStripMenuItem7.Name = "listadoToolStripMenuItem7";
-            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(224, 26);
-            this.listadoToolStripMenuItem7.Tag = "Comp34";
-            this.listadoToolStripMenuItem7.Text = "Listado";
-            this.listadoToolStripMenuItem7.Click += new System.EventHandler(this.listadoToolStripMenuItem7_Click);
-            // 
             // gestionarPedidosToolStripMenuItem
             // 
             this.gestionarPedidosToolStripMenuItem.Name = "gestionarPedidosToolStripMenuItem";
-            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.gestionarPedidosToolStripMenuItem.Size = new System.Drawing.Size(211, 26);
             this.gestionarPedidosToolStripMenuItem.Tag = "Comp35";
             this.gestionarPedidosToolStripMenuItem.Text = "Gestionar Pedidos";
             this.gestionarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gestionarPedidosToolStripMenuItem_Click);
+            // 
+            // listadoToolStripMenuItem7
+            // 
+            this.listadoToolStripMenuItem7.Name = "listadoToolStripMenuItem7";
+            this.listadoToolStripMenuItem7.Size = new System.Drawing.Size(211, 26);
+            this.listadoToolStripMenuItem7.Tag = "Comp34";
+            this.listadoToolStripMenuItem7.Text = "Listado";
+            this.listadoToolStripMenuItem7.Click += new System.EventHandler(this.listadoToolStripMenuItem7_Click);
             // 
             // ordenesToolStripMenuItem
             // 

@@ -79,6 +79,7 @@ namespace Business_Logic_Layer
 
         public bool LiberarMesa(BE_Mesa oBE_Mesa)
         {
+            oBE_Mesa.Status = StatusMesa.Libre;
             if (oBE_Mesa is BE_MesaCombinada)
             {
                 return DescombinarMesa(oBE_Mesa as BE_MesaCombinada);

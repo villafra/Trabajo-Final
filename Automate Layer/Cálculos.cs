@@ -72,7 +72,7 @@ namespace Automate_Layer
         }
         public static bool LargoDNI(string dni)
         {
-            return Regex.IsMatch(dni, "^([0-9]{8})");
+            return Regex.IsMatch(dni, "^[0-9]{8}$");
         }
         public static bool ValidarNombrePersonal(string nombre)
         {

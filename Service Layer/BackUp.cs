@@ -134,9 +134,8 @@ namespace Service_Layer
                             {
                                 string path = ReferenciasBD.DirectorioBD;
                                 System.IO.DirectoryInfo directory = new System.IO.DirectoryInfo(path);
-                                foreach (System.IO.FileInfo file in directory.GetFiles("RollBack.xml"))
+                                foreach (System.IO.FileInfo file in directory.GetFiles("Restaurant.xml"))
                                 {
-                                    file.CopyTo(ReferenciasBD.BaseDatosRestaurant, true);
                                     file.Delete();
                                 }
                                 ZipFile.ExtractToDirectory(pathzip, path);

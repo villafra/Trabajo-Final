@@ -54,7 +54,7 @@ namespace Data_Access_Layer
             new XElement("Permiso",
                 new XElement("Codigo", "Comp1"),
                 new XElement("Tipo", "PermisoHijo"),
-                new XElement("Descripción", "Listado Empleados")),
+                new XElement("Descripcion", "Listado Empleados")),
             new XElement("Permiso",
                 new XElement("Codigo", "Comp2"),
                 new XElement("Tipo", "PermisoHijo"),

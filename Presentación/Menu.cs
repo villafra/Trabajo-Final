@@ -779,5 +779,21 @@ namespace Trabajo_Final
             }
         }
 
+        private void EbtnInformes_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashVentas);
+            if (frm != null)
+            {
+                ((frmDashVentas)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmDashVentas();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
     }
 }

@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DashCompras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashCompras.designer.cs">
+      <DependentUpon>DashCompras.cs</DependentUpon>
+    </Compile>
     <Compile Include="DashVentas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -467,6 +473,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="DashCompras.resx">
+      <DependentUpon>DashCompras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashVentas.resx">
       <DependentUpon>DashVentas.cs</DependentUpon>
     </EmbeddedResource>

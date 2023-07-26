@@ -781,6 +781,37 @@ namespace Trabajo_Final
 
         private void EbtnInformes_Click(object sender, EventArgs e)
         {
+            Aspecto.FormatearPanelMenu(submenu);
+            submenu.Controls.Add(btnVentas);
+            submenu.Controls.Add(btnCompras);
+            submenu.Refresh();
+            flowPanel.Controls.Add(submenu);
+            int buttonsCount = flowPanel.Controls.OfType<Button>().Count();
+            int submenuIndex = flowPanel.Controls.Count + buttonsCount;
+            flowPanel.Controls.SetChildIndex(submenu, submenuIndex);
+
+            flowPanel.Refresh();
+        }
+
+        private void btCompras_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashCompras);
+            if (frm != null)
+            {
+                ((frmDashCompras)frm).ActualizarListado();
+                frm.BringToFront();
+                return;
+            }
+            else
+            {
+                frm = new frmDashCompras();
+                formulariosHijos.Add(frm);
+                Aspecto.AbrirNuevoForm(this, frm);
+            }
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashVentas);
             if (frm != null)
             {

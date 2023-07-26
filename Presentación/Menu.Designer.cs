@@ -40,6 +40,9 @@ namespace Trabajo_Final
             this.DbtnDashEmpleados = new System.Windows.Forms.Button();
             this.EbtnInformes = new System.Windows.Forms.Button();
             this.CbtnPlatos = new System.Windows.Forms.Button();
+            this.submenu = new System.Windows.Forms.Panel();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.btnCompras = new System.Windows.Forms.Button();
             this.txtUsuarioActivo = new System.Windows.Forms.TextBox();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -109,6 +112,7 @@ namespace Trabajo_Final
             this.btnCerrar = new System.Windows.Forms.Button();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
+            this.submenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +125,7 @@ namespace Trabajo_Final
             this.pnlMenu.Controls.Add(this.DbtnDashEmpleados);
             this.pnlMenu.Controls.Add(this.EbtnInformes);
             this.pnlMenu.Controls.Add(this.CbtnPlatos);
+            this.pnlMenu.Controls.Add(this.submenu);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 35);
             this.pnlMenu.Name = "pnlMenu";
@@ -172,6 +177,8 @@ namespace Trabajo_Final
             this.FotosBotones.Images.SetKeyName(2, "mesa-de-comedor.png");
             this.FotosBotones.Images.SetKeyName(3, "espiritu.png");
             this.FotosBotones.Images.SetKeyName(4, "cordero.png");
+            this.FotosBotones.Images.SetKeyName(5, "grafico-de-barras.png");
+            this.FotosBotones.Images.SetKeyName(6, "carro-de-la-carretilla.png");
             // 
             // AbtnMesasLibres
             // 
@@ -232,6 +239,43 @@ namespace Trabajo_Final
             this.CbtnPlatos.UseVisualStyleBackColor = true;
             this.CbtnPlatos.Visible = false;
             this.CbtnPlatos.Click += new System.EventHandler(this.btnPlatos_Click);
+            // 
+            // submenu
+            // 
+            this.submenu.Controls.Add(this.btnVentas);
+            this.submenu.Controls.Add(this.btnCompras);
+            this.submenu.Location = new System.Drawing.Point(14, 698);
+            this.submenu.Name = "submenu";
+            this.submenu.Size = new System.Drawing.Size(230, 165);
+            this.submenu.TabIndex = 0;
+            // 
+            // btnVentas
+            // 
+            this.btnVentas.ImageKey = "grafico-de-barras.png";
+            this.btnVentas.ImageList = this.FotosBotones;
+            this.btnVentas.Location = new System.Drawing.Point(33, 88);
+            this.btnVentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(165, 66);
+            this.btnVentas.TabIndex = 10;
+            this.btnVentas.Tag = "Comp5";
+            this.btnVentas.Text = "Ventas";
+            this.btnVentas.UseVisualStyleBackColor = true;
+            this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
+            // 
+            // btnCompras
+            // 
+            this.btnCompras.ImageKey = "carro-de-la-carretilla.png";
+            this.btnCompras.ImageList = this.FotosBotones;
+            this.btnCompras.Location = new System.Drawing.Point(33, 11);
+            this.btnCompras.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnCompras.Name = "btnCompras";
+            this.btnCompras.Size = new System.Drawing.Size(165, 66);
+            this.btnCompras.TabIndex = 9;
+            this.btnCompras.Tag = "Comp5";
+            this.btnCompras.Text = "Compras";
+            this.btnCompras.UseVisualStyleBackColor = true;
+            this.btnCompras.Click += new System.EventHandler(this.btCompras_Click);
             // 
             // txtUsuarioActivo
             // 
@@ -860,6 +904,7 @@ namespace Trabajo_Final
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseDown);
             this.pnlMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).EndInit();
+            this.submenu.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -945,6 +990,9 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem combinarMesaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionarMesasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consolidarConsumoToolStripMenuItem;
+        private System.Windows.Forms.Panel submenu;
+        private System.Windows.Forms.Button btnVentas;
+        private System.Windows.Forms.Button btnCompras;
     }
 }
 

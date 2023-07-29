@@ -47,7 +47,20 @@ namespace Trabajo_Final
 
                             if (this.Owner is frmMenu menu)
                             {
+                                if( menu.UsuarioActivo != null)
+                                {
+                                    if (menu.UsuarioActivo.Codigo != oBE_Login.Codigo)
+                                    {
+                                        Bitacora.Logout(menu.UsuarioActivo);
+                                    }
+                                    else
+                                    {
+                                        Cálculos.BorrarCampos(grpLogin);
+                                        this.Close();
+                                    }
+                                }
                                 menu.UsuarioActivo = oBE_Login;
+                                Bitacora.Login(menu.UsuarioActivo);
                             }
                             Cálculos.BorrarCampos(grpLogin);
                             this.Close();

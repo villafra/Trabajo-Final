@@ -306,7 +306,7 @@
             title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title1.ForeColor = System.Drawing.Color.White;
             title1.Name = "Title1";
-            title1.Text = "Asistencias";
+            title1.Text = "Platos";
             this.chartPlatos.Titles.Add(title1);
             // 
             // chartBebidas
@@ -326,7 +326,7 @@
             title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             title2.ForeColor = System.Drawing.Color.White;
             title2.Name = "Title1";
-            title2.Text = "Motivo Inasistencias";
+            title2.Text = "Bebidas";
             this.chartBebidas.Titles.Add(title2);
             // 
             // frmDashVentas

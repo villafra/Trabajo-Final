@@ -103,12 +103,21 @@ namespace Automate_Layer
         };
         public static Action<Panel> FormatearPanel = (panel) =>
         {
+
             foreach (Control control in panel.Controls)
             {
                 if (control is Button) FormatearBoton(control as Button);
             }
         };
-
+        public static Action<Panel> FormatearPanelFlotante = (panel) =>
+        {
+            panel.BackColor = Color.FromArgb(24, 30, 54);
+            panel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel.Width, panel.Height, 30, 30));
+            foreach (Control control in panel.Controls)
+            {
+                if (control is Button) FormatearBoton(control as Button);
+            }
+        };
         public static Action<Button> FormatearBoton = (boton) =>
         {
             boton.BackColor = Color.FromArgb(24, 30, 54);
@@ -495,6 +504,25 @@ namespace Automate_Layer
             panel.Padding = new Padding(0,horizontalScroll, 0, 0);
             CentrarBoton(panel, btnder);
             CentrarBoton(panel, btnizq);
+        };
+        public static Action<Panel,FlowLayoutPanel, Button> MostrarSubMenuDash = (panel, flowPanel, btn) =>
+        {
+            FormatearPanelFlotante(panel);
+            panel.Visible = true;
+            int x = flowPanel.Location.X + flowPanel.Width;
+            int y = btn.PointToScreen(Point.Empty).Y;
+            panel.Location = new Point(x, y);
+        };
+        public static Action<Panel, bool> OcultarSubMenuDash = (panel, click) =>
+        {
+            Point point = panel.PointToClient(System.Windows.Forms.Cursor.Position);
+            Control btn = panel.GetChildAtPoint(point);
+            if (btn != null && btn is Button)
+            {
+                if(btn.Name == "btnCompras" || btn.Name == "btnVentas" && !click)
+                    return;
+            }
+            panel.Visible = false;
         };
 
     }

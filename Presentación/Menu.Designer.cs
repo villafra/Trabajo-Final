@@ -40,7 +40,6 @@ namespace Trabajo_Final
             this.DbtnDashEmpleados = new System.Windows.Forms.Button();
             this.EbtnInformes = new System.Windows.Forms.Button();
             this.CbtnPlatos = new System.Windows.Forms.Button();
-            this.submenu = new System.Windows.Forms.Panel();
             this.btnVentas = new System.Windows.Forms.Button();
             this.btnCompras = new System.Windows.Forms.Button();
             this.txtUsuarioActivo = new System.Windows.Forms.TextBox();
@@ -110,10 +109,11 @@ namespace Trabajo_Final
             this.trackingOrdenesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnMinimizar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.submenu = new System.Windows.Forms.Panel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).BeginInit();
-            this.submenu.SuspendLayout();
             this.menuStrip.SuspendLayout();
+            this.submenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMenu
@@ -125,7 +125,6 @@ namespace Trabajo_Final
             this.pnlMenu.Controls.Add(this.DbtnDashEmpleados);
             this.pnlMenu.Controls.Add(this.EbtnInformes);
             this.pnlMenu.Controls.Add(this.CbtnPlatos);
-            this.pnlMenu.Controls.Add(this.submenu);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 35);
             this.pnlMenu.Name = "pnlMenu";
@@ -136,9 +135,9 @@ namespace Trabajo_Final
             // flowPanel
             // 
             this.flowPanel.BackColor = System.Drawing.Color.Transparent;
-            this.flowPanel.Location = new System.Drawing.Point(14, 234);
+            this.flowPanel.Location = new System.Drawing.Point(14, 244);
             this.flowPanel.Name = "flowPanel";
-            this.flowPanel.Size = new System.Drawing.Size(244, 731);
+            this.flowPanel.Size = new System.Drawing.Size(244, 721);
             this.flowPanel.TabIndex = 12;
             // 
             // picboxPanel
@@ -239,15 +238,6 @@ namespace Trabajo_Final
             this.CbtnPlatos.UseVisualStyleBackColor = true;
             this.CbtnPlatos.Visible = false;
             this.CbtnPlatos.Click += new System.EventHandler(this.btnPlatos_Click);
-            // 
-            // submenu
-            // 
-            this.submenu.Controls.Add(this.btnVentas);
-            this.submenu.Controls.Add(this.btnCompras);
-            this.submenu.Location = new System.Drawing.Point(14, 698);
-            this.submenu.Name = "submenu";
-            this.submenu.Size = new System.Drawing.Size(230, 165);
-            this.submenu.TabIndex = 0;
             // 
             // btnVentas
             // 
@@ -884,11 +874,23 @@ namespace Trabajo_Final
             this.btnCerrar.UseVisualStyleBackColor = false;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // submenu
+            // 
+            this.submenu.Controls.Add(this.btnVentas);
+            this.submenu.Controls.Add(this.btnCompras);
+            this.submenu.Location = new System.Drawing.Point(287, 644);
+            this.submenu.Name = "submenu";
+            this.submenu.Size = new System.Drawing.Size(230, 165);
+            this.submenu.TabIndex = 0;
+            this.submenu.Visible = false;
+            this.submenu.MouseLeave += new System.EventHandler(this.submenu_MouseLeave);
+            // 
             // frmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1600, 1000);
+            this.Controls.Add(this.submenu);
             this.Controls.Add(this.btnMinimizar);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtUsuarioActivo);
@@ -904,9 +906,9 @@ namespace Trabajo_Final
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.frmMenu_MouseDown);
             this.pnlMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picboxPanel)).EndInit();
-            this.submenu.ResumeLayout(false);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
+            this.submenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -990,9 +992,9 @@ namespace Trabajo_Final
         private System.Windows.Forms.ToolStripMenuItem combinarMesaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gestionarMesasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem consolidarConsumoToolStripMenuItem;
-        private System.Windows.Forms.Panel submenu;
         private System.Windows.Forms.Button btnVentas;
         private System.Windows.Forms.Button btnCompras;
+        private System.Windows.Forms.Panel submenu;
     }
 }
 

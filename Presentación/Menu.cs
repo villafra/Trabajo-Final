@@ -39,7 +39,6 @@ namespace Trabajo_Final
                     UIComposite.CambiarVisibilidadMenu(menuStrip.Items, UsuarioActivo.Permiso.ListaPermisos());
                     if (UsuarioActivo.Usuario == "admin") txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Usuario;
                     else txtUsuarioActivo.Text = $"Usuario Activo: " + UsuarioActivo.Empleado;
-                    Bitacora.Login(UsuarioActivo);
                 }
                 
             }
@@ -781,24 +780,15 @@ namespace Trabajo_Final
 
         private void EbtnInformes_Click(object sender, EventArgs e)
         {
-            Aspecto.FormatearPanelMenu(submenu);
-            submenu.Controls.Add(btnVentas);
-            submenu.Controls.Add(btnCompras);
-            submenu.Refresh();
-            flowPanel.Controls.Add(submenu);
-            int buttonsCount = flowPanel.Controls.OfType<Button>().Count();
-            int submenuIndex = flowPanel.Controls.Count + buttonsCount;
-            flowPanel.Controls.SetChildIndex(submenu, submenuIndex);
-
-            flowPanel.Refresh();
+            Aspecto.MostrarSubMenuDash(submenu, flowPanel, EbtnInformes);
         }
 
         private void btCompras_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashCompras);
+            Aspecto.OcultarSubMenuDash(submenu, true);
             if (frm != null)
             {
-                ((frmDashCompras)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -813,9 +803,9 @@ namespace Trabajo_Final
         private void btnVentas_Click(object sender, EventArgs e)
         {
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frmDashVentas);
+            Aspecto.OcultarSubMenuDash(submenu, true);
             if (frm != null)
             {
-                ((frmDashVentas)frm).ActualizarListado();
                 frm.BringToFront();
                 return;
             }
@@ -825,6 +815,11 @@ namespace Trabajo_Final
                 formulariosHijos.Add(frm);
                 Aspecto.AbrirNuevoForm(this, frm);
             }
+        }
+
+        private void submenu_MouseLeave(object sender, EventArgs e)
+        {
+            Aspecto.OcultarSubMenuDash((Panel)sender, false);
         }
     }
 }

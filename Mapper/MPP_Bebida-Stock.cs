@@ -117,6 +117,7 @@ namespace Mapper
                      Lote = Convert.ToString(mat[4]),
                  }).FirstOrDefault() : null;
 
+            oBE_Bebida_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Bebida_Stock);
             return oBE_Bebida_Stock;
         }
 
@@ -142,6 +143,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
                  }).FirstOrDefault() : null;
+            Bebida_Stock.FechaVencimiento = DevolverFechaVencimiento(Bebida_Stock);
             return Bebida_Stock;
         }
         public List<BE_Bebida_Stock> ListarConStock()
@@ -207,7 +209,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
                  }).FirstOrDefault() : null;
-
+            oBE_Bebida_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Bebida_Stock);
             return oBE_Bebida_Stock;
         }
         public List<BE_Bebida_Stock> BuscarStock (BE_Bebida bebida, DataSet ds = null)

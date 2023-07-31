@@ -45,6 +45,13 @@ namespace Mapper
         {
             return Xml_Database.DevolverInstancia().Existe(CrearEmpleadoXML(empleado), "DNI");
         }
+        public bool Reactivar(BE_Empleado empleado)
+        {
+            empleado.Activo = true;
+            ListadoXML = new List<BE_TuplaXML>();
+            ListadoXML.Add(CrearEmpleadoXML(empleado));
+            return Xml_Database.DevolverInstancia().Modificar(ListadoXML);
+        }
         public List<BE_Empleado> Listar()
         {
             DataSet ds = new DataSet();
@@ -274,6 +281,17 @@ namespace Mapper
                 nuevaTupla.Xelement = nuevoEmpleado;
             }
             return nuevaTupla;    
+        }
+
+        private BE_TuplaXML CrearEmpleadoExistente(string element, string codigo)
+        {
+            BE_TuplaXML nuevaTupla = new BE_TuplaXML();
+            nuevaTupla.NodoRoot = "Empleados";
+            nuevaTupla.NodoLeaf = "Empleado";
+            XElement reactivar = new XElement("Empleado",
+                new XElement(element, codigo));
+            nuevaTupla.Xelement = reactivar;
+            return nuevaTupla;
         }
 
         private List<BE_TuplaXML> CrearMozoPedidosXML(BE_Mozo mozo)

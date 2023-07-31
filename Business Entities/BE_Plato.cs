@@ -17,6 +17,7 @@ namespace Business_Entities
         public decimal CostoUnitario { get; set; }
         public bool Activo { get; set; } = true;
         public List<BE_Ingrediente> ListaIngredientes { get; set; }
+        public int VidaUtil { get; set; }
 
         public string DevolverNombre()
         {

@@ -261,6 +261,12 @@ namespace Automate_Layer
             if (resultado == DialogResult.Yes) return true;
             else return false;
         }
+        public static bool QuiereReactivar(string objeto)
+        {
+            DialogResult resultado = MessageBox.Show(@"El " + objeto + " que quiere agregar ya existe en base de datos y se encuentra deshabiliado. Desea reactivarlo?", "Reactivación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
         public static bool CambiarPass(string pass)
         {
             DialogResult resultado = MessageBox.Show(@"La nueva contraseña será: " + pass + ". Tome nota.", "Restó", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);

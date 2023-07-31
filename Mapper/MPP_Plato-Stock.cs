@@ -49,7 +49,7 @@ namespace Mapper
 
         public DateTime DevolverFechaVencimiento(BE_Plato_Stock material)
         {
-            throw new NotImplementedException(); 
+            return material.FechaCreacion.Value.AddDays(material.Material.VidaUtil);
         }
 
         public decimal DevolverStock(BE_Plato_Stock material, bool estelote)
@@ -122,7 +122,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
                  }).FirstOrDefault() : null;
-
+            oBE_Plato_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Plato_Stock);
             return oBE_Plato_Stock;
         }
 
@@ -148,6 +148,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
                  }).FirstOrDefault() : null;
+            Plato_Stock.FechaVencimiento = DevolverFechaVencimiento(Plato_Stock);
             return Plato_Stock;
         }
         public List<BE_Plato_Stock> ListarConStock()
@@ -211,7 +212,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
                  }).FirstOrDefault() : null;
-
+            oBE_Plato_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Plato_Stock);
             return oBE_Plato_Stock;
         }
         public bool Modificar(BE_Plato_Stock material)

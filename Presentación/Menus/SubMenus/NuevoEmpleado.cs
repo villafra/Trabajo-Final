@@ -109,7 +109,10 @@ namespace Trabajo_Final
             {
                 return oBLL_Empleado.Guardar(oBE_Empleado);
             }
-            else { throw new RestaurantException("El empleado que intenta agregar, ya existe en base de datos."); }
+            else 
+            { 
+                throw new RestaurantException("El empleado que intenta agregar, ya existe en base de datos."); 
+            }
         }
         private void ImportarEmpleado()
         {

@@ -27,7 +27,7 @@ namespace Business_Logic_Layer
 
         public DateTime DevolverFechaVencimiento(BE_Material_Stock material)
         {
-            throw new NotImplementedException();
+            return MPP_Material_Stock.DevolverInstancia().DevolverFechaVencimiento(material);
         }
 
         public decimal DevolverStock(BE_Material_Stock material, bool estelote)
@@ -42,7 +42,12 @@ namespace Business_Logic_Layer
 
         public List<BE_Material_Stock> Listar()
         {
-            return MPP_Material_Stock.DevolverInstancia().Listar();
+            List<BE_Material_Stock> listado = MPP_Material_Stock.DevolverInstancia().Listar();
+            foreach (BE_Material_Stock item in listado)
+            {
+                item.FechaVencimiento = DevolverFechaVencimiento(item);
+            }
+            return listado;
         }
 
         public BE_Material_Stock ListarObjeto(BE_Material_Stock material, DataSet ds = null)
@@ -55,7 +60,12 @@ namespace Business_Logic_Layer
         }
         public List<BE_Material_Stock> ListarConStock()
         {
-            return MPP_Material_Stock.DevolverInstancia().ListarConStock();
+            List<BE_Material_Stock> listado = MPP_Material_Stock.DevolverInstancia().ListarConStock();
+            foreach (BE_Material_Stock item in listado)
+            {
+                item.FechaVencimiento = DevolverFechaVencimiento(item);
+            }
+            return listado;
         }
         public BE_Material_Stock BuscarXLote(BE_Compra compra, string lote)
         {

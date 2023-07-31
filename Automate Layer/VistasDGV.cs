@@ -290,6 +290,7 @@ namespace Automate_Layer
                 dgv.Columns[3].HeaderText = "Fecha de Creación";
                 dgv.Columns[4].HeaderText = "Lote";
                 dgv.Columns[4].DisplayIndex = 2;
+                dgv.Columns[5].HeaderText = "Fecha de Vencimiento";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -330,6 +331,7 @@ namespace Automate_Layer
                 dgv.Columns[3].HeaderText = "Fecha de Creación";
                 dgv.Columns[4].HeaderText = "Lote";
                 dgv.Columns[4].DisplayIndex = 2;
+                dgv.Columns[5].HeaderText = "Fecha de Vencimiento";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -372,6 +374,7 @@ namespace Automate_Layer
                 dgv.Columns[3].HeaderText = "Fecha de Creación";
                 dgv.Columns[4].HeaderText = "Lote";
                 dgv.Columns[4].DisplayIndex = 2;
+                dgv.Columns[5].HeaderText = "Fecha de Vencimiento";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;

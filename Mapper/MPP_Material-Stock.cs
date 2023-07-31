@@ -92,7 +92,6 @@ namespace Mapper
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
-
                  }).ToList() : null;
 
             return listaMateriales;
@@ -115,9 +114,9 @@ namespace Mapper
                      Material = MPP_Ingrediente.DevolverInstancia().ListarObjeto(new BE_Ingrediente { Codigo = Convert.ToInt32(mat[1]) },ds),
                      Stock = Convert.ToDecimal(mat[2]),
                      FechaCreacion = Convert.ToDateTime(mat[3]),
-                     Lote = Convert.ToString(mat[4]),
+                     Lote = Convert.ToString(mat[4])
                  }).FirstOrDefault() : null;
-
+            oBE_Material_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Material_Stock);
             return oBE_Material_Stock;
         }
 
@@ -143,6 +142,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
                  }).FirstOrDefault() : null;
+            Material_Stock.FechaVencimiento = DevolverFechaVencimiento(Material_Stock);
             return Material_Stock;
         }
         public List<BE_Material_Stock> ListarConStock()
@@ -207,7 +207,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4]),
                  }).FirstOrDefault() : null;
-
+            oBE_Material_Stock.FechaVencimiento = DevolverFechaVencimiento(oBE_Material_Stock);
             return oBE_Material_Stock;
         }
         public bool Modificar(BE_Material_Stock material)

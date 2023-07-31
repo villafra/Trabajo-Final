@@ -292,6 +292,14 @@ namespace Data_Access_Layer
                 CancelarConexion();
             }
         }
+        public XElement DevolverInactivo(BE_TuplaXML tupla, string element)
+        {
+            AbrirConexion();
+            XElement encontrado = doc.Root.Element(tupla.NodoRoot).Descendants(tupla.NodoLeaf)
+                                  .FirstOrDefault(x => x.Element(element)?.Value == tupla.Xelement.Element(element)?.Value);
+            return encontrado;
+
+        }
         public void AutogenerarID(BE_TuplaXML tupla)
         {
             int ID;

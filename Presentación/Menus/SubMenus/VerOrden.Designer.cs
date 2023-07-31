@@ -44,6 +44,7 @@ namespace Trabajo_Final
             this.lblCodigo = new System.Windows.Forms.Label();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,12 +178,31 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.ImageIndex = 1;
+            this.btnCancelar.ImageList = this.Listado;
+            this.btnCancelar.Location = new System.Drawing.Point(24, 354);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(138, 47);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // frmVerOrden
             // 
             this.AcceptButton = this.btnConfirmar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 415);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.grpNuevoLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -211,5 +231,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtMesa;
         private System.Windows.Forms.TextBox txtEmpleado;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

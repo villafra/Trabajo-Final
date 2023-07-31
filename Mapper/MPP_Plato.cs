@@ -33,7 +33,7 @@ namespace Mapper
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPlatoXML(plato));
-            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Plato plato)

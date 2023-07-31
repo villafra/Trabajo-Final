@@ -120,9 +120,9 @@ namespace Trabajo_Final
                 numNRG.Value = oBE_Costo.Energía;
                 numOtros.Value = oBE_Costo.OtrosGastos;
                 int tipo = (int)oBE_Costo.Tipo;
-                if (Ingrediente.Contains(tipo)) comboMaterial.Text = TipoMaterial.Ingrediente.ToString();
-                else if (Bebida.Contains(tipo)) comboMaterial.Text = TipoMaterial.Bebida.ToString();
-                else comboMaterial.Text = TipoMaterial.Plato.ToString();
+                if (Ingrediente.Contains(tipo)) comboMaterial.Text = ((BE_CostoIngrediente)oBE_Costo).Material.ToString();
+                else if (Bebida.Contains(tipo)) comboMaterial.Text = ((BE_CostoBebida)oBE_Costo).Material.ToString();
+                else comboMaterial.Text = ((BE_CostoPlato)oBE_Costo).Material.ToString();
             }
         }
 

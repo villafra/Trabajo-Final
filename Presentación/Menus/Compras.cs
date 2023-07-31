@@ -33,6 +33,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -56,6 +57,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Compra>)dgvCompras.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -69,6 +71,7 @@ namespace Trabajo_Final
                     frm.ShowDialog();
                     ActualizarListado();
                     Centrar();
+                    listado = (List<BE_Compra>)dgvCompras.DataSource;
                 }
                 else { throw new RestaurantException("No se puede modificar un pedido que ya se ha gestionado."); }
             }
@@ -101,6 +104,7 @@ namespace Trabajo_Final
                         else { throw new Exception(); }
                         ActualizarListado();
                         Centrar();
+                        listado = (List<BE_Compra>)dgvCompras.DataSource;
                     }
                     else { throw new RestaurantException("No se puede eliminar un pedido que ya se ha gestionado."); }
                 } else { throw new RestaurantException("La acción de eliminar la compra ha sido cancelada"); }
@@ -119,14 +123,15 @@ namespace Trabajo_Final
         {
             if (txtFiltro.Text.Length > 0 && comboFiltro.SelectedIndex != -1)
             {
-            Cálculos.RefreshGrilla(dgvCompras, listado);
-            string filtro = txtFiltro.Text;
-            string Variable = rm.Reemplazar(comboFiltro.Text);
-            List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
-            Cálculos.RefreshGrilla(dgvCompras, filtrada);
-            Centrar();
-            comboFiltro.Text = "";
-            txtFiltro.Text = "";
+                Cálculos.RefreshGrilla(dgvCompras, listado);
+                string filtro = txtFiltro.Text;
+                string Variable = rm.Reemplazar(comboFiltro.Text);
+                List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => Cálculos.GetPropertyValue(x, Variable).ToString().Contains(Cálculos.Capitalize(filtro))).ToList();
+                Cálculos.RefreshGrilla(dgvCompras, filtrada);
+                Centrar();
+                comboFiltro.Text = "";
+                txtFiltro.Text = "";
+                chkOcultar.Checked = false;
             }
         }
 
@@ -134,6 +139,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvCompras, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmCompras_Activated(object sender, EventArgs e)
@@ -144,6 +150,22 @@ namespace Trabajo_Final
         private void frmCompras_Shown(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvCompras, listado);
+                List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvCompras, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvCompras, listado);
+                Centrar();
+            }
         }
     }
 }

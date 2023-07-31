@@ -33,6 +33,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvCompras, oBLL_Compra.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -74,6 +75,7 @@ namespace Trabajo_Final
                 frm.Owner = this;
                 frm.oBE_Compra = oBE_Compra;
                 frm.ShowDialog();
+                listado = (List<BE_Compra>)dgvCompras.DataSource;
             }
         }
         private void frmCompras_Load(object sender, EventArgs e)
@@ -99,6 +101,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvCompras, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmCompras_Activated(object sender, EventArgs e)
@@ -109,6 +112,22 @@ namespace Trabajo_Final
         private void frmCompras_Shown(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvCompras, listado);
+                List<BE_Compra> filtrada = ((List<BE_Compra>)dgvCompras.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvCompras, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvCompras, listado);
+                Centrar();
+            }
         }
     }
 }

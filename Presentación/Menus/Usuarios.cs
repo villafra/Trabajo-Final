@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvUsuarios, oBLL_Login.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -57,6 +58,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Login>)dgvUsuarios.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -66,6 +68,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Login>)dgvUsuarios.DataSource;
         }
 
         private void dgvUsuarios_SelectionChanged(object sender, EventArgs e)
@@ -80,7 +83,23 @@ namespace Trabajo_Final
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            oBLL_Login.Baja(oBE_Login);
+            try
+            {
+                if (Cálculos.EstaSeguroE(oBE_Login.Usuario))
+                {
+                    if (oBLL_Login.Baja(oBE_Login))
+                    {
+                        Cálculos.MsgBox("El usuario se ha inhabilitado satisfactoriamente");
+                        ActualizarListado();
+                        Centrar();
+                        listado = (List<BE_Login>)dgvUsuarios.DataSource;
+                    }
+                    else { throw new RestaurantException("La acción ha fallado, por favor, intente nuevamente."); }
+                }
+                else { throw new RestaurantException("La baja del usuario se ha cancelado."); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            
         }
 
         private void btnResetPass_Click(object sender, EventArgs e)
@@ -127,6 +146,7 @@ namespace Trabajo_Final
                 Centrar();
                 comboFiltro.Text = "";
                 txtFiltro.Text = "";
+                chkOcultar.Checked = false;
             }
         }
 
@@ -134,6 +154,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvUsuarios, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
         private void frmUsuarios_Load(object sender, EventArgs e)
         {
@@ -147,6 +168,22 @@ namespace Trabajo_Final
         private void frmUsuarios_Activated(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvUsuarios, listado);
+                List<BE_Login> filtrada = ((List<BE_Login>)dgvUsuarios.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvUsuarios, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvUsuarios, listado);
+                Centrar();
+            }
         }
     }
 }

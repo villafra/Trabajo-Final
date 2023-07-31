@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvPlatos, oBLL_Plato.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -57,6 +58,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Plato>)dgvPlatos.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -66,6 +68,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Plato>)dgvPlatos.DataSource;
         }
 
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -89,6 +92,7 @@ namespace Trabajo_Final
                         Cálculos.MsgBox("La baja se ha efectuado satisfactoriamente.");
                         ActualizarListado();
                         Centrar();
+                        listado = (List<BE_Plato>)dgvPlatos.DataSource;
                     }
                     else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
                 }
@@ -132,6 +136,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvPlatos, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void btnCargarImagen_Click(object sender, EventArgs e)
@@ -150,6 +155,21 @@ namespace Trabajo_Final
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
-        
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvPlatos, listado);
+                List<BE_Plato> filtrada = ((List<BE_Plato>)dgvPlatos.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvPlatos, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvPlatos, listado);
+                Centrar();
+            }
+        }
     }
 }

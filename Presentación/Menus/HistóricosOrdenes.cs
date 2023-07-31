@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvOrdenes, oBLL_Orden.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -76,6 +77,7 @@ namespace Trabajo_Final
                 frm.Owner = this;
                 frm.oBE_Orden = oBE_Orden;
                 frm.ShowDialog();
+                listado = (List<BE_Orden>)dgvOrdenes.DataSource;
             }
         }
 
@@ -113,6 +115,23 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvOrdenes, listado);
             Centrar();
+            chkOcultar.Checked = false;
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvOrdenes, listado);
+                List<BE_Orden> filtrada = ((List<BE_Orden>)dgvOrdenes.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvOrdenes, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvOrdenes, listado);
+                Centrar();
+            }
         }
     }
 }

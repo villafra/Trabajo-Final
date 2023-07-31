@@ -33,6 +33,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvCostos, oBLL_Costo.Listar());
+            chkOcultar.Checked = false;
         }
 
         public void Centrar()
@@ -56,6 +57,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Costo>)dgvCostos.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -65,6 +67,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Costo>)dgvCostos.DataSource;
         }
 
         private void dgvCostos_SelectionChanged(object sender, EventArgs e)
@@ -86,6 +89,7 @@ namespace Trabajo_Final
                     {
                         ActualizarListado();
                         Centrar();
+                        listado = (List<BE_Costo>)dgvCostos.DataSource;
                         Cálculos.MsgBox("Se ha efectuado la baja satisfactoriamente");
                     }
                     else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
@@ -107,6 +111,7 @@ namespace Trabajo_Final
                 Centrar();
                 comboFiltro.Text = "";
                 txtFiltro.Text = "";
+                listado = (List<BE_Costo>)dgvCostos.DataSource;
             }
         }
 
@@ -114,6 +119,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvCostos, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmCostos_Load(object sender, EventArgs e)
@@ -129,6 +135,22 @@ namespace Trabajo_Final
         private void frmCostos_Activated(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvCostos, listado);
+                List<BE_Costo> filtrada = ((List<BE_Costo>)dgvCostos.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvCostos, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvCostos, listado);
+                Centrar();
+            }
         }
     }
 }

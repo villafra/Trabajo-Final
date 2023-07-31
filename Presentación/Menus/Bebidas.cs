@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvBebidas, oBLL_Bebida.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -57,6 +58,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Bebida>)dgvBebidas.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -66,6 +68,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Bebida>)dgvBebidas.DataSource;
         }
 
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -88,6 +91,7 @@ namespace Trabajo_Final
                     {
                         ActualizarListado();
                         Centrar();
+                        listado = (List<BE_Bebida>)dgvBebidas.DataSource;
                         Cálculos.MsgBox("La baja se ha efectuado satisfactoriamente");
                     }
                     else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
@@ -121,6 +125,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvBebidas, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmBebidas_Activated(object sender, EventArgs e)
@@ -148,6 +153,22 @@ namespace Trabajo_Final
                 else { throw new RestaurantException("Se ha cancelado la carga de la imágen."); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvBebidas, listado);
+                List<BE_Bebida> filtrada = ((List<BE_Bebida>)dgvBebidas.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvBebidas, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvBebidas, listado);
+                Centrar();
+            }
         }
     }
 }

@@ -45,5 +45,28 @@ namespace Trabajo_Final
         {
             ImportarPedido();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.EstaSeguroC(oBE_Orden.ToString()))
+                {
+                    BLL_Orden oBLL_Orden = new BLL_Orden();
+                    BLL_Mesa oBLL_Mesa = new BLL_Mesa();
+                    if (oBLL_Orden.Baja(oBE_Orden) && oBLL_Mesa.LiberarMesa(oBE_Orden.ID_Mesa))
+                    {
+                        Cálculos.MsgBox("La Orden ha sido cancelada y la mesa ha sido liberada.");
+                        frmHistoricoOrdenes frm = this.Owner as frmHistoricoOrdenes;
+                        frm.ActualizarListado();
+                        frm.Centrar();     
+                    }
+                    else { throw new RestaurantException("La acción ha fallado, por favor, intente nuevamente"); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la acción"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+    
     }
 }

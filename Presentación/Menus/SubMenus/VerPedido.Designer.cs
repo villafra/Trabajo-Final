@@ -32,6 +32,11 @@ namespace Trabajo_Final
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVerPedido));
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
+            this.txtEmpleado = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMétodoPago = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.txtMonto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboPlatos = new System.Windows.Forms.ComboBox();
@@ -45,11 +50,7 @@ namespace Trabajo_Final
             this.lblCodigo = new System.Windows.Forms.Label();
             this.Listado = new System.Windows.Forms.ImageList(this.components);
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.dtpFecha = new System.Windows.Forms.DateTimePicker();
-            this.txtMétodoPago = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtEmpleado = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.grpNuevoLogin.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +78,49 @@ namespace Trabajo_Final
             this.grpNuevoLogin.TabIndex = 0;
             this.grpNuevoLogin.TabStop = false;
             this.grpNuevoLogin.Text = "Complete El formulario";
+            // 
+            // txtEmpleado
+            // 
+            this.txtEmpleado.Location = new System.Drawing.Point(171, 468);
+            this.txtEmpleado.Name = "txtEmpleado";
+            this.txtEmpleado.ReadOnly = true;
+            this.txtEmpleado.Size = new System.Drawing.Size(257, 22);
+            this.txtEmpleado.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 476);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(71, 17);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Empleado";
+            // 
+            // txtMétodoPago
+            // 
+            this.txtMétodoPago.Location = new System.Drawing.Point(174, 408);
+            this.txtMétodoPago.Name = "txtMétodoPago";
+            this.txtMétodoPago.ReadOnly = true;
+            this.txtMétodoPago.Size = new System.Drawing.Size(257, 22);
+            this.txtMétodoPago.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(20, 415);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 17);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Métdo de Pago";
+            // 
+            // dtpFecha
+            // 
+            this.dtpFecha.CustomFormat = "dd/MM/yyyy";
+            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFecha.Location = new System.Drawing.Point(174, 104);
+            this.dtpFecha.Name = "dtpFecha";
+            this.dtpFecha.Size = new System.Drawing.Size(257, 22);
+            this.dtpFecha.TabIndex = 10;
             // 
             // txtMonto
             // 
@@ -198,48 +242,23 @@ namespace Trabajo_Final
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // dtpFecha
+            // btnCancelar
             // 
-            this.dtpFecha.CustomFormat = "dd/MM/yyyy";
-            this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFecha.Location = new System.Drawing.Point(174, 104);
-            this.dtpFecha.Name = "dtpFecha";
-            this.dtpFecha.Size = new System.Drawing.Size(257, 22);
-            this.dtpFecha.TabIndex = 10;
-            // 
-            // txtMétodoPago
-            // 
-            this.txtMétodoPago.Location = new System.Drawing.Point(174, 408);
-            this.txtMétodoPago.Name = "txtMétodoPago";
-            this.txtMétodoPago.ReadOnly = true;
-            this.txtMétodoPago.Size = new System.Drawing.Size(257, 22);
-            this.txtMétodoPago.TabIndex = 12;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 415);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 17);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Métdo de Pago";
-            // 
-            // txtEmpleado
-            // 
-            this.txtEmpleado.Location = new System.Drawing.Point(171, 468);
-            this.txtEmpleado.Name = "txtEmpleado";
-            this.txtEmpleado.ReadOnly = true;
-            this.txtEmpleado.Size = new System.Drawing.Size(257, 22);
-            this.txtEmpleado.TabIndex = 14;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 476);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 17);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Empleado";
+            this.btnCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancelar.ImageIndex = 1;
+            this.btnCancelar.ImageList = this.Listado;
+            this.btnCancelar.Location = new System.Drawing.Point(24, 544);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(138, 47);
+            this.btnCancelar.TabIndex = 6;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // frmVerPedido
             // 
@@ -247,6 +266,7 @@ namespace Trabajo_Final
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 603);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.grpNuevoLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -281,5 +301,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtEmpleado;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

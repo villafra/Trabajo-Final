@@ -40,35 +40,39 @@ namespace Trabajo_Final
 
                 if (oBE_Login != null)
                 {
-                    if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                    if (oBE_Login.Usuario == "admin" || oBE_Login.Empleado.Activo)
                     {
-                        if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
+                        if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
                         {
-
-                            if (this.Owner is frmMenu menu)
+                            if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
                             {
-                                if( menu.UsuarioActivo != null)
-                                {
-                                    if (menu.UsuarioActivo.Codigo != oBE_Login.Codigo)
-                                    {
-                                        Bitacora.Logout(menu.UsuarioActivo);
-                                    }
-                                    else
-                                    {
-                                        Cálculos.BorrarCampos(grpLogin);
-                                        this.Close();
-                                    }
-                                }
-                                menu.UsuarioActivo = oBE_Login;
-                                Bitacora.Login(menu.UsuarioActivo);
-                            }
-                            Cálculos.BorrarCampos(grpLogin);
-                            this.Close();
 
+                                if (this.Owner is frmMenu menu)
+                                {
+                                    if (menu.UsuarioActivo != null)
+                                    {
+                                        if (menu.UsuarioActivo.Codigo != oBE_Login.Codigo)
+                                        {
+                                            Bitacora.Logout(menu.UsuarioActivo);
+                                        }
+                                        else
+                                        {
+                                            Cálculos.BorrarCampos(grpLogin);
+                                            this.Close();
+                                        }
+                                    }
+                                    menu.UsuarioActivo = oBE_Login;
+                                    Bitacora.Login(menu.UsuarioActivo);
+                                }
+                                Cálculos.BorrarCampos(grpLogin);
+                                this.Close();
+
+                            }
+                            else throw new RestaurantException("El usuario está bloqueado. Comuniquese con el administrador.");
                         }
-                        else throw new RestaurantException("El usuario está bloqueado. Comuniquese con el administrador.");
+                        else throw new RestaurantException("La contraseña es incorrecta");
                     }
-                    else throw new RestaurantException("La contraseña es incorrecta");
+                    else throw new RestaurantException("El login no coincide con un empleado activo.");
                 }
                 else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
             }

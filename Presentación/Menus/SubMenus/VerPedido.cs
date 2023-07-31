@@ -48,5 +48,31 @@ namespace Trabajo_Final
         {
             ImportarPedido();
         }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.EstaSeguroC(oBE_Pedido.ToString()))
+                {
+                    if (oBE_Pedido.Status == StatusPedido.Liberado)
+                    {
+                        BLL_Pedido oBLL_Pedido = new BLL_Pedido();
+                        oBE_Pedido.Status = StatusPedido.Cancelado;
+                        if (oBLL_Pedido.Modificar(oBE_Pedido))
+                        {
+                            Cálculos.MsgBox("El pedido ha sido cancelado satisfactoriamente.");
+                            frmHistoricoPedidos frm = this.Owner as frmHistoricoPedidos;
+                            frm.ActualizarListado();
+                            frm.Centrar();
+                        }
+                        else { throw new RestaurantException("La acción ha fallado, por favor, intente nuevamente"); }
+                    }
+                    else { throw new RestaurantException("No se puede cancelar un pedido que ya ha sido gestionado"); }
+                }
+                else { throw new RestaurantException("Se ha cancelado la acción"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

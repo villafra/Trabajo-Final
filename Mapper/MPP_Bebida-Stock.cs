@@ -163,7 +163,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
 
-                 }).Distinct().ToList() : null;
+                 }).Where(x=> x.Material.Activo).ToList() : null;
             return listaBebidas;
         }
         public List<BE_Bebida_Stock> ListarParaVenta()
@@ -185,7 +185,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
 
-                 }).GroupBy(x => x.Material.Codigo).Select(y => y.First()).ToList() : null;
+                 }).Where(x => x.Material.Activo).GroupBy(x => x.Material.Codigo).Select(y => y.First()).ToList() : null;
             return listaBebidas;
         }
         public BE_Bebida_Stock BuscarXLote(BE_Compra compra, string lote,DataSet ds=null)

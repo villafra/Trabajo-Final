@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvIngredientes, oBLL_Ingrediente.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -56,6 +57,7 @@ namespace Trabajo_Final
             frmNuevoIngrediente frm = new frmNuevoIngrediente();
             frm.ShowDialog();
             ActualizarListado();
+            listado = (List<BE_Ingrediente>)dgvIngredientes.DataSource;
             Centrar();
         }
 
@@ -65,6 +67,7 @@ namespace Trabajo_Final
             frm.oBE_Ingrediente = oBE_Ingrediente;
             frm.ShowDialog();
             ActualizarListado();
+            listado = (List<BE_Ingrediente>)dgvIngredientes.DataSource;
             Centrar();
         }
         private void dgvIngredientes_SelectionChanged(object sender, EventArgs e)
@@ -87,6 +90,7 @@ namespace Trabajo_Final
                     {
                         Cálculos.MsgBox("Se ha efectuado la baja satisfactoriamente");
                         ActualizarListado();
+                        listado = (List<BE_Ingrediente>)dgvIngredientes.DataSource;
                         Centrar();
                     }
                     else { throw new RestaurantException("La baja ha fallado, por favor, intente nuevamente"); }
@@ -123,6 +127,7 @@ namespace Trabajo_Final
                 Centrar();
                 comboFiltro.Text = "";
                 txtFiltro.Text = "";
+                chkOcultar.Checked = false;
             }
         }
 
@@ -130,6 +135,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvIngredientes, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmIngredientes_Shown(object sender, EventArgs e)
@@ -140,6 +146,22 @@ namespace Trabajo_Final
         private void frmIngredientes_Activated(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvIngredientes, listado);
+                List<BE_Ingrediente> filtrada = ((List<BE_Ingrediente>)dgvIngredientes.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvIngredientes, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvIngredientes, listado);
+                Centrar();
+            }
         }
     }
 }

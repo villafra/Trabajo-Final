@@ -34,6 +34,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvPedidos, oBLL_Pedido.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -69,6 +70,7 @@ namespace Trabajo_Final
                 frm.Owner = this;
                 frm.oBE_Pedido = oBE_Pedido;
                 frm.ShowDialog();
+                listado = (List<BE_Pedido>)dgvPedidos.DataSource;
             }
         }
 
@@ -95,6 +97,7 @@ namespace Trabajo_Final
         private void btnReset_Click(object sender, EventArgs e)
         {
             Cálculos.RefreshGrilla(dgvPedidos, listado);
+            chkOcultar.Checked = false;
             Centrar();
         }
 
@@ -106,6 +109,22 @@ namespace Trabajo_Final
         private void frmHistoricoPedidos_Activated(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvPedidos, listado);
+                List<BE_Pedido> filtrada = ((List<BE_Pedido>)dgvPedidos.DataSource).Where(x => x.Status != StatusPedido.Cancelado).ToList();
+                Cálculos.RefreshGrilla(dgvPedidos, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvPedidos, listado);
+                Centrar();
+            }
         }
     }
 }

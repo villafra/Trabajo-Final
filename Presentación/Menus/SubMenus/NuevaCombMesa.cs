@@ -35,12 +35,15 @@ namespace Trabajo_Final
         {
             try
             {
-                if (CombinarMesa())
+                if (oBE_Mesa.ToString() != comboMesaComb.Text)
                 {
-                    Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    if (CombinarMesa())
+                    {
+                        Cálculos.MsgBox("Los datos se han guardado correctamente");
+                    }
+                    else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
                 }
-                else { throw new RestaurantException("Los datos no se han guardado correctamente. Por favor, intente nuevamente"); }
-                
+                else { throw new RestaurantException("No se puede combinar una mesa consigo misma."); }
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
 

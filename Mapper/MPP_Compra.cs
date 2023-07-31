@@ -48,7 +48,7 @@ namespace Mapper
 
             List<BE_Compra> listadeCompras = ds.Tables.Contains("Compra") != false ?
                 (from comp in ds.Tables["Compra"].AsEnumerable()
-                 where comp[10].ToString() == status.ToString()
+                 where comp[10].ToString() == status.ToString() && Convert.ToBoolean(comp[11])
                  select comp[1].ToString() == MaterialCompra.Ingrediente.ToString()?
                  new BE_CompraIngrediente
                  {

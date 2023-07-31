@@ -20,7 +20,6 @@ namespace Business_Entities
         public List<BE_Bebida> ListadeBebida { get; set; }
         public BE_Pago ID_Pago { get; set; }
         public BE_Empleado ID_Empleado { get; set; }
-        public bool Activo { get; set; } = true;
 
         public override string ToString()
         {

@@ -213,7 +213,6 @@ namespace Automate_Layer
                 dgv.Columns[5].Visible = false;
                 dgv.Columns[6].Visible = false;
                 dgv.Columns[7].Visible = false;
-                dgv.Columns[8].Visible = false;
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -422,7 +421,7 @@ namespace Automate_Layer
                 dgv.Columns[3].HeaderText = "Mesa";
                 dgv.Columns[4].HeaderText = "Mozo";
                 dgv.Columns[5].HeaderText = "Orden Cerrada";
-                dgv.Columns[6].Visible = false;
+                dgv.Columns[6].HeaderText = "Activo";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -446,7 +445,7 @@ namespace Automate_Layer
                 dgv.Columns[5].DefaultCellStyle.Format = "$0.00";
                 dgv.Columns[6].HeaderText = "Otros Gastos";
                 dgv.Columns[6].DefaultCellStyle.Format = "$0.00";
-                dgv.Columns[7].Visible = false;
+                dgv.Columns[7].HeaderText = "Activo";
                 dgv.Columns[8].HeaderText = "Tipo Material";
                 dgv.Columns[8].DisplayIndex = 0;
                 foreach (DataGridViewColumn columns in dgv.Columns)
@@ -471,7 +470,6 @@ namespace Automate_Layer
                 dgv.Columns[5].DefaultCellStyle.Format = "$0.00";
                 dgv.Columns[6].HeaderText = "Método de Pago";
                 dgv.Columns[7].HeaderText = "Mozo";
-                dgv.Columns[8].Visible = false;
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -601,7 +599,7 @@ namespace Automate_Layer
                 dgv.Columns[6].HeaderText = "Fecha de Ingreso";
                 dgv.Columns[7].Visible = false;
                 dgv.Columns[8].HeaderText = "Categoria";
-                dgv.Columns[9].Visible = false;
+                dgv.Columns[9].HeaderText = "Activo";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {
                     columns.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -620,7 +618,8 @@ namespace Automate_Layer
                 dgv.Columns[3].Visible = false;
                 dgv.Columns[4].HeaderText = "Cant. Intentos Login";
                 dgv.Columns[5].HeaderText = "Permiso";
-                dgv.Columns[6].Visible = false;
+                dgv.Columns[6].HeaderText = "Activo";
+                dgv.Columns[6].DisplayIndex = 7;
                 dgv.Columns[7].HeaderText = "Usuario Bloqueado";
                 foreach (DataGridViewColumn columns in dgv.Columns)
                 {

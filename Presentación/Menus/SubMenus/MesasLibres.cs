@@ -50,6 +50,12 @@ namespace Trabajo_Final
                 else { throw new RestaurantException("No se ha podido asignar la mesa. Por favor, intente nuevamente."); }  
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+            finally 
+            {
+                frmListadoPedidos frm = this.Owner as frmListadoPedidos;
+                frm.ActualizarListado();
+                frm.Centrar();
+            }
             
         }
 
@@ -64,6 +70,9 @@ namespace Trabajo_Final
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
+            frmListadoPedidos frm = this.Owner as frmListadoPedidos;
+            frm.ActualizarListado();
+            frm.Centrar();
             this.Close();
         }
     }

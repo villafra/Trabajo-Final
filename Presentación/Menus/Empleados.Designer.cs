@@ -46,6 +46,7 @@ namespace Trabajo_Final
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.chkOcultar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.grpEmpleados.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -53,7 +54,7 @@ namespace Trabajo_Final
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(304, 96);
+            this.txtFiltro.Location = new System.Drawing.Point(304, 85);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(471, 22);
             this.txtFiltro.TabIndex = 2;
@@ -65,7 +66,7 @@ namespace Trabajo_Final
             "Nombre",
             "Apellido",
             "Categoria"});
-            this.comboFiltro.Location = new System.Drawing.Point(21, 94);
+            this.comboFiltro.Location = new System.Drawing.Point(21, 83);
             this.comboFiltro.Name = "comboFiltro";
             this.comboFiltro.Size = new System.Drawing.Size(233, 24);
             this.comboFiltro.TabIndex = 1;
@@ -88,6 +89,7 @@ namespace Trabajo_Final
             // 
             // grpEmpleados
             // 
+            this.grpEmpleados.Controls.Add(this.chkOcultar);
             this.grpEmpleados.Controls.Add(this.lbl2);
             this.grpEmpleados.Controls.Add(this.lbl1);
             this.grpEmpleados.Controls.Add(this.btnReset);
@@ -104,7 +106,7 @@ namespace Trabajo_Final
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(301, 71);
+            this.lbl2.Location = new System.Drawing.Point(301, 60);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(178, 17);
             this.lbl2.TabIndex = 0;
@@ -113,7 +115,7 @@ namespace Trabajo_Final
             // lbl1
             // 
             this.lbl1.AutoSize = true;
-            this.lbl1.Location = new System.Drawing.Point(21, 71);
+            this.lbl1.Location = new System.Drawing.Point(21, 60);
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(78, 17);
             this.lbl1.TabIndex = 0;
@@ -128,7 +130,7 @@ namespace Trabajo_Final
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReset.ImageIndex = 1;
             this.btnReset.ImageList = this.Listado;
-            this.btnReset.Location = new System.Drawing.Point(965, 82);
+            this.btnReset.Location = new System.Drawing.Point(965, 71);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(149, 36);
             this.btnReset.TabIndex = 4;
@@ -157,7 +159,7 @@ namespace Trabajo_Final
             this.btBuscar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btBuscar.ImageIndex = 0;
             this.btBuscar.ImageList = this.Listado;
-            this.btBuscar.Location = new System.Drawing.Point(810, 82);
+            this.btBuscar.Location = new System.Drawing.Point(810, 71);
             this.btBuscar.Name = "btBuscar";
             this.btBuscar.Size = new System.Drawing.Size(149, 36);
             this.btBuscar.TabIndex = 3;
@@ -263,6 +265,17 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // chkOcultar
+            // 
+            this.chkOcultar.AutoSize = true;
+            this.chkOcultar.Location = new System.Drawing.Point(24, 130);
+            this.chkOcultar.Name = "chkOcultar";
+            this.chkOcultar.Size = new System.Drawing.Size(135, 21);
+            this.chkOcultar.TabIndex = 5;
+            this.chkOcultar.Text = "Ocultar Inactivos";
+            this.chkOcultar.UseVisualStyleBackColor = true;
+            this.chkOcultar.CheckedChanged += new System.EventHandler(this.chkOcultar_CheckedChanged);
+            // 
             // frmEmpleados
             // 
             this.AcceptButton = this.btBuscar;
@@ -305,5 +318,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.Button btnResetPass;
         private System.Windows.Forms.Button btnDesbloquear;
         private System.Windows.Forms.GroupBox grpAcciones;
+        private System.Windows.Forms.CheckBox chkOcultar;
     }
 }

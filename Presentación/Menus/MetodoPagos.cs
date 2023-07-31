@@ -33,6 +33,7 @@ namespace Trabajo_Final
         public void ActualizarListado()
         {
             Cálculos.RefreshGrilla(dgvMetPagos, oBLL_Pago.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -55,6 +56,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Pago>)dgvMetPagos.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -64,6 +66,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Pago>)dgvMetPagos.DataSource;
         }
         private void btBuscar_Click(object sender, EventArgs e)
         {
@@ -84,6 +87,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvMetPagos, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void dgvMetPagos_SelectionChanged(object sender, EventArgs e)
@@ -126,6 +130,22 @@ namespace Trabajo_Final
                 else { throw new RestaurantException("Se ha cancelado la carga de la imágen."); }
             }
             catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvMetPagos, listado);
+                List<BE_Pago> filtrada = ((List<BE_Pago>)dgvMetPagos.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvMetPagos, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvMetPagos, listado);
+                Centrar();
+            }
         }
     }
 }

@@ -24,6 +24,10 @@ namespace Business_Entities
             else
                 return StatusOrden.En_Espera_Bebidas;
         }
+        public override string ToString()
+        {
+            return $"Orden N° " + Codigo.ToString() ;
+        }
     }
     public enum StatusOrden
     {

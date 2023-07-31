@@ -9,5 +9,10 @@ namespace Business_Entities
     public class BE_CompraIngrediente : BE_Compra
     {
         public BE_Ingrediente ID_Material { get; set; }
+
+        public override string ToString()
+        {
+            return ID_Material.ToString();
+        }
     }
 }

@@ -140,7 +140,7 @@ namespace Automate_Layer
                         NumericUpDown num = c as NumericUpDown;
                         if (num.Name != "numABV")
                         {
-                            if (num.Value == 0)
+                            if (num.Enabled && num.Value == 0)
                             {
                                 sino = 1;
                             }
@@ -239,6 +239,13 @@ namespace Automate_Layer
         {
             DialogResult resultado;
             resultado = MessageBox.Show(@"Esta seguro que desea eliminar a: " + objeto + "?", "Eliminar", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            if (resultado == DialogResult.Yes) return true;
+            else return false;
+        }
+        public static bool EstaSeguroC(string objeto)
+        {
+            DialogResult resultado;
+            resultado = MessageBox.Show(@"Esta seguro que desea cancelar a: " + objeto + "?", "Cancelar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes) return true;
             else return false;
         }

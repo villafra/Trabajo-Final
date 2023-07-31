@@ -32,7 +32,7 @@ namespace Mapper
         {
             ListadoXML = new List<BE_TuplaXML>();
             ListadoXML.Add(CrearPedidoXML(pedido));
-            return Xml_Database.DevolverInstancia().Borrar(ListadoXML);
+            return Xml_Database.DevolverInstancia().Baja(ListadoXML);
         }
 
         public bool Guardar(BE_Pedido pedido)

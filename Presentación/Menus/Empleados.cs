@@ -34,6 +34,7 @@ namespace Trabajo_Final
         {
             oBLL_Empleado = new BLL_Gerente_Sucursal();
             Cálculos.RefreshGrilla(dgvEmpleados, oBLL_Empleado.Listar());
+            chkOcultar.Checked = false;
         }
         public void Centrar()
         {
@@ -59,6 +60,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -68,6 +70,7 @@ namespace Trabajo_Final
             frm.ShowDialog();
             ActualizarListado();
             Centrar();
+            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
         }
         private void dgvEmpleados_SelectionChanged(object sender, EventArgs e)
         {
@@ -133,6 +136,7 @@ namespace Trabajo_Final
                     }
                     ActualizarListado();
                     Centrar();
+                    listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
                 }
                 else { throw new RestaurantException("La baja del empleado se ha cancelado."); }
             }
@@ -151,6 +155,7 @@ namespace Trabajo_Final
                 Centrar();
                 comboFiltro.Text = "";
                 txtFiltro.Text = "";
+                chkOcultar.Checked = false;
             }  
         }
 
@@ -158,6 +163,7 @@ namespace Trabajo_Final
         {
             Cálculos.RefreshGrilla(dgvEmpleados, listado);
             Centrar();
+            chkOcultar.Checked = false;
         }
 
         private void frmEmpleados_Load(object sender, EventArgs e)
@@ -173,6 +179,22 @@ namespace Trabajo_Final
         private void frmEmpleados_Shown(object sender, EventArgs e)
         {
             Centrar();
+        }
+
+        private void chkOcultar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkOcultar.Checked)
+            {
+                Cálculos.RefreshGrilla(dgvEmpleados, listado);
+                List<BE_Empleado> filtrada = ((List<BE_Empleado>)dgvEmpleados.DataSource).Where(x => x.Activo).ToList();
+                Cálculos.RefreshGrilla(dgvEmpleados, filtrada);
+                Centrar();
+            }
+            else
+            {
+                Cálculos.RefreshGrilla(dgvEmpleados, listado);
+                Centrar();
+            }
         }
     }
 }

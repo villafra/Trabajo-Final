@@ -163,7 +163,7 @@ namespace Mapper
                      FechaCreacion = Convert.ToDateTime(mat[3]),
                      Lote = Convert.ToString(mat[4])
 
-                 }).ToList() : null;
+                 }).Where(x => x.Material.Activo).ToList() : null;
             return listaIngredientes;
         }
         public List<BE_Material_Stock> ListarConStock(BE_Ingrediente ingrediente)

@@ -240,6 +240,7 @@ namespace Mapper
 
         public bool Modificar(BE_Bebida bebida)
         {
+            ListadoXML = new List<BE_TuplaXML>();
             if (bebida.DevolverNombre() != "Bebida")
             {
                 if (bebida.DevolverNombre() == "Bebida_Preparada")

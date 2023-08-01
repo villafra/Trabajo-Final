@@ -171,5 +171,29 @@ namespace Trabajo_Final
                 Centrar();
             }
         }
+
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.QuiereReactivar("Bebida"))
+                {
+                    if (oBE_Plato != null && !oBE_Plato.Activo)
+                    {
+                        oBE_Plato.Activo = true;
+                        if (oBLL_Plato.Modificar(oBE_Plato))
+                        {
+                            ActualizarListado();
+                            Centrar();
+                            listado = (List<BE_Plato>)dgvPlatos.DataSource;
+                            Cálculos.MsgBox("La Plato se ha reactivado satisfactoriamente");
+                        }
+                        else { throw new RestaurantException("La reactivación ha fallado, por favor, intente nuevamente"); }
+                    }
+                }
+                else { throw new RestaurantException("Se ha cancelado la reactivación"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

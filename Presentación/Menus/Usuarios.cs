@@ -185,5 +185,33 @@ namespace Trabajo_Final
                 Centrar();
             }
         }
+
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.QuiereReactivar("Usuario"))
+                {
+                    if (oBE_Login != null && !oBE_Login.Activo)
+                    {
+                        if (oBE_Login.Empleado.Activo)
+                        {
+                            oBE_Login.Activo = true;
+                            if (oBLL_Login.Modificar(oBE_Login))
+                            {
+                                ActualizarListado();
+                                Centrar();
+                                listado = (List<BE_Login>)dgvUsuarios.DataSource;
+                                Cálculos.MsgBox("El usuario se ha reactivado satisfactoriamente");
+                            }
+                            else { throw new RestaurantException("La reactivación ha fallado, por favor, intente nuevamente"); }
+                        }
+                        else { throw new RestaurantException("No se puede reactivar un usuario cuyo Empleado está inhabilitado"); }
+                    }
+                }
+                else { throw new RestaurantException("Se ha cancelado la reactivación"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

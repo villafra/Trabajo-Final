@@ -170,5 +170,29 @@ namespace Trabajo_Final
                 Centrar();
             }
         }
+
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(Cálculos.QuiereReactivar("Bebida"))
+                {
+                    if (oBE_Bebida != null && !oBE_Bebida.Activo)
+                    {
+                        oBE_Bebida.Activo = true;
+                        if (oBLL_Bebida.Modificar(oBE_Bebida))
+                        {
+                            ActualizarListado();
+                            Centrar();
+                            listado = (List<BE_Bebida>)dgvBebidas.DataSource;
+                            Cálculos.MsgBox("La Bebida se ha reactivado satisfactoriamente");
+                        }
+                        else { throw new RestaurantException("La reactivación ha fallado, por favor, intente nuevamente"); }
+                    }
+                }
+                else { throw new RestaurantException("Se ha cancelado la reactivación"); }
+            }
+            catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

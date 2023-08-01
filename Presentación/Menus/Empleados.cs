@@ -196,5 +196,29 @@ namespace Trabajo_Final
                 Centrar();
             }
         }
+
+        private void btnReactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Cálculos.QuiereReactivar("Empleado"))
+                {
+                    if (oBE_Empleado != null && !oBE_Empleado.Activo)
+                    {
+                        oBE_Empleado.Activo = true;
+                        if (oBLL_Empleado.Modificar(oBE_Empleado))
+                        {
+                            ActualizarListado();
+                            Centrar();
+                            listado = (List<BE_Empleado>)dgvEmpleados.DataSource;
+                            Cálculos.MsgBox("El Empleado se ha reactivado satisfactoriamente");
+                        }
+                        else { throw new RestaurantException("La reactivación ha fallado, por favor, intente nuevamente"); }
+                    }
+                }
+                else { throw new RestaurantException("Se ha cancelado la reactivación"); }
+            }
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+        }
     }
 }

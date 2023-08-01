@@ -37,6 +37,7 @@ namespace Trabajo_Final
             this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.grpUsuarios = new System.Windows.Forms.GroupBox();
+            this.chkOcultar = new System.Windows.Forms.CheckBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@ namespace Trabajo_Final
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnResetPass = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.chkOcultar = new System.Windows.Forms.CheckBox();
+            this.btnReactivar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.grpUsuarios.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -103,6 +104,17 @@ namespace Trabajo_Final
             this.grpUsuarios.TabStop = false;
             this.grpUsuarios.Text = "Listado de Usuarios";
             // 
+            // chkOcultar
+            // 
+            this.chkOcultar.AutoSize = true;
+            this.chkOcultar.Location = new System.Drawing.Point(23, 130);
+            this.chkOcultar.Name = "chkOcultar";
+            this.chkOcultar.Size = new System.Drawing.Size(135, 21);
+            this.chkOcultar.TabIndex = 6;
+            this.chkOcultar.Text = "Ocultar Inactivos";
+            this.chkOcultar.UseVisualStyleBackColor = true;
+            this.chkOcultar.CheckedChanged += new System.EventHandler(this.chkOcultar_CheckedChanged);
+            // 
             // lbl2
             // 
             this.lbl2.AutoSize = true;
@@ -151,6 +163,7 @@ namespace Trabajo_Final
             this.Listado.Images.SetKeyName(5, "girar.png");
             this.Listado.Images.SetKeyName(6, "bloqueado.png");
             this.Listado.Images.SetKeyName(7, "organigrama.png");
+            this.Listado.Images.SetKeyName(8, "encendido.png");
             // 
             // btBuscar
             // 
@@ -171,6 +184,7 @@ namespace Trabajo_Final
             // 
             // grpAcciones
             // 
+            this.grpAcciones.Controls.Add(this.btnReactivar);
             this.grpAcciones.Controls.Add(this.btnPermisos);
             this.grpAcciones.Controls.Add(this.btnModificar);
             this.grpAcciones.Controls.Add(this.btnDesbloquear);
@@ -192,10 +206,10 @@ namespace Trabajo_Final
             this.btnPermisos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPermisos.ImageIndex = 7;
             this.btnPermisos.ImageList = this.Listado;
-            this.btnPermisos.Location = new System.Drawing.Point(581, 34);
+            this.btnPermisos.Location = new System.Drawing.Point(644, 34);
             this.btnPermisos.Name = "btnPermisos";
             this.btnPermisos.Size = new System.Drawing.Size(149, 50);
-            this.btnPermisos.TabIndex = 10;
+            this.btnPermisos.TabIndex = 9;
             this.btnPermisos.Text = "VerPermisos";
             this.btnPermisos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPermisos.UseVisualStyleBackColor = true;
@@ -209,7 +223,7 @@ namespace Trabajo_Final
             this.btnModificar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModificar.ImageIndex = 3;
             this.btnModificar.ImageList = this.Listado;
-            this.btnModificar.Location = new System.Drawing.Point(199, 34);
+            this.btnModificar.Location = new System.Drawing.Point(167, 34);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(149, 50);
             this.btnModificar.TabIndex = 6;
@@ -226,10 +240,10 @@ namespace Trabajo_Final
             this.btnDesbloquear.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDesbloquear.ImageIndex = 6;
             this.btnDesbloquear.ImageList = this.Listado;
-            this.btnDesbloquear.Location = new System.Drawing.Point(963, 34);
+            this.btnDesbloquear.Location = new System.Drawing.Point(962, 34);
             this.btnDesbloquear.Name = "btnDesbloquear";
             this.btnDesbloquear.Size = new System.Drawing.Size(149, 50);
-            this.btnDesbloquear.TabIndex = 9;
+            this.btnDesbloquear.TabIndex = 11;
             this.btnDesbloquear.Text = "Desbloquear";
             this.btnDesbloquear.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDesbloquear.UseVisualStyleBackColor = true;
@@ -260,10 +274,10 @@ namespace Trabajo_Final
             this.btnResetPass.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnResetPass.ImageIndex = 5;
             this.btnResetPass.ImageList = this.Listado;
-            this.btnResetPass.Location = new System.Drawing.Point(772, 34);
+            this.btnResetPass.Location = new System.Drawing.Point(803, 34);
             this.btnResetPass.Name = "btnResetPass";
             this.btnResetPass.Size = new System.Drawing.Size(149, 50);
-            this.btnResetPass.TabIndex = 8;
+            this.btnResetPass.TabIndex = 10;
             this.btnResetPass.Text = "Reset Pass";
             this.btnResetPass.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnResetPass.UseVisualStyleBackColor = true;
@@ -277,7 +291,7 @@ namespace Trabajo_Final
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnEliminar.ImageIndex = 4;
             this.btnEliminar.ImageList = this.Listado;
-            this.btnEliminar.Location = new System.Drawing.Point(390, 34);
+            this.btnEliminar.Location = new System.Drawing.Point(326, 34);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(149, 50);
             this.btnEliminar.TabIndex = 7;
@@ -286,16 +300,22 @@ namespace Trabajo_Final
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // chkOcultar
+            // btnReactivar
             // 
-            this.chkOcultar.AutoSize = true;
-            this.chkOcultar.Location = new System.Drawing.Point(23, 130);
-            this.chkOcultar.Name = "chkOcultar";
-            this.chkOcultar.Size = new System.Drawing.Size(135, 21);
-            this.chkOcultar.TabIndex = 6;
-            this.chkOcultar.Text = "Ocultar Inactivos";
-            this.chkOcultar.UseVisualStyleBackColor = true;
-            this.chkOcultar.CheckedChanged += new System.EventHandler(this.chkOcultar_CheckedChanged);
+            this.btnReactivar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnReactivar.FlatAppearance.BorderSize = 0;
+            this.btnReactivar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReactivar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReactivar.ImageIndex = 8;
+            this.btnReactivar.ImageList = this.Listado;
+            this.btnReactivar.Location = new System.Drawing.Point(485, 34);
+            this.btnReactivar.Name = "btnReactivar";
+            this.btnReactivar.Size = new System.Drawing.Size(149, 50);
+            this.btnReactivar.TabIndex = 8;
+            this.btnReactivar.Text = "Reactivar";
+            this.btnReactivar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReactivar.UseVisualStyleBackColor = true;
+            this.btnReactivar.Click += new System.EventHandler(this.btnReactivar_Click);
             // 
             // frmUsuarios
             // 
@@ -341,5 +361,6 @@ namespace Trabajo_Final
         private System.Windows.Forms.GroupBox grpAcciones;
         private System.Windows.Forms.Button btnPermisos;
         private System.Windows.Forms.CheckBox chkOcultar;
+        private System.Windows.Forms.Button btnReactivar;
     }
 }

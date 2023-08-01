@@ -263,7 +263,7 @@ namespace Automate_Layer
         }
         public static bool QuiereReactivar(string objeto)
         {
-            DialogResult resultado = MessageBox.Show(@"El " + objeto + " que quiere agregar ya existe en base de datos y se encuentra deshabiliado. Desea reactivarlo?", "Reactivación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult resultado = MessageBox.Show(@"El/La " + objeto + " que quiere agregar ya existe en base de datos y se encuentra deshabilitado. Desea reactivarlo?", "Reactivación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (resultado == DialogResult.Yes) return true;
             else return false;
         }

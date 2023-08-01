@@ -360,6 +360,20 @@ namespace Automate_Layer
             chart.Series[0].LabelBackColor = Color.Transparent;
             chart.Series[0].LabelForeColor = Color.White;
             chart.Series[0].IsValueShownAsLabel = true;
+            Series serie = chart.Series[0];
+            double maxValor = double.MinValue;
+            double minValor = 0;
+            foreach (DataPoint point in serie.Points)
+            {
+                if (point.YValues[0] > maxValor)
+                {
+                    maxValor = point.YValues[0];
+                }
+            }
+            double margen = chart.Titles[0].Text == "Asistencias" ? 10 : 5;
+            chart.ChartAreas[0].AxisY.Maximum = maxValor + margen;
+            chart.ChartAreas[0].AxisY.Minimum = minValor;
+            chart.ChartAreas[0].AxisY.Interval = margen;
             chart.Series[0].Font = new Font("Nirmala UI", 8, FontStyle.Bold);
         };
         public static Action<Chart> FormatearChartVentas = (chart) =>
@@ -404,7 +418,7 @@ namespace Automate_Layer
             chart.Series[0].LabelForeColor = Color.White;
             chart.Series[0].IsValueShownAsLabel = true;
             chart.Series[0].Font = new Font("Nirmala UI", 8, FontStyle.Bold);
-            chart.Series[0].ChartType = SeriesChartType.Radar;
+            chart.Series[0].ChartType = SeriesChartType.Pie;
         };
 
         public static Action<Panel> FormatearPanelMenu = (panel) =>

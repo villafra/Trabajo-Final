@@ -35,6 +35,7 @@ namespace Trabajo_Final
             this.comboFiltro = new System.Windows.Forms.ComboBox();
             this.dgvOrdenes = new System.Windows.Forms.DataGridView();
             this.grpOrdenes = new System.Windows.Forms.GroupBox();
+            this.chkOcultar = new System.Windows.Forms.CheckBox();
             this.lbl2 = new System.Windows.Forms.Label();
             this.lbl1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@ namespace Trabajo_Final
             this.btBuscar = new System.Windows.Forms.Button();
             this.grpAcciones = new System.Windows.Forms.GroupBox();
             this.btnAgregar = new System.Windows.Forms.Button();
-            this.chkOcultar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrdenes)).BeginInit();
             this.grpOrdenes.SuspendLayout();
             this.grpAcciones.SuspendLayout();
@@ -92,6 +92,17 @@ namespace Trabajo_Final
             this.grpOrdenes.TabIndex = 4;
             this.grpOrdenes.TabStop = false;
             this.grpOrdenes.Text = "HIstóricos de Ordenes";
+            // 
+            // chkOcultar
+            // 
+            this.chkOcultar.AutoSize = true;
+            this.chkOcultar.Location = new System.Drawing.Point(23, 130);
+            this.chkOcultar.Name = "chkOcultar";
+            this.chkOcultar.Size = new System.Drawing.Size(135, 21);
+            this.chkOcultar.TabIndex = 12;
+            this.chkOcultar.Text = "Ocultar Inactivos";
+            this.chkOcultar.UseVisualStyleBackColor = true;
+            this.chkOcultar.CheckedChanged += new System.EventHandler(this.chkOcultar_CheckedChanged);
             // 
             // lbl2
             // 
@@ -180,21 +191,10 @@ namespace Trabajo_Final
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(200, 50);
             this.btnAgregar.TabIndex = 5;
-            this.btnAgregar.Text = "Tratar Pedido";
+            this.btnAgregar.Text = "Tratar Orden";
             this.btnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // chkOcultar
-            // 
-            this.chkOcultar.AutoSize = true;
-            this.chkOcultar.Location = new System.Drawing.Point(23, 130);
-            this.chkOcultar.Name = "chkOcultar";
-            this.chkOcultar.Size = new System.Drawing.Size(135, 21);
-            this.chkOcultar.TabIndex = 12;
-            this.chkOcultar.Text = "Ocultar Inactivos";
-            this.chkOcultar.UseVisualStyleBackColor = true;
-            this.chkOcultar.CheckedChanged += new System.EventHandler(this.chkOcultar_CheckedChanged);
             // 
             // frmHistoricoOrdenes
             // 

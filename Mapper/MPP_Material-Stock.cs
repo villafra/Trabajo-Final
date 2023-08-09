@@ -131,7 +131,8 @@ namespace Mapper
             BE_Material_Stock Material_Stock = ds.Tables.Contains("Material-Stock") != false ?
                 (from mat in ds.Tables["Material-Stock"].AsEnumerable()
                  join ms in ds.Tables["Material-Compra"].AsEnumerable()
-                 on compra.Codigo equals Convert.ToInt32(ms[1])
+                 on compra is BE_CompraBebida ? ((BE_CompraBebida)compra).ID_Material.Codigo : 
+                 ((BE_CompraIngrediente)compra).ID_Material.Codigo equals Convert.ToInt32(ms[1])
                  join com in ds.Tables["Compra"].AsEnumerable()
                  on compra.Codigo equals Convert.ToInt32(com[0])
                  select new BE_Material_Stock

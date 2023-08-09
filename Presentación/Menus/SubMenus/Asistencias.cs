@@ -98,6 +98,7 @@ namespace Trabajo_Final
         {
             if (oBE_Empleado != null)
             {
+                txtCodigo.Text = oBE_Empleado.Codigo.ToString();
                 comboEmpleado.Text = oBE_Empleado.ToString();
             }
         }

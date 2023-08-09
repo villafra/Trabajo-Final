@@ -52,7 +52,7 @@ namespace Business_Logic_Layer
             else if (antiguedad >= 5 && antiguedad < 10) vacaciones = 21;
             else if (antiguedad >= 10 && antiguedad < 20) vacaciones = 28;
             else vacaciones = 35;
-            novedad.VacacionesDisponibles = vacaciones;
+            novedad.VacacionesDisponibles += vacaciones;
             return MPP_Novedad.DevolverInstancia().Modificar(novedad);
         }
         public bool DescontarVacaciones (BE_Novedad novedad, int cantidad)

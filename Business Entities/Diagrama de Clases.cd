@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Business_Entities.BE_Asistencia">
+    <Position X="0.5" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEEAGAAAAgAAAAAAAAAAAAAAAgAARA=</HashCode>
+      <FileName>BE_Asistencia.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business_Entities.BE_BackUp">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAIAAQAAAAAQ=</HashCode>
+      <FileName>BE_BackUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Bebida">
+    <Position X="6.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAggAAAACQARAgAAAAAAAAABQ=</HashCode>
+      <FileName>BE_Bebida.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business_Entities.BE_Bebida_Alcoholica">
+    <Position X="9.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>BE_Bebida_Alcoholica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Bebida_Preparada">
+    <Position X="9.25" Y="2" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAI=</HashCode>
+      <FileName>BE_Bebida_Preparada.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Bitacora">
+    <Position X="3.25" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAQQAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_BItacora.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Empleado">
+    <Position X="0.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAACAQAAAAAkAAAAgAAAAgEAAgAgAAAAAAAAEBA=</HashCode>
+      <FileName>BE_Empleado.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business_Entities.BE_ChefPrincipal">
+    <Position X="4" Y="7" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>BE_ChefPrincipal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_GerenteSucursal">
+    <Position X="4" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>BE_GerenteSucursal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Mozo">
+    <Position X="4" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_Mozo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Compra" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="7" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAIEGAQAAACAAAAAAAAACAAQQAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>BE_Compra.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business_Entities.BE_CompraBebida">
+    <Position X="9.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_CompraBebida.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_CompraIngrediente">
+    <Position X="9.5" Y="8.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAgAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_CompraIngrediente.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Business_Entities.BE_Ingrediente" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAAAAAEAAAAggAAAAAQARAggAAAAAAAABQ=</HashCode>
+      <FileName>BE_Ingrediente.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Business_Entities.BE_Plato" BaseTypeListCollapsed="true">
+    <Position X="14" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAgAAAAAAQAQAgAAAgACCAABQ=</HashCode>
+      <FileName>BE_Plato.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Enum Name="Business_Entities.Inasistencia">
+    <Position X="0.5" Y="3.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAABQAAAAAgAEAAAAAAAAAgAIAAAAAAAAAkBAAABQAA=</HashCode>
+      <FileName>BE_Asistencia.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.Tipo_Bebida">
+    <Position X="6.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAABUAAAAAAACAAAAAAAABAAQAAACAAAA=</HashCode>
+      <FileName>BE_Bebida.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.Accion">
+    <Position X="3.25" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>BE_BItacora.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.Category">
+    <Position X="0.5" Y="11" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAACAAAAAIAAAAAAAAEAAAAAAAACBAIAAAAIAAAAAA=</HashCode>
+      <FileName>BE_Empleado.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.StausComp">
+    <Position X="6.5" Y="11.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAQAAAAAAAAACAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>BE_Compra.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.MaterialCompra">
+    <Position X="6.5" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAACAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_Compra.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.TipoIng">
+    <Position X="12.75" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>DAAAAAAACBAAAADABAAABgAAAAEgAEAAACAACAAAAAA=</HashCode>
+      <FileName>BE_Ingrediente.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.StatusIng">
+    <Position X="12.75" Y="4.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAACABIAEAAAAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_Ingrediente.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.UM">
+    <Position X="12.75" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>BE_Ingrediente.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.Tipo_Plato" Collapsed="true">
+    <Position X="15.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAABCAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>BE_Plato.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Business_Entities.Clasificación" Collapsed="true">
+    <Position X="15.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAABAgAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BE_Plato.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

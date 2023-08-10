@@ -71,13 +71,15 @@ namespace Trabajo_Final
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            frmNuevaReceta frm = new frmNuevaReceta();
-            frm.oBE_Bebida = oBE_Bebida;
-            frm.Owner = this;
-            frm.nuevo = true;
-            frm.CerrarForm += ActualizarListado;
-            frm.Show();
-            
+            if (oBE_Bebida != null)
+            {
+                frmNuevaReceta frm = new frmNuevaReceta();
+                frm.oBE_Bebida = oBE_Bebida;
+                frm.Owner = this;
+                frm.nuevo = true;
+                frm.CerrarForm += ActualizarListado;
+                frm.Show();
+            }
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
@@ -99,23 +101,25 @@ namespace Trabajo_Final
         {
             try
             {
-                if (Cálculos.EstaSeguroA(oBE_Bebida.ToString(), oBE_Receta.ToString()))
+                if (oBE_Receta != null && oBE_Bebida != null)
                 {
-                    listado = oBLL_Receta.ListarObjeto(oBE_Bebida, oBE_Receta);
-                    foreach (BE_BebidaReceta beb in listado)
+                    if (Cálculos.EstaSeguroA(oBE_Bebida.ToString(), oBE_Receta.ToString()))
                     {
-                        beb.Activo = false;
+                        listado = oBLL_Receta.ListarObjeto(oBE_Bebida, oBE_Receta);
+                        foreach (BE_BebidaReceta beb in listado)
+                        {
+                            beb.Activo = false;
+                        }
+                        if (oBLL_Receta.Modificar(listado))
+                        {
+                            ActualizarListado();
+                            Centrar();
+                            Cálculos.MsgBox("El cambio de status ha finalizado correctamente");
+                        }
+                        else { throw new RestaurantException("El cambio de status ha fallado, por favor, intenten nuevamente"); }
                     }
-                    if (oBLL_Receta.Modificar(listado))
-                    {
-                        ActualizarListado();
-                        Centrar();
-                        Cálculos.MsgBox("El cambio de status ha finalizado correctamente");
-                    }
-                    else { throw new RestaurantException("El cambio de status ha fallado, por favor, intenten nuevamente"); }       
+                    else { throw new RestaurantException("El cambio de status de la alternativa se ha cancelado"); }
                 }
-                else { throw new RestaurantException("El cambio de status de la alternativa se ha cancelado"); }
-
             }
             catch(Exception ex) { Cálculos.MsgBox(ex.Message); }
             

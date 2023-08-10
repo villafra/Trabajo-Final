@@ -88,8 +88,8 @@ namespace Presentación
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            if (Cálculos.Camposvacios(grpPass))
              CambiarNuevaPass();
-            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

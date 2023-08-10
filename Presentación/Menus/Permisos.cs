@@ -71,19 +71,27 @@ namespace Trabajo_Final
         {
             try
             {
-                Viejo();
-                if (Cálculos.EstaSeguroM(oBE_Padre.ToString()))
+                if (Cálculos.Camposvacios(grpPerfiles))
                 {
-                    if (oBLL_Permiso.Modificar(oBE_Padre))
+                    Viejo();
+                    if (Cálculos.EstaSeguroM(oBE_Padre.ToString()))
                     {
-                        Cálculos.MsgBox("El perfil se ha modificado con exito.");
+                        if (oBLL_Permiso.Modificar(oBE_Padre))
+                        {
+                            Cálculos.MsgBox("El perfil se ha modificado con exito.");
+                        }
+                        else { throw new Exception(); }
+
                     }
-                    else { throw new Exception(); }
-                   
+                    else { return; }
+                    Cálculos.BorrarCampos(grpPerfiles);
+                    ActualizarListado();
                 }
-                else { return; }
-                Cálculos.BorrarCampos(grpPerfiles);
-                ActualizarListado();
+                else
+                {
+                    throw new RestaurantException("No hay nada para modificar.");
+                }
+                
             }
             catch (Exception ex)
             {
@@ -97,18 +105,25 @@ namespace Trabajo_Final
         {
             try
             {
-                Nuevo();
-                if (Cálculos.EstaSeguroE(oBE_Padre.ToString()))
+                if (Cálculos.Camposvacios(grpPerfiles))
                 {
-                    if (oBLL_Permiso.EliminarPerfil(oBE_Padre))
+                    Nuevo();
+                    if (Cálculos.EstaSeguroE(oBE_Padre.ToString()))
                     {
-                        Cálculos.MsgBox("El perfil se ha eliminado de la base de datos.");
+                        if (oBLL_Permiso.EliminarPerfil(oBE_Padre))
+                        {
+                            Cálculos.MsgBox("El perfil se ha eliminado de la base de datos.");
+                        }
+                        else { throw new Exception(); }
                     }
-                    else { throw new Exception(); }
+                    else { return; }
+                    Cálculos.BorrarCampos(grpPerfiles);
+                    ActualizarListado();
                 }
-                else { return; }
-                Cálculos.BorrarCampos(grpPerfiles);
-                ActualizarListado();
+                else
+                {
+                    throw new RestaurantException("No hay nada para eliminar.");
+                }
             }
             catch (Exception ex)
             {
@@ -250,46 +265,61 @@ namespace Trabajo_Final
 
         private void btnDesasignar_Click(object sender, EventArgs e)
         {
-            if (comboPermiso.SelectedItem is BE_PermisoPadre)
+            try
             {
-                oBE_PHijo = comboPermiso.SelectedItem as BE_PermisoPadre;
-                oBE_PHijo.Otorgado = true;
-                if (oBE_Padre.ToString() != oBE_PHijo.ToString())
+                if (Cálculos.Camposvacios(grpPerfiles) & Cálculos.Camposvacios(grpPermisos))
                 {
-                    oBLL_Permiso.DesasignarPermiso(oBE_Padre, oBE_PHijo);
+                    if (comboPermiso.SelectedItem is BE_PermisoPadre)
+                    {
+                        oBE_PHijo = comboPermiso.SelectedItem as BE_PermisoPadre;
+                        oBE_PHijo.Otorgado = true;
+                        if (oBE_Padre.ToString() != oBE_PHijo.ToString())
+                        {
+                            oBLL_Permiso.DesasignarPermiso(oBE_Padre, oBE_PHijo);
+                        }
+                        else { throw new RestaurantException("Los permisos no coinciden. Intente nuevamente."); }
+                        
+                    }
+                    else
+                    {
+                        oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
+                        oBE_Hijo.Otorgado = true;
+                        oBLL_Permiso.DesasignarPermiso(oBE_Padre, oBE_Hijo);
+                    }
+                    ActualizarListado();
                 }
-                else
-                {
-                    MessageBox.Show("NO");
-                }
-
+                else { throw new RestaurantException("No hay permiso seleccionado para desasignar"); }
             }
-            else
-            {
-                oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
-                oBE_Hijo.Otorgado = true;
-                oBLL_Permiso.DesasignarPermiso(oBE_Padre, oBE_Hijo);
-            }
-            ActualizarListado();
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
         private void btnStatus_Click(object sender, EventArgs e)
         {
-            if (comboPermiso.SelectedItem is BE_PermisoPadre)
+            try
             {
-                oBE_PHijo = comboPermiso.SelectedItem as BE_PermisoPadre;
-                oBE_PHijo.Otorgado = chkActivo.Checked;
-                if (oBE_Padre.ToString() != oBE_PHijo.ToString())
+                if (Cálculos.Camposvacios(grpPerfiles) & Cálculos.Camposvacios(grpPermisos))
                 {
-                    oBLL_Permiso.CambiarStatusPermiso(oBE_Padre, oBE_PHijo);
+                    if (comboPermiso.SelectedItem is BE_PermisoPadre)
+                    {
+                        oBE_PHijo = comboPermiso.SelectedItem as BE_PermisoPadre;
+                        oBE_PHijo.Otorgado = chkActivo.Checked;
+                        if (oBE_Padre.ToString() != oBE_PHijo.ToString())
+                        {
+                            oBLL_Permiso.CambiarStatusPermiso(oBE_Padre, oBE_PHijo);
+                        }
+                        else { throw new RestaurantException("Los permisos no coinciden. Intente nuevamente."); }
+                    }
+                    else
+                    {
+                        oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
+                        oBE_Hijo.Otorgado = chkActivo.Checked;
+                        oBLL_Permiso.CambiarStatusPermiso(oBE_Padre, oBE_Hijo);
+                    }
+                    ActualizarListado();
                 }
+                else { throw new RestaurantException("No hay permiso seleccionado para Desactivar"); }
             }
-            else
-            {
-                oBE_Hijo = comboPermiso.SelectedItem as BE_PermisoHijo;
-                oBE_Hijo.Otorgado = chkActivo.Checked;
-                oBLL_Permiso.CambiarStatusPermiso(oBE_Padre, oBE_Hijo);
-            }
-            ActualizarListado();
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
+
         }
 
     }

@@ -140,7 +140,7 @@ namespace Trabajo_Final
                     comboUM.Text = oBE_Bebida.UnidadMedida.ToString();
                     txtVidaUtil.Text = oBE_Bebida.VidaUtil.ToString();
                     chkLote.Checked = oBE_Bebida.GestionLote;
-                    numABV.Value = ((BE_Bebida_Alcoholica)oBE_Bebida).ABV;
+                    numABV.Value = ((BE_Bebida_Preparada)oBE_Bebida).ABV;
                     if (numABV.Value != 0)
                     {
                         numABV.Visible = true;

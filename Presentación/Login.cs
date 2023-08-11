@@ -86,26 +86,36 @@ namespace Trabajo_Final
 
         private void btnCambiarPass_Click(object sender, EventArgs e)
         {
-            oBE_Login = oBLL_Login.Login(txtUsuario.Text);
-            if (oBE_Login != null)
+            try
             {
-                if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                if (Cálculos.Camposvacios(grpLogin))
                 {
-                    if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
-                    {
-                        frmCambioPass frm = new frmCambioPass();
-                        frm.Usuario(txtUsuario.Text);
-                        frm.ShowDialog();
-                    }
-                    else
-                    {
-                        Cálculos.MsgBox("El usuario está bloqueado. Comuniquese con el Administrador");
-                    }
 
+
+                    oBE_Login = oBLL_Login.Login(txtUsuario.Text);
+                    if (oBE_Login != null)
+                    {
+                        if (oBLL_Login.CheckPass(oBE_Login, txtPass.Text))
+                        {
+                            if (!oBLL_Login.UsuarioBloqueado(oBE_Login))
+                            {
+                                frmCambioPass frm = new frmCambioPass();
+                                frm.Usuario(txtUsuario.Text);
+                                frm.ShowDialog();
+                            }
+                            else
+                            {
+                                Cálculos.MsgBox("El usuario está bloqueado. Comuniquese con el Administrador");
+                            }
+
+                        }
+                        else throw new RestaurantException("La contraseña es incorrecta");
+                    }
+                    else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
                 }
-                else throw new RestaurantException("La contraseña es incorrecta");
+                else throw new RestaurantException("Por favor, complete los campos obligatorios.");
             }
-            else throw new UsuarioInexistenteException("No se encuentra el usuario en la base de datos.");
+            catch (Exception ex) { Cálculos.MsgBox(ex.Message); }
         }
 
         private void frmLogin_MouseDown(object sender, MouseEventArgs e)

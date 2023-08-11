@@ -150,10 +150,14 @@ namespace Automate_Layer
                     else if (c is ComboBox)
                     {
                         ComboBox combo = c as ComboBox;
-                        if (combo.Text == "")
+                        if (combo.Name != "comboIngredientes")
                         {
-                            sino = 1;
+                            if (combo.Text == "")
+                            {
+                                sino = 1;
+                            }
                         }
+                        
                     }
                 }
             }

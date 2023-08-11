@@ -148,6 +148,7 @@ namespace Trabajo_Final
                     }
                     Cálculos.DataSourceCombo(comboIngredientes, ((BE_Bebida_Preparada)oBE_Bebida).ListaIngredientes, "Lista Ingredientes");
                     comboIngredientes.Visible = true;
+                    lblIngredientes.Visible = true;
                 }
                 else
                 {

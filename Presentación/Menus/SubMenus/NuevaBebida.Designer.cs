@@ -34,7 +34,7 @@ namespace Trabajo_Final
             this.grpNuevoLogin = new System.Windows.Forms.GroupBox();
             this.txtVidaUtil = new System.Windows.Forms.TextBox();
             this.comboIngredientes = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblIngredientes = new System.Windows.Forms.Label();
             this.numABV = new System.Windows.Forms.NumericUpDown();
             this.lblABV = new System.Windows.Forms.Label();
             this.chkLote = new System.Windows.Forms.CheckBox();
@@ -61,7 +61,7 @@ namespace Trabajo_Final
             // 
             this.grpNuevoLogin.Controls.Add(this.txtVidaUtil);
             this.grpNuevoLogin.Controls.Add(this.comboIngredientes);
-            this.grpNuevoLogin.Controls.Add(this.label1);
+            this.grpNuevoLogin.Controls.Add(this.lblIngredientes);
             this.grpNuevoLogin.Controls.Add(this.numABV);
             this.grpNuevoLogin.Controls.Add(this.lblABV);
             this.grpNuevoLogin.Controls.Add(this.chkLote);
@@ -99,15 +99,15 @@ namespace Trabajo_Final
             this.comboIngredientes.TabIndex = 7;
             this.comboIngredientes.Visible = false;
             // 
-            // label1
+            // lblIngredientes
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 484);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Lista Ingredientes";
-            this.label1.Visible = false;
+            this.lblIngredientes.AutoSize = true;
+            this.lblIngredientes.Location = new System.Drawing.Point(21, 484);
+            this.lblIngredientes.Name = "lblIngredientes";
+            this.lblIngredientes.Size = new System.Drawing.Size(120, 17);
+            this.lblIngredientes.TabIndex = 0;
+            this.lblIngredientes.Text = "Lista Ingredientes";
+            this.lblIngredientes.Visible = false;
             // 
             // numABV
             // 
@@ -332,7 +332,7 @@ namespace Trabajo_Final
         private System.Windows.Forms.NumericUpDown numABV;
         private System.Windows.Forms.Label lblABV;
         private System.Windows.Forms.ComboBox comboIngredientes;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIngredientes;
         private System.Windows.Forms.TextBox txtVidaUtil;
     }
 }

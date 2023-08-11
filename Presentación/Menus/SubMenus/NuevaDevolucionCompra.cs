@@ -34,7 +34,11 @@ namespace Trabajo_Final
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            Nuevo();
+            try
+            {
+                Nuevo();
+            }
+            catch (Exception ex){ Cálculos.MsgBox(ex.Message); }
 
         }
 
